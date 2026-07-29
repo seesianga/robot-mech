@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { createRenderer, createScene, installEnvironment, trackSun } from './engine/renderer';
+import { detectQuality } from './engine/quality';
+import { createPostChain } from './engine/post';
 import { Input } from './engine/input';
 import { CameraRig } from './engine/camera';
 import { buildTerrain, addMissionStructure, type Terrain, type StructureSpec } from './world/terrain';
@@ -76,13 +78,22 @@ window.addEventListener('unhandledrejection', (e) => __STATE.errors.push(String(
 
 function boot(): void {
   const container = document.getElementById('app')!;
-  const renderer = createRenderer(container);
-  const scene = createScene();
+  // §5.7 — preset chosen once at boot, then it drives the renderer, the shadow
+  // frustum and which post passes exist. User override is remembered (quality.ts).
+  const quality = detectQuality();
+  const renderer = createRenderer(container, quality);
+  const scene = createScene(quality);
   installEnvironment(renderer, scene);   // IBL — see engine/renderer.ts for why
   exposeScene(scene);
   const input = new Input(renderer.domElement);
   const rig = new CameraRig(window.innerWidth / window.innerHeight);
   scene.add(rig.camera);
+  // §5.5 post chain. Inactive on the Fallback preset, where it renders direct.
+  const post = createPostChain(renderer, scene, rig.camera, quality);
+  const draw = (): void => {
+    if (post.active) post.composer.render();
+    else renderer.render(scene, rig.camera);
+  };
   const hud = new HUD(document.body);
   const audio = new AudioMan();
   audio.onSubtitle = (s, t, sec) => hud.subtitle(s, t, sec);
@@ -1051,7 +1062,7 @@ function boot(): void {
           chevrons: navPrefs.chevrons, beacon: navPrefs.beacon,
           reducedMotion: true, reducedFlash: false,
         });
-        renderer.render(scene, rig.camera);
+        draw();
         return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles };
       };
       // LOS content check: each authored leg (player→wp0, then wp chain) is
@@ -1168,6 +1179,9 @@ function boot(): void {
     renderer.setSize(window.innerWidth, window.innerHeight);
     rig.camera.aspect = window.innerWidth / window.innerHeight;
     rig.camera.updateProjectionMatrix();
+    // The composer owns its own render targets; without this they keep the old size
+    // and the picture stretches on every window resize.
+    post.setSize(window.innerWidth, window.innerHeight);
   });
 
   // --- fixed-step loop ---
@@ -1204,7 +1218,7 @@ function boot(): void {
     frameN++;
     fpsAcc += dt; fpsN++;
     if (fpsAcc > 0.5) { __STATE.fps = Math.round(fpsN / fpsAcc); fpsAcc = 0; fpsN = 0; }
-    if (!started || !mission || !terrain) { input.endFrame(); renderer.render(scene, rig.camera); return; }
+    if (!started || !mission || !terrain) { input.endFrame(); draw(); return; }
     acc += dt;
     let steps = 0;
     while (acc >= STEP && steps < STEP_CAP) {
@@ -1292,7 +1306,7 @@ function boot(): void {
 
     // headless: software rendering dominates the frame budget — draw 1 in 3,
     // but keep world matrices fresh so targeting/hitscan raycasts stay exact
-    if (!TEST_MODE || frameN % 3 === 0) renderer.render(scene, rig.camera);
+    if (!TEST_MODE || frameN % 3 === 0) draw();
     else scene.updateMatrixWorld();
     __STATE.playerPos = [player.pos.x, player.pos.y, player.pos.z].map((v) => Math.round(v));
     const e0 = enemies.find((e) => e.alive) ?? enemies[0];
