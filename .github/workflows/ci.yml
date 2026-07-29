@@ -1,0 +1,219 @@
+# Veyra Prime — CI. docs/PLATFORM_STANDARD.md §10
+#
+# Two tiers, because they have very different runtimes:
+#
+#   fast    (~2 min)  every push and PR. Typecheck, the 8 offline validators, and the
+#                     convergence gates. This is the tier that must stay green.
+#   browser (slow)    nightly + manual + release. Drives a real headless Chromium over
+#                     a preview server. Measured locally: one campaign mission takes
+#                     ~45 s of browser time (swiftshader is CPU-rendered), so all 22
+#                     would be far too slow to block a push.
+#
+# Gate numbering matches PLATFORM_STANDARD.md §10.2.
+
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 15 * * *'     # nightly browser tier
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '22'
+
+jobs:
+  # ───────────────────────────────────────────────────────────────────────────
+  fast:
+    name: fast gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+
+      # ── gate 1: typecheck ────────────────────────────────────────────────
+      - name: 'Gate 1 — typecheck'
+        run: npx tsc --noEmit
+
+      # ── gate 2: the existing validators (all 8 verified offline-safe) ────
+      # These already encode real knowledge about this content. Making them
+      # mandatory is the cheapest quality win available on this project.
+      - name: 'Gate 2a — content validators'
+        run: |
+          node scripts/validate_campaign.mjs
+          node scripts/validate_hangar.mjs
+          node scripts/validate_nav.mjs
+          node scripts/lint_bt.mjs
+
+      - name: 'Gate 2b — unit and service suites'
+        run: |
+          node scripts/test_hangar.mjs
+          node scripts/test_accounts.mjs
+          node scripts/test_sync.mjs
+          node scripts/test_nav_unit.mjs
+
+      # ── gate 6: no secrets anywhere in the tree or a build artefact ──────
+      - name: 'Gate 6 — no secrets committed'
+        run: |
+          set -euo pipefail
+          # Real key material, not the word "key". .env.example ships empty values.
+          if grep -rInE '(sk-[A-Za-z0-9]{20,}|glk_live_[A-Za-z0-9]{10,}|AIza[A-Za-z0-9_-]{30,}|xox[baprs]-[A-Za-z0-9-]{10,})' \
+               --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=_inbox . ; then
+            echo "::error::key-shaped string committed"; exit 1
+          fi
+          # Any VITE_-prefixed variable holding something secret-shaped is a leak by
+          # definition — VITE_ vars are inlined into the client bundle.
+          if grep -rInE 'VITE_[A-Z_]*(KEY|SECRET|TOKEN|PASSWORD)' \
+               --exclude-dir=node_modules --exclude-dir=.git . ; then
+            echo "::error::secret behind a public VITE_ prefix — rotate it"; exit 1
+          fi
+          echo "no secrets found"
+
+      # ── gate 7: franchise + retired-canon scan ───────────────────────────
+      # docs/IP_EXCLUSION_CHECKLIST.md §B.
+      #
+      # Design notes, learned by running the naive version against the real tree:
+      #  * Word boundaries are mandatory. Unbounded 'thor' matches 'author' and
+      #    produced ~93 false positives.
+      #  * 'atlas' is NOT a term here — "texture atlas" is standard vocabulary.
+      #  * The naive one-list version failed instantly on 16 files, nearly all
+      #    legitimate: IP_EXCLUSION_CHECKLIST.md *is* the banned-term list, the
+      #    design docs carry a disclaimed "Working title: MechWarrior (placeholder
+      #    — WILL be renamed before ship)" header, and tutorial-design.md explains
+      #    which source canon was retired. A gate that cries wolf gets ignored, so
+      #    it is split by blast radius instead.
+      - name: 'Gate 7a — shipping surfaces (zero tolerance)'
+        run: |
+          set -euo pipefail
+          # Anything here reaches players. No exceptions, no allowlist.
+          TERMS='dresari|kentares|steiner|davion|liao|marik|kurita|comstar|clanner'
+          TERMS="$TERMS"'|daishi|vulture|timberwolf|madcat|mauler|uziel'
+          TERMS="$TERMS"'|battlemech|battletech|mechwarrior|inner sphere'
+          TERMS="$TERMS"'|sovereign ash|nareth|meridian assembly|helix directorate'
+          hits=$(grep -rInoE "\\b($TERMS)\\b" src content index.html play.html || true)
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::franchise or retired-canon term on a SHIPPING surface"
+            exit 1
+          fi
+          echo "shipping surfaces clean"
+
+      - name: 'Gate 7b — franchise proper nouns repo-wide'
+        run: |
+          set -euo pipefail
+          # These have no legitimate use anywhere except the banned-term list itself
+          # and the read-only inherited briefs in docs/_inbox/.
+          TERMS='dresari|kentares|steiner|davion|liao|marik|kurita|comstar'
+          TERMS="$TERMS"'|daishi|timberwolf|madcat|mauler|uziel'
+          TERMS="$TERMS"'|battlemech|battletech|inner sphere'
+          hits=$(grep -rInoE "\\b($TERMS)\\b" \
+                  --exclude-dir=node_modules --exclude-dir=.git \
+                  --exclude-dir=_inbox --exclude-dir=.github \
+                  --exclude=IP_EXCLUSION_CHECKLIST.md \
+                  --exclude=vite-site-truth.mjs \
+                  docs src content scripts server README.md package.json || true)
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::franchise proper noun outside the checklist and docs/_inbox/"
+            exit 1
+          fi
+          echo "no stray franchise proper nouns"
+
+      - name: 'Gate 7c — working-title drift (advisory)'
+        run: |
+          set -euo pipefail
+          # "MechWarrior" survives as a disclaimed working title and a folder name.
+          # roadmap.md:231 tracks isolating it behind one constant before ship. This
+          # step reports the count so growth is visible; it does not fail the build.
+          # It becomes a hard gate at the rename milestone.
+          wt=$(grep -rIioE '\bmechwarrior\b' docs src content scripts server \
+                 README.md package.json --exclude-dir=_inbox | wc -l | tr -d ' ')
+          rc=$(grep -rIioE '\b(sovereign ash|nareth|meridian assembly|helix directorate)\b' \
+                 docs src content scripts server README.md package.json \
+                 --exclude-dir=_inbox | wc -l | tr -d ' ')
+          echo "working-title mentions: $wt (baseline 16)"
+          echo "retired-canon mentions in internal docs: $rc (baseline 26)"
+          [ "$wt" -gt 16 ] && echo "::warning::working-title mentions grew past baseline"
+          [ "$rc" -gt 26 ] && echo "::warning::retired-canon mentions grew past baseline"
+          exit 0
+
+      # ── gate 8: Drive-sync hygiene ───────────────────────────────────────
+      - name: 'Gate 8 — Drive hygiene'
+        run: |
+          set -euo pipefail
+          # Drive conflict duplicates: "file (1).ts" that still compiles is a silent
+          # bug factory.
+          if find . -path ./node_modules -prune -o -regex '.*([0-9])\..*' -print | grep .; then
+            echo "::error::Drive conflict duplicate committed"; exit 1
+          fi
+          # macOS is case-insensitive, this runner is not.
+          if git ls-files | tr 'A-Z' 'a-z' | sort | uniq -d | grep .; then
+            echo "::error::case-only filename collision — will break on Linux"; exit 1
+          fi
+          # An unquoted $MW_ROOT splits on the spaces and the @ in the real path.
+          if grep -rn '\$MW_ROOT[^"/]' ops scripts 2>/dev/null \
+             | grep -v 'drive-hygiene\.sh:' \
+             | awk -F: '{ c=$0; sub(/^[^:]*:[0-9]+:/,"",c); sub(/^[ \t]+/,"",c); if (c !~ /^#/) print }' \
+             | grep .; then
+            echo "::error::unquoted \$MW_ROOT"; exit 1
+          fi
+          echo "hygiene clean"
+
+      # ── gate 15: bundle budget ───────────────────────────────────────────
+      - name: 'Gate 15 — build and bundle budget'
+        run: |
+          set -euo pipefail
+          npm run build
+          # Cloudflare Workers reject any single file over 25 MiB. public/.assetsignore
+          # keeps models out of the upload; this asserts nothing else crept over.
+          big=$(find dist -type f -size +25M || true)
+          if [ -n "$big" ]; then echo "$big"; echo "::error::file exceeds the Workers 25 MiB limit"; exit 1; fi
+          echo "dist total: $(du -sh dist | cut -f1)"
+
+  # ───────────────────────────────────────────────────────────────────────────
+  browser:
+    name: browser gates (slow)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      # These suites need the built game served on :4199.
+      - name: build and serve
+        run: |
+          npm run build
+          npm run preview &
+          npx wait-on http://localhost:4199 -t 60000
+
+      # NOTE: these drive a real browser and are slow. They are gated to nightly
+      # and manual runs for that reason, NOT because they are optional.
+      - name: 'Gate 2c — tutorial completion'
+        run: node scripts/test_bt.mjs
+
+      - name: 'Gate 2d — navigation'
+        run: node scripts/test_nav.mjs
+
+      - name: 'Gate 2e — hangar UI'
+        run: node scripts/test_hangar_ui.mjs
+
+      # Serial by design. Measured locally: m04 alone 45 s and m21b alone 100 s, but
+      # the two together at the old hardcoded concurrency of 2 did not finish inside
+      # 600 s — CPU-rendered swiftshader contexts starve each other. 22 missions
+      # serially is roughly 25–40 min, which the 120-minute job timeout covers.
+      - name: 'Gate 2f — campaign completability (all 22 configs)'
+        run: node scripts/test_campaign.mjs --conc 1
+
+      - name: 'Gate 2g — save/sync through the real UI'
+        run: node scripts/verify_save.mjs

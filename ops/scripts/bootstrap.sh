@@ -42,6 +42,15 @@ fi
 # ── 2. clone the working tree OUT of the Drive mount ─────────────────────────
 mkdir -p "$MW_BUILD"
 [ -d "$TREE" ] || git clone -q "$MIRROR" "$TREE"
+# `git clone` names its source "origin". Here the source is the Drive mirror, which
+# would leave the name that belongs to the real git host already taken — and
+# `git remote add origin <host>` then fails with "remote origin already exists".
+# Rename it up front so "origin" stays free for a real host and pushes to the Drive
+# are spelled explicitly.
+if git -C "$TREE" remote | grep -qx origin && \
+   [ "$(git -C "$TREE" remote get-url origin)" = "$MIRROR" ]; then
+  git -C "$TREE" remote rename origin mirror
+fi
 
 # ── 3. dependencies — NEVER inside the Drive mount ───────────────────────────
 cd "$TREE"
@@ -83,10 +92,13 @@ ready.
   masters      : "$MW_ROOT"     <- read-only, synced, backed up
   mirror       : $MIRROR
 
-Push to both remotes:
-  git -C "$TREE" remote add origin <real-git-host>     # add this, it is not optional
-  git -C "$TREE" push origin main
-  git -C "$TREE" push "$MIRROR" main
+Remotes: the Drive mirror is "mirror". "origin" is deliberately left free for a real
+git host — the Drive is a backup, not an off-site remote, and it is the one copy that
+dies with this laptop.
+
+  git -C "$TREE" remote add origin <real-git-host>      # add this, it is not optional
+  git -C "$TREE" push -u origin main
+  git -C "$TREE" push mirror main                       # after each push to origin
 
 Never run npm install inside "$MW_ROOT".
 Never open the same folder from two machines at once.

@@ -21,6 +21,7 @@
     "music": "node scripts/gen_music.mjs",
     "musicmaster": "node scripts/master_music.mjs",
     "campcheck": "node scripts/validate_campaign.mjs",
+    "camptest": "node scripts/test_campaign.mjs",
     "navcheck": "node scripts/validate_nav.mjs",
     "navunit": "node scripts/test_nav_unit.mjs",
     "navtest": "node scripts/test_nav.mjs",

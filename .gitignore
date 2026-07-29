@@ -40,19 +40,25 @@ dist-release/
 # ── binary asset trees: Drive-only, symlinked in by bootstrap.sh ──────────────
 # Generator masters and shipped binaries. They live in $MW_ROOT (synced +
 # offline-pinned) and are the provenance record for every shipped asset.
-assets/
-masters/
-assets-source/tripo-raw/
-assets-source/dcc/
-assets-source/audio-master/
+#
+# NOTE the missing trailing slashes. bootstrap.sh replaces these paths with
+# SYMLINKS into the Drive, and a trailing slash matches directories only — git
+# would then offer to commit the symlink itself, baking this machine's absolute
+# Drive path into the repo and leaving dangling links on Linux CI. Anchored,
+# slash-less patterns match both the real directory and the symlink.
+/assets
+/masters
+/assets-source/tripo-raw
+/assets-source/dcc
+/assets-source/audio-master
 
 # public/ is PARTIALLY tracked: the big binary subdirs are ignored, but the small
 # load-bearing files are NOT. public/.assetsignore in particular is what keeps the
 # Cloudflare Worker under its 25 MiB/file limit — losing it breaks deploys.
-public/models/
-public/audio/
-public/textures/
-public/site/
+/public/models
+/public/audio
+/public/textures
+/public/site
 # (public/fonts/ is 188K and stays tracked; public/.assetsignore stays tracked)
 
 # ── capture and scratch ───────────────────────────────────────────────────────
