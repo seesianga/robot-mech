@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Veyra Prime (working title 'MechWarrior') — browser-based giant-robot combat simulator. M0 vertical slice.",
+  "description": "Veyra Prime (working title 'MechWarrior') \u2014 browser-based giant-robot combat simulator. M0 vertical slice.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -22,6 +22,7 @@
     "musicmaster": "node scripts/master_music.mjs",
     "campcheck": "node scripts/validate_campaign.mjs",
     "camptest": "node scripts/test_campaign.mjs",
+    "lightprobe": "node scripts/lightprobe.mjs",
     "navcheck": "node scripts/validate_nav.mjs",
     "navunit": "node scripts/test_nav_unit.mjs",
     "navtest": "node scripts/test_nav.mjs",
@@ -52,7 +53,9 @@
     "mporigin": "node scripts/probe_mp_origin.mjs",
     "deploy:pages": "npm run build && wrangler pages deploy dist --project-name robot-mech --branch main --commit-dirty=true",
     "deploy:worker": "npm run build && wrangler deploy",
-    "sync:test": "node scripts/test_sync.mjs"
+    "sync:test": "node scripts/test_sync.mjs",
+    "schema": "node scripts/content_schema.mjs",
+    "schema:types": "node scripts/content_schema.mjs --types"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.14.0",

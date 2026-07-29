@@ -50,6 +50,13 @@ jobs:
           node scripts/validate_nav.mjs
           node scripts/lint_bt.mjs
 
+      # §3.3 — one content schema. Types, stable machine IDs, uniqueness, and the
+      # referential integrity no single file can check for itself: a mission whose
+      # playerMech or step target does not exist is uncompletable, and this catches it
+      # in milliseconds where test_campaign.mjs needs ~45 s of browser per mission.
+      - name: 'Gate 2h — content schema'
+        run: node scripts/content_schema.mjs
+
       - name: 'Gate 2b — unit and service suites'
         run: |
           node scripts/test_hangar.mjs
@@ -249,3 +256,10 @@ jobs:
 
       - name: 'Gate 2g — save/sync through the real UI'
         run: node scripts/verify_save.mjs
+
+      # §5.6 — lighting verification. Measures the cast shadow against open ground at a
+      # FIXED camera and sim state across all four §5.7 presets, so a lighting change
+      # that washes shadows out fails a number instead of surviving until someone
+      # notices. Needs the assets, hence this job.
+      - name: 'Gate 16 — lighting probe (all presets)'
+        run: node scripts/lightprobe.mjs

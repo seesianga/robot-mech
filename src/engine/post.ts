@@ -60,18 +60,39 @@ export function createPostChain(
   if (quality.ssao) {
     // This is the pass that stops the mech floating: it darkens foot contact, panel
     // seams and the crevices the environment probe would otherwise fill uniformly.
-    const gtao = new GTAOPass(scene, camera, w, h);
-    gtao.output = GTAOPass.OUTPUT.Default;
-    // Radius in world metres. A mech is ~12 m; 0.5 m reads panel seams and foot
-    // contact without haloing the whole silhouette against the terrain.
-    const params = (gtao as unknown as { updateGtaoMaterial?: (p: object) => void });
-    params.updateGtaoMaterial?.({
-      radius: 0.5,
+    //
+    // aoParameters is the SIXTH constructor argument. Setting them afterwards via
+    // updateGtaoMaterial is unreliable — it early-outs when a value equals the current
+    // one, so a partially-applied config silently keeps defaults tuned for a small
+    // interior scene. This battlefield is ~2 km across, and those defaults are what
+    // lifted the cast shadow at quality=high.
+    // The bundled @types/three declares 5 constructor parameters; the shipped
+    // GTAOPass.js takes 7 (…, parameters, aoParameters, pdParameters). The typings are
+    // behind the implementation, so the call is made through the real signature. Do not
+    // "fix" this by dropping aoParameters — that reinstates interior-scene defaults on
+    // a 2 km battlefield, which is what washed the AO out in the first place.
+    type GTAOCtor = new (
+      scene: THREE.Scene, camera: THREE.Camera, w: number, h: number,
+      parameters?: object, aoParameters?: object, pdParameters?: object,
+    ) => GTAOPass;
+    const gtao = new (GTAOPass as unknown as GTAOCtor)(scene, camera, w, h, undefined, {
+      // Radius in world metres. A mech is ~12 m; 0.4 m reads panel seams and foot
+      // contact without haloing the silhouette against the terrain behind it.
+      radius: 0.4,
       distanceExponent: 1.0,
       thickness: 1.0,
       scale: 1.0,
       samples: quality.ssaoHalfRes ? 8 : 16,
+      // Screen-space radius cap. Without it, geometry near the camera claims a huge
+      // pixel radius and the AO smears across the whole lower screen — which is
+      // exactly what read as "the shadow got weaker".
+      screenSpaceRadius: false,
     });
+    gtao.output = GTAOPass.OUTPUT.Default;
+    // AO must not fight the sun's cast shadow. §5.5 says AO applies to ambient only;
+    // this renderer composites over the beauty buffer instead, so the blend is kept
+    // well under full strength to keep that approximation invisible.
+    gtao.blendIntensity = 0.55;
     composer.addPass(gtao);
   }
 
