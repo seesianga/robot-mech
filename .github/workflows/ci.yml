@@ -164,19 +164,20 @@ jobs:
           fi
           echo "hygiene clean"
 
-      # ── gate 15 is NOT here, deliberately ────────────────────────────────
-      # `npm run build` cannot run on a GitHub-hosted runner. The site-truth plugin
-      # in scripts/vite-site-truth.mjs derives the landing page's numbers by scanning
-      # public/models and public/audio on disk, so the page can never claim more than
-      # was actually shipped. Those trees are Drive-only (400 MB, git-lfs unavailable),
-      # so a fresh checkout has no assets and the build dies in deriveFacts:
-      #   ENOENT: no such file or directory, scandir '.../public/models'
-      #
-      # Making the plugin tolerate missing assets would defeat the one thing it exists
-      # to do, so the build gate lives where assets exist — see the build-assets job.
-      # Do NOT "fix" this by stubbing the directories: that ships false claims.
-      - name: 'Gate 15 — not run here (see build-assets job)'
-        run: echo "build gate requires assets; runs on a runner that has them"
+      # ── gate 15: build and bundle budget ─────────────────────────────────
+      # This builds WITHOUT the asset trees (they are Drive-only). site-truth takes its
+      # asset numbers from content/asset-census.json, which is re-derived and drift-
+      # checked on every build that does have the assets — see scripts/asset_census.mjs.
+      # Verified: the assets-less build produces a byte-identical index.html.
+      - name: 'Gate 15 — build and bundle budget'
+        run: |
+          set -euo pipefail
+          npm run build
+          # Cloudflare Workers reject any single file over 25 MiB. public/.assetsignore
+          # keeps models out of the upload; this asserts nothing else crept over.
+          big=$(find dist -type f -size +25M || true)
+          if [ -n "$big" ]; then echo "$big"; echo "::error::file exceeds the Workers 25 MiB limit"; exit 1; fi
+          echo "dist total: $(du -sh dist | cut -f1)"
 
   # ───────────────────────────────────────────────────────────────────────────
   # Everything below needs public/models, public/audio and public/textures on disk —

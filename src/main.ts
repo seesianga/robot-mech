@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createRenderer, createScene, trackSun } from './engine/renderer';
+import { createRenderer, createScene, installEnvironment, trackSun } from './engine/renderer';
 import { Input } from './engine/input';
 import { CameraRig } from './engine/camera';
 import { buildTerrain, addMissionStructure, type Terrain, type StructureSpec } from './world/terrain';
@@ -78,6 +78,7 @@ function boot(): void {
   const container = document.getElementById('app')!;
   const renderer = createRenderer(container);
   const scene = createScene();
+  installEnvironment(renderer, scene);   // IBL — see engine/renderer.ts for why
   exposeScene(scene);
   const input = new Input(renderer.domElement);
   const rig = new CameraRig(window.innerWidth / window.innerHeight);

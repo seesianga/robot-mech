@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { dressBox, dressGroup, applyGroundTexture, applyWaterTexture } from './assets';
+import { HEMI_IBL_SCALE } from '../engine/renderer';
 
 export type MapId = 'yard' | 'tideflats' | 'range' | 'salt' | 'karst' | 'polar' | 'storm' | 'arcology' | 'anchor';
 
@@ -181,10 +182,18 @@ interface MapMood {
   sand: { wet: number; dry: number; rock: number };
   sunIntensity?: number;
   hemiIntensity?: number;
+  /**
+   * Scales the image-based ambient (see installEnvironment). This is the ambient
+   * SPECULAR that makes metal read as metal, so it is not interchangeable with
+   * hemiIntensity: hemi lifts diffuse, this lifts reflection. An overcast whiteout
+   * wants a lot of it; a night interior wants very little or the mechs glow.
+   */
+  envIntensity?: number;
 }
 
 const MOODS: Record<MapId, MapMood> = {
   yard: {
+    envIntensity: 0.9,   // bright overcast coast
     background: 0x9db6c2,
     fog: [0x9fb4bd, 250, 1900],
     water: { level: -2.8, color: 0x1d3d47 },
@@ -192,6 +201,7 @@ const MOODS: Record<MapId, MapMood> = {
     sand: { wet: 0x9c8c6e, dry: 0xbcae90, rock: 0x6f6656 },
   },
   tideflats: {
+    envIntensity: 1.0,   // pale dawn over wet flats — most reflective ground in the game
     background: 0xb6c3c9,
     fog: [0xaebfc4, 170, 1500],
     water: { level: -0.5, color: 0x2a4a50 },
@@ -199,6 +209,7 @@ const MOODS: Record<MapId, MapMood> = {
     sand: { wet: 0x8a8272, dry: 0xb0a68c, rock: 0x6f6a5c },
   },
   range: {
+    envIntensity: 0.8,   // dusk gold, warm and low
     background: 0xd9b98c,
     fog: [0xcfae84, 240, 1700],
     water: { level: -40, color: 0x2a4a50 }, // inland basin — no visible water
@@ -208,6 +219,7 @@ const MOODS: Record<MapId, MapMood> = {
     hemiIntensity: 1.05,
   },
   salt: {
+    envIntensity: 1.25,   // whiteout glare — the sky IS the light source here
     background: 0xe6e2d6,
     fog: [0xe3ddcf, 420, 2300], // white-out glare — the horizon dissolves
     water: { level: -40, color: 0x2a4a50 },
@@ -217,6 +229,7 @@ const MOODS: Record<MapId, MapMood> = {
     hemiIntensity: 1.5,
   },
   karst: {
+    envIntensity: 0.75,   // grey-green dusk between the pillars
     background: 0x93998a,
     fog: [0x8b9284, 200, 1400],
     water: { level: -40, color: 0x24403c },
@@ -226,6 +239,7 @@ const MOODS: Record<MapId, MapMood> = {
     hemiIntensity: 0.95,
   },
   polar: {
+    envIntensity: 0.35,   // polar night — almost no ambient specular
     background: 0x18232f,
     fog: [0x1c2836, 220, 1500], // aurora night over the ice
     water: { level: -1.4, color: 0x0d1c26 },
@@ -235,6 +249,7 @@ const MOODS: Record<MapId, MapMood> = {
     hemiIntensity: 0.6,
   },
   storm: {
+    envIntensity: 0.7,   // heavy overcast: weak sun, but a broad diffuse dome
     background: 0x4a555c,
     fog: [0x46525a, 130, 1000], // squall wall — short, grey sightlines
     water: { level: 0.3, color: 0x14262c },
@@ -244,6 +259,7 @@ const MOODS: Record<MapId, MapMood> = {
     hemiIntensity: 0.65,
   },
   arcology: {
+    envIntensity: 0.8,   // urban overcast, bounce off concrete
     background: 0x6c7076,
     fog: [0x686d74, 220, 1600],
     water: { level: -40, color: 0x1a262b },
@@ -253,6 +269,7 @@ const MOODS: Record<MapId, MapMood> = {
     hemiIntensity: 1.0,
   },
   anchor: {
+    envIntensity: 0.4,   // spire anchor — near-vacuum contrast, minimal fill
     background: 0x2b3138,
     fog: [0x2a3037, 180, 1300], // the stormwall pressing in
     water: { level: -4, color: 0x0e1a20 },
@@ -307,7 +324,9 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
   const sun = scene.userData.sun as THREE.DirectionalLight | undefined;
   if (sun) sun.intensity = mood.sunIntensity ?? 2.4;
   const hemi = scene.userData.hemi as THREE.HemisphereLight | undefined;
-  if (hemi) hemi.intensity = mood.hemiIntensity ?? 1.35;
+  // Scaled, not rewritten — see HEMI_IBL_SCALE. The biome ranking is art direction.
+  if (hemi) hemi.intensity = (mood.hemiIntensity ?? 1.35) * HEMI_IBL_SCALE;
+  scene.environmentIntensity = mood.envIntensity ?? 0.85;
 
   // --- ground ---
   const geo = new THREE.PlaneGeometry(SIZE, SIZE, SEGS, SEGS);
