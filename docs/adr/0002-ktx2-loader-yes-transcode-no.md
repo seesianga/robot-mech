@@ -23,7 +23,7 @@ official v4.4.2 package **without a system install** — `pkgutil --expand`, the
 payload unpacked to `~/mw-build/ktx/`, with `libktx.4.dylib` placed where the binary's
 `@rpath` looks. `ktx --version` reports v4.4.2. Nothing was written outside that folder.
 
-Same source asset (`env-bt-barrier`), same simplify ratio, same 1024 texture size, same
+Same source asset (`vp_prop_range_barrier`), same simplify ratio, same 1024 texture size, same
 meshopt pass, only the texture codec differing:
 
 | build | size | verified by |

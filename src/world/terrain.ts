@@ -408,7 +408,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     gantryParts.push(beam);
     // The gantry is legs AND beam: dressing only the beam left four bare posts under
     // a generated span. One model over the whole frame instead.
-    dressGroup(gantry, gantryParts, 'env_tut_gantry');
+    dressGroup(gantry, gantryParts, 'vp_prop_range_gantry');
     gantry.position.set(-350, h(-350, 40) - 1.5, 40);
     group.add(gantry);
 
@@ -421,7 +421,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       c.rotation.y = i * 0.7;
       group.add(c);
       colliders.push(c);
-      dressBox(c, 'env_tut_crate');
+      dressBox(c, 'vp_prop_range_crate');
     }
 
     // tracking mast (destructible objective)
@@ -445,7 +445,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     // Built inline rather than through addMissionStructure, so it needs dressing here.
     // A 90 m shaft with a dish on top: the generated control tower (tall shaft,
     // antenna cluster, observation deck) is the closest silhouette we have.
-    dressGroup(mast, meshes, 'prop-control-tower');
+    dressGroup(mast, meshes, 'vp_struct_shared_control-tower');
     const s: Structure = { id: 'tracking_mast', name: 'Tracking Mast', hp: 120, hpMax: 120, group: mast, meshes, destroyed: false, topple: true };
     for (const m of meshes) m.userData.structureId = s.id;
     structures.push(s);
@@ -462,7 +462,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
         const post = boxMesh(2.5, 16, 2.5, steelMat);
         post.position.set(gx + sx * 13, h(gx + sx * 13, gz) + 8, gz);
         group.add(post);
-        dressBox(post, 'env_tut_nav_beacon');
+        dressBox(post, 'vp_prop_range_nav-beacon');
         const band = new THREE.Mesh(new THREE.BoxGeometry(3, 2, 3), pylonBandMat);
         band.position.set(gx + sx * 13, h(gx + sx * 13, gz) + 15, gz);
         group.add(band);
@@ -479,7 +479,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const panel = boxMesh(13, 14, 1.2, boardMat.clone());
       panel.position.y = 9.5;
       aimGroup.add(panel);
-      dressGroup(aimGroup, [panel, base], 'env_tut_board_a');
+      dressGroup(aimGroup, [panel, base], 'vp_prop_range_board-a');
       const ring = new THREE.Mesh(new THREE.TorusGeometry(4, 0.5, 8, 24), pylonBandMat);
       ring.position.set(0, 9.5, -0.9);
       aimGroup.add(ring);
@@ -504,7 +504,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const panel = boxMesh(9, 11, 1.2, boardMat.clone());
       panel.position.y = 8;
       boardGroup.add(panel);
-      dressGroup(boardGroup, [panel, base], 'env_tut_board_b');
+      dressGroup(boardGroup, [panel, base], 'vp_prop_range_board-b');
       boardGroup.position.set(bx, h(bx, bz) - 0.5, bz);
       group.add(boardGroup);
       const s: Structure = {
@@ -518,7 +518,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     // boost barrier — low wide block, sloped read, amber chevron band (F-phase)
     {
       const wall = boxMesh(10, 8, BARRIER.halfW * 2, steelMat);
-      dressBox(wall, 'env_tut_barricade');
+      dressBox(wall, 'vp_prop_range_barricade');
       wall.position.set(BARRIER.x, h(BARRIER.x, BARRIER.z) + 4, BARRIER.z);
       group.add(wall);
       colliders.push(wall);
@@ -532,7 +532,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const penX = -150, penZ = -170, half = 26;
       const mkFence = (fx: number, fz: number, ry: number): void => {
         const rail = boxMesh(half * 2, 6, 1.2, steelMat);
-        dressBox(rail, 'env-bt-fence');
+        dressBox(rail, 'vp_prop_range_fence');
         rail.position.set(fx, h(fx, fz) + 3, fz);
         rail.rotation.y = ry;
         group.add(rail);
@@ -558,14 +558,14 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     // own cab, so dressing only the tank left the cab stand-in sitting beside it as a
     // bare black block. dressGroup fits the truck to the union and hides both boxes,
     // which stay in `colliders` so the bowser still blocks fire and movement.
-    dressGroup(bowser, [tank, cab], 'env_tut_coolant_bowser');
+    dressGroup(bowser, [tank, cab], 'vp_prop_range_coolant-bowser');
 
     // pad light mast with a lit head
     const mastPost = boxMesh(3, 36, 3, steelMat);
     mastPost.position.set(-150, h(-150, 150) + 17, 150);
     group.add(mastPost);
     colliders.push(mastPost);
-    dressBox(mastPost, 'prop-searchlight-tower');
+    dressBox(mastPost, 'vp_struct_shared_searchlight-tower');
     const lampMat = new THREE.MeshStandardMaterial({ color: 0xfff2cc, emissive: 0xffe9a8, emissiveIntensity: 1.8 });
     const mastHead = new THREE.Mesh(new THREE.BoxGeometry(6, 3, 3), lampMat);
     mastHead.position.set(-150, h(-150, 150) + 36, 150);
@@ -580,7 +580,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       c.rotation.y = i * 1.1;
       group.add(c);
       colliders.push(c);
-      dressBox(c, 'env_tut_crate');
+      dressBox(c, 'vp_prop_range_crate');
     }
 
     scene.add(group);
@@ -599,7 +599,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const rx = -300 + Math.sin(i * 37.7) * 260;
       const rz = 40 + Math.cos(i * 51.3) * 300;
       const rib = boxMesh(2.5, 14 + (i % 3) * 6, 5, hullMat);
-      dressBox(rib, 'prop-hull-carcass');
+      dressBox(rib, 'vp_prop_tideflats_hull-carcass');
       rib.position.set(rx, h(rx, rz) + 5, rz);
       rib.rotation.set(0.25 * Math.sin(i), i * 0.9, 0.3 * Math.cos(i * 2));
       group.add(rib);
@@ -615,7 +615,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       c.rotation.y = i * 1.3;
       group.add(c);
       colliders.push(c);
-      dressBox(c, 'env_tut_crate');
+      dressBox(c, 'vp_prop_range_crate');
     }
   } else if (map === 'salt') {
     // --- halite flats: sparse by design — the sightline IS the level ---
@@ -674,7 +674,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     // refinery stacks north — navigation landmarks with flare tips
     for (const [sx, sz] of [[-320, -520], [-180, -560], [40, -540], [260, -530]] as Array<[number, number]>) {
       const stack = boxMesh(14, 90, 14, steelMat);
-      dressBox(stack, 'prop-cracking-tower', 'lod1');
+      dressBox(stack, 'vp_struct_polar_cracking-tower', 'lod1');
       stack.position.set(sx, h(sx, sz) + 45, sz);
       group.add(stack);
       colliders.push(stack);
@@ -689,7 +689,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const bx = -480 + i * 62 + Math.sin(i * 3.1) * 18;
       const bz = 380 + Math.sin(i * 1.7) * 40;
       const b = boxMesh(16, 12 + (i % 3) * 4, 12, concMat);
-      dressBox(b, 'prop-fortress-wall');
+      dressBox(b, 'vp_struct_shared_fortress-wall');
       b.position.set(bx, h(bx, bz) + 4, bz);
       b.rotation.y = i * 0.5;
       b.rotation.x = 0.1 * Math.sin(i * 2.2);
@@ -707,7 +707,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       c.rotation.y = i * 1.3;
       group.add(c);
       colliders.push(c);
-      dressBox(c, 'env_tut_crate');
+      dressBox(c, 'vp_prop_range_crate');
     }
   } else if (map === 'arcology') {
     // --- Vell: city blocks in a broken grid; the avenue (|x|<45) and the canal stay open ---
@@ -728,8 +728,8 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
         const d = 42 + ((bi * 17) % 34);
         const b = boxMesh(w, tall, d, bi % 2 ? blockMatA : blockMatB);
         // podium / mid-rise / crown by height, so the grid reads as a real skyline
-        dressBox(b, tall > 90 ? 'prop-arcology-crown'
-          : tall > 55 ? 'prop-arcology-mid' : 'prop-arcology-podium');
+        dressBox(b, tall > 90 ? 'vp_prop_arcology_arcology-crown'
+          : tall > 55 ? 'vp_prop_arcology_arcology-mid' : 'vp_prop_arcology_arcology-podium');
         b.position.set(jx, h(jx, jz) + tall / 2 - 1, jz);
         b.rotation.y = (bi % 4) * 0.02;
         group.add(b);
@@ -751,7 +751,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const px = Math.sin(a) * 430;
       const pz = Math.cos(a) * 430;
       const pylon = boxMesh(10, 64, 10, pylonMat);
-      dressBox(pylon, 'prop-anchor-gate', 'lod1');
+      dressBox(pylon, 'vp_struct_anchor_anchor-gate', 'lod1');
       pylon.position.set(px, h(px, pz) + 32, pz);
       group.add(pylon);
       colliders.push(pylon);
@@ -773,7 +773,7 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       const rx = Math.sin(i * 2.7 + 1) * 260;
       const rz = Math.cos(i * 3.9 + 2) * 260;
       const deb = boxMesh(9 + (i % 3) * 4, 6 + (i % 2) * 4, 8, pylonMat);
-      dressBox(deb, i % 2 ? 'prop-ruin-a' : 'prop-ruin-b');
+      dressBox(deb, i % 2 ? 'vp_prop_shared_ruin-a' : 'vp_prop_shared_ruin-b');
       deb.position.set(rx, h(rx, rz) + 2.5, rz);
       deb.rotation.set(0.2 * Math.sin(i), i * 1.4, 0.15 * Math.cos(i));
       group.add(deb);
@@ -894,13 +894,13 @@ export function addMissionStructure(terrain: Terrain, spec: StructureSpec): Stru
   // Dress the slab assembly with its generated counterpart. The boxes stay as the
   // damage and hit volumes; only the visuals are replaced (see assets.dressGroup).
   const PROP_ASSET: Partial<Record<StructureSpec['kind'], string>> = {
-    pylon: 'env_mp_hill_pylon',
-    mast: 'prop-searchlight-tower',
-    tank: 'prop-fuel-tank',
-    bunker: 'prop-bunker',
-    building: 'prop-hangar',
-    gate: 'prop-gatehouse',
-    crawler: 'veh-ore-crawler',
+    pylon: 'vp_struct_shared_hill-pylon',
+    mast: 'vp_struct_shared_searchlight-tower',
+    tank: 'vp_prop_shared_fuel-tank',
+    bunker: 'vp_struct_shared_bunker',
+    building: 'vp_struct_shared_hangar',
+    gate: 'vp_struct_shared_gatehouse',
+    crawler: 'vp_vehicle_shared_ore-crawler',
   };
   const asset = PROP_ASSET[spec.kind];
   if (asset) dressGroup(g, meshes, asset);

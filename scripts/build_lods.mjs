@@ -16,7 +16,7 @@
  *
  * Usage:
  *   node scripts/build_lods.mjs                # build every raw GLB that is stale
- *   node scripts/build_lods.mjs --ids mech-halite,mech-craton
+ *   node scripts/build_lods.mjs --ids vp_frame_shared_halite,vp_frame_shared_craton
  *   node scripts/build_lods.mjs --force        # rebuild even if up to date
  *   node scripts/build_lods.mjs --only lod1    # single tier
  */

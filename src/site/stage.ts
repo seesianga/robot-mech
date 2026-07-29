@@ -33,7 +33,7 @@ export type StageQuality = 'high' | 'low';
 
 export interface StageOptions {
   canvas: HTMLCanvasElement;
-  /** Chassis id without the lod suffix, e.g. 'mech-gabbro'. */
+  /** Chassis id without the lod suffix, e.g. 'vp_frame_shared_gabbro'. */
   initial: string;
   quality?: StageQuality;
   lod?: Lod;

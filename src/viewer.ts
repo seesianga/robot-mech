@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 /** Standalone inspector for Tripo3D-generated GLBs in public/models/. */
-const ASSETS = ['mech-skarn', 'mech-gabbro', 'int-cockpit'];
+const ASSETS = ['vp_frame_shared_skarn', 'vp_frame_shared_gabbro', 'vp_cockpit_shared_interior'];
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

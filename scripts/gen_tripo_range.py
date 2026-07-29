@@ -9,7 +9,7 @@ asset-for-asset when generated. Runs only when the Tripo account has credits
 
 Usage:
   python3 scripts/gen_tripo_range.py            # all range assets
-  python3 scripts/gen_tripo_range.py --ids env_tut_drone,env_tut_board_a
+  python3 scripts/gen_tripo_range.py --ids vp_prop_range_drone,vp_prop_range_board-a
 Idempotent: assets whose GLB already exists are skipped.
 """
 import argparse
@@ -37,21 +37,21 @@ STYLE = ("military science fiction, hard-surface game asset, battle-worn painted
          "readable silhouette, neutral studio background")
 
 ASSETS = [
-    ("env_tut_drone",
+    ("vp_prop_range_drone",
      f"small hovering drill drone, twin ducted fans, round sensor eye, orange training stripes, {STYLE}"),
-    ("env_tut_board_a",
+    ("vp_prop_range_board-a",
      f"pop-up shooting range silhouette target board of a walking war robot, steel frame, hinged base plate, scorched holes, {STYLE}"),
-    ("env_tut_board_b",
+    ("vp_prop_range_board-b",
      f"pop-up shooting range silhouette target board of a squat tank, steel frame, hinged base plate, painted score rings, {STYLE}"),
-    ("env_tut_coolant_bowser",
+    ("vp_prop_range_coolant-bowser",
      f"weathered military coolant tanker truck, cylindrical tank, hoses coiled on rear rack, hazard striping, {STYLE}"),
-    ("env_tut_barricade",
+    ("vp_prop_range_barricade",
      f"vehicle barricade welded from wreck hull plating, sandbag base, chevron warning paint, {STYLE}"),
-    ("env_tut_crate",
+    ("vp_prop_range_crate",
      f"stackable military supply crate, recessed handles, stencilled markings, {STYLE}"),
-    ("env_tut_gantry",
+    ("vp_prop_range_gantry",
      f"tall lattice range gantry mast with floodlight head and small radar dish, guy wires, {STYLE}"),
-    ("env_tut_nav_beacon",
+    ("vp_prop_range_nav-beacon",
      f"deployable navigation beacon pedestal, tripod legs, glowing amber indicator dome, folding antenna, {STYLE}"),
 ]
 

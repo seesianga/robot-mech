@@ -47,9 +47,9 @@ always gets a full 5v5 (4 friendly + 5 hostile robots).
 | Deathmatch | **[SHIPPED]** online 5v5 + practice-vs-bots | **1 point per kill, first team to 20** (or highest at the 5:00 clock). Kills are victim-reported, server-credited; cross-team only. |
 | Capture the Flag | **[SHIPPED]** online 5v5 | One neutral flag at field center. Stand it uncontested 5 s to **turn it your color**; while it's yours your team accrues **1 pt/s**, first to 100. Conversion is arbitrated by the match host client (server relays + accrues), flag repaints live for everyone. |
 | Team Deathmatch (damage-scored) | folded into DM | The earlier damage-scored TDM ruleset is retired in favor of the kill-scored 5v5 DM above. |
-| King of the Hill | Phase 2 | +1 pt/s sole occupancy; contested = nobody scores; relocation every 3 min. Hill pylon asset generated (env_mp_hill_pylon); announcer hill lines recorded. |
+| King of the Hill | Phase 2 | +1 pt/s sole occupancy; contested = nobody scores; relocation every 3 min. Hill pylon asset generated (vp_struct_shared_hill-pylon); announcer hill lines recorded. |
 | Escort (VIP) | Phase 2 | Best-of-5 single-life rounds; VIP +20% armor, sensor-visible; announcer VIP lines recorded. |
-| Steal the Beacon | Phase 2 | Carrier +1 pt/s, full-radar broadcast, torso glow; beacon asset generated (env_mp_beacon); carrier lines recorded. |
+| Steal the Beacon | Phase 2 | Carrier +1 pt/s, full-radar broadcast, torso glow; beacon asset generated (vp_prop_shared_beacon); carrier lines recorded. |
 
 Server logic lives once in `server/matchcore.mjs` (queues, robot assembly, ownership
 validation, scoring, clock) and runs unchanged in both transports: the deployed Durable
@@ -131,9 +131,9 @@ boxes (honest, no invisible lips). `scripts/gen_tripo_mp.py` (idempotent):
 
 | ID | Asset | Status |
 |---|---|---|
-| env_mp_flag | CTF flag standard | **GENERATED** |
-| env_mp_beacon | carryable beacon case | **GENERATED** |
-| env_mp_hill_pylon | control-ring emitter pylon | **GENERATED** |
+| vp_prop_shared_flag | CTF flag standard | **GENERATED** |
+| vp_prop_shared_beacon | carryable beacon case | **GENERATED** |
+| vp_struct_shared_hill-pylon | control-ring emitter pylon | **GENERATED** |
 | env_mp_spawn_gantry / repair_pad / wall / halfwall / bunker / comm_tower | 6 structural pieces | staged — the account hit zero credits mid-batch (403 code=2010); rerun `python3 scripts/gen_tripo_mp.py` after topping up |
 
 Biome-retexture trick, LOD passes, and the QC gate (watertight, ground pivot, PBR complete,

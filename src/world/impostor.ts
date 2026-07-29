@@ -7,8 +7,8 @@ import * as THREE from 'three';
  * -------------------------------------------
  * 13 of 51 meshes will not simplify below ~4-14k triangles however low the target,
  * because meshoptimizer preserves topology and these are thousands of disconnected
- * shells. That is honest to the art: env-bt-fence is a "modular open-frame lattice",
- * prop-hull-carcass is "exposed rib frames and deck plates", prop-arcology-mid is
+ * shells. That is honest to the art: vp_prop_range_fence is a "modular open-frame lattice",
+ * vp_prop_tideflats_hull-carcass is "exposed rib frames and deck plates", vp_prop_arcology_arcology-mid is
  * "repeating tiers with recessed window bands and service rails". Regenerating them
  * through Tripo was measured and moved the floor only 14,199 -> 11,333 (ADR notes in
  * scripts/tripo_regen.py). A lattice is not one surface, and no setting makes it one.
@@ -43,11 +43,11 @@ export function setImpostorRenderer(r: THREE.WebGLRenderer): void {
  * decimates to its budget, and a billboard would be a downgrade for no gain.
  */
 export const IMPOSTOR_ASSETS = new Set([
-  'env-bt-fence', 'env_tut_barricade', 'env_tut_coolant_bowser',
-  'prop-arcology-crown', 'prop-arcology-mid', 'prop-arcology-podium',
-  'prop-cracking-tower', 'prop-fuel-tank', 'prop-hangar', 'prop-hull-carcass',
-  'prop-relay-pylon', 'prop-searchlight-tower',
-  // int-cockpit is deliberately absent: it is interior geometry viewed from inside,
+  'vp_prop_range_fence', 'vp_prop_range_barricade', 'vp_prop_range_coolant-bowser',
+  'vp_prop_arcology_arcology-crown', 'vp_prop_arcology_arcology-mid', 'vp_prop_arcology_arcology-podium',
+  'vp_struct_polar_cracking-tower', 'vp_prop_shared_fuel-tank', 'vp_struct_shared_hangar', 'vp_prop_tideflats_hull-carcass',
+  'vp_struct_shared_relay-pylon', 'vp_struct_shared_searchlight-tower',
+  // vp_cockpit_shared_interior is deliberately absent: it is interior geometry viewed from inside,
   // where an impostor is meaningless.
 ]);
 

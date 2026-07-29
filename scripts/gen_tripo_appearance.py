@@ -14,7 +14,7 @@ dimensions out of the shipped GLBs — see docs/mech-appearance-prompts.md §6.
 Usage:
   python3 scripts/gen_tripo_appearance.py --dry-run     # parse + validate, no API calls
   python3 scripts/gen_tripo_appearance.py               # generate every missing mech
-  python3 scripts/gen_tripo_appearance.py --ids mech-halite,mech-craton
+  python3 scripts/gen_tripo_appearance.py --ids vp_frame_shared_halite,vp_frame_shared_craton
   python3 scripts/gen_tripo_appearance.py --force       # regenerate even if GLB exists
 Idempotent: a mech whose GLB already exists is skipped unless --force.
 """

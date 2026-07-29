@@ -514,7 +514,7 @@ export function skinMechVisual(v: MechVisual, mech: Mech, lod: Lod = 'lod1'): vo
   if (typeof location !== 'undefined'
     && new URLSearchParams(location.search).get('noskin') === '1') return;
 
-  void loadModel(`mech-${mech.def.id}`, lod).then((src) => {
+  void loadModel(`vp_frame_shared_${mech.def.id}`, lod).then((src) => {
     if (!src || v.dead) return;
     try {
       applyModelSkin(v, mech, src);

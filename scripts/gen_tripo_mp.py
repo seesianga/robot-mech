@@ -9,7 +9,7 @@ authored in-engine as boxes — these are the visual dressing pass).
 
 Usage:
   python3 scripts/gen_tripo_mp.py            # all arena assets
-  python3 scripts/gen_tripo_mp.py --ids env_mp_flag,env_mp_beacon
+  python3 scripts/gen_tripo_mp.py --ids vp_prop_shared_flag,vp_prop_shared_beacon
 Idempotent: assets whose GLB already exists are skipped.
 """
 import argparse
@@ -37,11 +37,11 @@ STYLE = ("military science fiction, hard-surface game asset, battle-worn painted
          "neutral studio background")
 
 ASSETS = [
-    ("env_mp_flag",
+    ("vp_prop_shared_flag",
      f"tall battle standard pole on a heavy armored base plinth, glowing emissive banner rail, team beacon lamp on top, {STYLE}"),
-    ("env_mp_beacon",
+    ("vp_prop_shared_beacon",
      f"carryable armored beacon case with glowing energy core window, heavy handles, antenna stub, {STYLE}"),
-    ("env_mp_hill_pylon",
+    ("vp_struct_shared_hill-pylon",
      f"control zone emitter pylon, tapered column with glowing ring emitter head, armored cable base, {STYLE}"),
     ("env_mp_spawn_gantry",
      f"tall drop bay gantry structure, open exit arch, overhead crane rail, floodlights, blast-scarred deck plating, {STYLE}"),

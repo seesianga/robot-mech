@@ -69,7 +69,7 @@ async function main(): Promise<void> {
     visual.root.updateMatrixWorld(true);
 
     // Apply the skin synchronously so the screenshot cannot race the swap.
-    const src = await loadModel(`mech-${chassis}`, 'lod1');
+    const src = await loadModel(`vp_frame_shared_${chassis}`, 'lod1');
     if (src) {
       const { applyModelSkin } = await import('./world/mechfactory');
       applyModelSkin(visual, mech, src);

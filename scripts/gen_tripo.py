@@ -11,7 +11,7 @@ copies them to public/models/ for the in-browser viewer.
 Usage:
   python3 scripts/gen_tripo.py                 # priority-1 assets (heroes)
   python3 scripts/gen_tripo.py --priority 2    # priority <= 2
-  python3 scripts/gen_tripo.py --ids mech-skarn,veh-hover-skiff
+  python3 scripts/gen_tripo.py --ids vp_frame_shared_skarn,veh-hover-skiff
   python3 scripts/gen_tripo.py --all
 Idempotent: assets whose GLB already exists are skipped.
 """

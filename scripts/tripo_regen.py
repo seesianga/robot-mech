@@ -6,7 +6,7 @@ Why this exists
 ---------------
 13 of 51 shipped meshes plateau: the LOD simplifier cannot take them below ~4-14k
 triangles however low the target ratio, because meshoptimizer preserves topology and
-these meshes are thousands of disconnected shells. prop-arcology-mid floors at ~14,199,
+these meshes are thousands of disconnected shells. vp_prop_arcology_arcology-mid floors at ~14,199,
 which is roughly 3,550 components x 4 triangles.
 
 The shared TripoClient generates every asset at maximum density on purpose:
@@ -25,7 +25,7 @@ needs.
 
 RESULT: this does NOT fix the plateau. Measured, 2026-07-30, 90 credits
 ------------------------------------------------------------------------
-Tested on prop-arcology-mid, the worst case. Two generations:
+Tested on vp_prop_arcology_arcology-mid, the worst case. Two generations:
 
   quad=True             -> task succeeds, returns a Kaydara FBX Binary, not a GLB.
                            glTF has no quad primitive. Unusable without a convert_model
@@ -41,8 +41,8 @@ Then the decisive test — simplify the NEW source toward the prop budgets:
 The floor moved from 14,199 to 11,333. A 20% improvement, and still a floor. The mesh
 is still thousands of disconnected shells, because the SUBJECT is: this arcology is
 "repeating residential tiers with deep recessed window bands, external service rails and
-maintenance gondola tracks". env-bt-fence is a "modular open-frame lattice";
-prop-hull-carcass is "exposed rib frames and deck plates in cross-section". No generator
+maintenance gondola tracks". vp_prop_range_fence is a "modular open-frame lattice";
+vp_prop_tideflats_hull-carcass is "exposed rib frames and deck plates in cross-section". No generator
 setting collapses a lattice into one connected surface, because a lattice is not one
 surface.
 
@@ -61,9 +61,9 @@ marginally cheaper but visually different ones is a content decision, not a budg
 Nothing is overwritten. Output goes to assets/tripo/regen/, and promotion is a separate,
 deliberate step.
 
-    python3 scripts/tripo_regen.py --ids prop-arcology-mid          # one, to prove it
+    python3 scripts/tripo_regen.py --ids vp_prop_arcology_arcology-mid          # one, to prove it
     python3 scripts/tripo_regen.py --plateaued                      # all 13
-    python3 scripts/tripo_regen.py --promote prop-arcology-mid      # after checking
+    python3 scripts/tripo_regen.py --promote vp_prop_arcology_arcology-mid      # after checking
 """
 import argparse
 import json
@@ -87,10 +87,10 @@ MANIFEST = ROOT / "assets" / "tripo" / "manifest.json"
 # The 13 measured as plateaued: LOD2 within 80% of LOD1, i.e. the simplifier stopped
 # making progress rather than hitting its target.
 PLATEAUED = [
-    "env-bt-fence", "env_tut_barricade", "env_tut_coolant_bowser", "int-cockpit",
-    "prop-arcology-crown", "prop-arcology-mid", "prop-arcology-podium",
-    "prop-cracking-tower", "prop-fuel-tank", "prop-hangar", "prop-hull-carcass",
-    "prop-relay-pylon", "prop-searchlight-tower",
+    "vp_prop_range_fence", "vp_prop_range_barricade", "vp_prop_range_coolant-bowser", "vp_cockpit_shared_interior",
+    "vp_prop_arcology_arcology-crown", "vp_prop_arcology_arcology-mid", "vp_prop_arcology_arcology-podium",
+    "vp_struct_polar_cracking-tower", "vp_prop_shared_fuel-tank", "vp_struct_shared_hangar", "vp_prop_tideflats_hull-carcass",
+    "vp_struct_shared_relay-pylon", "vp_struct_shared_searchlight-tower",
 ]
 
 # §6.5 RUNTIME TOPOLOGY. face_limit here is the SOURCE density for a non-hero asset —

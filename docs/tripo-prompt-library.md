@@ -112,7 +112,7 @@ assets/tripo/<id>/
 ```
 
 Asset ids are kebab-case and identical to the `id` field in `manifest.json`
-(e.g. `mech-skarn`, `veh-hover-skiff`, `prop-drain-junction`, `int-cockpit`).
+(e.g. `vp_frame_shared_skarn`, `veh-hover-skiff`, `prop-drain-junction`, `vp_cockpit_shared_interior`).
 
 ---
 
@@ -161,69 +161,69 @@ per-run; if a prompt needs a change, change it here **and** in `manifest.json` t
 All mechs: category `mech`, LODs 120000 / 40000 / 12000 tris, 4K textures, full animation
 set (Section 8), two livery texture sets (Compact + Directorate).
 
-### 4.1 Flint — Light, 25 t, recon (`mech-flint`)
+### 4.1 Flint — Light, 25 t, recon (`vp_frame_shared_flint`)
 ```
 lean 8-meter bipedal scout mech, 25 tons, reverse-joint digitigrade legs, narrow single-pilot canopy, oversized branching sensor mast like antlers on the right shoulder, two small forearm laser emitters, compact jump-jet thrusters on the calves, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.2 Pumice — Light, 30 t, harasser (`mech-pumice`)
+### 4.2 Pumice — Light, 30 t, harasser (`vp_frame_shared_pumice`)
 ```
 light 9-meter bipedal mech, 30 tons, rough pockmarked ablative armor texture like volcanic stone, two boxy rocket pods on the shoulders, small head with a single horizontal visor slit, sprinter's stance, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.3 Skarn — Light, 35 t, starter skirmisher (`mech-skarn`) — **PRIORITY 1 (M0)**
+### 4.3 Skarn — Light, 35 t, starter skirmisher (`vp_frame_shared_skarn`) — **PRIORITY 1 (M0)**
 ```
 agile 10-meter bipedal skirmisher mech, 35 tons, wedge-shaped cockpit like a raptor skull built from flat armor plates, one arm ends in a light autocannon barrel, other forearm mounts a laser, prominent jump-jet nacelles on the lower legs, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.4 Chert — Medium, 40 t, fire support (`mech-chert`)
+### 4.4 Chert — Medium, 40 t, fire support (`vp_frame_shared_chert`)
 ```
 10-meter fire-support mech, 40 tons, low crouched stance, large boxy missile silo rack across the upper back, thick forearm guards, wide stable feet, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.5 Halite — Medium, 45 t, brawler (`mech-halite`)
+### 4.5 Halite — Medium, 45 t, brawler (`vp_frame_shared_halite`)
 ```
 squat 10-meter brawler mech, 45 tons, very wide shoulders, a rectangular riot-shield plate integrated into the left forearm, short-barreled cannon right arm, heavy chest armor in stacked slabs, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.6 Gabbro — Medium, 55 t, workhorse (`mech-gabbro`) — **PRIORITY 1 (M0 enemy)**
+### 4.6 Gabbro — Medium, 55 t, workhorse (`vp_frame_shared_gabbro`) — **PRIORITY 1 (M0 enemy)**
 ```
 balanced upright 11-meter workhorse mech, 55 tons, classic soldier proportions, one energy cannon forearm and one ballistic forearm, single chest missile hatch, dependable heroic silhouette, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.7 Basalt — Heavy, 60 t, line-breaker (`mech-basalt`)
+### 4.7 Basalt — Heavy, 60 t, line-breaker (`vp_frame_shared_basalt`)
 ```
 60-ton 12-meter heavy assault-line mech, armor plates styled as interlocking hexagonal basalt columns, twin arm-mounted autocannons, thick digitigrade legs, brooding forward lean, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.8 Dolerite — Heavy, 70 t, missile boat (`mech-dolerite`)
+### 4.8 Dolerite — Heavy, 70 t, missile boat (`vp_frame_shared_dolerite`)
 ```
 70-ton 12-meter missile-artillery mech, both shoulders carry tall cathedral-like banks of vertical launch tubes, small armored head low between them, wide braced stance with rear stabilizer spurs, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.9 Corundum — Heavy, 75 t, command (`mech-corundum`)
+### 4.9 Corundum — Heavy, 75 t, command (`vp_frame_shared_corundum`)
 ```
 75-ton 13-meter command mech, asymmetric sensor crown array on the head, one arm particle cannon with cooling fins, elegant but battle-worn officer's silhouette, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 Note: Ekene's old chassis; Rauk's Corundum-V is a livery/emissive variant of this asset.
 
-### 4.10 Orogen — Assault, 80 t, juggernaut (`mech-orogen`)
+### 4.10 Orogen — Assault, 80 t, juggernaut (`vp_frame_shared_orogen`)
 ```
 80-ton 13-meter juggernaut mech, forward-hunched gorilla-like posture, massive piston-driven arms each ending in a heavy cannon, small armored eye-slit head set deep in the chest, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.11 Batholith — Assault, 90 t, siege (`mech-batholith`)
+### 4.11 Batholith — Assault, 90 t, siege (`vp_frame_shared_batholith`)
 ```
 90-ton 14-meter siege mech, two long gauss-cannon spines mounted over the shoulders like dorsal rails, huge cylindrical drum magazines on the hips, ponderous fortress-like mass, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 Note: Kryce's guard Batholiths are livery variants of this asset.
 
-### 4.12 Craton — Assault, 100 t, apex (`mech-craton`)
+### 4.12 Craton — Assault, 100 t, apex (`vp_frame_shared_craton`)
 ```
 100-ton 15-meter apex assault mech, monolithic slab torso like a standing megalith, three energy cannon apertures across the chest, colossal column legs, terrifying stillness, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
-### 4.13 Craton-X — boss variant, Marshal Sol's prototype (`mech-craton-x`, variant of `mech-craton`)
+### 4.13 Craton-X — boss variant, Marshal Sol's prototype (`vp_frame_shared_craton-x`, variant of `vp_frame_shared_craton`)
 ```
 100-ton 15-meter apex assault mech, monolithic slab torso like a standing megalith, three energy cannon apertures across the chest, colossal column legs, terrifying stillness, glowing coolant lattice channels across the torso, prototype test markings, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -242,7 +242,7 @@ boxy heavy-lift dropbarge lander, four downward-angled thrust pods at the corner
 ```
 Engine-driven nodes: `node_ramp`, `node_thrustpod_1..4`.
 
-### 5.2 Ore-crawler hauler truck (`veh-ore-crawler`) — Op2 M5 convoy
+### 5.2 Ore-crawler hauler truck (`vp_vehicle_shared_ore-crawler`) — Op2 M5 convoy
 ```
 massive articulated ore-crawler hauler truck, eight oversized wheels on twin bogies, open tipper ore bed, low armored cab at the front, boarding ladders and inspection catwalks along the flanks, hard-surface vehicle design, functional silhouette, angular plating with visible panel lines and fasteners, exposed hydraulic lines and cable bundles at articulation points, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, resting stance on level ground, game-ready, plain background. Fully original design — do not imitate vehicles from any existing game, anime, or film franchise.
 ```
@@ -297,30 +297,30 @@ twin-autocannon pop-up defense turret, armored clamshell housing that opens to r
 Engine-driven nodes: `node_clamshell_l`, `node_clamshell_r`, `node_cradle_lift`,
 `node_gun_yaw`, `node_gun_pitch`. Pop-up/retract motion is engine-driven, not baked clips.
 
-### 6.2 Relay pylon (`prop-relay-pylon`) — Op2 M4 objective
+### 6.2 Relay pylon (`vp_struct_shared_relay-pylon`) — Op2 M4 objective
 ```
 tall lattice relay pylon mast, triangular truss construction, cluster of three dish antennas near the top, small equipment cabin at the base, guy-wire anchor lugs, aviation marker cage at the tip, hard-surface industrial structure design, functional silhouette, plate and truss construction with visible panel lines, fasteners, and weld seams, mining-world utilitarian aesthetic, weathered matte surfaces with edge chipping, rust streaks, and grime, no text, no logos, PBR materials, modular game-ready geometry with the pivot at the base center, plain background. Fully original design — do not imitate structures from any existing game, anime, or film franchise.
 ```
 Must include a pre-fractured destruction state (collapsed lattice) as a second mesh in the
 same GLB (`GEO_intact` / `GEO_destroyed`).
 
-### 6.3 Refinery cracking tower (`prop-cracking-tower`) — Op4 M12 objective
+### 6.3 Refinery cracking tower (`vp_struct_polar_cracking-tower`) — Op4 M12 objective
 ```
 refinery cracking tower, vertical cylindrical reactor column wrapped in external pipework, catwalk rings at three heights, external elevator cage, side-mounted flare stack with a burner tip, valve manifolds at the base, hard-surface industrial structure design, functional silhouette, plate and truss construction with visible panel lines, fasteners, and weld seams, mining-world utilitarian aesthetic, weathered matte surfaces with edge chipping, rust streaks, and grime, no text, no logos, PBR materials, modular game-ready geometry with the pivot at the base center, plain background. Fully original design — do not imitate structures from any existing game, anime, or film franchise.
 ```
 `node_flare_tip` marks the flame emitter for the M12 thermal-bloom masking mechanic.
 
-### 6.4 Arcology building kit — podium module (`prop-arcology-podium`)
+### 6.4 Arcology building kit — podium module (`vp_prop_arcology_arcology-podium`)
 ```
 arcology tower base module, monumental podium block with recessed vehicle arcades, angled structural buttresses, rooftop service gantries, flat stackable top face, hard-surface industrial structure design, functional silhouette, plate and truss construction with visible panel lines, fasteners, and weld seams, mining-world utilitarian aesthetic, weathered matte surfaces with edge chipping, rust streaks, and grime, no text, no logos, PBR materials, modular game-ready geometry with the pivot at the base center, plain background. Fully original design — do not imitate structures from any existing game, anime, or film franchise.
 ```
 
-### 6.5 Arcology building kit — mid-rise module (`prop-arcology-mid`)
+### 6.5 Arcology building kit — mid-rise module (`vp_prop_arcology_arcology-mid`)
 ```
 arcology mid-rise stack module, repeating residential tiers with deep recessed window bands, external service rails and maintenance gondola tracks, flat stackable top and bottom faces, hard-surface industrial structure design, functional silhouette, plate and truss construction with visible panel lines, fasteners, and weld seams, mining-world utilitarian aesthetic, weathered matte surfaces with edge chipping, rust streaks, and grime, no text, no logos, PBR materials, modular game-ready geometry with the pivot at the base center, plain background. Fully original design — do not imitate structures from any existing game, anime, or film franchise.
 ```
 
-### 6.6 Arcology building kit — crown module (`prop-arcology-crown`)
+### 6.6 Arcology building kit — crown module (`vp_prop_arcology_arcology-crown`)
 ```
 arcology crown module, tapering mechanical penthouse with heat-exchanger fin arrays, antenna farm, aviation beacon cage, flat stackable bottom face, hard-surface industrial structure design, functional silhouette, plate and truss construction with visible panel lines, fasteners, and weld seams, mining-world utilitarian aesthetic, weathered matte surfaces with edge chipping, rust streaks, and grime, no text, no logos, PBR materials, modular game-ready geometry with the pivot at the base center, plain background. Fully original design — do not imitate structures from any existing game, anime, or film franchise.
 ```
@@ -350,7 +350,7 @@ colossal storm-drain junction chamber, vaulted ceiling, four tunnel mouths meeti
 Drain kit rules: the 18 m bore clears a 12 m mech with torso twist; all tunnel mouths use
 the identical vertex-exact ring profile so any piece welds to any other in any order.
 
-### 6.11 Beached ship hull carcass (`prop-hull-carcass`) — Op1 signature cover
+### 6.11 Beached ship hull carcass (`vp_prop_tideflats_hull-carcass`) — Op1 signature cover
 ```
 beached ocean bulk-hauler ship hull carcass cut open for scrapping, exposed rib frames and deck plates in cross-section, torch-cut plate edges, collapsed internal decks, rust cascades down the hull, keel bedded in sand, hard-surface industrial structure design, functional silhouette, plate and truss construction with visible panel lines, fasteners, and weld seams, mining-world utilitarian aesthetic, weathered matte surfaces with edge chipping, rust streaks, and grime, no text, no logos, PBR materials, modular game-ready geometry with the pivot at the base center, plain background. Fully original design — do not imitate structures from any existing game, anime, or film franchise.
 ```
@@ -359,7 +359,7 @@ face must be fully modeled, not a capped plane.
 
 ---
 
-## 7. Cockpit interior — hero prop (`int-cockpit`) — PRIORITY 1 (suffix from 3.4)
+## 7. Cockpit interior — hero prop (`vp_cockpit_shared_interior`) — PRIORITY 1 (suffix from 3.4)
 
 The cockpit is on screen for the entire game (cockpit view is default) and hosts the startup
 litany, the warning lamps that mirror real sim state, and CAIRN. It gets hero treatment.
@@ -423,23 +423,23 @@ An asset ships only when every row below passes. Numbers here mirror `manifest.j
 
 | Asset id | LOD0 | LOD1 | LOD2 | Textures |
 |---|---|---|---|---|
-| `mech-*` (all 13, incl. `mech-craton-x`) | 120,000 | 40,000 | 12,000 | 4K |
-| `int-cockpit` | 120,000 | 60,000 | 20,000 | 4K |
+| `mech-*` (all 13, incl. `vp_frame_shared_craton-x`) | 120,000 | 40,000 | 12,000 | 4K |
+| `vp_cockpit_shared_interior` | 120,000 | 60,000 | 20,000 | 4K |
 | `veh-dropbarge` | 80,000 | 28,000 | 9,000 | 4K |
 | `veh-gun-monitor` | 80,000 | 28,000 | 9,000 | 4K |
-| `prop-hull-carcass` | 70,000 | 24,000 | 8,000 | 2K |
-| `veh-ore-crawler` | 60,000 | 20,000 | 6,000 | 2K |
+| `vp_prop_tideflats_hull-carcass` | 70,000 | 24,000 | 8,000 | 2K |
+| `vp_vehicle_shared_ore-crawler` | 60,000 | 20,000 | 6,000 | 2K |
 | `veh-polar-train-engine` | 60,000 | 20,000 | 6,000 | 2K |
-| `prop-cracking-tower` | 50,000 | 16,000 | 5,000 | 2K |
+| `vp_struct_polar_cracking-tower` | 50,000 | 16,000 | 5,000 | 2K |
 | `veh-hover-skiff` | 45,000 | 15,000 | 5,000 | 2K |
 | `veh-apc-ferric` | 45,000 | 15,000 | 5,000 | 2K |
 | `veh-polar-train-command-car` | 45,000 | 15,000 | 5,000 | 2K |
 | `veh-polar-train-flak-car` | 45,000 | 15,000 | 5,000 | 2K |
-| `prop-arcology-podium` | 40,000 | 14,000 | 4,000 | 2K |
-| `prop-arcology-mid` | 35,000 | 12,000 | 3,500 | 2K |
-| `prop-arcology-crown` | 35,000 | 12,000 | 3,500 | 2K |
+| `vp_prop_arcology_arcology-podium` | 40,000 | 14,000 | 4,000 | 2K |
+| `vp_prop_arcology_arcology-mid` | 35,000 | 12,000 | 3,500 | 2K |
+| `vp_prop_arcology_arcology-crown` | 35,000 | 12,000 | 3,500 | 2K |
 | `prop-popup-turret` | 30,000 | 10,000 | 3,000 | 2K |
-| `prop-relay-pylon` | 25,000 | 9,000 | 2,500 | 2K |
+| `vp_struct_shared_relay-pylon` | 25,000 | 9,000 | 2,500 | 2K |
 | `prop-arcology-skybridge` | 20,000 | 7,000 | 2,000 | 2K |
 | `prop-drain-junction` | 20,000 | 7,000 | 2,000 | 2K |
 | `prop-drain-curve` | 14,000 | 5,000 | 1,500 | 2K |
@@ -507,8 +507,8 @@ engine-side impostors, not additional LODs.
 
 ## 10. Priorities and milestone mapping
 
-- **Priority 1 (M0/M1):** `mech-skarn` (player starter), `mech-gabbro` (M0 enemy),
-  `int-cockpit` (default view + startup litany). These unblock the vertical slice.
+- **Priority 1 (M0/M1):** `vp_frame_shared_skarn` (player starter), `vp_frame_shared_gabbro` (M0 enemy),
+  `vp_cockpit_shared_interior` (default view + startup litany). These unblock the vertical slice.
 - **Priority 2:** the remaining Op1–Op3-facing roster and props — Flint, Pumice, Chert,
   Halite, Basalt, Dolerite, Corundum, dropbarge, ore-crawler, hover skiff, APC Ferric,
   pop-up turret, relay pylon, beached hull carcass.

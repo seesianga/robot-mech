@@ -116,7 +116,7 @@ side.** Nothing else on the roster has that profile.
 
 ### Prompt — Halite, AC40 + Scattergun + Blaze Laser M
 
-<!-- tripo:mech-halite -->
+<!-- tripo:vp_frame_shared_halite -->
 ```
 squat 10-meter brawler mech, 45 tons, very wide shoulders, chest armor in stacked horizontal slabs, short armored head with one narrow vision band sunk between the shoulder yokes, tall rectangular riot-shield plate on the left forearm with a wide-bore flared shotgun muzzle and boxy shell drum firing through a port cut in the shield, right arm a stubby four-barrel revolver-cluster autocannon with a linked ammo chute into the shoulder, finned medium laser collar on the right shoulder, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -148,7 +148,7 @@ fragile-looking. Calf-mounted jump-jet thrusters give it a cocked, ready-to-spri
 at rest. Two small laser emitters on the forearms are almost apologetic. Silhouette read:
 **thin vertical line with antlers.**
 
-<!-- tripo:mech-flint -->
+<!-- tripo:vp_frame_shared_flint -->
 ```
 lean 8-meter bipedal scout mech, 25 tons, reverse-joint digitigrade legs, narrow angled single-pilot canopy, a tall branching antler-like sensor mast on the right shoulder, whip antennas, a small flush laser emitter on each forearm, compact jump-jet thrusters on the calves, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -166,7 +166,7 @@ epaulettes, blast lids hinged open, and a single small laser fills the chest har
 jump jets — Pumice goes around, not over. Silhouette read: **hunched runner with two boxes on
 its shoulders.**
 
-<!-- tripo:mech-pumice -->
+<!-- tripo:vp_frame_shared_pumice -->
 ```
 light 9-meter bipedal mech, 30 tons, rough pitted vesicular ablative armor like cooled volcanic stone, forward-leaning sprinter stance, small head with a single horizontal visor slit, an eight-cell rocket pod with a two-by-four tube face and hinged blast lid on each shoulder, a small flush laser emitter on the chest, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -185,7 +185,7 @@ laser collar, and one rocket pod on the left shoulder. The prominent jump-jet na
 lower legs are the machine's promise: it can leave. Silhouette read: **angled beak-head over a
 light frame with calf pods.**
 
-<!-- tripo:mech-skarn -->
+<!-- tripo:vp_frame_shared_skarn -->
 ```
 agile 10-meter bipedal skirmisher mech, 35 tons, wedge cockpit of flat plates reading as a raptor skull with forward-thrust brow and sunken sensor band, right arm a stubby four-barrel revolver-cluster autocannon with linked ammo chute, left forearm a finned medium laser collar, an eight-cell rocket pod with a two-by-four tube face on the left shoulder, prominent jump-jet nacelles on the lower legs, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -203,7 +203,7 @@ guards protect a pilot who is not supposed to be in melee range, a single small 
 anything that gets close anyway, and a gimballed designator pod on the head does the actual
 work of aiming for everyone else. Silhouette read: **low crouch under a tall square back.**
 
-<!-- tripo:mech-chert -->
+<!-- tripo:vp_frame_shared_chert -->
 ```
 10-meter fire-support mech, 40 tons, low crouched stance with permanently bent knees and wide flat stabilizing feet, two sixteen-cell rocket silos with four-by-four tube faces angled skyward across the upper back, thick slab forearm guards, a small flush laser emitter on the chest, a gimballed designator pod on the head, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -226,7 +226,7 @@ in the chest, and a single eight-cell rocket hatch caps the right shoulder. It i
 dependable-looking on purpose: heroic silhouette, zero flourish. Silhouette read: **the
 default mech** — which is exactly its job.
 
-<!-- tripo:mech-gabbro -->
+<!-- tripo:vp_frame_shared_gabbro -->
 ```
 balanced upright 11-meter workhorse mech, 55 tons, classic soldier proportions, broad flat armor planes with clean panel breaks, left forearm a finned medium laser collar, right arm a heavy autocannon with slotted muzzle brake and side ammo feed box, small flush laser emitter set in the chest, an eight-cell rocket pod with a two-by-four tube face capping the right shoulder, dependable heroic silhouette, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -245,7 +245,7 @@ boxes, and a finned laser collar tucked above each gun. Four weapons, all forwar
 subtlety: this thing exists to walk into a firing line and stay there. Silhouette read:
 **broad hexagonal mass leaning forward, twin barrels.**
 
-<!-- tripo:mech-basalt -->
+<!-- tripo:vp_frame_shared_basalt -->
 ```
 60-ton 12-meter heavy line-breaker mech, armor plates styled as interlocking hexagonal basalt columns across the chest, shoulders, and thighs, each column a separate replaceable block, brooding forward lean, thick digitigrade legs, both arms ending in a heavy autocannon with slotted muzzle brake and side ammo feed box, a finned medium laser collar mounted above each gun, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -263,7 +263,7 @@ extending from the lower back to absorb salvo recoil. A single small laser on th
 purely a last resort. Everything about the machine says *stand still and empty the sky.*
 Silhouette read: **two vertical towers with a mech hiding underneath.**
 
-<!-- tripo:mech-dolerite -->
+<!-- tripo:vp_frame_shared_dolerite -->
 ```
 70-ton 12-meter missile-artillery mech, both shoulders carrying tall vertical launch-tube banks like cathedral organ pipes, an outboard ten-tube honeycomb swarm rack with corner seeker head plus an inboard sixteen-cell rocket silo with four-by-four tube face on each shoulder, small armored wedge head sunk low between the racks, small flush chest laser, wide braced stance with rear stabilizer spurs, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -285,7 +285,7 @@ heavy autocannon. A swarm rack sits on the right shoulder; a flat ECM panel with
 antenna comb is bolted to the left. Battle-worn, but the wear is *old*; this machine has been
 repaired by people who cared. Silhouette read: **tilted crown over a narrow tall torso.**
 
-<!-- tripo:mech-corundum -->
+<!-- tripo:vp_frame_shared_corundum -->
 ```
 75-ton 13-meter command mech, tall narrow torso, asymmetric sensor crown of dishes, blades, and comb antennas rising higher on the left, left arm a long slender coil barrel ringed with capacitors and deep cooling fins with an insulated cable trunk into the torso, right arm a heavy autocannon with slotted muzzle brake, finned medium laser collar on the left shoulder, ten-tube honeycomb swarm rack on the right, flat ECM panel with dense antenna comb, battle-worn officer silhouette, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -304,7 +304,7 @@ armored eye-slit set deep in the chest cavity, protected by the mass of the tors
 The gait sells it: exposed hip and knee pistons the size of tree trunks, every step a decision.
 Silhouette read: **knuckle-dragging wedge, arms lower than the waist.**
 
-<!-- tripo:mech-orogen -->
+<!-- tripo:vp_frame_shared_orogen -->
 ```
 80-ton 13-meter juggernaut mech, forward-hunched gorilla posture with vast shoulders and arms hanging below the hipline, left arm a massive autocannon with deep muzzle brake and external belt feed climbing into the shoulder, right arm a heavy autocannon with slotted muzzle brake and side feed box, chin-mounted four-barrel revolver-cluster autocannon under the chest, eight-cell rocket pod on the right shoulder, armored eye-slit head deep in the chest cavity, oversized hip and knee pistons, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -324,7 +324,7 @@ overlapping courses like masonry, a deep-set head, finned laser collars flanking
 and a rocket pod on each shoulder cap. It moves at 49 km/h and is entirely unbothered by that.
 Silhouette read: **fin-backed block with drums on its hips.**
 
-<!-- tripo:mech-batholith -->
+<!-- tripo:vp_frame_shared_batholith -->
 ```
 90-ton 14-meter siege mech, two long gauss rail spines over the shoulders like dorsal fins with paired accelerator rails, ring coils, and capacitor blisters at the breech extending past the silhouette front and back, two huge cylindrical drum magazines slung on the hips, slab armor in overlapping courses like masonry, deep-set head, a finned medium laser collar flanking each side of the chest, an eight-cell rocket pod on each shoulder cap, ponderous fortress mass, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -344,7 +344,7 @@ focusing shroud on each shoulder, a heavy autocannon on the right arm and anothe
 chest, and a sixteen-cell silo block across the upper back. Its 17 heat sinks show up as
 visible radiator banks flanking the spine. Silhouette read: **a standing wall.**
 
-<!-- tripo:mech-craton -->
+<!-- tripo:vp_frame_shared_craton -->
 ```
 100-ton 15-meter apex assault mech, monolithic slab torso like a standing megalith, three energy cannon apertures across the chest, sensor band cut into the slab's top edge, no neck, column legs, left arm a capacitor-ringed coil barrel with cooling fins, heavy autocannons on the right arm and under the chest with slotted muzzle brakes, a stepped-shroud laser with heat fins on each shoulder, sixteen-cell rocket silo across the upper back, radiator banks flanking the spine, terrifying stillness, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -356,13 +356,13 @@ Same chassis, same rig, same animation set as Craton. Two additions and nothing 
 stencils only — the no-text rule is absolute, including here. It is the M24 duel boss; the
 uniqueness lives in the duel AI, not in new geometry.
 
-<!-- tripo:mech-craton-x -->
+<!-- tripo:vp_frame_shared_craton-x -->
 ```
 100-ton 15-meter apex assault mech, monolithic slab torso like a standing megalith, three energy cannon apertures set in a row across the chest, colossal straight column legs, glowing coolant lattice channels tracing across the torso slab, geometric prototype test stencil markings, terrifying stillness, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
 
 ### 4.14 Gabbro (Slagwolves patchwork) — enemy variant
-`variantOf: mech-gabbro` in the manifest, but it ships as its own mesh because the geometry
+`variantOf: vp_frame_shared_gabbro` in the manifest, but it ships as its own mesh because the geometry
 actually differs: the right arm is **gone**, replaced by a crude oversized cannon welded
 straight to the shoulder actuator with no proper mount. The Slagwolves are scavengers, not
 soldiers, and their Gabbro reads as a stolen machine kept alive past the point of dignity —
@@ -370,7 +370,7 @@ mismatched plate in clashing colors, scorch marks nobody sanded out, scrap welde
 It is the same silhouette as a Gabbro at 64 px, which is the point: you do not know which one
 you are looking at until it is close. Silhouette read: **Gabbro, wrong arm.**
 
-<!-- tripo:mech-gabbro-slagwolf -->
+<!-- tripo:vp_frame_shared_gabbro-slagwolf -->
 ```
 balanced upright 11-meter workhorse mech, 55 tons, classic soldier proportions, left forearm a finned medium laser collar, right arm replaced by a crude oversized welded autocannon, small flush chest laser, eight-cell rocket pod on the right shoulder, mismatched salvaged armor plates in clashing colors, heavy rust and scorch marks, welded scrap repairs, industrial military walking tank, hard-surface design, functional silhouette, angular composite armor plates with visible panel lines and fasteners, exposed hydraulic pistons and cable bundles at the knee and hip joints, antenna cluster, mining-world utilitarian aesthetic, weathered matte paint with edge chipping and rust streaks, no text, no logos, PBR materials, neutral A-pose, symmetrical, game-ready, plain background. Fully original design — do not imitate robots from any existing game, anime, or film franchise.
 ```
@@ -410,7 +410,7 @@ Slagwolf is a deliberate exception: it *shares* Gabbro's read on purpose.
 ```bash
 npm run tripomechs -- --dry-run     # parse + validate, no API calls, no credits
 npm run tripomechs                  # generate every missing mech
-npm run tripomechs -- --ids mech-halite
+npm run tripomechs -- --ids vp_frame_shared_halite
 ```
 
 `scripts/gen_tripo_appearance.py` parses **this file** as its only prompt source, keyed on the

@@ -195,9 +195,9 @@ previous_text/next_text stitching — steps replay out of order).
 ## §9. TRIPO3D PRODUCTION — training-pad assets
 
 Props only; walkers come from the existing library. **Reuse first** (the brief's own budget
-rule): target boards = `env_tut_board_a/b`, practice drone = `env_tut_drone` (visibly kin to
-the existing drone family), crates = `env_tut_crate`, coolant bowser =
-`env_tut_coolant_bowser`, light mast ≈ `prop-searchlight-tower`.
+rule): target boards = `vp_prop_range_board-a/b`, practice drone = `vp_prop_range_drone` (visibly kin to
+the existing drone family), crates = `vp_prop_range_crate`, coolant bowser =
+`vp_prop_range_coolant-bowser`, light mast ≈ `vp_struct_shared_searchlight-tower`.
 
 New entries in `assets/tripo/manifest.json` (palette: pale ceramic / graphite / amber; all
 `text_to_model`; fixed `model_seed` per asset so approved geometry is reproducible — iterate
@@ -206,13 +206,13 @@ logos"):
 
 | ID | Asset | Faces (LOD0) | model_seed |
 |---|---|---|---|
-| env-bt-pylon | Gate pylon, emissive amber band, soft-collide | 3 k | 52102 |
-| env-bt-barrier | Boost barrier, low wide, amber chevrons | 5 k | 52103 |
-| env-bt-fence | Drone-pen fence section (modular, instanced) | 3 k | 52108 |
-| env-bt-spool | Pad dressing — heavy cable spool | 4 k | 52105 |
-| env-bt-lightmast | Pad dressing — portable floodlight mast | 4 k | 52106 |
+| vp_struct_range_pylon | Gate pylon, emissive amber band, soft-collide | 3 k | 52102 |
+| vp_prop_range_barrier | Boost barrier, low wide, amber chevrons | 5 k | 52103 |
+| vp_prop_range_fence | Drone-pen fence section (modular, instanced) | 3 k | 52108 |
+| vp_prop_range_spool | Pad dressing — heavy cable spool | 4 k | 52105 |
+| vp_struct_range_lightmast | Pad dressing — portable floodlight mast | 4 k | 52106 |
 
-Run: `python3 scripts/gen_tripo.py --ids env-bt-pylon,env-bt-barrier,env-bt-fence` (add the
+Run: `python3 scripts/gen_tripo.py --ids vp_struct_range_pylon,vp_prop_range_barrier,vp_prop_range_fence` (add the
 priority-3 dressing when credits allow). **The Tripo account is at zero credits (403
 code=2010) — the batch is submit-ready and blocked only on a top-up**; the pad ships greybox
 until then, consistent with the project's overall art status. Post-processing per the

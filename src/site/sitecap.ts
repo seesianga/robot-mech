@@ -15,7 +15,7 @@ import { MechStage } from './stage';
  * (scripts/gen_site_art.py, mode "edit") — geometry and framing preserved,
  * lighting and surface response pushed to photoreal.
  *
- * Query params: ?id=mech-craton&yaw=0.6&pitch=0.1&dist=1&fov=34
+ * Query params: ?id=vp_frame_shared_craton&yaw=0.6&pitch=0.1&dist=1&fov=34
  * Signals readiness by setting window.__CAP_READY once the model is in and
  * several frames have been drawn, so the capture script never shoots an empty
  * or half-faded frame.
@@ -29,7 +29,7 @@ declare global {
 }
 
 const params = new URLSearchParams(location.search);
-const id = params.get('id') ?? 'mech-craton';
+const id = params.get('id') ?? 'vp_frame_shared_craton';
 const num = (k: string, d: number): number => {
   const v = parseFloat(params.get(k) ?? '');
   return Number.isFinite(v) ? v : d;

@@ -87,9 +87,9 @@ Concept inputs must be original artwork. Never a franchise image, never a screen
 Today three conventions coexist in `public/models/`:
 
 ```
-env_mp_beacon.lod0.glb        env_tut_gantry.lod1.glb      ← underscore, context-prefixed
-prop-fortress-wall.lod0.glb   mech-craton-x.lod1.glb       ← hyphen, type-prefixed
-int-cockpit.lod0.glb                                        ← abbreviated type
+vp_prop_shared_beacon.lod0.glb        vp_prop_range_gantry.lod1.glb      ← underscore, context-prefixed
+vp_struct_shared_fortress-wall.lod0.glb   vp_frame_shared_craton-x.lod1.glb       ← hyphen, type-prefixed
+vp_cockpit_shared_interior.lod0.glb                                        ← abbreviated type
 ```
 
 One namespace replaces all three:

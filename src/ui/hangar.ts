@@ -216,7 +216,7 @@ class Turntable {
 
   /** Swap the procedural placeholder for the generated mesh, if one exists. */
   private async upgrade(chassis: string, group: THREE.Group, height: number): Promise<void> {
-    const src = await loadModel(`mech-${chassis}`, 'lod0');
+    const src = await loadModel(`vp_frame_shared_${chassis}`, 'lod0');
     // Bail if the player clicked to another chassis while this was in flight.
     if (!src || this.chassis !== chassis || this.current !== group) return;
     const model = fitToHeight(orientToGameForward(instantiate(src)), height);

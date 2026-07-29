@@ -34,17 +34,24 @@ export const BUDGETS = {
  * §6.3 migration is tracked separately; until then the gate still has to know what a
  * thing is in order to budget it.
  */
+const CLASSES = new Set(['frame', 'cockpit', 'vehicle', 'struct', 'prop']);
+
 export function classOf(name) {
-  // Prefix wins over keyword. The first version matched keywords anywhere, which put
-  // veh-dropship-heavy in 'prop' (nothing matched "veh-") and prop-searchlight-tower in
+  // §6.3 namespace: vp_<domain>_<biome>_<name>. The domain is stated, so read it rather
+  // than inferring — this is the entire point of having a namespace, and it removes the
+  // guessing that produced three misclassification bugs under the legacy names.
+  const ns = /^vp_([a-z]+)_/.exec(name);
+  if (ns && CLASSES.has(ns[1])) return ns[1];
+
+  // ── legacy ids, kept so the gate still works on anything not yet renamed ──────
+  // Prefix wins over keyword. An earlier version matched keywords anywhere, which put
+  // vp_vehicle_shared_dropship-heavy in 'prop' (nothing matched "veh-") and vp_struct_shared_searchlight-tower in
   // 'struct' (because "tower" appeared later in the name) — both then budgeted wrongly.
-  if (/^(sa_)?frame[_-]|^mech-/.test(name)) return 'frame';
-  // "cockpit" anywhere is unambiguous — the shipped asset is int-cockpit, which the
-  // prefix-only form missed and budgeted as a prop.
+  if (/^mech-/.test(name)) return 'frame';
   if (/cockpit/.test(name)) return 'cockpit';
-  if (/^(sa_)?vehicle[_-]|^veh-/.test(name)) return 'vehicle';
-  if (/^(sa_)?struct[_-]|^struct-/.test(name)) return 'struct';
-  if (/^(sa_)?prop[_-]|^prop-/.test(name)) return 'prop';
+  if (/^veh-/.test(name)) return 'vehicle';
+  if (/^struct-/.test(name)) return 'struct';
+  if (/^prop-/.test(name)) return 'prop';
   // Legacy env-* dressing has no prefix convention; fall back to keywords.
   if (/mast|tower|gate|hall|pylon|bunker|silo|rig\b/.test(name)) return 'struct';
   return 'prop';

@@ -51,9 +51,9 @@ const PLATES = [
   // f=0.78 -> dist 0.80 (landscape: reads as a poster without clipping the
   // sensor mast or the feet); f=0.68 -> dist 0.92 (portrait needs more room
   // above the machine for the headline to sit over it).
-  { id: 'cap-hero-craton', model: 'mech-craton', w: 1920, h: 1080, yaw: 0.62, pitch: 0.05, dist: 0.80 },
-  { id: 'cap-hero-craton-portrait', model: 'mech-craton', w: 1080, h: 1920, yaw: 0.62, pitch: 0.02, dist: 0.92 },
-  { id: 'cap-showroom-gabbro', model: 'mech-gabbro', w: 1920, h: 1080, yaw: -0.5, pitch: 0.05, dist: 0.84 },
+  { id: 'cap-hero-craton', model: 'vp_frame_shared_craton', w: 1920, h: 1080, yaw: 0.62, pitch: 0.05, dist: 0.80 },
+  { id: 'cap-hero-craton-portrait', model: 'vp_frame_shared_craton', w: 1080, h: 1920, yaw: 0.62, pitch: 0.02, dist: 0.92 },
+  { id: 'cap-showroom-gabbro', model: 'vp_frame_shared_gabbro', w: 1920, h: 1080, yaw: -0.5, pitch: 0.05, dist: 0.84 },
 ];
 
 const exe = findChromium();
