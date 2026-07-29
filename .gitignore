@@ -1,0 +1,74 @@
+# Veyra Prime — see docs/PLATFORM_STANDARD.md §3.2
+#
+# Size budget, measured 2026-07-29 (git-lfs is NOT installed on this machine):
+#   src + content + docs + scripts + server + worker + migrations   ≈   3 MB  → plain git
+#   public/models 104M · audio 147M · textures 123M · site 26M      ≈ 400 MB → Drive-only, symlinked
+#   masters/                                                        ≈ 266 MB → Drive-only, symlinked
+#   assets/ (raw generator output)                                  ≈ 2.2 GB → Drive-only, symlinked
+#   dist/, node_modules/                                            ≈ 579 MB → never
+#
+# Binary asset trees stay on the Drive (synced, backed up, offline-pinned) and are
+# symlinked into the build tree by ops/scripts/bootstrap.sh. That keeps git fast for
+# the code — which is what version control is actually needed for here: the sweeping
+# multi-file refactors in docs/CONVERGENCE_PLAN.md §1.2.
+#
+# If a second contributor joins, install git-lfs and move public/ into it. Until then
+# a 3 MB repo that clones instantly beats a 3.4 GB one nobody wants to branch.
+
+# ── build output and dependencies ─────────────────────────────────────────────
+node_modules/
+dist/
+dist-release/
+.vite/
+.turbo/
+*.tsbuildinfo
+
+# ── local service state ───────────────────────────────────────────────────────
+.wrangler/
+.dev.vars
+
+# ── secrets ───────────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+# .env.production is tracked BY EXCEPTION: it holds only the two public VITE_ service
+# URLs (verified 2026-07-29) and a fresh clone cannot build a correct production
+# bundle without it. CI gate 6 greps every build artefact for secrets, and any secret
+# added to this file would be caught there. Do not put a key in it.
+!.env.production
+
+# ── binary asset trees: Drive-only, symlinked in by bootstrap.sh ──────────────
+# Generator masters and shipped binaries. They live in $MW_ROOT (synced +
+# offline-pinned) and are the provenance record for every shipped asset.
+assets/
+masters/
+assets-source/tripo-raw/
+assets-source/dcc/
+assets-source/audio-master/
+
+# public/ is PARTIALLY tracked: the big binary subdirs are ignored, but the small
+# load-bearing files are NOT. public/.assetsignore in particular is what keeps the
+# Cloudflare Worker under its 25 MiB/file limit — losing it breaks deploys.
+public/models/
+public/audio/
+public/textures/
+public/site/
+# (public/fonts/ is 188K and stays tracked; public/.assetsignore stays tracked)
+
+# ── capture and scratch ───────────────────────────────────────────────────────
+.site-shots/
+*.trace
+playwright-report/
+test-results/
+
+# ── macOS / Drive litter (11 .DS_Store present as of 2026-07-29) ──────────────
+.DS_Store
+Icon?
+~$*
+*.tmp
+*.swp
+
+# ── Drive conflict duplicates — these must NEVER be committed ─────────────────
+# Drive resolves a two-machine conflict by writing "file (1).ts". A duplicated .ts
+# that still compiles is a silent bug factory. CI also fails the build on these.
+*\ \(?\).*

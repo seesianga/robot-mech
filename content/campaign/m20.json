@@ -1,0 +1,121 @@
+{
+  "id": "m20",
+  "designFile": "m20_the_registry",
+  "stage": 20,
+  "title": "THE REGISTRY",
+  "map": "arcology",
+  "spawn": { "x": -460, "z": 430, "yaw": 2.4 },
+  "playerMech": "orogen",
+  "extract": [-160, -460],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-430, 390] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-490, 400] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-440, 470] }
+  ],
+  "structures": [
+    { "id": "vault_seal", "name": "Registry Vault Seal", "kind": "gate", "pos": [60, 40], "hp": 130 },
+    { "id": "extraction_rig", "name": "Extraction Rig", "kind": "crawler", "pos": [340, -140], "hp": 120 }
+  ],
+  "timedVO": [
+    { "atSec": 300, "trigger": "on_choice_presented_2" },
+    { "atSec": 340, "trigger": "on_kryce_live" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "CENSUS TOWER",
+      "sub": "Follow Sable's marked route through the maintenance galleries to the tower root.",
+      "vo": "on_deploy",
+      "at": [-200, 180],
+      "radius": 45,
+      "spawns": [
+        {
+          "def": "gabbro",
+          "pos": [-140, 120],
+          "alerted": false,
+          "name": "Plaza Rapid Response",
+          "waypoints": [[-80, 80], [-220, 40]]
+        },
+        {
+          "def": "gabbro",
+          "pos": [-60, 220],
+          "alerted": false,
+          "name": "Plaza Rapid Response",
+          "waypoints": [[20, 160], [-120, 260]]
+        }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "BREACH THE VAULT",
+      "sub": "Blast the Registry vault seal and start the extraction rig.",
+      "vo": "on_enemy_wave",
+      "doneVO": "on_objective:obj_2",
+      "targets": ["vault_seal"],
+      "killAll": false,
+      "spawns": [
+        { "def": "halite", "pos": [30, 90], "alerted": true, "name": "Ferric Vault Section" },
+        { "def": "halite", "pos": [120, -10], "alerted": true, "name": "Ferric Vault Section" },
+        { "def": "flint", "pos": [90, 70], "alerted": true, "name": "Sentry Drone" },
+        { "def": "pumice", "pos": [10, -20], "alerted": true, "name": "Atrium Pop-up Turret" }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "HOLD THE CRYPT",
+      "sub": "Protect the extraction rig while it spools against the archive burn.",
+      "vo": "on_objective:obj_3",
+      "doneVO": "on_choice_presented",
+      "protect": "extraction_rig",
+      "seconds": 100,
+      "waveGap": 25,
+      "waves": [
+        [
+          { "def": "skarn", "pos": [180, -320], "alerted": true, "name": "Registry Response" },
+          { "def": "pumice", "pos": [460, -240], "alerted": true, "name": "Sentry Drone" }
+        ],
+        [
+          { "def": "gabbro", "pos": [500, -20], "alerted": true, "name": "Registry Response" },
+          { "def": "halite", "pos": [140, -60], "alerted": true, "name": "Ferric Vault Section" }
+        ]
+      ]
+    },
+    {
+      "kind": "survive",
+      "title": "ONE DATASET",
+      "sub": "Commit the rig to a single priority dataset while the rest of the archive burns.",
+      "vo": "on_choice_presented_3",
+      "doneVO": "on_dataset_committed",
+      "seconds": 45,
+      "waveGap": 30,
+      "waves": [
+        [
+          { "def": "chert", "pos": [500, -280], "alerted": true, "name": "Ferric Missile Section" },
+          { "def": "skarn", "pos": [200, 20], "alerted": true, "name": "Registry Response" }
+        ]
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "RUN THE SEARCHLIGHTS",
+      "sub": "Break for the flooded side streets before the guard Batholith pins you.",
+      "vo": "on_objective:obj_5",
+      "at": [120, -360],
+      "radius": 45,
+      "spawns": [
+        {
+          "def": "batholith",
+          "pos": [300, -420],
+          "alerted": true,
+          "name": "Kryce Guard Batholith"
+        }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXFILTRATE",
+      "sub": "Reach the Brace Street garage with the dataset intact.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

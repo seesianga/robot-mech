@@ -1,0 +1,63 @@
+{
+  "id": "m14_the_mag_line",
+  "index": 14,
+  "op": 4,
+  "opName": "Polar Refineries",
+  "name": "The Mag-Line",
+  "biome": "polar_refineries",
+  "weather": "light snowfall, hard cold, aurora overhead",
+  "timeOfDay": "polar night",
+  "designIntent": "Revenge strike on Colonel Rauk's polar command train to cripple Directorate polar logistics; the manifest recovered aboard reveals Commander Ekene is being held at Spire Anchor.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "No jokes today. Here's the board. Rauk runs the entire polar network from a command train on the high mag-line — mobile headquarters, two escort cars, armored engine, never stops moving. That train is her nervous system. Cut it and every battery, depot, and garrison from Nadir to the coast goes deaf. The Commander built this plan before... before Icebound. So we're going to execute it exactly the way she wrote it. The line crosses the Teviq viaduct at oh-three-forty. You'll hit it there — kill the escort, cripple the engine on the span, and I need the command car breached, not burned. Whatever Rauk knows about where they took Anchor, it's in that car. Sable has overwatch on the ridge; Tremor and Vireo ride with you. If Rauk's aboard, fine. But hear me: the manifest comes first. Bring me something I can use, Lodestar. Bring her home a road."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Beat the Timetable", "description": "Reach the Teviq viaduct ambush position before the command train arrives.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Kill the Escort", "description": "Destroy the escort cars' pop-up turrets and the shadowing hover skiff screen.", "optional": false },
+    { "id": "obj_3", "type": "destroy", "title": "Cripple the Engine", "description": "Disable the armored engine on the viaduct span to trap the train in the kill zone.", "optional": false },
+    { "id": "obj_4", "type": "capture", "title": "Breach the Command Car", "description": "Capture the command car intact and hold it while Relay pulls the prisoner manifest.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "Strand the Line", "description": "Destroy the relief locomotive approaching from Station Nadir before it can tow the wreck clear.", "optional": true }
+  ],
+  "enemyForces": [
+    "Rauk's polar command train: armored engine, two escort cars with pop-up twin-autocannon turrets, and the command car",
+    "Hover skiff escort screen shadowing the mag-line",
+    "Ferric APC quick-reaction platoon deploying from the forward cars",
+    "Gabbro pair riding tie-down flatbeds",
+    "Relief locomotive with turret cars if the fight runs long"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The train thunders onto the viaduct trailing aurora-lit snow as the escort turrets rise from their housings",
+    "The crippled engine screeches to a halt half on the span, cars slewing against their couplings",
+    "Rauk addresses the ambush from the command car's external speakers, level and contemptuous, before escaping on a hover skiff",
+    "Relay reads the prisoner-transfer manifest live on comms: Ekene, M. — priority detainee — transferred to Spire Anchor holding decks"
+  ],
+  "failConditions": [
+    "The command car is destroyed before the manifest is recovered",
+    "The train escapes the viaduct kill zone",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Excellent haul if disciplined: the escort cars carry crated Autocannon-80 parts, and the flatbed Gabbros can be stripped nearly whole if legged on the span. Detonating the engine's reactor scorches the two nearest cars and halves their yield — cripple it, don't cook it.",
+  "musicSet": {
+    "ambient": "polar_refineries",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_manifest_reveal_low_strings"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "Train's on the line and running dark. You have nineteen minutes to be a ghost on that viaduct.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Sable", "line": "In position. I can see her train. Say when.", "futz": true },
+    { "trigger": "on_train_arrival", "speaker": "CAIRN", "line": "Rail vibration signature detected. Mass estimate: four thousand tonnes, closing fast.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Tremor", "line": "Engine's dead on the span! Nowhere left to run, Colonel! You hear me in there?!", "futz": true },
+    { "trigger": "on_rauk_speech", "speaker": "Rauk", "line": "The miners' pet soldiers. You derail one train and call it a war. I have signed requisitions with more consequence than your entire rebellion.", "futz": true },
+    { "trigger": "on_rauk_escape", "speaker": "Vireo", "line": "Skiff breaking north off the command car — that's her, that's Rauk — I couldn't get a shot, I'm sorry —", "futz": true },
+    { "trigger": "on_objective:obj_4", "speaker": "Relay", "line": "I'm in the manifest. Transfer orders, prisoner logs... wait. Wait. 'Ekene, M. Priority detainee. Transferred to Spire Anchor holding decks.' She's at the Anchor. She's alive and she's at the Anchor.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "CAIRN", "line": "Quick-reaction armor deploying from the forward cars. They are defending the command car with unusual commitment.", "futz": false },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Armor breach, multiple zones. Recommend cover behind the viaduct piers.", "futz": false },
+    { "trigger": "on_overheat_warning", "speaker": "CAIRN", "line": "Heat approaching redline. Arctic dissipation is compensating. Barely.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Tremor", "line": "Polar line's dead, and now we know where they put her. Hold on, Anchor. We are coming. I swear it on the ice.", "futz": true },
+    { "trigger": "on_complete_2", "speaker": "Sable", "line": "Good hunting tonight. First time it's felt like it since the glacier.", "futz": true }
+  ]
+}

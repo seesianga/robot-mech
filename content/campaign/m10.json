@@ -1,0 +1,100 @@
+{
+  "id": "m10",
+  "designFile": "m10_ropeway",
+  "stage": 10,
+  "title": "ROPEWAY",
+  "map": "karst",
+  "spawn": { "x": -440, "z": 420, "yaw": 2.1 },
+  "playerMech": "basalt",
+  "extract": [460, -140],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-410, 460] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-480, 400] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-400, 380] }
+  ],
+  "structures": [
+    { "id": "pylon_gorge_anchor", "name": "Gorge Anchor Pylon", "kind": "pylon", "pos": [-180, 260], "hp": 150 },
+    { "id": "pylon_talus_anchor", "name": "Talus Anchor Pylon", "kind": "pylon", "pos": [60, 180], "hp": 150 },
+    { "id": "cargo_car_alpha", "name": "Reinforcement Car Alpha", "kind": "crawler", "pos": [-40, -60], "hp": 100 },
+    { "id": "cargo_car_beta", "name": "Reinforcement Car Beta", "kind": "crawler", "pos": [220, -120], "hp": 90 },
+    { "id": "garrison_gate", "name": "Vantage Kess Gate", "kind": "gate", "pos": [230, -440], "hp": 120 }
+  ],
+  "artillery": { "fromStep": 2, "everySec": 12, "damage": 8, "radius": 26 },
+  "steps": [
+    {
+      "kind": "destroy",
+      "title": "CUT THE CORD",
+      "sub": "Destroy both ropeway anchor pylons and drop the cargo line",
+      "vo": "on_start_brief",
+      "doneVO": "on_objective:obj_1",
+      "targets": ["pylon_gorge_anchor", "pylon_talus_anchor"],
+      "killAll": false,
+      "spawns": [
+        { "def": "flint", "pos": [-120, 240], "alerted": false, "name": "Ropeway Sentry Drone", "waypoints": [[-180, 200], [-60, 280]] },
+        { "def": "flint", "pos": [-10, 190], "alerted": false, "name": "Ropeway Sentry Drone", "waypoints": [[40, 140], [-60, 220]] },
+        { "def": "pumice", "pos": [30, 300], "alerted": false, "name": "Ferric APC", "waypoints": [[100, 260], [-40, 330]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "NOTHING COMES DOWN",
+      "sub": "Destroy the reinforcement cars before their cargo unloads",
+      "vo": "on_cars_descend",
+      "targets": ["cargo_car_alpha", "cargo_car_beta"],
+      "killAll": true,
+      "spawns": [
+        { "def": "pumice", "pos": [-100, -140], "alerted": true, "name": "Ferric APC" },
+        { "def": "pumice", "pos": [60, -180], "alerted": true, "name": "Ferric APC" }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "THE TALUS ROAD",
+      "sub": "Ascend the switchbacks to the first shelf",
+      "vo": "on_ascent",
+      "doneVO": "on_tremor_climb",
+      "at": [200, -330],
+      "radius": 45
+    },
+    {
+      "kind": "hold",
+      "title": "CLEAR THE SWITCHBACKS",
+      "sub": "Hold the upper shelf against the rappel teams",
+      "vo": "on_rappel_teams",
+      "at": [-80, -420],
+      "radius": 120,
+      "seconds": 50,
+      "waves": [
+        [
+          { "def": "flint", "pos": [-150, -490], "alerted": true, "name": "Rappel Assault Team" },
+          { "def": "flint", "pos": [-20, -500], "alerted": true, "name": "Rappel Assault Team" }
+        ],
+        [
+          { "def": "flint", "pos": [-190, -350], "alerted": true, "name": "Rappel Assault Team" },
+          { "def": "pumice", "pos": [30, -360], "alerted": true, "name": "Ferric APC" }
+        ]
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "TAKE THE VANTAGE",
+      "sub": "Breach the gate and clear the garrison rim",
+      "vo": "on_terrace_fire",
+      "doneVO": "on_objective:obj_3",
+      "targets": ["garrison_gate"],
+      "killAll": true,
+      "perTargetVO": { "garrison_gate": "on_gate_breach" },
+      "spawns": [
+        { "def": "basalt", "pos": [310, -480], "alerted": true, "name": "Vantage Rim Overwatch", "yieldFrac": 0.25 },
+        { "def": "chert", "pos": [390, -410], "alerted": true, "name": "Terrace Fire Support", "yieldFrac": 0.25 },
+        { "def": "flint", "pos": [280, -370], "alerted": true, "name": "Terrace Sentry Turret" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Move to the extraction point beyond the garrison rim",
+      "doneVO": "on_complete"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "m22_blackout",
+  "index": 22,
+  "op": 7,
+  "opName": "Spire Anchor",
+  "name": "Blackout",
+  "branch": "shared",
+  "branchVariants": {
+    "a": "Commander Ekene commands the assault from the forward line and anchors the mission VO. The Directorate still holds the orbital guns, so bombardment danger-zones sweep the pylon field all mission and the approach is fought under enemy orbital fire — harder, but every callsign is fighting beside their Commander again.",
+    "b": "Relay commands alone. The mission opens with a Compact orbital strike breaching the outer wall, and the guns above belong to the player: Directorate garrisons fight with the ragged edge of troops who have lost the sky, and the radio carries deliberate silences where Ekene's sign-offs used to live."
+  },
+  "biome": "spire_anchor",
+  "weather": "supercell lightning storm over the anchor plain",
+  "timeOfDay": "night",
+  "designIntent": "Destroy the Spire Anchor's six shield pylons in a supercell lightning storm to collapse the tether facility's shield — the last door before the climb.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "The Anchor's last shield is six resonance pylons out on the storm plain — while they stand, the tether facility shrugs off anything short of a moon. Kryce parked them in the worst weather on Veyra on purpose: the supercell never leaves the plain, the lightning loves the pylons, and sensors are worth half their word out there. Doesn't matter. Tonight we put them down. Six pylons, hardened bases, each with its own turret belt and a garrison that rotates by crawler, because nothing flies in that storm. Drop all six and the shield collapses — then the whole Compact moves up for the climb. Watch the strikes: the pylons bleed charge into the ground when they're hit, and CAIRN will flag the discharge rings as they form. Heat's cheap in the rain; footing isn't. This is the last door, Lodestar. Behind it is the tether, the Directorate's grip on our sky, and the end of this war. Knock."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "destroy", "title": "Six Pylons", "description": "Destroy all six resonance shield pylons on the storm plain.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "The Crawler Line", "description": "Destroy the garrison crawler convoys rotating reinforcements between pylons.", "optional": true },
+    { "id": "obj_3", "type": "reach", "title": "The Anchor Wall", "description": "Reach the Compact breach rally at the anchor perimeter wall once the shield falls.", "optional": false }
+  ],
+  "enemyForces": [
+    "Six pylon garrisons: turret belts, Ferric sections, and Chert fire-support",
+    "Garrison crawler convoys rotating between the pylons",
+    "Storm-hardened Basalt pair patrolling the open plain",
+    "Branch-dependent sky: Directorate orbital bombardment sweeps (branch a) or demoralized remnant screens under Compact guns (branch b)",
+    "The supercell itself: lightning strikes and ground-discharge rings"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Each pylon's death arcs a mile of lightning into the plain as its stored charge dumps",
+    "The shield aurora over the Anchor flickers and dies pylon by pylon",
+    "Branch a: orbital fire and lightning share the sky, turning the plain into a corridor of light columns",
+    "Branch b: a Compact orbital strike opens the outer wall at mission end, silent under the thunder",
+    "The final pylon falls and, for one held breath, the storm is the only light on the plain"
+  ],
+  "failConditions": [
+    "The Compact forward column is destroyed before the shield falls",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Pylon garrisons carry standard kit, but the storm decides what survives: wrecks caught inside discharge rings cook to slag. The Basalt patrol pair, caught away from the pylons and legged, is the only reliable prize on the plain.",
+  "musicSet": {
+    "ambient": "spire_anchor",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_shield_collapse_choral_drop", "cue_storm_percussion_layer"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "CAIRN", "line": "Atmospheric charge exceeds instrument ceiling. I will flag discharge rings as they form. Trust the flags, not your eyes.", "futz": false },
+    { "trigger": "on_start_branch_a", "speaker": "Ekene", "line": "All callsigns, this is Anchor. I spent four months in their cells listening to that storm. Tonight it works for us. Take the pylons down.", "futz": true },
+    { "trigger": "on_start_branch_b", "speaker": "Relay", "line": "All callsigns, Relay has command. Guns above are ours, storm below is nobody's. Six pylons. Let's end this door.", "futz": true },
+    { "trigger": "on_pylon_destroyed", "speaker": "Sable", "line": "Pylon down. Discharge ring forming — clear the radius.", "futz": true },
+    { "trigger": "on_pylon_3", "speaker": "Vireo", "line": "Halfway! The shield aurora's guttering — you can see it dying from here!", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Tremor", "line": "Crawler convoy on the flats — fresh garrison for pylon five! Not tonight they're not!", "futz": true },
+    { "trigger": "on_orbital_sweep_branch_a", "speaker": "CAIRN", "line": "Orbital bombardment pattern advancing from the north. His guns. Moving between strikes is survivable. Standing still is not.", "futz": false },
+    { "trigger": "on_orbital_support_branch_b", "speaker": "CAIRN", "line": "Compact orbital platforms holding overwatch. Fire missions available at the anchor wall. The sky is patient tonight.", "futz": false },
+    { "trigger": "on_lightning_strike", "speaker": "CAIRN", "line": "Direct lightning strike absorbed by hull lattice. Sensor recalibration in progress. That one was close, Lodestar.", "futz": false },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Critical damage. The storm will finish what the garrison started. A repair pause behind the pylon base is advised.", "futz": false },
+    { "trigger": "on_shield_down", "speaker": "Relay", "line": "SHIELD'S DOWN — the whole aurora just died! All Compact columns, move up, MOVE UP! The Anchor stands naked!", "futz": true },
+    { "trigger": "on_complete_branch_a", "speaker": "Ekene", "line": "Good work, all of you. Rest while you can. Tomorrow we climb, and I'll be climbing with you.", "futz": true },
+    { "trigger": "on_complete_branch_b", "speaker": "Relay", "line": "Door's open. ...She'd have said something better here. Rest up. Tomorrow we climb for her too.", "futz": true }
+  ]
+}

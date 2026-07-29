@@ -1,0 +1,102 @@
+{
+  "id": "m18",
+  "designFile": "m18_understreets",
+  "stage": 18,
+  "title": "UNDERSTREETS",
+  "map": "arcology",
+  "spawn": { "x": -440, "z": 460, "yaw": 2.64 },
+  "playerMech": "orogen",
+  "extract": [500, -510],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-410, 435] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-465, 425] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-415, 490] }
+  ],
+  "structures": [
+    { "id": "picket_junction_west", "name": "Listening Picket K-9", "kind": "mast", "pos": [-120, 40], "hp": 130 },
+    { "id": "picket_junction_east", "name": "Listening Picket K-12", "kind": "mast", "pos": [160, 120], "hp": 130 },
+    { "id": "brace_garage", "name": "Brace Street Garage", "kind": "building", "pos": [280, -360], "hp": 300 }
+  ],
+  "timedVO": [
+    { "atSec": 300, "trigger": "on_collateral_warning" },
+    { "atSec": 430, "trigger": "on_low_health" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "REACH THE SALTGATE OUTFALL",
+      "sub": "Enter the storm-drain network through the outfall arch.",
+      "at": [-320, 240],
+      "radius": 45,
+      "vo": "on_deploy",
+      "doneVO": "on_objective:obj_1"
+    },
+    {
+      "kind": "destroy",
+      "title": "QUIET THE PICKETS",
+      "sub": "Destroy both listening pickets before the alert grid wakes.",
+      "targets": ["picket_junction_west", "picket_junction_east"],
+      "killAll": false,
+      "perTargetVO": { "picket_junction_west": "on_picket_destroyed" },
+      "vo": "on_passive_reminder",
+      "spawns": [
+        { "def": "flint", "pos": [-60, -60], "alerted": false, "name": "Sentry Drone", "waypoints": [[-140, -20], [-40, 80]] },
+        { "def": "flint", "pos": [220, 40], "alerted": false, "name": "Sentry Drone", "waypoints": [[120, 160], [240, -40]] }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "THREAD THE JUNCTIONS TO BRACE STREET",
+      "sub": "Navigate the flooded trunk drain to the undercroft beneath the garage.",
+      "at": [60, -140],
+      "radius": 45,
+      "vo": "on_runoff_surge",
+      "doneVO": "on_objective:obj_3",
+      "spawns": [
+        { "def": "pumice", "pos": [-20, -40], "alerted": false, "name": "Trunk Drain Sweep", "waypoints": [[-80, -120], [40, -20]] },
+        { "def": "pumice", "pos": [120, -260], "alerted": false, "name": "Trunk Drain Sweep", "waypoints": [[40, -220], [180, -300]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "TAKE THE GARAGE",
+      "sub": "Wipe out the caretaker garrison before it recovers from the surprise.",
+      "targets": [],
+      "killAll": true,
+      "vo": "on_objective:obj_4",
+      "spawns": [
+        { "def": "halite", "pos": [250, -310], "alerted": false, "name": "Ferric Section Leader" },
+        { "def": "skarn", "pos": [330, -390], "alerted": false, "name": "Ferric Section" },
+        { "def": "flint", "pos": [220, -400], "alerted": false, "name": "Pop-up Turret" },
+        { "def": "flint", "pos": [310, -280], "alerted": false, "name": "Pop-up Turret" }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "HOLD THE GARAGE",
+      "sub": "Protect the garage from the probing response until Compact crews arrive.",
+      "protect": "brace_garage",
+      "seconds": 90,
+      "waveGap": 25,
+      "vo": "on_enemy_wave",
+      "doneVO": "on_complete_2",
+      "waves": [
+        [
+          { "def": "pumice", "pos": [440, -260], "alerted": true, "name": "Ramp Drone Screen" },
+          { "def": "pumice", "pos": [140, -240], "alerted": true, "name": "Ramp Drone Screen" }
+        ],
+        [
+          { "def": "halite", "pos": [460, -460], "alerted": true, "name": "Directorate Probe" },
+          { "def": "halite", "pos": [150, -470], "alerted": true, "name": "Directorate Probe" }
+        ]
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "OPEN THE DOORS",
+      "sub": "Move to the garage doors and link up with the Compact crews.",
+      "vo": "on_complete_3",
+      "doneVO": "on_complete"
+    }
+  ]
+}

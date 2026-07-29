@@ -1,0 +1,97 @@
+{
+  "id": "m11",
+  "designFile": "m11_kryces_voice",
+  "stage": 11,
+  "title": "KRYCE'S VOICE",
+  "map": "karst",
+  "spawn": { "x": -430, "z": -380, "yaw": 0.3 },
+  "playerMech": "basalt",
+  "extract": [460, -460],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-455, -350] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-400, -355] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-445, -415] }
+  ],
+  "structures": [
+    { "id": "relay_post_west", "name": "Loudspeaker Post West", "kind": "mast", "pos": [-260, 140], "hp": 120 },
+    { "id": "relay_post_north", "name": "Loudspeaker Post North", "kind": "mast", "pos": [-120, 360], "hp": 120 },
+    { "id": "relay_post_east", "name": "Loudspeaker Post East", "kind": "mast", "pos": [140, 420], "hp": 120 },
+    { "id": "bastion_north", "name": "Bastion North", "kind": "bunker", "pos": [330, 400], "hp": 240 },
+    { "id": "bastion_south", "name": "Bastion South", "kind": "bunker", "pos": [390, 130], "hp": 220 },
+    { "id": "transmitter_mast", "name": "Broadcast Transmitter Mast", "kind": "mast", "pos": [480, -30], "hp": 160 }
+  ],
+  "artillery": { "fromStep": 4, "everySec": 12, "damage": 10, "radius": 28 },
+  "timedVO": [
+    { "atSec": 25, "trigger": "on_start_broadcast" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "REACH THE APPROACH ROAD",
+      "sub": "Follow the doline road north toward Antler Ridge.",
+      "vo": "on_start_brief",
+      "at": [-340, -100],
+      "radius": 45,
+      "spawns": [
+        { "def": "flint", "pos": [-230, 90], "alerted": false, "name": "Sentry Drone", "waypoints": [[-290, 190], [-160, 260]] },
+        { "def": "pumice", "pos": [-60, 300], "alerted": false, "name": "Ferric Skiff", "waypoints": [[-170, 380], [40, 390]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DEAD AIR",
+      "sub": "Destroy the three loudspeaker relay posts along the approach road.",
+      "vo": "on_approach",
+      "targets": ["relay_post_west", "relay_post_north", "relay_post_east"],
+      "killAll": false
+    },
+    {
+      "kind": "destroy",
+      "title": "BREAK THE BASTIONS",
+      "sub": "Destroy the citadel's outer bastions and clear the courtyard garrison.",
+      "doneVO": "on_objective:obj_1",
+      "targets": ["bastion_north", "bastion_south"],
+      "killAll": true,
+      "spawns": [
+        { "def": "basalt", "pos": [430, 330], "alerted": true, "name": "Citadel Line-Breaker" },
+        { "def": "basalt", "pos": [290, 200], "alerted": true, "name": "Citadel Line-Breaker" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "SILENCE THE VOICE",
+      "sub": "Topple the transmitter mast at the citadel's heart.",
+      "doneVO": "on_objective:obj_2",
+      "targets": ["transmitter_mast"],
+      "killAll": true,
+      "spawns": [
+        { "def": "pumice", "pos": [420, 60], "alerted": true, "name": "Ferric APC" },
+        { "def": "pumice", "pos": [500, -140], "alerted": true, "name": "Ferric APC" }
+      ]
+    },
+    {
+      "kind": "duel",
+      "title": "RAUK'S MEASURE",
+      "sub": "Drive Colonel Rauk's Corundum-V from the field.",
+      "vo": "on_rauk_arrival",
+      "doneVO": "on_rauk_withdraw",
+      "spawn": { "def": "corundum", "pos": [240, -330], "alerted": true, "name": "Corundum-V — Col. Rauk", "yieldFrac": 0.35 },
+      "woundVO": [
+        { "frac": 0.92, "trigger": "on_rauk_open" },
+        { "frac": 0.8, "trigger": "on_vireo_rauk" },
+        { "frac": 0.6, "trigger": "on_sable_rauk" },
+        { "frac": 0.45, "trigger": "on_duel_wound_rauk" }
+      ],
+      "spawns": [
+        { "def": "halite", "pos": [150, -260], "alerted": true, "name": "Rauk's Guard" },
+        { "def": "gabbro", "pos": [330, -240], "alerted": true, "name": "Rauk's Guard" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach extraction on the southeast valley floor.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

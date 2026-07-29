@@ -1,0 +1,61 @@
+{
+  "id": "m10_ropeway",
+  "index": 10,
+  "op": 3,
+  "opName": "Karst Highlands",
+  "name": "Ropeway",
+  "biome": "karst_highlands",
+  "weather": "fog banks rolling through the gorge",
+  "timeOfDay": "late afternoon",
+  "designIntent": "Sever the ropeway that supplies the clifftop Vantage Kess garrison, then storm the cliff from below — the direction their guns were never meant to face.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "Quick geography quiz, Lodestar: how do you supply a garrison on a four-hundred-meter cliff with no road worth the name? Answer: you don't — you hang it from a cable. The Directorate runs everything up to the Vantage Kess garrison on a heavy ropeway: ammunition, fuel, rotation troops, all of it swinging over the gorge in cargo cars the size of houses. Which makes today beautifully simple. Step one, you drop the ropeway — kill the anchor pylons and let gravity file the paperwork. Step two, before they finish panicking, you go up the talus switchbacks and take the garrison from below, which is the one direction their guns were never really meant to point. Fair warning: it's a climb under fire, and they'll try to run reinforcement cars down the wire the second you're spotted, so anything still hanging is a valid target. Sable on overwatch, Tremor on the gate, Vireo with you. Cut the cord, Lodestar, then go collect the cliff. Relay out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "destroy", "title": "Cut the Cord", "description": "Destroy both ropeway anchor pylons and drop the cargo line into the gorge.", "optional": false },
+    { "id": "obj_2", "type": "reach", "title": "The Talus Road", "description": "Ascend the switchback talus route to the garrison rim under fire.", "optional": false },
+    { "id": "obj_3", "type": "capture", "title": "Take the Vantage", "description": "Breach the gate and seize the Vantage Kess garrison.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Nothing Comes Down", "description": "Destroy the reinforcement cars on the wire before they unload.", "optional": true }
+  ],
+  "enemyForces": [
+    "Ropeway station guard: turret pair and Ferric APC at the lower anchor",
+    "Garrison rim: one Basalt and one Chert with terrace turrets firing down the cliff",
+    "Rappel infantry teams dropping onto the switchbacks",
+    "Reinforcement cargo cars descending with Ferric APCs aboard",
+    "Late strafing aircraft over the gorge"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The cable snaps — house-sized cargo cars plunge into the fog-filled gorge",
+    "APCs unload from a car mid-slope, ramp-first into the fight",
+    "The climb: tracers raining down the terraces while fog banks roll through",
+    "Tremor breaches the garrison gate at the top with a full-speed shoulder"
+  ],
+  "failConditions": [
+    "Reinforcement cars deliver the garrison's relief before the ropeway is cut",
+    "Fireteam wiped on the talus ascent",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "What falls in the gorge stays in the gorge — the fog swallows claims whole. The garrison rim pays properly: the Basalt and Chert both come home if dropped on the terrace flats, and captured garrison stores re-arm the whole fireteam for free.",
+  "musicSet": {
+    "ambient": "karst_highlands",
+    "combatIntensityCap": 3,
+    "specialCues": ["cable_snap_stinger", "ascent_percussion_build", "gate_breach_hit"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Relay", "line": "Anchor pylons first, Lodestar. Kill the wire and that garrison starts starving in real time. Then comes the fun part, where 'fun' means 'climbing.'", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Relay", "line": "Cable's cut! Oh, that's— those cars are just... gone. The fog ate them. The gorge remembers, Lodestar.", "futz": true },
+    { "trigger": "on_cars_descend", "speaker": "Sable", "line": "Cars on the wire, coming down loaded. If they touch the lower station, we fight their cargo twice.", "futz": true },
+    { "trigger": "on_ascent", "speaker": "CAIRN", "line": "Slope grade exceeds stability envelope on the direct face. The switchback route holds within tolerance. Jump jets viable at the marked shelves.", "futz": false },
+    { "trigger": "on_rappel_teams", "speaker": "Vireo", "line": "Infantry on the ropes above us! They're— they're rappelling onto the switchbacks. I have them. I actually have them.", "futz": true },
+    { "trigger": "on_tremor_climb", "speaker": "Tremor", "line": "Four hundred meters of stairs! When we take this rock, I am installing a lift, and NOBODY laughs!", "futz": true },
+    { "trigger": "on_terrace_fire", "speaker": "Relay", "line": "Basalt on the rim's got you bracketed — it's shooting down its own cliff, which frankly seems unfair. Fog bank rolling in from the west, use it.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Armor critical on upper surfaces. Plunging fire pattern detected. Recommend overhangs and the terrace shadows.", "futz": false },
+    { "trigger": "on_gate_breach", "speaker": "Tremor", "line": "GATE! MINE! Ha-HA — knock KNOCK!", "futz": true },
+    { "trigger": "on_objective:obj_3", "speaker": "Sable", "line": "Vantage secured. High ground's ours now. The whole valley... good sightlines. I'm keeping this tower.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "The cliff is Compact ground, and every gun on it now points the right way. You climbed under fire and took the impossible door, Lodestar. Next, we silence the voice that calls this occupation mercy.", "futz": true }
+  ]
+}

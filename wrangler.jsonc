@@ -1,0 +1,26 @@
+{
+  // Veyra Prime — game (static assets from dist/), the online match server
+  // (Durable Object at /ws) and the pilot-account API (/api/*, backed by D1).
+  "name": "veyra-prime",
+  "main": "worker/index.mjs",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "MATCH", "class_name": "MatchLobby" }]
+  },
+  // Pilot accounts + cloud campaign saves. Schema: migrations/0001_accounts.sql
+  // (apply with `npm run db:migrate` locally, `npm run db:migrate:remote` live).
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "veyra-accounts",
+      "database_id": "fe404892-b11c-495b-9434-a597f229f5ce",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["MatchLobby"] }],
+  "observability": { "enabled": true }
+}

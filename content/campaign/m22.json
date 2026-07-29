@@ -1,0 +1,103 @@
+{
+  "id": "m22",
+  "designFile": "m22_blackout",
+  "stage": 22,
+  "title": "BLACKOUT",
+  "map": "anchor",
+  "spawn": { "x": -460, "z": 480, "yaw": 2.94 },
+  "playerMech": "batholith",
+  "heatMult": 0.9,
+  "extract": [480, 430],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-430, 460] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-490, 450] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-450, 510] }
+  ],
+  "structures": [
+    { "id": "pylon_verge", "name": "Resonance Pylon Verge", "kind": "pylon", "pos": [-430, -80], "hp": 150 },
+    { "id": "pylon_sill", "name": "Resonance Pylon Sill", "kind": "pylon", "pos": [-150, -160], "hp": 150 },
+    { "id": "pylon_meridian", "name": "Resonance Pylon Meridian", "kind": "pylon", "pos": [70, -300], "hp": 150 },
+    { "id": "pylon_causeway", "name": "Resonance Pylon Causeway", "kind": "pylon", "pos": [120, 0], "hp": 150 },
+    { "id": "pylon_bastion", "name": "Resonance Pylon Bastion", "kind": "pylon", "pos": [380, -140], "hp": 150 },
+    { "id": "pylon_crown", "name": "Resonance Pylon Crown", "kind": "pylon", "pos": [420, 160], "hp": 150 }
+  ],
+  "artillery": { "fromStep": 1, "everySec": 12, "damage": 10, "radius": 28 },
+  "timedVO": [
+    { "atSec": 60, "trigger": "on_lightning_strike" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "ENTER THE STORM PLAIN",
+      "sub": "Push onto the pylon field under the supercell",
+      "vo": "on_deploy",
+      "at": [-400, 190],
+      "radius": 45,
+      "spawns": [
+        {
+          "def": "basalt",
+          "pos": [-120, 140],
+          "alerted": false,
+          "waypoints": [[-40, -60], [120, 40], [-120, 140]],
+          "name": "Storm Patrol Basalt",
+          "yieldFrac": 0.25
+        },
+        {
+          "def": "basalt",
+          "pos": [-20, 260],
+          "alerted": false,
+          "waypoints": [[60, 120], [-80, 60], [-20, 260]],
+          "name": "Storm Patrol Basalt",
+          "yieldFrac": 0.25
+        }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DROP THE WESTERN PYLONS",
+      "sub": "Destroy Resonance Pylons Verge and Sill — clear the discharge rings",
+      "targets": ["pylon_verge", "pylon_sill"],
+      "killAll": false,
+      "perTargetVO": { "pylon_verge": "on_pylon_destroyed" },
+      "spawns": [
+        { "def": "pumice", "pos": [-400, -160], "alerted": true, "name": "Pylon Turret Belt" },
+        { "def": "chert", "pos": [-190, -100], "alerted": true, "name": "Garrison Fire Support" },
+        { "def": "flint", "pos": [-290, -220], "alerted": false, "waypoints": [[-360, -120], [-200, -180]], "name": "Ferric Picket" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "BREAK THE CENTER LINE",
+      "sub": "Destroy Resonance Pylons Meridian and Causeway",
+      "targets": ["pylon_meridian", "pylon_causeway"],
+      "killAll": false,
+      "perTargetVO": { "pylon_meridian": "on_pylon_3" },
+      "spawns": [
+        { "def": "gabbro", "pos": [30, -240], "alerted": true, "name": "Ferric Section Lead" },
+        { "def": "chert", "pos": [140, -360], "alerted": true, "name": "Garrison Fire Support" },
+        { "def": "pumice", "pos": [180, 60], "alerted": true, "name": "Pylon Turret Belt" },
+        { "def": "halite", "pos": [60, 90], "alerted": true, "name": "Ferric Section" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "KILL THE CRAWLER LINE",
+      "sub": "Destroy Pylons Bastion and Crown and wipe the garrison convoy",
+      "vo": "on_enemy_wave",
+      "doneVO": "on_shield_down",
+      "targets": ["pylon_bastion", "pylon_crown"],
+      "killAll": true,
+      "spawns": [
+        { "def": "halite", "pos": [300, 20], "alerted": true, "name": "Garrison Crawler" },
+        { "def": "halite", "pos": [345, -45], "alerted": true, "name": "Garrison Crawler" },
+        { "def": "dolerite", "pos": [430, -220], "alerted": true, "name": "Crawler Escort" },
+        { "def": "corundum", "pos": [400, 60], "alerted": true, "name": "Garrison Command", "yieldFrac": 0.2 }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "REACH THE ANCHOR WALL",
+      "sub": "Rally with the Compact breach column at the perimeter wall"
+    }
+  ]
+}

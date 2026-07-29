@@ -1,0 +1,82 @@
+{
+  "id": "m16",
+  "designFile": "m16_rauks_wager",
+  "stage": 16,
+  "title": "RAUK'S WAGER",
+  "map": "storm",
+  "spawn": { "x": -430, "z": 330, "yaw": 2.3 },
+  "playerMech": "corundum",
+  "heatMult": 1.15,
+  "extract": [500, 60],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-405, 305] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-455, 350] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-400, 360] }
+  ],
+  "structures": [
+    { "id": "relay_west", "name": "Detonation Relay West", "kind": "mast", "pos": [-40, 420], "hp": 140 },
+    { "id": "relay_center", "name": "Detonation Relay Center", "kind": "mast", "pos": [230, 360], "hp": 140 },
+    { "id": "relay_east", "name": "Detonation Relay East", "kind": "mast", "pos": [490, 440], "hp": 140 }
+  ],
+  "timedVO": [
+    { "atSec": 150, "trigger": "on_player_wound_50" },
+    { "atSec": 480, "trigger": "on_low_health" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "ANSWER THE WAGER",
+      "sub": "Walk onto the flooded quarry floor. Alone.",
+      "at": [-140, 40],
+      "radius": 45,
+      "doneVO": "on_duel_start"
+    },
+    {
+      "kind": "duel",
+      "title": "SINGLE COMBAT",
+      "sub": "Defeat Colonel Rauk's duel machine. No seconds, no support.",
+      "vo": "on_duel_start_2",
+      "spawn": { "def": "batholith", "pos": [120, -160], "alerted": true, "name": "Ironline — Col. Rauk" },
+      "woundVO": [
+        { "frac": 0.75, "trigger": "on_rauk_wound_25" },
+        { "frac": 0.5, "trigger": "on_rauk_wound_50" },
+        { "frac": 0.25, "trigger": "on_rauk_wound_75" }
+      ],
+      "doneVO": "on_rauk_defeated"
+    },
+    {
+      "kind": "reach",
+      "title": "RACE TO THE RIM DAM",
+      "sub": "The demolition timers are live — sprint up the flood channels to the rim dam.",
+      "vo": "on_objective:obj_2",
+      "at": [200, 180],
+      "radius": 50,
+      "spawns": [
+        { "def": "pumice", "pos": [120, 20], "alerted": false, "name": "Hover Skiff Picket", "waypoints": [[220, -40], [40, 100]] },
+        { "def": "pumice", "pos": [300, 120], "alerted": false, "name": "Hover Skiff Picket", "waypoints": [[380, 40], [220, 220]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "CUT THE CHARGES",
+      "sub": "Destroy all three detonation relays before they fire the rim-dam charges.",
+      "vo": "on_enemy_wave",
+      "targets": ["relay_west", "relay_center", "relay_east"],
+      "killAll": false,
+      "perTargetVO": { "relay_center": "on_relay_cut" },
+      "spawns": [
+        { "def": "halite", "pos": [-30, 480], "alerted": true, "name": "Demo Crew Guard" },
+        { "def": "gabbro", "pos": [160, 430], "alerted": true, "name": "Ferric Escort" },
+        { "def": "gabbro", "pos": [320, 320], "alerted": true, "name": "Ferric Escort" },
+        { "def": "chert", "pos": [430, 490], "alerted": true, "name": "Demo Crew Spotter" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACTION",
+      "sub": "The dam holds. Withdraw to the extraction point.",
+      "vo": "on_complete_2",
+      "doneVO": "on_complete"
+    }
+  ]
+}

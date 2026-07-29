@@ -1,0 +1,62 @@
+{
+  "id": "m11_kryces_voice",
+  "index": 11,
+  "op": 3,
+  "opName": "Karst Highlands",
+  "name": "Kryce's Voice",
+  "biome": "karst_highlands",
+  "weather": "gathering storm, distant thunder",
+  "timeOfDay": "evening",
+  "designIntent": "Destroy the broadcast citadel that carries Kryce's voice across the highlands — and survive the first clash with Colonel Rauk, who arrives to take the Compact's measure and withdraws when the price runs high.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "You have heard the voice, Lodestar. Every settlement in these highlands wakes to it — Director Kryce, warm as bad medicine, explaining how the occupation is a partnership and the dead signed consent forms. That voice comes out of a broadcast citadel on the Antler Ridge: hardened bastions, a transmitter mast you can see from three valleys, and a garrison that knows what it is protecting. Today we take it off the air. Break the outer bastions, walk the fireteam into the courtyard, and put that mast on the ground. Be ready for more than the garrison. Intelligence says Colonel Vesna Rauk has moved her personal lance into the highlands — Kryce's enforcer, and unlike him, she does her own killing. If she comes, she comes to measure you. Do not give her a flattering number. Watch your team, watch your heat, and remember: when that tower falls, every town from here to the coast hears the silence. Make it loud. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "destroy", "title": "Break the Bastions", "description": "Destroy the citadel's outer bastion emplacements and open the courtyard.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Silence the Voice", "description": "Destroy the transmitter mast at the citadel's heart.", "optional": false },
+    { "id": "obj_3", "type": "duel", "title": "Rauk's Measure", "description": "Survive Colonel Rauk's assault and drive her Corundum-V to withdrawal.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Dead Air", "description": "Destroy the three loudspeaker relay posts on the approach road.", "optional": true }
+  ],
+  "enemyForces": [
+    "Citadel garrison: paired Basalt line-breakers, bastion turrets, drone swarms",
+    "Ferric APC reserve in the courtyard",
+    "Colonel Vesna Rauk in her Corundum-V with a two-mech guard lance",
+    "Strafing aircraft called in to cover her withdrawal"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Kryce's broadcast rolls across the valley from the citadel through the approach fight",
+    "The transmitter mast falls and his voice dies mid-sentence — the valley's first honest silence in eighteen months",
+    "Rauk's Corundum-V crests the ridge trailing amber running lights, guard lance in echelon",
+    "Her withdrawal under smoke and strafing cover — contemptuous, unhurried, deliberate"
+  ],
+  "failConditions": [
+    "The transmitter mast still stands at mission end",
+    "The fireteam is wiped during Rauk's assault",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "Rauk withdraws — her Corundum-V is not on today's menu, but her guard lance is: officer-grade chassis with clean loadouts, premium claims if legged. The citadel yields broadcast-grade sensor arrays for utility hardpoints.",
+  "musicSet": {
+    "ambient": "karst_highlands",
+    "combatIntensityCap": 3,
+    "specialCues": ["rauk_arrival_stinger", "transmitter_down_silence", "op3_finale_resolve"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_broadcast", "speaker": "Kryce", "line": "...and to the frightened few in the hills: the Directorate forgives. Lay down the salvage you call soldiers, and Veyra Prime returns to prosperity. This is Director Kryce, and I am, as always, listening.", "futz": true },
+    { "trigger": "on_start_brief", "speaker": "Ekene", "line": "You hear him, Lodestar. All the highlands hear him. Tear down the tower, and let this valley hear itself think again.", "futz": true },
+    { "trigger": "on_approach", "speaker": "Relay", "line": "Loudspeaker posts on the approach — three of them, dressed up like signal huts. Optional target, but honestly? Popping them is good for morale. Mine, specifically.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Tremor", "line": "Bastions down! Courtyard's open, and that tower is looking nervous! Come on, come ON!", "futz": true },
+    { "trigger": "on_rauk_arrival", "speaker": "Relay", "line": "Contact, ridge line — mech lance, running lights amber... Lodestar, that's a Corundum-V. That's HER. Colonel Rauk is on the field. Everyone — this is not a garrison pilot.", "futz": true },
+    { "trigger": "on_rauk_open", "speaker": "Rauk", "line": "So. The salvage that prays. I am Colonel Rauk, and I have read your file — it was short. Show me the error in it.", "futz": true },
+    { "trigger": "on_duel_wound_player", "speaker": "Rauk", "line": "Adequate. The Directorate will note that you bleed in the correct order.", "futz": true },
+    { "trigger": "on_duel_wound_rauk", "speaker": "Rauk", "line": "Hm. That was a real shot. Noted, scrap-pilot. Genuinely noted.", "futz": true },
+    { "trigger": "on_vireo_rauk", "speaker": "Vireo", "line": "She's not like the others— she's herding us. Lodestar, she's watching how we move!", "futz": true },
+    { "trigger": "on_sable_rauk", "speaker": "Sable", "line": "Guard lance covers her left. She trusts it too much. There's the seam.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Mast is DOWN! Kryce just died mid-sentence in every kitchen in the highlands. Dead air never sounded so good.", "futz": true },
+    { "trigger": "on_rauk_withdraw", "speaker": "Rauk", "line": "Enough. You have bought yourselves a season, miners — I have measured what it costs. Spend it preparing. I will not be slow next time.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "She came to take our measure, Lodestar, and left with a number she did not like. Remember her — that discipline will come for us again in the cold. The highlands are free tonight. Let them sing.", "futz": true }
+  ]
+}

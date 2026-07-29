@@ -1,0 +1,61 @@
+{
+  "id": "m05_dust_convoy",
+  "index": 5,
+  "op": 2,
+  "opName": "Halite Flats",
+  "name": "Dust Convoy",
+  "biome": "halite_flats",
+  "weather": "clear with blowing dust",
+  "timeOfDay": "dawn",
+  "designIntent": "Capture a Directorate reactor-fuel crawler convoy intact by disabling its escorts without touching the cargo. The dedicated legged-kill tutorial — restraint as a weapon.",
+  "teaches": ["legged_kill_captures", "convoy_interception"],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "Listen well, Lodestar, because today the trigger is the easy part. A Directorate convoy is crossing the basin at dawn — three crawler haulers carrying refined reactor fuel, enough to keep every mech in the Compact walking for a year. We are not going to destroy that convoy. We are going to take it. That means the crawlers come through the fight without a scratch that matters, and that means discipline. Their escorts will stand and brawl; you will not trade with them next to a fuel load. Pull them off, then cut the legs out from under them. A legged machine is out of the fight and on our books; a fuel crawler with a round through the tank is a crater with our future inside it. Sable will mark targets from the ridge. When the escorts are down, our drivers take the cabs and you walk the convoy home. Bring me fuel, Lodestar. Bring it gently. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Cut the Road", "description": "Reach the intercept point at the dry channel ahead of the convoy.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Unhorse the Escort", "description": "Disable or destroy every escort unit without damaging the fuel crawlers.", "optional": false },
+    { "id": "obj_3", "type": "capture", "title": "Take the Cabs", "description": "Hold the convoy while Compact drivers board and secure all three crawlers.", "optional": false },
+    { "id": "obj_4", "type": "escort", "title": "Walk Them Home", "description": "Escort the captured crawlers to the rally point at Break Ridge.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "Nothing Wasted", "description": "Disable every escort mech by legging it — no destroyed chassis.", "optional": true }
+  ],
+  "enemyForces": [
+    "Three ore-crawler haulers converted for reactor-fuel transport (must survive)",
+    "Escort pair of Halite brawlers flanking the convoy",
+    "Hover skiff outriders running ahead of the dust plume",
+    "Two Ferric APCs with dismount teams",
+    "Garrison quick-reaction flight of strafing aircraft if the alarm gets out"
+  ],
+  "allies": ["Sable"],
+  "setPieces": [
+    "The convoy announces itself as a kilometer-long dust plume on the horizon",
+    "Crawlers circle like wagons when the shooting starts, escorts standing to brawl",
+    "A legged Halite drags itself between you and a crawler, still firing",
+    "Compact drivers sprint across open salt to climb the captured cabs"
+  ],
+  "failConditions": [
+    "Any fuel crawler destroyed or its tank ruptured",
+    "The convoy escapes to the Directorate garrison",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "The convoy is the salvage — three fuel crawlers change the campaign economy. The optional all-legged sweep additionally banks two near-intact Halite chassis; a single careless torso cook-off can cost both a claim and a crawler.",
+  "musicSet": {
+    "ambient": "halite_flats",
+    "combatIntensityCap": 2,
+    "specialCues": ["convoy_sighted_pulse", "clean_capture_resolve"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Ekene", "line": "Remember the order of things, Lodestar: fuel first, escorts second, pride last. Nothing burns today that we cannot afford to lose.", "futz": true },
+    { "trigger": "on_convoy_sighted", "speaker": "Relay", "line": "Dust plume, bearing zero-four-zero. That's them — three crawlers, escorts tucked in tight. Twelve minutes to your channel.", "futz": true },
+    { "trigger": "on_engage", "speaker": "CAIRN", "line": "Reminder: target legs to disable without catastrophic loss. Subtarget with E. A legged machine is a claim; a burning one is a hole in the ledger.", "futz": false },
+    { "trigger": "on_crawler_hit", "speaker": "Relay", "line": "Whoa — round splashed off a crawler's frame! Tank's intact. Lodestar, those things are the mission. Shift your fire, shift your feet, whatever it takes.", "futz": true },
+    { "trigger": "on_sable_mark", "speaker": "Sable", "line": "Marking escort knees. Left Halite first. Take them when you're square.", "futz": true },
+    { "trigger": "on_legged_kill", "speaker": "Ekene", "line": "Clean. That is exactly the discipline I asked for, pilot. Again.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Escorts are down and the crawlers are just... idling there, confused and full of the future. Drivers moving up now.", "futz": true },
+    { "trigger": "on_objective:obj_3", "speaker": "Relay", "line": "Cabs are ours! Three for three, tanks reading full. Now the slow part — walk them home like it's a parade.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "Air raid warning — strafing flight out of the garrison strip. They'd rather crater the fuel than lose it. Don't let them line up on the column.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "Three crawlers, full tanks, not one scratch on the cargo. You just bought every mech in the Compact a year of walking, Lodestar. Today the desert paid us.", "futz": true }
+  ]
+}

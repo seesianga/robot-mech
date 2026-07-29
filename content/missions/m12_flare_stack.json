@@ -1,0 +1,62 @@
+{
+  "id": "m12_flare_stack",
+  "index": 12,
+  "op": 4,
+  "opName": "Polar Refineries",
+  "name": "Flare Stack",
+  "biome": "polar_refineries",
+  "weather": "clear, extreme cold, aurora overhead",
+  "timeOfDay": "polar night",
+  "designIntent": "A polar-night raid on the Directorate's refinery fields, riding flare-tower thermal blooms to stay invisible to heat sensors, then destroying the cracking train. Introduces arctic heat-dissipation bonuses and ice-footing penalties.",
+  "teaches": ["thermal_masking", "arctic_operations"],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "The pole is where the Directorate makes this occupation pay, Lodestar. Their refinery fields run through the polar night without pause — cracking units breaking Veyran crude into fleet fuel, guarded by machines that see in heat, because out here everything warm is a target. Everything warm except the flare stacks. Those towers vent burning gas day and night, and every bloom is a wall of white across their thermal picture. That is your road in. Move stack to stack, ride the blooms, and stay dark in between. Your objective is the cracking train itself — the tall units with the external pipework. Put them down and the Directorate's fleet starts drinking its reserves. The cold is on our side for once; your sinks will love it. The ice will not. Watch your footing at speed. Full team, radio discipline until the first charge goes — and then, pilot, it stops being a raid and starts being a statement. Make it. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Ride the Blooms", "description": "Infiltrate the refinery field by moving stack to stack inside the flare-tower thermal blooms.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Break the Cracking Train", "description": "Destroy all three cracking units along the refinery spine.", "optional": false },
+    { "id": "obj_3", "type": "reach", "title": "Out of the Light", "description": "Exfiltrate through the pipe alleys to the glacier rim before the response lance seals the field.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Dry the Reserves", "description": "Destroy the fuel bowser park feeding the garrison's mechs.", "optional": true }
+  ],
+  "enemyForces": [
+    "Thermal-sensor drone screens sweeping between stacks",
+    "Refinery security lance: Gabbro and Halite on standing patrol",
+    "Recessed turrets along the cracking spine",
+    "Guard skiffs running the ice channels",
+    "One Basalt response element out of the garrison after the first detonation"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Aurora over the polar night — the refinery burning like a grounded constellation",
+    "Flare stacks breathe and thermal vision whites out — your cover, on a rhythm",
+    "The first cracking unit chains up its own pipework in a fireball that turns night to noon",
+    "A sliding, skating exfil across black ice with tracers overhead"
+  ],
+  "failConditions": [
+    "Fewer than three cracking units destroyed",
+    "Fireteam wiped inside the refinery field",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "Refinery kills freeze clean — arctic wrecks keep their internals, and the security lance pays full claims if dropped away from the burning spine. Bowser-park kills pay in fuel scrip instead of chassis. Anything that dies inside a detonation radius is simply gone.",
+  "musicSet": {
+    "ambient": "polar_refineries",
+    "combatIntensityCap": 2,
+    "specialCues": ["flare_bloom_hush_cycles", "cracking_unit_chain_detonation", "polar_night_exfil_pulse"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Ekene", "line": "Polar rules, Lodestar: the cold is your friend, the ice is not, and everything warm out here is a target — including you. Stay in the blooms.", "futz": true },
+    { "trigger": "on_arctic_advisory", "speaker": "CAIRN", "line": "External temperature minus forty-one degrees. Heat dissipation improved to one hundred twenty-five percent of rated. Surface traction reduced — sharp turns at speed risk a fall.", "futz": false },
+    { "trigger": "on_tutorial_masking", "speaker": "CAIRN", "line": "Advisory: flare-stack thermal output exceeds your signature by two orders of magnitude. Within approximately one hundred meters of an active bloom, thermal sensors cannot resolve you.", "futz": false },
+    { "trigger": "on_bloom_timing", "speaker": "Relay", "line": "Stacks breathe on a cycle — I'm reading roughly forty seconds bloom, twenty dark. Move on the bloom, freeze in the dark. It's a dance, Lodestar. You lead.", "futz": true },
+    { "trigger": "on_drone_pass", "speaker": "Vireo", "line": "Drone screen passing— holding... holding... it went right over us. The blooms actually work. Relay, your plan actually works.", "futz": true },
+    { "trigger": "on_relay_response", "speaker": "Relay", "line": "Vireo, wounding. My plans always work. Statistically often.", "futz": true },
+    { "trigger": "on_charge_set", "speaker": "CAIRN", "line": "Charge armed on cracking unit one. Expect immediate garrison response upon detonation.", "futz": false },
+    { "trigger": "on_first_detonation", "speaker": "Tremor", "line": "WHOA-HO! Now THAT is a bonfire! The pole just got its own sunrise, courtesy of the Compact!", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "There's the bill: security lance closing from the pump houses, and a Basalt just left the garrison with your name on it. Two crackers to go — keep moving.", "futz": true },
+    { "trigger": "on_ice_slip", "speaker": "CAIRN", "line": "Traction loss detected. Gyros compensating. Wider turning arcs are advised on ice.", "futz": false },
+    { "trigger": "on_objective:obj_2", "speaker": "Sable", "line": "Third cracker down. The spine is burning end to end.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "Three crackers dead, and the Directorate's fleet drinks its reserves tonight. Rest warm, fireteam. At dawn our engineers start the glacier crossing — and I will be on the ice with you for that one. Ekene out.", "futz": true }
+  ]
+}

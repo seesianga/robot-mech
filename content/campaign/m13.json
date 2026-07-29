@@ -1,0 +1,115 @@
+{
+  "id": "m13",
+  "designFile": "m13_icebound",
+  "stage": 13,
+  "title": "ICEBOUND",
+  "map": "polar",
+  "spawn": { "x": -60, "z": -470, "yaw": 0.2 },
+  "playerMech": "basalt",
+  "heatMult": 1.1,
+  "extract": [-470, 460],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-90, -480] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-25, -495] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-95, -440] }
+  ],
+  "structures": [
+    { "id": "nadir_uplink_mast", "name": "Nadir Counter-Battery Uplink", "kind": "mast", "pos": [380, 120], "hp": 150 },
+    { "id": "nadir_coolant_tank", "name": "Nadir Coolant Tank", "kind": "tank", "pos": [345, 160], "hp": 75 },
+    { "id": "span_rig", "name": "Bridging Rig Vanta", "kind": "crawler", "pos": [100, 240], "hp": 120 }
+  ],
+  "artillery": { "fromStep": 1, "everySec": 9, "damage": 12, "radius": 32 },
+  "timedVO": [
+    { "atSec": 50, "trigger": "on_enemy_wave" },
+    { "atSec": 130, "trigger": "on_artillery_barrage" }
+  ],
+  "steps": [
+    {
+      "kind": "escort",
+      "title": "SCREEN THE COLUMN",
+      "sub": "Escort the bridging column across the Sarn Glacier.",
+      "vo": "on_deploy",
+      "subject": "Span Carrier Column",
+      "subjectDef": "halite",
+      "from": [-20, -430],
+      "route": [[30, -260], [90, -80]],
+      "ambushes": [
+        {
+          "atLeg": 0,
+          "spawns": [
+            { "def": "halite", "pos": [210, -230], "alerted": true, "name": "Ferric APC" },
+            { "def": "halite", "pos": [150, -320], "alerted": true, "name": "Ferric APC" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "SILENCE THE SPOTTERS",
+      "sub": "Kill the spotter teams and drop the Nadir uplink mast.",
+      "vo": "on_objective:obj_2",
+      "targets": ["nadir_uplink_mast"],
+      "killAll": true,
+      "perTargetVO": { "nadir_uplink_mast": "on_spotter_down" },
+      "doneVO": "on_span_collapse",
+      "spawns": [
+        { "def": "pumice", "pos": [330, 40], "alerted": false, "waypoints": [[280, 90], [360, 130]], "name": "Spotter Skiff" },
+        { "def": "pumice", "pos": [430, 190], "alerted": false, "waypoints": [[400, 100], [460, 240]], "name": "Spotter Skiff" },
+        { "def": "pumice", "pos": [300, 220], "alerted": false, "waypoints": [[250, 170], [340, 270]], "name": "Spotter Skiff" }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "HOLD THE CREVASSE LINE",
+      "sub": "Protect Bridging Rig Vanta while the engineers re-rig the span.",
+      "vo": "on_objective:obj_3",
+      "protect": "span_rig",
+      "seconds": 75,
+      "waveGap": 25,
+      "waves": [
+        [
+          { "def": "halite", "pos": [-140, 370], "alerted": true, "name": "Ice Picket" },
+          { "def": "halite", "pos": [-60, 430], "alerted": true, "name": "Ice Picket" }
+        ],
+        [
+          { "def": "halite", "pos": [340, 330], "alerted": true, "name": "Ferric APC" },
+          { "def": "halite", "pos": [390, 220], "alerted": true, "name": "Ferric APC" }
+        ]
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "FALL BACK",
+      "sub": "Break through the moraine gap to Rally Point Cairn-9.",
+      "vo": "on_withdrawal_start",
+      "doneVO": "on_ekene_down",
+      "at": [-180, 350],
+      "radius": 45,
+      "spawns": [
+        { "def": "basalt", "pos": [-80, 330], "alerted": true, "name": "Moraine Anchor" },
+        { "def": "basalt", "pos": [-160, 430], "alerted": true, "name": "Moraine Anchor" }
+      ]
+    },
+    {
+      "kind": "survive",
+      "title": "THE STORM CLOSES",
+      "sub": "Endure the strafing runs until the storm swallows the icefall.",
+      "vo": "on_ekene_down_2",
+      "doneVO": "on_ekene_down_3",
+      "seconds": 45,
+      "waves": [
+        [
+          { "def": "pumice", "pos": [-360, 490], "alerted": true, "name": "Strafe Wing" },
+          { "def": "pumice", "pos": [-420, 410], "alerted": true, "name": "Strafe Wing" }
+        ]
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach the dropship at the western icefall.",
+      "vo": "on_ekene_capture",
+      "doneVO": "on_complete"
+    }
+  ]
+}

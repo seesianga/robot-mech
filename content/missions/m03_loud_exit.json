@@ -1,0 +1,60 @@
+{
+  "id": "m03_loud_exit",
+  "index": 3,
+  "op": 1,
+  "opName": "Breaker Coast",
+  "name": "Loud Exit",
+  "biome": "breaker_coast",
+  "weather": "overcast, stiff onshore wind",
+  "timeOfDay": "midday",
+  "designIntent": "Hold the Berth Six slipway under escalating attack while the stolen dropbarge launches, destroying two Directorate gun skiffs. Introduces Sable and teaches the fireteam command rose.",
+  "teaches": ["fireteam_command_rose"],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "No more sneaking, Lodestar. Today the Directorate learns exactly where we are, because there is no quiet way to launch a dropbarge. Everything we have — salvage, fuel, forty-one families out of the company rows — is loaded on that barge at the Berth Six slipway. It lifts in nineteen minutes, and it lifts under fire. Their harbor patrol will come at you from the water: gun skiffs, fast and low, with cannon enough to open that hull like a tin roof. They cannot be allowed a clear run. Kill them early or kill them angry, but kill them. You will also have company. Riva Chen, callsign Sable — the best long gun I have ever commanded, and I have commanded a few. Use the command rose. She will go where you point and hit what you don't. Hold the slipway until the barge clears the breakwater, then get out on the ground route. Make them remember today. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "defend", "title": "Shield the Barge", "description": "Keep the dropbarge above launch-critical integrity while the crews complete the lift sequence.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Sink the Gun Skiffs", "description": "Destroy both Directorate gun skiffs before their cannon fire reaches the slipway.", "optional": false },
+    { "id": "obj_3", "type": "hold", "title": "Hold the Slipway", "description": "Hold the slipway perimeter until the barge clears the breakwater.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Break the Battery", "description": "Destroy the shore battery emplacement shelling the launch cradle.", "optional": true }
+  ],
+  "enemyForces": [
+    "Two Directorate gun skiffs making cannon runs from open water",
+    "Infantry assault waves with Ferric APC support down the yard road",
+    "One Halite brawler landed from a lighter mid-mission",
+    "Shore battery emplacement on the southern mole"
+  ],
+  "allies": ["Sable"],
+  "setPieces": [
+    "Sable's first shot announces her — a gantry-perched kill you didn't call",
+    "Dropbarge ignition drowns the battlefield in noise and steam",
+    "Gun skiffs carve wakes through the shallows on strafing runs",
+    "The barge lifts through flak while the slipway shakes apart"
+  ],
+  "failConditions": [
+    "Dropbarge destroyed or launch-critical systems disabled",
+    "Slipway perimeter overrun before launch",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "Skiff wrecks sink in the shallows — recovery crews fish out weapon mounts at half yield. The landed Halite is the prize: leg it on the slipway apron and it comes home on the next barge.",
+  "musicSet": {
+    "ambient": "breaker_coast",
+    "combatIntensityCap": 3,
+    "specialCues": ["barge_launch_swell", "op1_finale_brass_lift"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Ekene", "line": "The barge lifts in nineteen minutes, Lodestar. Everything the Compact owns is on that hull. Hold the slipway.", "futz": true },
+    { "trigger": "on_ally_join:sable", "speaker": "Sable", "line": "Sable. On the crane gantry. Say where.", "futz": true },
+    { "trigger": "on_tutorial_command_rose", "speaker": "CAIRN", "line": "Fireteam command rose active. F1 — form up. F2 — attack my target. F3 — hold position. F4 — move to marker.", "futz": false },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "Skiffs inbound from open water, two of them, guns already talking. They want the barge, not you. Take it personally anyway.", "futz": true },
+    { "trigger": "on_skiff_down_first", "speaker": "Sable", "line": "One skiff. Waterline shot. It's done.", "futz": true },
+    { "trigger": "on_enemy_wave_2", "speaker": "Relay", "line": "Landing lighter on the south mole — they've dropped a Halite on the apron. Big shield, bad attitude. Sable can't crack that alone.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Armor breach, left torso. Structure exposed. Recommend rotating your strong side to the threat.", "futz": false },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Both skiffs are reef decorations. Barge crews say thank you, and also please stop the shore battery, it's ruining the paint.", "futz": true },
+    { "trigger": "on_barge_launch", "speaker": "Relay", "line": "Ignition! Barge is lifting — thirty seconds of flak and physics. Keep everything off that slipway!", "futz": true },
+    { "trigger": "on_sable_kill", "speaker": "Sable", "line": "Down.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "She's clear of the breakwater. Forty-one families, Lodestar — airborne because you stood there. Op One is done. Get to the rally; the desert is waiting.", "futz": true }
+  ]
+}

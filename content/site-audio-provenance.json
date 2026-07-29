@@ -1,0 +1,34 @@
+{
+  "ui_select": {
+    "kind": "sfx",
+    "prompt": "A single heavy servo clunk followed immediately by a magnetic latch engaging. Dry industrial machinery, close-miked in a small hard room. No reverb tail, no music, no ringing, no room ambience.",
+    "seconds": 0.6,
+    "format": "mp3_44100_192",
+    "peakDbfs": -14,
+    "usage": "Chassis change in the showroom rail. Plays under the weight-settle."
+  },
+  "ui_hover": {
+    "kind": "sfx",
+    "prompt": "A very short dry electrical relay tick. Tiny, clean, almost inaudible. A single contact closing. No pitch, no ring, no reverb, no tail, no music.",
+    "seconds": 0.5,
+    "format": "mp3_44100_192",
+    "peakDbfs": -22,
+    "usage": "Rail tile hover, rate-limited to one play per 120 ms. Subliminal by design — if it is audible as a sound rather than felt as texture, it is too loud."
+  },
+  "ui_panel": {
+    "kind": "sfx",
+    "prompt": "A soft pneumatic latch releasing on a metal access panel, followed by a short hydraulic sigh. Dry, close, industrial. No reverb, no music, no metallic ring.",
+    "seconds": 0.9,
+    "format": "mp3_44100_192",
+    "peakDbfs": -17,
+    "usage": "Section reveal on the campaign ladder and the FAQ."
+  },
+  "ui_launch": {
+    "kind": "sfx",
+    "prompt": "A heavy industrial power contactor closing, followed by a deep generator spinning up and holding. Dry, close-miked, mechanical and electrical. No music, no melody, no reverb wash.",
+    "seconds": 1.4,
+    "format": "mp3_44100_192",
+    "peakDbfs": -11,
+    "usage": "Play button press, immediately before navigation to the game."
+  }
+}

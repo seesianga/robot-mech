@@ -1,0 +1,28 @@
+{
+  "comment": "Single source of truth for input actions. Prompts carry {bind:action_id} tokens; the glyph resolver (src/engine/bindings.ts) renders the current binding. code=null means UNBOUND (amber chip, step offers skip). Consumed by the engine, the tutorial lint, and the start-screen controls line.",
+  "actions": {
+    "throttle_up":     { "code": "KeyW",       "label": "W",     "kind": "hold", "name": "Throttle up" },
+    "throttle_down":   { "code": "KeyS",       "label": "S",     "kind": "hold", "name": "Throttle down / reverse" },
+    "steer_left":      { "code": "KeyA",       "label": "A",     "kind": "hold", "name": "Steer legs left" },
+    "steer_right":     { "code": "KeyD",       "label": "D",     "kind": "hold", "name": "Steer legs right" },
+    "full_stop":       { "code": "KeyX",       "label": "X",     "kind": "tap",  "name": "Full stop" },
+    "torso_aim":       { "code": "MouseMove",  "label": "MOUSE", "kind": "axis", "name": "Torso aim" },
+    "center_torso":    { "code": "KeyC",       "label": "C",     "kind": "tap",  "name": "Center torso" },
+    "zoom":            { "code": "MouseRight", "label": "RIGHT-CLICK", "kind": "hold", "name": "Optics zoom (right mouse button)" },
+    "target_reticle":  { "code": "KeyT",       "label": "T",     "kind": "tap",  "name": "Lock under reticle" },
+    "target_cycle":    { "code": "KeyR",       "label": "R",     "kind": "tap",  "name": "Cycle contacts" },
+    "subtarget_cycle": { "code": "KeyE",       "label": "E",     "kind": "tap",  "name": "Select target section" },
+    "group_1":         { "code": "Digit1",     "label": "1",     "kind": "tap",  "name": "Fire group one" },
+    "group_2":         { "code": "Digit2",     "label": "2",     "kind": "tap",  "name": "Fire group two" },
+    "group_3":         { "code": "Digit3",     "label": "3",     "kind": "tap",  "name": "Fire group three" },
+    "coolant_flush":   { "code": "KeyF",       "label": "F",     "kind": "tap",  "name": "Coolant flush" },
+    "override":        { "code": "KeyO",       "label": "O",     "kind": "hold", "name": "Reactor override" },
+    "jump":            { "code": "Space",      "label": "SPACE", "kind": "hold", "name": "Jump jets" },
+    "camera_toggle":   { "code": "KeyG",       "label": "G",     "kind": "tap",  "name": "Camera view" },
+    "command_wheel":   { "code": null,          "label": "",      "kind": "hold", "name": "Command wheel" },
+    "order_form_up":   { "code": null,          "label": "",      "kind": "tap",  "name": "Order: form up" },
+    "ui_confirm":      { "code": "Enter",      "label": "ENTER", "kind": "tap",  "name": "Confirm" },
+    "skip_step":       { "code": "F8",         "label": "F8",    "kind": "hold", "name": "Skip step" },
+    "help":            { "code": "KeyH",       "label": "H",     "kind": "hold", "name": "Controls cheat sheet" }
+  }
+}

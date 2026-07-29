@@ -1,0 +1,61 @@
+{
+  "id": "m24_reclamation",
+  "index": 24,
+  "op": 7,
+  "opName": "Spire Anchor",
+  "name": "Reclamation",
+  "branch": "shared",
+  "branchVariants": {
+    "a": "Dawn ceremony ending: the stormwall breaks as Sol powers down, and Commander Ekene leads the restored Assembly onto the plate for the reclamation ceremony — salt scattered on the steel, the Compact anthem sung raw and unpolished, Sol taken into custody with a soldier's courtesy. The epilogue VO is Ekene's, and the final music is the dawn hymn of hopeful strings.",
+    "b": "Memorial ending: the plate becomes Veyra's memorial ground — the fireteam walks out through the breaking storm to stand with the player in silence, the names of the absent are read with the Commander's last, and Sol's kneeling Craton-X is left on the plate as part of the monument. The epilogue VO is Relay's, and the final music is cold sparse piano over the main-theme cello."
+  },
+  "biome": "spire_anchor",
+  "weather": "stormwall closing over the anchor plate; comms-jamming static",
+  "timeOfDay": "dawn behind the storm",
+  "designIntent": "Comms jammed by the stormwall, Marshal Edrik Sol walks out alone in the prototype Craton-X: a pure one-on-one duel on the anchor plate to end the war — no support, no tutorial text, no way out but through.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "No plan tonight. Just truth. Marshal Edrik Sol has ordered every remaining Directorate soldier off the anchor plate. He's dismissed his guard. And he's walked out alone in the Craton-X — the prototype, the one the yards only whispered about. He's transmitted one line, addressed to you: 'The plate, at dawn. One machine each. Owed.' Understand who he is. Sol isn't Kryce — he's the soldier who opened Veyra's gates eighteen months ago because he believed order was worth a coup. Everything since — the cells, the coast, the glacier — stands on his signature. I think he knows it. I think that's why he's out there. The stormwall will jam every channel the moment you walk out; no fireteam, no overwatch, no me. Just you, CAIRN, and a hundred tons of the best machine the Directorate ever built, piloted by the last man still carrying its flag. The war ends on that plate, Lodestar. Walk out and end it."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Walk Out", "description": "Cross the anchor plate through the stormwall to meet the Craton-X.", "optional": false },
+    { "id": "obj_2", "type": "duel", "title": "Reclamation", "description": "Defeat Marshal Edrik Sol's Craton-X in single combat on the anchor plate.", "optional": false }
+  ],
+  "enemyForces": [
+    "Marshal Edrik Sol in the Craton-X: prototype apex assault mech with a glowing coolant lattice and a unique duel AI that reads the player's loadout, controls range bands, uses the plate's tether pylons and wreckage as cover, and manages its own heat with telegraphed cooling withdrawals"
+  ],
+  "allies": [],
+  "setPieces": [
+    "The walk out: comm channels dissolve into stormwall static one by one until only CAIRN remains",
+    "Sol powers up the Craton-X in answer to the player's startup litany — two ignition sequences echoing across the empty plate",
+    "Scripted wound-threshold exchanges over a short-range open channel that only the two duelists share",
+    "The Craton-X's coolant lattice dims section by section as it takes wounds",
+    "Sol's shutdown: the Craton-X kneels rather than falls, and the stormwall breaks into dawn for the branch-dependent ending on the plate"
+  ],
+  "failConditions": [
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Leg the Craton-X or force Sol's shutdown and the prototype is recovered whole — the Compact's engineers will study it for a generation, and the salvage screen reads only 'Reclaimed.' Core it or cook its magazines and Veyra keeps nothing of the machine but the crater. There is no other salvage on the plate. There is nothing else left.",
+  "musicSet": {
+    "ambient": "spire_anchor",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_duel_start_single_drum_into_silence", "cue_duel_exclusive_scripted_score_final", "cue_dawn_hymn_hopeful_strings_branch_a", "cue_cold_piano_over_main_theme_cello_branch_b"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_comms_lost", "speaker": "CAIRN", "line": "Stormwall jamming confirmed. All Compact channels lost. It is you and I now, Lodestar. It has always been enough.", "futz": false },
+    { "trigger": "on_sol_powerup", "speaker": "Sol", "line": "There you are. I watched you climb from a beach on Breaker Coast to my door. Marshal Edrik Sol. I opened the gates for the Directorate. I will not hide behind what came through them. One machine each. Owed.", "futz": true },
+    { "trigger": "on_duel_start", "speaker": "CAIRN", "line": "Craton-X. One hundred tons. Prototype lattice cooling — he can override longer than you. He has read everything about you except your next decision. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_sol_wound_25", "speaker": "Sol", "line": "Good. The Assembly's army never hit me that hard when it mattered. Perhaps it needed to lose everything first. Perhaps I gave it that.", "futz": true },
+    { "trigger": "on_sol_wound_50", "speaker": "Sol", "line": "I told Kryce order was worth one bad morning. Eighteen months of mornings, pilot. I counted every one from the war room. Come on. Collect.", "futz": true },
+    { "trigger": "on_sol_wound_75", "speaker": "Sol", "line": "The lattice is failing. Good machine. Wasted flag. If you speak of me at all — say the last thing I defended was a fair fight.", "futz": true },
+    { "trigger": "on_player_wound_50", "speaker": "CAIRN", "line": "Structural integrity at half. He is measuring you between his shots. Break his rhythm — jets, reverse throttle, anything he has not filed away.", "futz": false },
+    { "trigger": "on_player_wound_75", "speaker": "CAIRN", "line": "Warning: critical damage across multiple zones. I have no counsel left except this: he is as wounded as you are, and he is older, and he is tired.", "futz": false },
+    { "trigger": "on_sol_overheat", "speaker": "CAIRN", "line": "His lattice is venting — cooling withdrawal, exactly as telegraphed. This is the window, Lodestar.", "futz": false },
+    { "trigger": "on_sol_defeated", "speaker": "Sol", "line": "...Enough. Marshal Edrik Sol, standing down. The Anchor is yours. The planet was always yours; I only ever held the receipt. Take your world back, pilot. Make it worth the climb.", "futz": true },
+    { "trigger": "on_storm_breaks", "speaker": "CAIRN", "line": "The stormwall is breaking. Comms restoring. Dawn on the anchor plate, Lodestar. All boards answer ready.", "futz": false },
+    { "trigger": "on_complete_branch_a", "speaker": "Ekene", "line": "This is Commander Mara Ekene, on the anchor plate, in the sunrise, with the Assembly of a free Veyra Prime. The war is over. Stand down, stand tall, and come home — every one of you. It's done. We won.", "futz": true },
+    { "trigger": "on_complete_branch_b", "speaker": "Relay", "line": "All stations, this is Relay. The war is over. Sol has stood down; the Anchor is ours. Assemble on the plate — bring the names. All of the names. We'll read hers first. ...She saw the signal fires, Lodestar. I believe that. I always will.", "futz": true }
+  ]
+}

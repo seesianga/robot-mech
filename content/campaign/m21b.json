@@ -1,0 +1,106 @@
+{
+  "id": "m21b",
+  "designFile": "m21b_override",
+  "stage": 21,
+  "branch": "b",
+  "title": "OVERRIDE",
+  "map": "arcology",
+  "spawn": { "x": -460, "z": 340, "yaw": 2.1 },
+  "playerMech": "batholith",
+  "extract": [200, -480],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-430, 300] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-490, 320] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-440, 390] }
+  ],
+  "structures": [
+    { "id": "college_gate", "name": "College East Gate", "kind": "gate", "pos": [-80, 120], "hp": 120 },
+    { "id": "fire_control_hall", "name": "Fire-Control Hall", "kind": "building", "pos": [180, -40], "hp": 300 },
+    { "id": "armor_column", "name": "Directorate Armor Column", "kind": "crawler", "pos": [420, -300], "hp": 110 }
+  ],
+  "timedVO": [
+    { "atSec": 200, "trigger": "on_kryce_broadcast" }
+  ],
+  "steps": [
+    {
+      "kind": "destroy",
+      "title": "THE EASTERN SHOULDER",
+      "sub": "Breach the gunnery college perimeter at the east gate",
+      "vo": "on_deploy",
+      "targets": ["college_gate"],
+      "killAll": true,
+      "spawns": [
+        { "def": "flint", "pos": [-60, 140], "alerted": true, "name": "Sentry Turret" },
+        { "def": "flint", "pos": [-100, 80], "alerted": true, "name": "Sentry Turret" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "FIRE-CONTROL HALL",
+      "sub": "Clear the hall garrison — the override hardware must stay intact",
+      "doneVO": "on_objective:obj_2",
+      "targets": [],
+      "killAll": true,
+      "spawns": [
+        { "def": "halite", "pos": [220, -80], "alerted": true, "name": "Loyalist Ferric" },
+        { "def": "halite", "pos": [140, 40], "alerted": true, "name": "Loyalist Ferric" },
+        { "def": "gabbro", "pos": [160, -120], "alerted": true, "name": "College Guard" },
+        { "def": "corundum", "pos": [260, 0], "alerted": true, "name": "College Commandant", "yieldFrac": 0.25 }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "THE HANDSHAKE",
+      "sub": "Hold the fire-control hall while the ciphers negotiate the override",
+      "vo": "on_objective:obj_3",
+      "doneVO": "on_handshake_50",
+      "protect": "fire_control_hall",
+      "seconds": 90,
+      "waves": [
+        [
+          { "def": "gabbro", "pos": [410, 130], "alerted": true, "name": "Counter-Assault Column" },
+          { "def": "gabbro", "pos": [350, 190], "alerted": true, "name": "Counter-Assault Column" },
+          { "def": "halite", "pos": [470, 60], "alerted": true, "name": "Loyalist Ferric" }
+        ]
+      ],
+      "waveGap": 30
+    },
+    {
+      "kind": "defend",
+      "title": "THE GUNS ABOVE",
+      "sub": "Counter-assault inbound — protect the hall until the handshake completes",
+      "vo": "on_enemy_wave",
+      "doneVO": "on_handshake_complete",
+      "protect": "fire_control_hall",
+      "seconds": 90,
+      "waves": [
+        [
+          { "def": "gabbro", "pos": [60, -330], "alerted": true, "name": "Counter-Assault Column" },
+          { "def": "gabbro", "pos": [150, -380], "alerted": true, "name": "Counter-Assault Column" },
+          { "def": "halite", "pos": [-40, -270], "alerted": true, "name": "Loyalist Ferric" }
+        ]
+      ],
+      "waveGap": 30
+    },
+    {
+      "kind": "destroy",
+      "title": "FIRST LIGHT",
+      "sub": "Direct the first Compact orbital strike onto the armor column at the Anchor road",
+      "vo": "on_objective:obj_4",
+      "doneVO": "on_first_strike",
+      "targets": ["armor_column"],
+      "killAll": true,
+      "spawns": [
+        { "def": "gabbro", "pos": [360, -380], "alerted": true, "name": "Column Escort" },
+        { "def": "gabbro", "pos": [470, -230], "alerted": true, "name": "Column Escort" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Withdraw to the extraction point — the sky is ours",
+      "vo": "on_first_strike_2",
+      "doneVO": "on_complete"
+    }
+  ]
+}

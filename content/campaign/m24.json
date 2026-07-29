@@ -1,0 +1,58 @@
+{
+  "id": "m24",
+  "designFile": "m24_reclamation",
+  "stage": 24,
+  "title": "RECLAMATION",
+  "map": "anchor",
+  "spawn": { "x": -440, "z": 420, "yaw": 2.3 },
+  "playerMech": "craton",
+  "extract": [460, -420],
+  "structures": [
+    { "id": "tether_pylon_k9", "name": "Tether Pylon K-9", "kind": "pylon", "pos": [150, -40], "hp": 150 },
+    { "id": "tether_pylon_k12", "name": "Tether Pylon K-12", "kind": "pylon", "pos": [330, -280], "hp": 150 },
+    { "id": "crawler_hulk_west", "name": "Directorate Crawler Hulk", "kind": "crawler", "pos": [80, -180], "hp": 100 }
+  ],
+  "timedVO": [
+    { "atSec": 300, "trigger": "on_sol_overheat" }
+  ],
+  "playerWoundVO": [
+    { "frac": 0.5, "trigger": "on_player_wound_50" },
+    { "frac": 0.25, "trigger": "on_player_wound_75" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "WALK OUT",
+      "sub": "Cross the anchor plate through the stormwall to meet the Craton-X.",
+      "at": [-60, 100],
+      "radius": 45,
+      "vo": "on_comms_lost",
+      "doneVO": "on_sol_powerup"
+    },
+    {
+      "kind": "duel",
+      "title": "RECLAMATION",
+      "sub": "Defeat Marshal Edrik Sol's Craton-X in single combat.",
+      "vo": "on_duel_start",
+      "doneVO": "on_sol_defeated",
+      "spawn": {
+        "def": "craton",
+        "pos": [240, -160],
+        "alerted": true,
+        "name": "Craton-X — Marshal Sol",
+        "yieldFrac": 0.1
+      },
+      "woundVO": [
+        { "frac": 0.75, "trigger": "on_sol_wound_25" },
+        { "frac": 0.5, "trigger": "on_sol_wound_50" },
+        { "frac": 0.25, "trigger": "on_sol_wound_75" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "DAWN ON THE PLATE",
+      "sub": "Walk to the extraction point as the stormwall breaks.",
+      "vo": "on_storm_breaks"
+    }
+  ]
+}

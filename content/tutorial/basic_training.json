@@ -1,0 +1,963 @@
+{
+ "comment": "BASIC TRAINING step table \u2014 data, not code. The TutorialDirector (src/sim/basictraining.ts) is generic: it arms listeners on the input-action bus, evaluates success predicates against sim metrics in the fixed step, and emits tutorial events. Predicate DSL: {all|any:[...]}, {action_held|action_pressed:id}, {metric,op,value}, {flag:name}, {checklist_done:true}. Metrics/flags are computed by the director's metric engine; per-step counters reset on step entry.",
+ "budget": {
+  "total_minutes_max": 9,
+  "step_median_seconds_max": 25
+ },
+ "hint_defaults": {
+  "t1_sec": 8,
+  "t2_sec": 20
+ },
+ "phases": [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H"
+ ],
+ "steps": [
+  {
+   "id": "bt_a0",
+   "phase": "A",
+   "prompt_key": "tut.bt.a0.prompt",
+   "hud_highlight": [],
+   "listen_actions": [
+    "ui_confirm"
+   ],
+   "success": {
+    "action_pressed": "ui_confirm"
+   },
+   "confirm_vo": "vo_bt_a0_ok",
+   "hint_vo": "vo_bt_a0_h1",
+   "on_confirm": [
+    "power_up"
+   ],
+   "on_skip": [
+    "power_up"
+   ],
+   "beat": 3.2,
+   "skippable": true,
+   "prompt_vo": "vo_bt_a0_prompt"
+  },
+  {
+   "id": "bt_a1",
+   "phase": "A",
+   "prompt_key": "tut.bt.a1.prompt",
+   "hud_highlight": [
+    "throttle"
+   ],
+   "listen_actions": [
+    "throttle_up"
+   ],
+   "success": {
+    "all": [
+     {
+      "action_held": "throttle_up"
+     },
+     {
+      "metric": "throttle_pct",
+      "op": ">=",
+      "value": 40
+     }
+    ]
+   },
+   "progress": {
+    "metric": "throttle_pct",
+    "max": 40
+   },
+   "confirm_vo": "vo_bt_a1_ok",
+   "hint_vo": "vo_bt_a1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a1_prompt"
+  },
+  {
+   "id": "bt_a2",
+   "phase": "A",
+   "prompt_key": "tut.bt.a2.prompt",
+   "hud_highlight": [
+    "throttle"
+   ],
+   "listen_actions": [
+    "throttle_down"
+   ],
+   "success": {
+    "all": [
+     {
+      "metric": "throttle_abs_pct",
+      "op": "<=",
+      "value": 1.5
+     },
+     {
+      "metric": "speed_abs",
+      "op": "<",
+      "value": 1
+     }
+    ]
+   },
+   "confirm_vo": "vo_bt_a2_ok",
+   "hint_vo": "vo_bt_a2_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a2_prompt"
+  },
+  {
+   "id": "bt_a3",
+   "phase": "A",
+   "prompt_key": "tut.bt.a3.prompt",
+   "hud_highlight": [
+    "throttle"
+   ],
+   "listen_actions": [
+    "throttle_down"
+   ],
+   "success": {
+    "all": [
+     {
+      "metric": "throttle_pct",
+      "op": "<=",
+      "value": -20
+     },
+     {
+      "metric": "reverse_m",
+      "op": ">=",
+      "value": 8
+     }
+    ]
+   },
+   "progress": {
+    "metric": "reverse_m",
+    "max": 8
+   },
+   "confirm_vo": "vo_bt_a3_ok",
+   "hint_vo": "vo_bt_a3_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a3_prompt"
+  },
+  {
+   "id": "bt_a4",
+   "phase": "A",
+   "prompt_key": "tut.bt.a4.prompt",
+   "hud_highlight": [
+    "radar"
+   ],
+   "listen_actions": [
+    "steer_left",
+    "steer_right"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.a4.check1",
+     "pred": {
+      "metric": "yaw_left_deg",
+      "op": ">=",
+      "value": 45
+     }
+    },
+    {
+     "label_key": "tut.bt.a4.check2",
+     "pred": {
+      "metric": "yaw_right_deg",
+      "op": ">=",
+      "value": 45
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "confirm_vo": "vo_bt_a4_ok",
+   "hint_vo": "vo_bt_a4_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a4_prompt"
+  },
+  {
+   "id": "bt_a4a",
+   "phase": "A",
+   "prompt_key": "tut.bt.a4a.prompt",
+   "hud_highlight": [
+    "compass"
+   ],
+   "listen_actions": [
+    "ui_confirm"
+   ],
+   "on_enter": [
+    "nav_p1"
+   ],
+   "success": {
+    "action_pressed": "ui_confirm"
+   },
+   "confirm_vo": "vo_bt_a4a_ok",
+   "hint_vo": "vo_bt_a4a_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a4a_prompt"
+  },
+  {
+   "id": "bt_a4b",
+   "phase": "A",
+   "prompt_key": "tut.bt.a4b.prompt",
+   "hud_highlight": [],
+   "listen_actions": [
+    "steer_left",
+    "steer_right",
+    "throttle_up"
+   ],
+   "on_enter": [
+    "nav_p1"
+   ],
+   "on_skip": [
+    "nav_off"
+   ],
+   "success": {
+    "flag": "nav_p1_reached"
+   },
+   "confirm_vo": "vo_bt_a4b_ok",
+   "hint_vo": "vo_bt_a4b_h1",
+   "hints": {
+    "t1_sec": 12,
+    "t2_sec": 26
+   },
+   "skippable": true,
+   "prompt_vo": "vo_bt_a4b_prompt"
+  },
+  {
+   "id": "bt_a5",
+   "phase": "A",
+   "prompt_key": "tut.bt.a5.prompt",
+   "hud_highlight": [],
+   "listen_actions": [
+    "throttle_up",
+    "steer_left",
+    "steer_right"
+   ],
+   "on_enter": [
+    "nav_gates"
+   ],
+   "on_skip": [
+    "nav_off"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.a5.check1",
+     "pred": {
+      "metric": "gates_passed",
+      "op": ">=",
+      "value": 1
+     }
+    },
+    {
+     "label_key": "tut.bt.a5.check2",
+     "pred": {
+      "metric": "gates_passed",
+      "op": ">=",
+      "value": 2
+     }
+    },
+    {
+     "label_key": "tut.bt.a5.check3",
+     "pred": {
+      "metric": "gates_passed",
+      "op": ">=",
+      "value": 3
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "confirm_vo": "vo_bt_a5_ok",
+   "hint_vo": "vo_bt_a5_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a5_prompt"
+  },
+  {
+   "id": "bt_a6",
+   "phase": "A",
+   "prompt_key": "tut.bt.a6.prompt",
+   "hud_highlight": [
+    "throttle"
+   ],
+   "listen_actions": [
+    "full_stop"
+   ],
+   "success": {
+    "flag": "full_stop_ok"
+   },
+   "confirm_vo": "vo_bt_a6_ok",
+   "hint_vo": "vo_bt_a6_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_a6_prompt"
+  },
+  {
+   "id": "bt_b1",
+   "phase": "B",
+   "prompt_key": "tut.bt.b1.prompt",
+   "hud_highlight": [
+    "radar"
+   ],
+   "listen_actions": [
+    "torso_aim"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.b1.check1",
+     "pred": {
+      "metric": "torso_left_deg",
+      "op": ">=",
+      "value": 30
+     }
+    },
+    {
+     "label_key": "tut.bt.b1.check2",
+     "pred": {
+      "metric": "torso_right_deg",
+      "op": ">=",
+      "value": 30
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "confirm_vo": "vo_bt_b1_ok",
+   "hint_vo": "vo_bt_b1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_b1_prompt"
+  },
+  {
+   "id": "bt_b2",
+   "phase": "B",
+   "prompt_key": "tut.bt.b2.prompt",
+   "hud_highlight": [],
+   "listen_actions": [
+    "torso_aim"
+   ],
+   "success": {
+    "metric": "aim_board_s",
+    "op": ">=",
+    "value": 2
+   },
+   "progress": {
+    "metric": "aim_board_s",
+    "max": 2
+   },
+   "confirm_vo": "vo_bt_b2_ok",
+   "hint_vo": "vo_bt_b2_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_b2_prompt"
+  },
+  {
+   "id": "bt_b3",
+   "phase": "B",
+   "prompt_key": "tut.bt.b3.prompt",
+   "hud_highlight": [
+    "radar"
+   ],
+   "listen_actions": [
+    "center_torso"
+   ],
+   "success": {
+    "flag": "centered_by_key"
+   },
+   "confirm_vo": "vo_bt_b3_ok",
+   "hint_vo": "vo_bt_b3_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_b3_prompt"
+  },
+  {
+   "id": "bt_b4",
+   "phase": "B",
+   "prompt_key": "tut.bt.b4.prompt",
+   "hud_highlight": [
+    "throttle"
+   ],
+   "listen_actions": [
+    "throttle_up",
+    "torso_aim"
+   ],
+   "on_enter": [
+    "nav_b4"
+   ],
+   "on_skip": [
+    "nav_off"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.b4.check1",
+     "pred": {
+      "metric": "aim_board_move_s",
+      "op": ">=",
+      "value": 3
+     }
+    },
+    {
+     "label_key": "tut.bt.b4.check2",
+     "pred": {
+      "flag": "nav_p5_reached"
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "progress": {
+    "metric": "aim_board_move_s",
+    "max": 3
+   },
+   "confirm_vo": "vo_bt_b4_ok",
+   "hint_vo": "vo_bt_b4_h1",
+   "hints": {
+    "t1_sec": 14,
+    "t2_sec": 30
+   },
+   "skippable": true,
+   "prompt_vo": "vo_bt_b4_prompt"
+  },
+  {
+   "id": "bt_b5",
+   "phase": "B",
+   "prompt_key": "tut.bt.b5.prompt",
+   "caption_key": "tut.bt.b5.caption",
+   "hud_highlight": [],
+   "listen_actions": [
+    "zoom"
+   ],
+   "success": {
+    "metric": "zoom_s",
+    "op": ">=",
+    "value": 1
+   },
+   "progress": {
+    "metric": "zoom_s",
+    "max": 1
+   },
+   "confirm_vo": "vo_bt_b5_ok",
+   "hint_vo": "vo_bt_b5_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_b5_prompt"
+  },
+  {
+   "id": "bt_c1",
+   "phase": "C",
+   "prompt_key": "tut.bt.c1.prompt",
+   "hud_highlight": [
+    "radar",
+    "target"
+   ],
+   "listen_actions": [
+    "target_reticle"
+   ],
+   "success": {
+    "metric": "locks_reticle",
+    "op": ">=",
+    "value": 1
+   },
+   "confirm_vo": "vo_bt_c1_ok",
+   "hint_vo": "vo_bt_c1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_c1_prompt"
+  },
+  {
+   "id": "bt_c2",
+   "phase": "C",
+   "prompt_key": "tut.bt.c2.prompt",
+   "hud_highlight": [
+    "radar",
+    "target"
+   ],
+   "listen_actions": [
+    "target_cycle"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.c2.check1",
+     "pred": {
+      "metric": "locks_cycle_distinct",
+      "op": ">=",
+      "value": 1
+     }
+    },
+    {
+     "label_key": "tut.bt.c2.check2",
+     "pred": {
+      "metric": "locks_cycle_distinct",
+      "op": ">=",
+      "value": 2
+     }
+    },
+    {
+     "label_key": "tut.bt.c2.check3",
+     "pred": {
+      "metric": "locks_cycle_distinct",
+      "op": ">=",
+      "value": 3
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "confirm_vo": "vo_bt_c2_ok",
+   "hint_vo": "vo_bt_c2_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_c2_prompt"
+  },
+  {
+   "id": "bt_c3",
+   "phase": "C",
+   "prompt_key": "tut.bt.c3.prompt",
+   "caption_key": "tut.bt.c3.caption",
+   "hud_highlight": [
+    "target"
+   ],
+   "listen_actions": [
+    "subtarget_cycle"
+   ],
+   "success": {
+    "metric": "subtarget_cycles",
+    "op": ">=",
+    "value": 2
+   },
+   "confirm_vo": "vo_bt_c3_ok",
+   "hint_vo": "vo_bt_c3_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_c3_prompt"
+  },
+  {
+   "id": "bt_c4",
+   "phase": "C",
+   "prompt_key": "tut.bt.c4.prompt",
+   "hud_highlight": [
+    "target",
+    "selfdoll"
+   ],
+   "listen_actions": [
+    "ui_confirm"
+   ],
+   "success": {
+    "action_pressed": "ui_confirm"
+   },
+   "confirm_vo": "vo_bt_c4_ok",
+   "hint_vo": "vo_bt_c4_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_c4_prompt"
+  },
+  {
+   "id": "bt_d1",
+   "phase": "D",
+   "prompt_key": "tut.bt.d1.prompt",
+   "caption_key": "tut.bt.d1.caption",
+   "hud_highlight": [
+    "weapons"
+   ],
+   "listen_actions": [
+    "group_1"
+   ],
+   "success": {
+    "all": [
+     {
+      "metric": "fired_g1",
+      "op": ">=",
+      "value": 1
+     },
+     {
+      "flag": "board_hit"
+     }
+    ]
+   },
+   "confirm_vo": "vo_bt_d1_ok",
+   "hint_vo": "vo_bt_d1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_d1_prompt"
+  },
+  {
+   "id": "bt_d2",
+   "phase": "D",
+   "prompt_key": "tut.bt.d2.prompt",
+   "caption_key": "tut.bt.d2.caption",
+   "hud_highlight": [
+    "weapons",
+    "heat"
+   ],
+   "listen_actions": [
+    "group_2"
+   ],
+   "success": {
+    "metric": "fired_g2",
+    "op": ">=",
+    "value": 1
+   },
+   "confirm_vo": "vo_bt_d2_ok",
+   "hint_vo": "vo_bt_d2_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_d2_prompt"
+  },
+  {
+   "id": "bt_d3",
+   "phase": "D",
+   "prompt_key": "tut.bt.d3.prompt",
+   "caption_key": "tut.bt.d3.caption",
+   "hud_highlight": [
+    "weapons"
+   ],
+   "listen_actions": [
+    "group_3"
+   ],
+   "success": {
+    "metric": "fired_g3",
+    "op": ">=",
+    "value": 1
+   },
+   "confirm_vo": "vo_bt_d3_ok",
+   "hint_vo": "vo_bt_d3_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_d3_prompt"
+  },
+  {
+   "id": "bt_d4",
+   "phase": "D",
+   "prompt_key": "tut.bt.d4.prompt",
+   "hud_highlight": [
+    "weapons"
+   ],
+   "listen_actions": [
+    "group_1",
+    "group_2",
+    "group_3"
+   ],
+   "on_enter": [
+    "boards_arm"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.d4.check1",
+     "pred": {
+      "metric": "boards_down",
+      "op": ">=",
+      "value": 1
+     }
+    },
+    {
+     "label_key": "tut.bt.d4.check2",
+     "pred": {
+      "metric": "boards_down",
+      "op": ">=",
+      "value": 2
+     }
+    },
+    {
+     "label_key": "tut.bt.d4.check3",
+     "pred": {
+      "metric": "boards_down",
+      "op": ">=",
+      "value": 3
+     }
+    },
+    {
+     "label_key": "tut.bt.d4.check4",
+     "pred": {
+      "metric": "boards_down",
+      "op": ">=",
+      "value": 4
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "confirm_vo": "vo_bt_d4_ok",
+   "hint_vo": "vo_bt_d4_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_d4_prompt"
+  },
+  {
+   "id": "bt_e1",
+   "phase": "E",
+   "prompt_key": "tut.bt.e1.prompt",
+   "hud_highlight": [
+    "heat"
+   ],
+   "listen_actions": [
+    "group_1",
+    "group_2",
+    "group_3"
+   ],
+   "on_enter": [
+    "heat_drill_on"
+   ],
+   "success": {
+    "metric": "heat_pct",
+    "op": ">=",
+    "value": 70
+   },
+   "progress": {
+    "metric": "heat_pct",
+    "max": 70
+   },
+   "confirm_vo": "vo_bt_e1_ok",
+   "hint_vo": "vo_bt_e1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_e1_prompt"
+  },
+  {
+   "id": "bt_e2",
+   "phase": "E",
+   "prompt_key": "tut.bt.e2.prompt",
+   "hud_highlight": [
+    "heat",
+    "weapons"
+   ],
+   "listen_actions": [
+    "coolant_flush"
+   ],
+   "on_enter": [
+    "coolant_arm"
+   ],
+   "on_tick": [
+    "coolant_arm"
+   ],
+   "success": {
+    "all": [
+     {
+      "flag": "flush_used"
+     },
+     {
+      "any": [
+       {
+        "metric": "flush_drop",
+        "op": ">=",
+        "value": 25
+       },
+       {
+        "metric": "heat_pct",
+        "op": "<=",
+        "value": 10
+       }
+      ]
+     }
+    ]
+   },
+   "confirm_vo": "vo_bt_e2_ok",
+   "hint_vo": "vo_bt_e2_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_e2_prompt"
+  },
+  {
+   "id": "bt_e3",
+   "phase": "E",
+   "prompt_key": "tut.bt.e3.prompt",
+   "caption_key": "tut.bt.e3.caption",
+   "hud_highlight": [
+    "heat"
+   ],
+   "listen_actions": [
+    "group_1",
+    "group_2",
+    "group_3"
+   ],
+   "success": {
+    "flag": "shutdown_event"
+   },
+   "progress": {
+    "metric": "heat_pct",
+    "max": 100
+   },
+   "confirm_vo": "vo_bt_e3_ok",
+   "hint_vo": "vo_bt_e3_h1",
+   "on_confirm": [
+    "extend_shutdown"
+   ],
+   "beat": 0.4,
+   "skippable": true,
+   "prompt_vo": "vo_bt_e3_prompt"
+  },
+  {
+   "id": "bt_e4",
+   "phase": "E",
+   "prompt_key": "tut.bt.e4.prompt",
+   "caption_key": "tut.bt.e4.caption",
+   "hud_highlight": [
+    "heat"
+   ],
+   "listen_actions": [
+    "override"
+   ],
+   "on_tick": [
+    "ensure_shutdown_window"
+   ],
+   "success": {
+    "flag": "override_restart"
+   },
+   "progress": {
+    "metric": "override_held_s",
+    "max": 1.5
+   },
+   "confirm_vo": "vo_bt_e4_ok",
+   "hint_vo": "vo_bt_e4_h1",
+   "on_confirm": [
+    "heat_drill_off"
+   ],
+   "on_skip": [
+    "heat_drill_off"
+   ],
+   "skippable": true,
+   "prompt_vo": "vo_bt_e4_prompt"
+  },
+  {
+   "id": "bt_f1",
+   "phase": "F",
+   "prompt_key": "tut.bt.f1.prompt",
+   "caption_key": "tut.bt.f1.caption",
+   "hud_highlight": [
+    "weapons",
+    "heat"
+   ],
+   "listen_actions": [
+    "throttle_up",
+    "jump"
+   ],
+   "conditional": {
+    "feature": "jump_jets"
+   },
+   "on_enter": [
+    "nav_f1"
+   ],
+   "on_skip": [
+    "nav_off"
+   ],
+   "on_confirm": [
+    "nav_off"
+   ],
+   "success": {
+    "flag": "barrier_cleared"
+   },
+   "confirm_vo": "vo_bt_f1_ok",
+   "hint_vo": "vo_bt_f1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_f1_prompt"
+  },
+  {
+   "id": "bt_g1",
+   "phase": "G",
+   "prompt_key": "tut.bt.g1.prompt",
+   "hud_highlight": [
+    "radar"
+   ],
+   "listen_actions": [
+    "command_wheel",
+    "target_reticle"
+   ],
+   "conditional": {
+    "feature": "squad"
+   },
+   "success": {
+    "flag": "wing_attack_done"
+   },
+   "confirm_vo": "vo_bt_g1_ok",
+   "hint_vo": "vo_bt_g1_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_g1_prompt"
+  },
+  {
+   "id": "bt_g2",
+   "phase": "G",
+   "prompt_key": "tut.bt.g2.prompt",
+   "hud_highlight": [
+    "radar"
+   ],
+   "listen_actions": [
+    "order_form_up"
+   ],
+   "conditional": {
+    "feature": "squad"
+   },
+   "success": {
+    "flag": "wing_return_done"
+   },
+   "confirm_vo": "vo_bt_g2_ok",
+   "hint_vo": "vo_bt_g2_h1",
+   "skippable": true,
+   "prompt_vo": "vo_bt_g2_prompt"
+  },
+  {
+   "id": "bt_h1",
+   "phase": "H",
+   "prompt_key": "tut.bt.h1.prompt",
+   "caption_key": "tut.bt.h1.caption",
+   "hud_highlight": [
+    "radar",
+    "selfdoll"
+   ],
+   "listen_actions": [
+    "group_1",
+    "group_2",
+    "group_3"
+   ],
+   "on_enter": [
+    "checkride_start"
+   ],
+   "checklist": [
+    {
+     "label_key": "tut.bt.h1.check1",
+     "pred": {
+      "metric": "drones_down",
+      "op": ">=",
+      "value": 1
+     }
+    },
+    {
+     "label_key": "tut.bt.h1.check2",
+     "pred": {
+      "metric": "drones_down",
+      "op": ">=",
+      "value": 2
+     }
+    },
+    {
+     "label_key": "tut.bt.h1.check3",
+     "pred": {
+      "metric": "drones_down",
+      "op": ">=",
+      "value": 3
+     }
+    }
+   ],
+   "success": {
+    "checklist_done": true
+   },
+   "confirm_vo": "vo_bt_h1_ok",
+   "hint_vo": "vo_bt_h1_h1",
+   "on_confirm": [
+    "checkride_end"
+   ],
+   "on_skip": [
+    "checkride_end"
+   ],
+   "hints": {
+    "t1_sec": 15,
+    "t2_sec": 40
+   },
+   "skippable": true,
+   "prompt_vo": "vo_bt_h1_prompt"
+  },
+  {
+   "id": "bt_h2",
+   "phase": "H",
+   "prompt_key": "tut.bt.h2.prompt",
+   "hud_highlight": [],
+   "listen_actions": [
+    "ui_confirm"
+   ],
+   "on_enter": [
+    "nav_off"
+   ],
+   "success": {
+    "action_pressed": "ui_confirm"
+   },
+   "confirm_vo": "vo_bt_h2_ok",
+   "skippable": false,
+   "prompt_vo": "vo_bt_h2_prompt"
+  }
+ ]
+}

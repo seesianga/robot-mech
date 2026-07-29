@@ -1,0 +1,13 @@
+The typefaces in this directory are redistributed under the SIL Open Font
+License, Version 1.1.
+
+  Inter — Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
+  JetBrains Mono — Copyright (c) 2020 The JetBrains Mono Project Authors
+                   (https://github.com/JetBrains/JetBrainsMono)
+
+Both are licensed under the SIL Open Font License, Version 1.1. This license is
+available with a FAQ at: https://openfontlicense.org
+
+These files are subsets of the originals, produced by scripts/build_site_fonts.py.
+Subsetting is permitted by the OFL provided the licence accompanies the files,
+which is the purpose of this notice.

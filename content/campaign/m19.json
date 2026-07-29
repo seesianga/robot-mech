@@ -1,0 +1,104 @@
+{
+  "id": "m19",
+  "designFile": "m19_counterweight",
+  "stage": 19,
+  "title": "COUNTERWEIGHT",
+  "map": "arcology",
+  "spawn": { "x": 470, "z": 420, "yaw": -2.2 },
+  "playerMech": "orogen",
+  "extract": [400, -450],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [445, 395] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [495, 440] },
+    { "callsign": "Vireo", "def": "chert", "pos": [440, 450] }
+  ],
+  "structures": [
+    { "id": "w1_fortress", "name": "Fortress West-One", "kind": "bunker", "pos": [120, 160], "hp": 250 },
+    { "id": "crossing_mid", "name": "Mid-Canyon Freight Crossing", "kind": "building", "pos": [-120, -40], "hp": 300 },
+    { "id": "w2_fortress", "name": "Fortress West-Two", "kind": "bunker", "pos": [-360, -200], "hp": 250 },
+    { "id": "drone_roost", "name": "Drone Roost Re-arm Pad", "kind": "tank", "pos": [-460, -440], "hp": 80 },
+    { "id": "w3_fortress", "name": "Fortress West-Three", "kind": "bunker", "pos": [-80, -440], "hp": 260 }
+  ],
+  "artillery": { "fromStep": 4, "everySec": 12, "damage": 12, "radius": 30 },
+  "timedVO": [
+    { "atSec": 140, "trigger": "on_kryce_broadcast" },
+    { "atSec": 430, "trigger": "on_gauss_bracket" },
+    { "atSec": 470, "trigger": "on_collateral_warning" }
+  ],
+  "steps": [
+    {
+      "kind": "destroy",
+      "title": "CRACK FORTRESS WEST-ONE",
+      "sub": "Destroy the first checkpoint fortress and clear its garrison.",
+      "vo": "on_deploy",
+      "doneVO": "on_fortress_1_down",
+      "targets": ["w1_fortress"],
+      "killAll": true,
+      "spawns": [
+        { "def": "basalt", "pos": [60, 100], "alerted": true, "name": "West-One Anchor" },
+        { "def": "pumice", "pos": [170, 110], "alerted": true, "name": "Pop-up Turret Frame" },
+        { "def": "flint", "pos": [140, 60], "alerted": false, "name": "Ferric Garrison", "waypoints": [[180, 20], [100, 40]] },
+        { "def": "flint", "pos": [30, 200], "alerted": false, "name": "Ferric Garrison", "waypoints": [[-20, 240], [70, 230]] }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "KEEP THE CROSSING",
+      "sub": "Protect the mid-canyon freight crossing from the canyon-rim counter-attack.",
+      "vo": "on_enemy_wave",
+      "protect": "crossing_mid",
+      "seconds": 75,
+      "waveGap": 25,
+      "waves": [
+        [
+          { "def": "halite", "pos": [-30, -190], "alerted": true, "name": "Canyon Rim Pair" },
+          { "def": "halite", "pos": [-230, -160], "alerted": true, "name": "Canyon Rim Pair" }
+        ]
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "CRACK FORTRESS WEST-TWO",
+      "sub": "Follow Tremor through the gate wall and destroy the second fortress.",
+      "vo": "on_objective:obj_1",
+      "targets": ["w2_fortress"],
+      "killAll": true,
+      "spawns": [
+        { "def": "basalt", "pos": [-420, -230], "alerted": true, "name": "West-Two Anchor" },
+        { "def": "pumice", "pos": [-330, -270], "alerted": true, "name": "Pop-up Turret Frame" },
+        { "def": "pumice", "pos": [-390, -130], "alerted": false, "name": "Ferric Garrison", "waypoints": [[-440, -100], [-350, -110]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "BURN THE DRONE ROOST",
+      "sub": "Destroy the re-arm pad cycling drone swarms to the Row.",
+      "targets": ["drone_roost"],
+      "killAll": true,
+      "spawns": [
+        { "def": "pumice", "pos": [-500, -400], "alerted": true, "name": "Sentry Drone" },
+        { "def": "pumice", "pos": [-430, -500], "alerted": true, "name": "Sentry Drone" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "CRACK FORTRESS WEST-THREE",
+      "sub": "Destroy the final fortress — its Batholith is pre-ranged on the crossing.",
+      "vo": "on_objective:obj_3",
+      "doneVO": "on_fortress_3_down",
+      "targets": ["w3_fortress"],
+      "killAll": true,
+      "spawns": [
+        { "def": "batholith", "pos": [-60, -480], "alerted": true, "name": "West-Three Siege Anchor", "yieldFrac": 0.25 },
+        { "def": "halite", "pos": [-150, -500], "alerted": true, "name": "Row Garrison" },
+        { "def": "halite", "pos": [10, -400], "alerted": true, "name": "Row Garrison" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach the extraction point east of the freight canyons.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

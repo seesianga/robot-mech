@@ -1,0 +1,66 @@
+{
+  "id": "m18_understreets",
+  "index": 18,
+  "op": 6,
+  "opName": "Vell Arcology",
+  "name": "Understreets",
+  "biome": "vell_arcology",
+  "weather": "dry underground; storm runoff sheeting through the grates above",
+  "timeOfDay": "night on the surface, permanent dark below",
+  "designIntent": "Infiltrate the capital through its storm-drain network and secure a forward garage as the Compact's city base — trading open sightlines for confined-space discipline.",
+  "teaches": ["urban collateral rules: civilian structure damage penalties tracked by CAIRN"],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "Vell Arcology. The capital, the Spire, and — on a holding deck somewhere above us — the Commander. Nobody storms an arcology from the front, so we go under it. The old city built storm drains big enough to walk a mech through, and the Directorate never mapped what the miners dug — we hold the survey originals. You'll take the fireteam in through the Saltgate outfall, thread the junctions north, and come up inside the Brace Street municipal garage. Secure it and we have a base inside their walls. Rules change tonight, so listen. That city above your head is ours. Every column you clip, every wall you bring down, someone's home comes with it — collateral discipline is now a standing order, and CAIRN will be tracking it. Keep sensors passive in the drains; the Directorate seeded the junctions with listening pickets after the uprising. Quiet, careful, out of sight. By morning I want the Directorate ruling a city that already has a knife inside it."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Saltgate Outfall", "description": "Enter the storm-drain network through the Saltgate outfall arch.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Quiet the Pickets", "description": "Destroy the listening pickets at the drain junctions without tripping the alert grid.", "optional": false },
+    { "id": "obj_3", "type": "reach", "title": "Brace Street", "description": "Navigate the junction maze to the undercroft beneath the Brace Street garage.", "optional": false },
+    { "id": "obj_4", "type": "capture", "title": "Take the Garage", "description": "Capture the municipal garage from its caretaker garrison.", "optional": false },
+    { "id": "obj_5", "type": "hold", "title": "First Night", "description": "Hold the garage against the Directorate's probing response until Compact crews arrive.", "optional": false }
+  ],
+  "enemyForces": [
+    "Listening pickets and sensor tripwires at the drain junctions",
+    "Drone patrols sweeping the trunk drains",
+    "Garage caretaker garrison: a Ferric section and pop-up turrets",
+    "Probing response via the vehicle ramps: Halite pair with a drone screen",
+    "A distant Batholith siege mech heard through the deck above — not fought, only felt"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "First sight of the arcology from the outfall: a wall of lit terraces vanishing up into the storm",
+    "Wading a flooded trunk drain in total dark, passive sensors painting the arches",
+    "A storm-runoff surge roars through a junction on a timer, forcing shelter in maintenance alcoves",
+    "The garage doors open onto the city interior — the first ground held inside Vell",
+    "The collateral meter debuts on the HUD, narrated by CAIRN's dry commentary on the first clipped corner"
+  ],
+  "failConditions": [
+    "The alert grid is fully tripped before reaching Brace Street, reinforcing the garrison beyond capture strength",
+    "The garage is destroyed during the hold",
+    "Excessive civilian-structure collateral",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Slim pickings by design — this is a knife mission, not a harvest. Picket sensor cores are light but valuable to the Assembly Bay's utility stores. The garage itself is the real prize: captured intact, it becomes the campaign's forward repair bay and discounts all Op 6 field repairs.",
+  "musicSet": {
+    "ambient": "vell_arcology",
+    "combatIntensityCap": 2,
+    "specialCues": ["cue_first_sight_of_vell_low_drone"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "Survey says the outfall arch clears your head by about a meter. Says nothing about the antenna. Duck.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Vireo", "line": "It's so big. The city. I grew up in a two-room cut in the karst, and that's — people live all the way up?", "futz": true },
+    { "trigger": "on_passive_reminder", "speaker": "CAIRN", "line": "Passive sensors advised. Active emissions will echo the length of the trunk drain.", "futz": false },
+    { "trigger": "on_picket_destroyed", "speaker": "Sable", "line": "Picket's dark. No squeal. Keep moving.", "futz": true },
+    { "trigger": "on_runoff_surge", "speaker": "CAIRN", "line": "Storm surge inbound through this gallery. Volume exceeds safe wading depth. Alcoves, thirty meters ahead.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Tremor", "line": "Tight down here for a man of my tonnage. One scratch on the paint, Relay, and I'm billing the survey office.", "futz": true },
+    { "trigger": "on_objective:obj_4", "speaker": "Relay", "line": "Garage garrison is a caretaker crew — they are not expecting company from below the floor. Hit them before they finish being surprised.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "CAIRN", "line": "Directorate response probing the vehicle ramps. Composition: light armor and drones. They do not yet know what they have found.", "futz": false },
+    { "trigger": "on_collateral_warning", "speaker": "CAIRN", "line": "Collateral advisory: that wall was load-bearing, and inhabited above. Adjust your shoulders, Lodestar.", "futz": false },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Structural damage accumulating. The garage has repair cradles — if you hold it.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Crews are in, doors are ours, and the Directorate's city has a Compact heart beating under Brace Street. Phase one of the last act, done.", "futz": true },
+    { "trigger": "on_complete_2", "speaker": "Vireo", "line": "Holding ground inside Vell. Sable... we're actually going to reach her, aren't we?", "futz": true },
+    { "trigger": "on_complete_3", "speaker": "Sable", "line": "Yes.", "futz": true }
+  ]
+}

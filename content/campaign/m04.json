@@ -1,0 +1,80 @@
+{
+  "id": "m04",
+  "designFile": "m04_white_static",
+  "stage": 4,
+  "title": "WHITE STATIC",
+  "map": "salt",
+  "spawn": { "x": -440, "z": 340, "yaw": 2.7 },
+  "playerMech": "skarn",
+  "heatMult": 0.8,
+  "extract": [480, -470],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-410, 310] }
+  ],
+  "structures": [
+    { "id": "pylon_aster", "name": "Pylon Aster", "kind": "pylon", "pos": [-300, 60], "hp": 140 },
+    { "id": "pylon_brine", "name": "Pylon Brine", "kind": "pylon", "pos": [10, -140], "hp": 140 },
+    { "id": "pylon_chalk", "name": "Pylon Chalk", "kind": "pylon", "pos": [290, -300], "hp": 150 }
+  ],
+  "artillery": { "fromStep": 3, "everySec": 12, "damage": 10, "radius": 30 },
+  "timedVO": [
+    { "atSec": 40, "trigger": "on_heat_advisory" },
+    { "atSec": 165, "trigger": "on_setpiece:broadcast" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "CROSS THE PAN",
+      "sub": "Push east across the pan to the Aster overlook.",
+      "vo": "on_start_brief",
+      "at": [-160, 300],
+      "radius": 45
+    },
+    {
+      "kind": "destroy",
+      "title": "DROP PYLON ASTER",
+      "sub": "Destroy relay pylon Aster on the western pan.",
+      "targets": ["pylon_aster"],
+      "killAll": false,
+      "doneVO": "on_objective:obj_1",
+      "spawns": [
+        { "def": "flint", "pos": [-360, 20], "alerted": true, "name": "Sentry Drone" },
+        { "def": "flint", "pos": [-230, -10], "alerted": true, "name": "Sentry Drone" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DROP PYLON BRINE",
+      "sub": "Destroy relay pylon Brine at the dry channel crossing.",
+      "vo": "on_sable_spot",
+      "targets": ["pylon_brine"],
+      "killAll": false,
+      "doneVO": "on_objective:obj_2",
+      "spawns": [
+        { "def": "chert", "pos": [120, -350], "alerted": false, "waypoints": [[160, -380], [60, -320]], "name": "Longeye Chert", "yieldFrac": 0.3 },
+        { "def": "pumice", "pos": [-60, -240], "alerted": false, "waypoints": [[-120, -40], [80, -220]], "name": "Hover Skiff" },
+        { "def": "pumice", "pos": [140, -40], "alerted": false, "waypoints": [[140, -40], [-40, -260]], "name": "Hover Skiff" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DROP PYLON CHALK",
+      "sub": "Destroy relay pylon Chalk on the eastern rise.",
+      "vo": "on_enemy_wave",
+      "targets": ["pylon_chalk"],
+      "killAll": false,
+      "doneVO": "on_objective:obj_3",
+      "spawns": [
+        { "def": "gabbro", "pos": [180, -460], "alerted": true, "name": "Halite Response Lance" },
+        { "def": "halite", "pos": [420, -170], "alerted": true, "name": "Halite Response Lance" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "FADE TO STATIC",
+      "sub": "Reach the exfil marker at the basin rim — keep moving.",
+      "vo": "on_artillery",
+      "doneVO": "on_complete"
+    }
+  ]
+}

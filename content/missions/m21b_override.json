@@ -1,0 +1,65 @@
+{
+  "id": "m21b_override",
+  "index": 21,
+  "op": 6,
+  "opName": "Vell Arcology",
+  "name": "Override",
+  "branch": "b",
+  "biome": "vell_arcology",
+  "weather": "cold rain, low cloud sealing the sky",
+  "timeOfDay": "night",
+  "designIntent": "Seize the orbital-defense-gun override at the gunnery college using the Registry ciphers — the easier, colder road; Ekene is moved off-world, and the finale will open with the player's own orbital strike.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "You chose the guns. I want to say this once, so we can carry it together: it was the right call, and it cost us the Commander. Her transfer went out on a Directorate shuttle at dawn — off-world, destination sealed. The manifest doesn't even pretend she's coming back. So we make it count. The orbital defense grid answers to the gunnery college at Vell's eastern shoulder — fire-control hall, cipher vault, uplink array. With the Registry codes and physical access to that hall, the override is ours: every gun Kryce holds over this planet turns in its cradle and looks down at him. The college garrison is officer-corps loyalists; they will not run like the checkpoints did. Take the hall, hold it through the handshake, and authorize the first strike yourself — there's a Directorate armor column marshaling on the Anchor road that will do nicely. From tonight, the sky is ours. She'd sign off on the trade. She did, really, every time she told us the Compact comes first. Let's finish what she paid for."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "The Eastern Shoulder", "description": "Breach the gunnery college perimeter at Vell's eastern shoulder.", "optional": false },
+    { "id": "obj_2", "type": "capture", "title": "Fire-Control Hall", "description": "Capture the fire-control hall with its override hardware intact.", "optional": false },
+    { "id": "obj_3", "type": "hold", "title": "The Handshake", "description": "Hold the hall while the Registry ciphers negotiate the orbital override handshake.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "First Light", "description": "Authorize and direct the first Compact orbital strike onto the Directorate armor column at the Anchor road.", "optional": false },
+    { "id": "obj_5", "type": "capture", "title": "The Uplink Spares", "description": "Capture the uplink spare-parts vault intact for the Compact's gunnery crews.", "optional": true }
+  ],
+  "enemyForces": [
+    "Gunnery college garrison: officer-corps loyalist Ferric sections, disciplined and dug in",
+    "Pop-up turret belts covering the college quads",
+    "The college commandant in a Corundum command mech",
+    "Counter-assault Gabbro column attempting to retake the hall during the handshake",
+    "The orbital grid itself — until the handshake completes, the guns above still answer Kryce"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The college quads under rain, drill-yard gun salutes long silent, loyalists fighting by the manual",
+    "Handshake sequence: the HUD shows each orbital gun platform flipping from Directorate amber to Compact grey, one by one",
+    "The first Compact orbital strike falls on the armor column — a pillar of light through the cloud deck, felt through the ground a district away",
+    "The fireteam goes quiet as it falls; Tremor does not laugh",
+    "Relay leaves the command channel open where Ekene used to sign off"
+  ],
+  "failConditions": [
+    "The fire-control hall is destroyed and the override hardware lost",
+    "The handshake is interrupted by losing the hall during the hold",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Cold, efficient returns: the commandant's Corundum is superb salvage if legged, and loyalist Ferrics carry officer-grade sensor kit. The strike zone on the Anchor road yields nothing — orbital fire leaves no salvage, a lesson the campaign will keep teaching from here.",
+  "musicSet": {
+    "ambient": "vell_arcology",
+    "combatIntensityCap": 2,
+    "specialCues": ["cue_handshake_pulse_build", "cue_first_strike_cold_piano_over_cello", "stinger_complete_cold_variant"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "College garrison is officer corps. They'll fight like the manual says, which means they'll fight well. No gaps tonight.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Sable", "line": "Hall's breached. Fire-control boards intact. Rig's going in.", "futz": true },
+    { "trigger": "on_objective:obj_3", "speaker": "CAIRN", "line": "Override handshake initiated. Estimated completion: six minutes. Until then, the guns above remain his.", "futz": false },
+    { "trigger": "on_enemy_wave", "speaker": "Tremor", "line": "Counter-assault forming on the quads! They want their sky back — they can't HAVE it!", "futz": true },
+    { "trigger": "on_handshake_50", "speaker": "CAIRN", "line": "Handshake at fifty percent. Gun platforms four and seven now answer Compact fire-control.", "futz": false },
+    { "trigger": "on_kryce_broadcast", "speaker": "Kryce", "line": "Whoever is standing in my gunnery college: those instruments took a generation to emplace. You are miners. You will hurt yourselves on them.", "futz": true },
+    { "trigger": "on_handshake_complete", "speaker": "CAIRN", "line": "Handshake complete. All orbital defense platforms answer Compact authority. Firing solutions are... available, Lodestar.", "futz": false },
+    { "trigger": "on_objective:obj_4", "speaker": "Relay", "line": "Armor column marshaling at the Anchor road, grid nine-nine. Whenever you're ready. ...Strange words to say out loud.", "futz": true },
+    { "trigger": "on_first_strike", "speaker": "Vireo", "line": "I used to be scared of thunder. That was our thunder. I don't know how to feel about that. I don't think I'm supposed to know yet.", "futz": true },
+    { "trigger": "on_first_strike_2", "speaker": "Sable", "line": "Column's gone. All of it. ...She should have seen this. She should have been here.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Damage critical. Note: the override survives you. The Compact does not survive many of you. Withdraw and repair.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Grid's ours, column's ash, and the sky over Veyra changed hands without a single cheer. Log it, CAIRN. And leave the Commander's sign-off slot open. Leave it open from now on.", "futz": true }
+  ]
+}

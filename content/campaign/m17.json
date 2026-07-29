@@ -1,0 +1,117 @@
+{
+  "id": "m17",
+  "designFile": "m17_signal_fires",
+  "stage": 17,
+  "title": "SIGNAL FIRES",
+  "map": "storm",
+  "spawn": { "x": -460, "z": -440, "yaw": 0.5 },
+  "playerMech": "corundum",
+  "heatMult": 1.15,
+  "extract": [470, 440],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-430, -410] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-490, -400] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-410, -470] }
+  ],
+  "structures": [
+    { "id": "greel_sphere_a", "name": "Greel Storage Sphere A", "kind": "tank", "pos": [-440, 40], "hp": 80 },
+    { "id": "greel_sphere_b", "name": "Greel Storage Sphere B", "kind": "tank", "pos": [-280, 240], "hp": 80 },
+    { "id": "greel_sphere_c", "name": "Greel Storage Sphere C", "kind": "tank", "pos": [-20, 360], "hp": 90 },
+    { "id": "cell_shelter", "name": "Compact Cell Shelter", "kind": "bunker", "pos": [220, 240], "hp": 240 },
+    { "id": "istra_hangar", "name": "Point Istra Drone Hangar", "kind": "building", "pos": [420, -160], "hp": 300 },
+    { "id": "checkpoint_south", "name": "Highway Checkpoint South", "kind": "gate", "pos": [480, 120], "hp": 130 },
+    { "id": "checkpoint_mid", "name": "Highway Checkpoint Mid", "kind": "gate", "pos": [340, 330], "hp": 130 },
+    { "id": "checkpoint_north", "name": "Highway Checkpoint North", "kind": "gate", "pos": [140, 480], "hp": 130 }
+  ],
+  "timedVO": [
+    { "atSec": 300, "trigger": "on_overheat_warning" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "RALLY AT THE SIGNAL FIRE",
+      "sub": "Reach the burning beacon on the coast ridge.",
+      "vo": "on_deploy",
+      "at": [-320, -180],
+      "radius": 45,
+      "spawns": [
+        {
+          "def": "flint",
+          "pos": [-230, -230],
+          "name": "Coast Watch Scout",
+          "waypoints": [[-160, -140], [-300, -80]]
+        }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DRAIN THE FARM",
+      "sub": "Destroy all three storage spheres of the Greel fuel farm.",
+      "vo": "on_first_target_committed",
+      "doneVO": "on_objective:obj_1",
+      "targets": ["greel_sphere_a", "greel_sphere_b", "greel_sphere_c"],
+      "killAll": false,
+      "spawns": [
+        { "def": "halite", "pos": [-360, 120], "alerted": true, "name": "Greel Garrison One" },
+        { "def": "halite", "pos": [-300, 40], "alerted": true, "name": "Greel Garrison Two" },
+        { "def": "flint", "pos": [-240, 320], "alerted": true, "name": "Sentry Turret West" }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "SHELTER THE RISING",
+      "sub": "Hold the reserve columns off the pinned Compact cell.",
+      "vo": "on_enemy_wave",
+      "protect": "cell_shelter",
+      "seconds": 75,
+      "waveGap": 25,
+      "waves": [
+        [
+          { "def": "gabbro", "pos": [480, 420], "alerted": true, "name": "Reserve Column Gabbro", "yieldFrac": 0.25 },
+          { "def": "halite", "pos": [420, 60], "alerted": true, "name": "Reserve Column Halite", "yieldFrac": 0.25 }
+        ],
+        [
+          { "def": "halite", "pos": [40, 480], "alerted": true, "name": "Reserve Column Straggler" }
+        ]
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "GROUND THE DRONES",
+      "sub": "Destroy the Point Istra hangar and its interceptor screen before the launch cycles finish.",
+      "vo": "on_objective:obj_2",
+      "targets": ["istra_hangar"],
+      "killAll": true,
+      "spawns": [
+        { "def": "chert", "pos": [300, -260], "alerted": true, "name": "Istra Screen One" },
+        { "def": "chert", "pos": [360, -40], "alerted": true, "name": "Istra Screen Two" },
+        { "def": "pumice", "pos": [480, -240], "alerted": true, "name": "Interceptor Drone One" },
+        { "def": "pumice", "pos": [500, -60], "alerted": true, "name": "Interceptor Drone Two" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "OPEN THE HIGHWAY",
+      "sub": "Crack all three checkpoint gates on the arcology highway chain.",
+      "vo": "on_kryce_broadcast",
+      "doneVO": "on_dawn",
+      "targets": ["checkpoint_south", "checkpoint_mid", "checkpoint_north"],
+      "killAll": false,
+      "perTargetVO": { "checkpoint_south": "on_objective:obj_3" },
+      "spawns": [
+        { "def": "basalt", "pos": [420, 240], "alerted": true, "name": "Checkpoint Anchor" },
+        { "def": "flint", "pos": [280, 180], "alerted": true, "name": "Ferric Trooper" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT AT THE HIGHWAY MOUTH",
+      "sub": "Reach the Compact column rolling through the opened highway.",
+      "vo": "on_drone_wave",
+      "doneVO": "on_complete",
+      "spawns": [
+        { "def": "flint", "pos": [320, 460], "alerted": true, "name": "Strafe Drone" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "m09_undertow",
+  "index": 9,
+  "op": 3,
+  "opName": "Karst Highlands",
+  "name": "Undertow",
+  "biome": "karst_highlands",
+  "weather": "none — subterranean",
+  "timeOfDay": "underground, perpetual dark",
+  "designIntent": "Descend into a flooded cavern gallery beneath the highlands and demolish the Directorate's hidden fuel bunker — the campaign's first full underground set-piece, fought knee-deep in the dark.",
+  "teaches": ["low_light_vision"],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "The Directorate learned something from the flats, Lodestar: they have stopped leaving what matters where we can see it. Their forward fuel reserve for the whole highland garrison is sitting in a flooded cavern gallery under Doline Twelve — bunkered, dry-docked above the waterline, and very proud of itself. We are going to walk into the mountain and put it at the bottom of that lake. This is close, dark work. The galleries flood to the knee; your footing will drag and your radar will paint stone in every direction. Trust your low-light optics and trust your team. Relay's signal will thin out under the rock, so plan like you are alone even when you are not. Set the charges on the bunker, and when it goes, do not stay to admire it — the survey says that roof comes down and the water comes up fast. Full fireteam on this. Get in, drown their fuel, and get out ahead of the surge. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Into the Mountain", "description": "Descend through the Doline Twelve cave mouth and reach the flooded gallery.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Clear the Causeways", "description": "Destroy the bunker's guard element on the gallery causeways.", "optional": false },
+    { "id": "obj_3", "type": "destroy", "title": "Drown the Reserve", "description": "Plant demolition charges and destroy the fuel bunker.", "optional": false },
+    { "id": "obj_4", "type": "reach", "title": "Beat the Surge", "description": "Escape to the surface ahead of the flood surge and roof collapse.", "optional": false },
+    { "id": "obj_5", "type": "capture", "title": "Deep Claim", "description": "Recover the submerged weapons cache in the side gallery before the demolition.", "optional": true }
+  ],
+  "enemyForces": [
+    "Causeway garrison: Ferric APC pair and rocket infantry on elevated walkways",
+    "Pop-up turrets recessed into the cavern rock",
+    "One Halite standing picket in the knee-deep gallery",
+    "Ceiling-rail drone strings running the length of the gallery"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Wading the flooded gallery — footfalls dampened, wakes shimmering in weapon light",
+    "Muzzle flashes strobe-lighting a cathedral of stone",
+    "The bunker detonation chains through the fuel stock and the roof lets go",
+    "A sprint-exit up the switchback galleries with the surge roaring behind"
+  ],
+  "failConditions": [
+    "Demolition charges lost or the bunker left standing",
+    "Caught by the flood surge after detonation",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "Almost nothing walks out of a drowned gallery — claim before you blow, not after. The optional cache holds crated Blaze Lasers and a Particle Lance in factory grease; the picket Halite is recoverable only if dropped on the dry causeway, not in the water.",
+  "musicSet": {
+    "ambient": "karst_highlands",
+    "combatIntensityCap": 2,
+    "specialCues": ["cavern_drone_underscore", "detonation_and_collapse", "surge_escape_percussion"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Ekene", "line": "Close, dark work today, Lodestar. Walk into the mountain, drown their fuel, and walk out ahead of the water. In that order.", "futz": true },
+    { "trigger": "on_descend", "speaker": "CAIRN", "line": "Ambient light minimal. Low-light and thermal imaging available — cycle vision modes with V. Note: standing water will mask thermal returns at the waterline.", "futz": false },
+    { "trigger": "on_comms_thin", "speaker": "Relay", "line": "Lodestar, you're going under the rock — my signal's about to get thin and then get gone. Send a postcard. Relay fading out.", "futz": true },
+    { "trigger": "on_gallery_entry", "speaker": "Tremor", "line": "Big man, small cave. Whose plan was this? If I scrape my paint on this ceiling, somebody's buying me a drink.", "futz": true },
+    { "trigger": "on_vireo_dark", "speaker": "Vireo", "line": "It's so quiet down here. Even the reactor sounds... loud. Staying on your hip, Lodestar.", "futz": true },
+    { "trigger": "on_contact", "speaker": "Sable", "line": "Contact. Causeway, elevated — two APCs and rockets. Water's slow. Don't fight where you can't move.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Tremor", "line": "Causeway's clear! Ha — even underground, the door still opens my way.", "futz": true },
+    { "trigger": "on_charges_set", "speaker": "CAIRN", "line": "Demolition charges placed. Yield projection: total. Structural analysis of the gallery roof: unfavorable. Recommend distance.", "futz": false },
+    { "trigger": "on_detonation", "speaker": "Vireo", "line": "There it goes— the roof's coming down! Go, go, everybody up the gallery!", "futz": true },
+    { "trigger": "on_surge", "speaker": "CAIRN", "line": "Water level rising rapidly. Current velocity exceeds your reverse speed. Forward is the only viable direction.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "—and there you are! Four signals out of the mountain, and seismology says the Directorate's highland reserve is now a very expensive aquarium. Ekene sends her love. She said 'well done,' but I translate.", "futz": true }
+  ]
+}

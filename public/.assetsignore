@@ -1,0 +1,22 @@
+site/raw/
+
+# Superseded prototype art from the pre-Tripo site: flat-shaded boxes on flat
+# sand, captured before any generated geometry existed. hero.jpg was the og:image
+# on every share of this game until 2026-07-29. Nothing references them now and
+# scripts/vite-site-truth.mjs fails the build if anything ever does again, but
+# they stay out of the deploy so they cannot be found at a guessable URL. The
+# files remain on disk under public/site/ — this only stops them being served.
+site/hero.jpg
+site/cockpit.jpg
+site/map-drill.jpg
+site/map-dunes.jpg
+site/map-flats.jpg
+
+# models/ used to be listed here: the raw Tripo3D GLBs were ~44 MB each, over
+# Cloudflare's 25 MiB per-file asset limit, so the whole directory was skipped and
+# the deployed game had no generated geometry at all.
+#
+# public/models/ now holds only the LOD tiers built by scripts/build_lods.mjs
+# (96 files, all under 2 MB, ~68 MB total), which upload fine. Do not re-add the
+# exclusion, and never put raw sources in public/ — they belong in
+# assets/tripo/generated/, which is outside the served tree.

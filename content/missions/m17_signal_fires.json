@@ -1,0 +1,63 @@
+{
+  "id": "m17_signal_fires",
+  "index": 17,
+  "op": 5,
+  "opName": "Storm Coast",
+  "name": "Signal Fires",
+  "biome": "storm_coast",
+  "weather": "storm bands: heavy squalls with clear breaks",
+  "timeOfDay": "one long night, dusk to dawn",
+  "designIntent": "The planetwide uprising ignites: one long night mission with three targets — fuel farm, drone hangar, checkpoint chain — under dynamic reinforcements as the whole coast rises.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "Something happened when Rauk fell. The word went down the coast, then up the karst, then everywhere — and tonight every cell, every quarry crew, every dockhand with a cutting torch is coming out at once. This is the night, Lodestar. The uprising. Command — such as we are without her — has picked three targets that decide whether it lives past sunrise. One: the Greel fuel farm. Burn it and Directorate armor on this coast dies of thirst. Two: the drone hangar at Point Istra. Every airframe in it will be over the crowds by morning if we let it fly. Three: the checkpoint chain on the arcology highway. Crack it open and the coast pours toward Vell. Order's yours, routes are yours, the night is long. The Directorate will feed reinforcements at every target the moment you're committed, so watch your heat and watch your people. Light the signal fires. She'll see them from her cell. I believe that."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "destroy", "title": "Drain the Farm", "description": "Destroy the Greel fuel farm's storage spheres.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Ground the Drones", "description": "Destroy the drone hangar at Point Istra before its launch cycles complete.", "optional": false },
+    { "id": "obj_3", "type": "capture", "title": "Open the Highway", "description": "Crack the three checkpoint fortresses of the arcology highway chain.", "optional": false },
+    { "id": "obj_4", "type": "defend", "title": "Shelter the Rising", "description": "Relieve a Compact cell pinned down along your route between targets.", "optional": true }
+  ],
+  "enemyForces": [
+    "Fuel-farm garrison: turret belts and a Halite pair",
+    "Drone hangar at Point Istra launching escalating drone waves the longer it stands, screened by a Chert fire-support pair",
+    "Checkpoint chain: pop-up turret fortresses, Ferric platoons, and a Basalt anchor",
+    "Dynamic reinforcement columns (Gabbro and Halite mixes) dispatched toward whichever target the player commits to",
+    "Strafing aircraft in the clear breaks between squalls"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Signal fires ignite on the ridgelines one by one as the uprising spreads, visible from anywhere on the map",
+    "The fuel farm goes up in a chained sphere detonation that lights the underside of the storm",
+    "Drone waves launch in real time from the hangar as it counts through its launch cycles",
+    "Kryce's counter-broadcast plays over captured checkpoint speakers, growing more ragged as the night turns",
+    "Dawn breaks over the opened highway as Compact columns roll past with horns sounding"
+  ],
+  "failConditions": [
+    "The drone hangar completes all of its launch cycles",
+    "Any primary target still stands at dawn",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "The best salvage night of the campaign: reinforcement columns keep feeding mechs into your guns. Legged Gabbros and Halites along your chosen route can be flagged for the Compact columns following behind. The hangar's spare-parts stores survive only if it dies before its third launch cycle.",
+  "musicSet": {
+    "ambient": "storm_coast",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_uprising_main_theme_reprise", "cue_dawn_break_brass_lift"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "Watch the ridgelines. The cells are lighting signal fires as they rise — that's your map of who's already fighting.", "futz": true },
+    { "trigger": "on_first_target_committed", "speaker": "CAIRN", "line": "Directorate reserve column dispatched toward your position. The night has noticed you.", "futz": false },
+    { "trigger": "on_objective:obj_1", "speaker": "Tremor", "line": "Storage spheres cracked — get back, get BACK — ...HAAA! Look at it burn! You can see that from orbit!", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Vireo", "line": "Hangar doors opening — launch cycle starting! Whatever you're going to do, do it before those things are over Marrow Bay!", "futz": true },
+    { "trigger": "on_drone_wave", "speaker": "CAIRN", "line": "Drone wave airborne. Swarm-rack lock solutions available.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Sable", "line": "Checkpoint guns are automated. The crews already ran. Good sign.", "futz": true },
+    { "trigger": "on_kryce_broadcast", "speaker": "Kryce", "line": "Citizens. Order is not negotiable. The Directorate has weathered tantrums before. Return to your homes, and this night will be... forgotten.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "More columns moving — they're pulling garrisons off the karst to plug the coast. It's working. The whole planet is pulling them apart.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Damage critical. The uprising does not require your destruction to succeed. Withdraw and re-approach.", "futz": false },
+    { "trigger": "on_overheat_warning", "speaker": "CAIRN", "line": "Heat redline approaching. You have been firing for a long time, Lodestar.", "futz": false },
+    { "trigger": "on_dawn", "speaker": "Relay", "line": "Sun's coming up. Highway's open, farm's ash, drones are grounded. Signal fires the whole length of the coast. If she's at a window... she sees them.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Tremor", "line": "TO VELL! To the Anchor! We're coming, Commander — the whole coast is coming!", "futz": true }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "source": "hangar-master-prompt",
+  "author": "meta-game systems",
+  "approval": "approved",
+  "note": "First-completion campaign salvage: finishing the stage signs the machine over to the pilot's collection. Keyed by stage number; stage 21 pays out on either branch.",
+  "stageGrants": {
+    "3": "pumice",
+    "6": "gabbro",
+    "10": "basalt",
+    "15": "corundum",
+    "18": "orogen",
+    "21": "batholith",
+    "24": "craton"
+  }
+}

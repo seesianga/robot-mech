@@ -1,0 +1,592 @@
+{
+  "shot-cockpit": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-cockpit.avif",
+          "kb": 189
+        },
+        {
+          "w": 2560,
+          "file": "shot-cockpit-2560.avif",
+          "kb": 95
+        },
+        {
+          "w": 1920,
+          "file": "shot-cockpit-1920.avif",
+          "kb": 60
+        },
+        {
+          "w": 1280,
+          "file": "shot-cockpit-1280.avif",
+          "kb": 30
+        },
+        {
+          "w": 640,
+          "file": "shot-cockpit-640.avif",
+          "kb": 9
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-cockpit.webp",
+          "kb": 315
+        },
+        {
+          "w": 2560,
+          "file": "shot-cockpit-2560.webp",
+          "kb": 155
+        },
+        {
+          "w": 1920,
+          "file": "shot-cockpit-1920.webp",
+          "kb": 96
+        },
+        {
+          "w": 1280,
+          "file": "shot-cockpit-1280.webp",
+          "kb": 50
+        },
+        {
+          "w": 640,
+          "file": "shot-cockpit-640.webp",
+          "kb": 15
+        }
+      ]
+    }
+  },
+  "shot-anchor": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-anchor.avif",
+          "kb": 72
+        },
+        {
+          "w": 2560,
+          "file": "shot-anchor-2560.avif",
+          "kb": 44
+        },
+        {
+          "w": 1920,
+          "file": "shot-anchor-1920.avif",
+          "kb": 31
+        },
+        {
+          "w": 1280,
+          "file": "shot-anchor-1280.avif",
+          "kb": 17
+        },
+        {
+          "w": 640,
+          "file": "shot-anchor-640.avif",
+          "kb": 6
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-anchor.webp",
+          "kb": 166
+        },
+        {
+          "w": 2560,
+          "file": "shot-anchor-2560.webp",
+          "kb": 89
+        },
+        {
+          "w": 1920,
+          "file": "shot-anchor-1920.webp",
+          "kb": 57
+        },
+        {
+          "w": 1280,
+          "file": "shot-anchor-1280.webp",
+          "kb": 31
+        },
+        {
+          "w": 640,
+          "file": "shot-anchor-640.webp",
+          "kb": 10
+        }
+      ]
+    }
+  },
+  "shot-arcology": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-arcology.avif",
+          "kb": 439
+        },
+        {
+          "w": 2560,
+          "file": "shot-arcology-2560.avif",
+          "kb": 257
+        },
+        {
+          "w": 1920,
+          "file": "shot-arcology-1920.avif",
+          "kb": 176
+        },
+        {
+          "w": 1280,
+          "file": "shot-arcology-1280.avif",
+          "kb": 98
+        },
+        {
+          "w": 640,
+          "file": "shot-arcology-640.avif",
+          "kb": 29
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-arcology.webp",
+          "kb": 760
+        },
+        {
+          "w": 2560,
+          "file": "shot-arcology-2560.webp",
+          "kb": 409
+        },
+        {
+          "w": 1920,
+          "file": "shot-arcology-1920.webp",
+          "kb": 266
+        },
+        {
+          "w": 1280,
+          "file": "shot-arcology-1280.webp",
+          "kb": 141
+        },
+        {
+          "w": 640,
+          "file": "shot-arcology-640.webp",
+          "kb": 40
+        }
+      ]
+    }
+  },
+  "shot-coast": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-coast.avif",
+          "kb": 504
+        },
+        {
+          "w": 2560,
+          "file": "shot-coast-2560.avif",
+          "kb": 253
+        },
+        {
+          "w": 1920,
+          "file": "shot-coast-1920.avif",
+          "kb": 159
+        },
+        {
+          "w": 1280,
+          "file": "shot-coast-1280.avif",
+          "kb": 78
+        },
+        {
+          "w": 640,
+          "file": "shot-coast-640.avif",
+          "kb": 21
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-coast.webp",
+          "kb": 876
+        },
+        {
+          "w": 2560,
+          "file": "shot-coast-2560.webp",
+          "kb": 428
+        },
+        {
+          "w": 1920,
+          "file": "shot-coast-1920.webp",
+          "kb": 262
+        },
+        {
+          "w": 1280,
+          "file": "shot-coast-1280.webp",
+          "kb": 124
+        },
+        {
+          "w": 640,
+          "file": "shot-coast-640.webp",
+          "kb": 34
+        }
+      ]
+    }
+  },
+  "shot-hero-range": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-hero-range.avif",
+          "kb": 445
+        },
+        {
+          "w": 2560,
+          "file": "shot-hero-range-2560.avif",
+          "kb": 254
+        },
+        {
+          "w": 1920,
+          "file": "shot-hero-range-1920.avif",
+          "kb": 173
+        },
+        {
+          "w": 1280,
+          "file": "shot-hero-range-1280.avif",
+          "kb": 93
+        },
+        {
+          "w": 640,
+          "file": "shot-hero-range-640.avif",
+          "kb": 27
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-hero-range.webp",
+          "kb": 903
+        },
+        {
+          "w": 2560,
+          "file": "shot-hero-range-2560.webp",
+          "kb": 470
+        },
+        {
+          "w": 1920,
+          "file": "shot-hero-range-1920.webp",
+          "kb": 303
+        },
+        {
+          "w": 1280,
+          "file": "shot-hero-range-1280.webp",
+          "kb": 149
+        },
+        {
+          "w": 640,
+          "file": "shot-hero-range-640.webp",
+          "kb": 40
+        }
+      ]
+    }
+  },
+  "shot-karst": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-karst.avif",
+          "kb": 313
+        },
+        {
+          "w": 2560,
+          "file": "shot-karst-2560.avif",
+          "kb": 183
+        },
+        {
+          "w": 1920,
+          "file": "shot-karst-1920.avif",
+          "kb": 125
+        },
+        {
+          "w": 1280,
+          "file": "shot-karst-1280.avif",
+          "kb": 68
+        },
+        {
+          "w": 640,
+          "file": "shot-karst-640.avif",
+          "kb": 23
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-karst.webp",
+          "kb": 568
+        },
+        {
+          "w": 2560,
+          "file": "shot-karst-2560.webp",
+          "kb": 322
+        },
+        {
+          "w": 1920,
+          "file": "shot-karst-1920.webp",
+          "kb": 207
+        },
+        {
+          "w": 1280,
+          "file": "shot-karst-1280.webp",
+          "kb": 108
+        },
+        {
+          "w": 640,
+          "file": "shot-karst-640.webp",
+          "kb": 33
+        }
+      ]
+    }
+  },
+  "shot-polar": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-polar.avif",
+          "kb": 379
+        },
+        {
+          "w": 2560,
+          "file": "shot-polar-2560.avif",
+          "kb": 218
+        },
+        {
+          "w": 1920,
+          "file": "shot-polar-1920.avif",
+          "kb": 147
+        },
+        {
+          "w": 1280,
+          "file": "shot-polar-1280.avif",
+          "kb": 79
+        },
+        {
+          "w": 640,
+          "file": "shot-polar-640.avif",
+          "kb": 24
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-polar.webp",
+          "kb": 672
+        },
+        {
+          "w": 2560,
+          "file": "shot-polar-2560.webp",
+          "kb": 356
+        },
+        {
+          "w": 1920,
+          "file": "shot-polar-1920.webp",
+          "kb": 228
+        },
+        {
+          "w": 1280,
+          "file": "shot-polar-1280.webp",
+          "kb": 117
+        },
+        {
+          "w": 640,
+          "file": "shot-polar-640.webp",
+          "kb": 33
+        }
+      ]
+    }
+  },
+  "shot-salt": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-salt.avif",
+          "kb": 286
+        },
+        {
+          "w": 2560,
+          "file": "shot-salt-2560.avif",
+          "kb": 164
+        },
+        {
+          "w": 1920,
+          "file": "shot-salt-1920.avif",
+          "kb": 113
+        },
+        {
+          "w": 1280,
+          "file": "shot-salt-1280.avif",
+          "kb": 63
+        },
+        {
+          "w": 640,
+          "file": "shot-salt-640.avif",
+          "kb": 20
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-salt.webp",
+          "kb": 568
+        },
+        {
+          "w": 2560,
+          "file": "shot-salt-2560.webp",
+          "kb": 297
+        },
+        {
+          "w": 1920,
+          "file": "shot-salt-1920.webp",
+          "kb": 191
+        },
+        {
+          "w": 1280,
+          "file": "shot-salt-1280.webp",
+          "kb": 101
+        },
+        {
+          "w": 640,
+          "file": "shot-salt-640.webp",
+          "kb": 30
+        }
+      ]
+    }
+  },
+  "shot-storm": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "shot-storm.avif",
+          "kb": 257
+        },
+        {
+          "w": 2560,
+          "file": "shot-storm-2560.avif",
+          "kb": 130
+        },
+        {
+          "w": 1920,
+          "file": "shot-storm-1920.avif",
+          "kb": 81
+        },
+        {
+          "w": 1280,
+          "file": "shot-storm-1280.avif",
+          "kb": 39
+        },
+        {
+          "w": 640,
+          "file": "shot-storm-640.avif",
+          "kb": 9
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "shot-storm.webp",
+          "kb": 484
+        },
+        {
+          "w": 2560,
+          "file": "shot-storm-2560.webp",
+          "kb": 231
+        },
+        {
+          "w": 1920,
+          "file": "shot-storm-1920.webp",
+          "kb": 141
+        },
+        {
+          "w": 1280,
+          "file": "shot-storm-1280.webp",
+          "kb": 67
+        },
+        {
+          "w": 640,
+          "file": "shot-storm-640.webp",
+          "kb": 17
+        }
+      ]
+    }
+  },
+  "cap-showroom-gabbro": {
+    "master": "3840x2160",
+    "sources": {
+      "avif": [
+        {
+          "w": 3840,
+          "file": "cap-showroom-gabbro.avif",
+          "kb": 66
+        },
+        {
+          "w": 2560,
+          "file": "cap-showroom-gabbro-2560.avif",
+          "kb": 35
+        },
+        {
+          "w": 1920,
+          "file": "cap-showroom-gabbro-1920.avif",
+          "kb": 24
+        },
+        {
+          "w": 1280,
+          "file": "cap-showroom-gabbro-1280.avif",
+          "kb": 14
+        },
+        {
+          "w": 640,
+          "file": "cap-showroom-gabbro-640.avif",
+          "kb": 5
+        }
+      ],
+      "webp": [
+        {
+          "w": 3840,
+          "file": "cap-showroom-gabbro.webp",
+          "kb": 111
+        },
+        {
+          "w": 2560,
+          "file": "cap-showroom-gabbro-2560.webp",
+          "kb": 58
+        },
+        {
+          "w": 1920,
+          "file": "cap-showroom-gabbro-1920.webp",
+          "kb": 38
+        },
+        {
+          "w": 1280,
+          "file": "cap-showroom-gabbro-1280.webp",
+          "kb": 21
+        },
+        {
+          "w": 640,
+          "file": "cap-showroom-gabbro-640.webp",
+          "kb": 7
+        }
+      ]
+    }
+  }
+}

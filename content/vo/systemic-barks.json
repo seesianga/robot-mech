@@ -1,0 +1,1468 @@
+{
+  "barks": [
+    {
+      "id": "cairn_heat_warning_75",
+      "speaker": "CAIRN",
+      "category": "heat_warning",
+      "trigger": "Player heat crosses 75% of capacity",
+      "futz": false,
+      "lines": [
+        "Heat at seventy-five percent. Dissipation holding.",
+        "Thermal load rising. Recommend fire discipline.",
+        "Core temperature elevated. Margins narrowing."
+      ]
+    },
+    {
+      "id": "cairn_heat_warning_85",
+      "speaker": "CAIRN",
+      "category": "heat_warning",
+      "trigger": "Player heat crosses 85% of capacity",
+      "futz": false,
+      "lines": [
+        "Heat at eighty-five percent. Redline approaching.",
+        "Thermal margin closing. Ease your weapons.",
+        "Approaching redline. Suggest a pause in fire."
+      ]
+    },
+    {
+      "id": "cairn_heat_warning_sustained",
+      "speaker": "CAIRN",
+      "category": "heat_warning",
+      "trigger": "Player fires continuously for six-plus seconds while above 60% heat",
+      "futz": false,
+      "lines": [
+        "Sustained fire exceeds dissipation. This is not indefinitely viable.",
+        "Heat generation is outpacing your sinks. Plan your window.",
+        "You are spending heat faster than I can shed it."
+      ]
+    },
+    {
+      "id": "cairn_heat_warning_flush",
+      "speaker": "CAIRN",
+      "category": "heat_warning",
+      "trigger": "Player discharges the coolant flush pod with F",
+      "futz": false,
+      "lines": [
+        "Coolant flush discharged. Core temperature falling.",
+        "Flush pod expended. That was the only one.",
+        "Emergency coolant released. Thermal margin restored."
+      ]
+    },
+    {
+      "id": "cairn_heat_warning_env_penalty",
+      "speaker": "CAIRN",
+      "category": "heat_warning",
+      "trigger": "Player enters a biome with reduced heat dissipation, such as the salt desert",
+      "futz": false,
+      "lines": [
+        "Ambient temperature high. Heat sink efficiency reduced to eighty percent.",
+        "This terrain sheds heat poorly. Adjust your rhythm.",
+        "Warning: dissipation degraded by ambient conditions."
+      ]
+    },
+    {
+      "id": "cairn_heat_warning_env_bonus",
+      "speaker": "CAIRN",
+      "category": "heat_warning",
+      "trigger": "Player enters arctic cold or heavy rain where dissipation improves",
+      "futz": false,
+      "lines": [
+        "Ambient cold detected. Heat sink efficiency improved.",
+        "Conditions favor your coolant loop. Use the margin wisely.",
+        "Dissipation running above baseline. Noted."
+      ]
+    },
+    {
+      "id": "cairn_heat_critical_redline",
+      "speaker": "CAIRN",
+      "category": "heat_critical",
+      "trigger": "Player heat crosses 95% of capacity",
+      "futz": false,
+      "lines": [
+        "Redline. Shutdown imminent.",
+        "Thermal limit reached. Cease fire or lose the core.",
+        "Critical heat. I will shut us down to protect the reactor."
+      ]
+    },
+    {
+      "id": "cairn_heat_critical_imminent",
+      "speaker": "CAIRN",
+      "category": "heat_critical",
+      "trigger": "One and a half seconds before auto-shutdown triggers",
+      "futz": false,
+      "lines": [
+        "Shutdown in three. Two.",
+        "Core protection engaging. Brace.",
+        "Thermal interlock tripping. Stand by."
+      ]
+    },
+    {
+      "id": "cairn_shutdown_auto",
+      "speaker": "CAIRN",
+      "category": "shutdown",
+      "trigger": "Automatic emergency shutdown begins",
+      "futz": false,
+      "lines": [
+        "Emergency shutdown. Reactor safing. Please remain calm.",
+        "Powering down. We are blind and still until relight.",
+        "Core offline. Restart cycle beginning shortly."
+      ]
+    },
+    {
+      "id": "cairn_shutdown_restart",
+      "speaker": "CAIRN",
+      "category": "shutdown",
+      "trigger": "Restart sequence begins after a shutdown",
+      "futz": false,
+      "lines": [
+        "Restart sequence initiated. Coolant loop stabilizing.",
+        "Reactor relight in progress. Hold.",
+        "Bringing the core back. Boards repopulating."
+      ]
+    },
+    {
+      "id": "cairn_shutdown_complete",
+      "speaker": "CAIRN",
+      "category": "shutdown",
+      "trigger": "Systems return to full power after a shutdown",
+      "futz": false,
+      "lines": [
+        "Restart complete. All boards answer ready.",
+        "Core reignited. Weapons live. Move.",
+        "We are back, Lodestar. Mind the heat this time."
+      ]
+    },
+    {
+      "id": "cairn_override_engaged",
+      "speaker": "CAIRN",
+      "category": "override",
+      "trigger": "Player holds O to override thermal shutdown",
+      "futz": false,
+      "lines": [
+        "Override accepted. Thermal damage accruing.",
+        "Shutdown suppressed. This will cost us internals.",
+        "Override logged. I trust the target is worth it."
+      ]
+    },
+    {
+      "id": "cairn_override_damage",
+      "speaker": "CAIRN",
+      "category": "override",
+      "trigger": "Internal damage ticking while override is held",
+      "futz": false,
+      "lines": [
+        "Internal structure degrading. Heat is eating the frame.",
+        "Actuator housings warping. Recommend release.",
+        "Damage accumulating in the core cradle."
+      ]
+    },
+    {
+      "id": "cairn_override_cookoff",
+      "speaker": "CAIRN",
+      "category": "override",
+      "trigger": "Override held with live ammunition aboard, cook-off chance active",
+      "futz": false,
+      "lines": [
+        "Magazine temperature critical. Cook-off probability rising.",
+        "Ammunition unstable. This may become sudden.",
+        "Warning: the magazines are approaching self-ignition."
+      ]
+    },
+    {
+      "id": "cairn_override_released",
+      "speaker": "CAIRN",
+      "category": "override",
+      "trigger": "Player releases override and heat falls below redline",
+      "futz": false,
+      "lines": [
+        "Override released. Thermal levels recovering.",
+        "Interlock restored. Logging structural cost.",
+        "Returning to safe operation. Noted for the maintenance report."
+      ]
+    },
+    {
+      "id": "cairn_component_weapon",
+      "speaker": "CAIRN",
+      "category": "component_loss",
+      "trigger": "A player weapon is destroyed by a critical hit",
+      "futz": false,
+      "lines": [
+        "Weapon destroyed. Group assignments updated.",
+        "We have lost a hardpoint. Rebalancing fire groups.",
+        "That mount is gone. Adjusting solutions."
+      ]
+    },
+    {
+      "id": "cairn_component_actuator",
+      "speaker": "CAIRN",
+      "category": "component_loss",
+      "trigger": "An actuator takes critical damage",
+      "futz": false,
+      "lines": [
+        "Actuator damage. Expect resistance in the affected limb.",
+        "Servo response degraded. Compensating where I can.",
+        "Limb articulation impaired. Adjust your footwork."
+      ]
+    },
+    {
+      "id": "cairn_component_gyro",
+      "speaker": "CAIRN",
+      "category": "component_loss",
+      "trigger": "The gyro takes critical damage, inducing sway",
+      "futz": false,
+      "lines": [
+        "Gyro damaged. Stability envelope reduced.",
+        "Balance compensation degraded. Step carefully.",
+        "Gyro fault. Sudden turns may put us down."
+      ]
+    },
+    {
+      "id": "cairn_component_sensor",
+      "speaker": "CAIRN",
+      "category": "component_loss",
+      "trigger": "Sensor suite takes critical damage, radar fuzzed",
+      "futz": false,
+      "lines": [
+        "Sensor suite damaged. Contacts may be unreliable.",
+        "Radar returns degraded. Trust your eyes.",
+        "Target data intermittent. Compensating."
+      ]
+    },
+    {
+      "id": "cairn_component_cookoff_chain",
+      "speaker": "CAIRN",
+      "category": "component_loss",
+      "trigger": "An ammunition cook-off chain detonates inside the player mech",
+      "futz": false,
+      "lines": [
+        "Ammunition cook-off. Sealing what remains.",
+        "Magazine detonation. Structure compromised.",
+        "Internal explosion contained. Barely."
+      ]
+    },
+    {
+      "id": "cairn_limb_arm_left",
+      "speaker": "CAIRN",
+      "category": "limb_loss",
+      "trigger": "Player left arm is severed",
+      "futz": false,
+      "lines": [
+        "Left arm severed. Hardpoints lost with it.",
+        "We have lost the left arm at the shoulder.",
+        "Left arm off. Mass balance updated."
+      ]
+    },
+    {
+      "id": "cairn_limb_arm_right",
+      "speaker": "CAIRN",
+      "category": "limb_loss",
+      "trigger": "Player right arm is severed",
+      "futz": false,
+      "lines": [
+        "Right arm severed. Weapon groups rebuilt.",
+        "The right arm is gone. Adjusting recoil model.",
+        "Right arm off. Fight with what remains."
+      ]
+    },
+    {
+      "id": "cairn_limb_leg",
+      "speaker": "CAIRN",
+      "category": "limb_loss",
+      "trigger": "One player leg is destroyed, speed capped",
+      "futz": false,
+      "lines": [
+        "Leg destroyed. Speed capped. Compensating gait.",
+        "We are down to one good leg. I will keep us upright.",
+        "Locomotion critical. Limp protocol engaged."
+      ]
+    },
+    {
+      "id": "cairn_limb_torso_side",
+      "speaker": "CAIRN",
+      "category": "limb_loss",
+      "trigger": "A side torso is destroyed, taking the attached arm",
+      "futz": false,
+      "lines": [
+        "Side torso destroyed. The arm went with it.",
+        "Torso section lost. Attached systems offline.",
+        "Flank structure gone. We are lighter now, and not in a good way."
+      ]
+    },
+    {
+      "id": "cairn_kill_confirm_standard",
+      "speaker": "CAIRN",
+      "category": "kill_confirm",
+      "trigger": "Player destroys an enemy mech by any standard means",
+      "futz": false,
+      "lines": [
+        "Target destroyed.",
+        "Hostile reactor down. Confirmed.",
+        "Kill confirmed. Updating tactical picture."
+      ]
+    },
+    {
+      "id": "cairn_kill_confirm_headshot",
+      "speaker": "CAIRN",
+      "category": "kill_confirm",
+      "trigger": "Player kills an enemy mech by cockpit destruction",
+      "futz": false,
+      "lines": [
+        "Cockpit strike. Pilot neutralized. Chassis intact.",
+        "Head destroyed. Salvage value: excellent.",
+        "Precision kill confirmed. The frame is recoverable."
+      ]
+    },
+    {
+      "id": "cairn_kill_confirm_legged",
+      "speaker": "CAIRN",
+      "category": "kill_confirm",
+      "trigger": "Player kills an enemy mech by destroying both legs",
+      "futz": false,
+      "lines": [
+        "Mobility kill. Target immobilized and silent.",
+        "Target legged. It is not going anywhere.",
+        "Kill by immobilization. Prime salvage condition."
+      ]
+    },
+    {
+      "id": "cairn_low_ammo_25",
+      "speaker": "CAIRN",
+      "category": "low_ammo",
+      "trigger": "Any ammunition-fed weapon falls below 25% reserves",
+      "futz": false,
+      "lines": [
+        "Ammunition at one quarter. Plan accordingly.",
+        "Magazine reserves low. Recommend conservation.",
+        "Ballistic stores at twenty-five percent."
+      ]
+    },
+    {
+      "id": "cairn_low_ammo_dry",
+      "speaker": "CAIRN",
+      "category": "low_ammo",
+      "trigger": "A weapon runs completely out of ammunition",
+      "futz": false,
+      "lines": [
+        "Weapon dry. Group updated.",
+        "Ammunition expended. That trigger now does nothing.",
+        "Stores exhausted for that mount."
+      ]
+    },
+    {
+      "id": "cairn_taking_fire_rear",
+      "speaker": "CAIRN",
+      "category": "taking_fire",
+      "trigger": "Player takes hits on rear armor",
+      "futz": false,
+      "lines": [
+        "Impact, rear armor. We are being flanked.",
+        "Fire from behind. Recommend you turn.",
+        "Rear arc under attack. Armor there is thin."
+      ]
+    },
+    {
+      "id": "cairn_taking_fire_breach",
+      "speaker": "CAIRN",
+      "category": "taking_fire",
+      "trigger": "An armor zone is stripped and internal structure exposed",
+      "futz": false,
+      "lines": [
+        "Armor breach. Internal structure exposed.",
+        "Plate integrity lost. The next hits go deep.",
+        "We are open to the frame. Suggest cover."
+      ]
+    },
+    {
+      "id": "cairn_taking_fire_lock",
+      "speaker": "CAIRN",
+      "category": "taking_fire",
+      "trigger": "Enemy missile lock acquired on the player",
+      "futz": false,
+      "lines": [
+        "Missile lock detected. Tracking source.",
+        "Inbound lock. Recommend cover or ECM.",
+        "We are being painted. Missiles likely."
+      ]
+    },
+    {
+      "id": "cairn_taking_fire_stability",
+      "speaker": "CAIRN",
+      "category": "taking_fire",
+      "trigger": "Heavy impacts push the player toward knockdown threshold",
+      "futz": false,
+      "lines": [
+        "Stability critical. Brace or fall.",
+        "Impact momentum exceeding gyro limits.",
+        "We are close to going down. Widen your stance."
+      ]
+    },
+    {
+      "id": "cairn_fireteam_down",
+      "speaker": "CAIRN",
+      "category": "fireteam_status",
+      "trigger": "A fireteam mech is disabled or destroyed",
+      "futz": false,
+      "lines": [
+        "Fireteam signal lost. Their reactor is down.",
+        "A friendly telemetry feed has flatlined.",
+        "Fireteam mech disabled. Position marked."
+      ]
+    },
+    {
+      "id": "cairn_fireteam_status_report",
+      "speaker": "CAIRN",
+      "category": "fireteam_status",
+      "trigger": "Player opens the tactical map or requests a squad summary",
+      "futz": false,
+      "lines": [
+        "Fireteam telemetry nominal. All feeds green.",
+        "Squad status: operational. Minor armor loss recorded.",
+        "All fireteam boards answer. Proceeding."
+      ]
+    },
+    {
+      "id": "cairn_salvage_tagged",
+      "speaker": "CAIRN",
+      "category": "salvage",
+      "trigger": "An enemy wreck is marked salvageable after combat",
+      "futz": false,
+      "lines": [
+        "Wreck catalogued. Recovery teams notified.",
+        "Salvage beacon placed. The Compact will collect.",
+        "Chassis logged for recovery. Condition: acceptable."
+      ]
+    },
+    {
+      "id": "cairn_salvage_prime",
+      "speaker": "CAIRN",
+      "category": "salvage",
+      "trigger": "High-quality salvage logged from a legged or headshot kill",
+      "futz": false,
+      "lines": [
+        "Salvage condition: prime. Minimal structural loss.",
+        "That kill preserved the frame. Well executed.",
+        "Recovery value high. The technicians will be pleased."
+      ]
+    },
+    {
+      "id": "cairn_mission_objective",
+      "speaker": "CAIRN",
+      "category": "mission_flow",
+      "trigger": "A new objective becomes active",
+      "futz": false,
+      "lines": [
+        "Objective updated. Marker on your display.",
+        "New tasking received. Route plotted.",
+        "Objective logged. Guidance available."
+      ]
+    },
+    {
+      "id": "cairn_mission_complete",
+      "speaker": "CAIRN",
+      "category": "mission_flow",
+      "trigger": "All primary objectives are complete",
+      "futz": false,
+      "lines": [
+        "All primary objectives complete. Well done, Lodestar.",
+        "Mission parameters satisfied. Logging outcome.",
+        "Objectives green across the board."
+      ]
+    },
+    {
+      "id": "cairn_mission_nav",
+      "speaker": "CAIRN",
+      "category": "mission_flow",
+      "trigger": "Player reaches an intermediate navigation point",
+      "futz": false,
+      "lines": [
+        "Nav point reached. Next marker set.",
+        "Waypoint confirmed. Continue on heading.",
+        "Position verified. Updating route."
+      ]
+    },
+    {
+      "id": "sable_ack_form_up",
+      "speaker": "Sable",
+      "category": "order_ack",
+      "trigger": "Player issues Form Up (F1) to Sable",
+      "futz": true,
+      "lines": [
+        "Coming.",
+        "On you.",
+        "Closing."
+      ]
+    },
+    {
+      "id": "sable_ack_attack_target",
+      "speaker": "Sable",
+      "category": "order_ack",
+      "trigger": "Player issues Attack My Target (F2) to Sable",
+      "futz": true,
+      "lines": [
+        "Marked. Firing.",
+        "On it.",
+        "Target accepted."
+      ]
+    },
+    {
+      "id": "sable_ack_hold_position",
+      "speaker": "Sable",
+      "category": "order_ack",
+      "trigger": "Player issues Hold Position (F3) to Sable",
+      "futz": true,
+      "lines": [
+        "Holding.",
+        "Set.",
+        "I won't move."
+      ]
+    },
+    {
+      "id": "sable_ack_move_to",
+      "speaker": "Sable",
+      "category": "order_ack",
+      "trigger": "Player issues Move To (F4) to Sable",
+      "futz": true,
+      "lines": [
+        "Moving.",
+        "Relocating.",
+        "On my way."
+      ]
+    },
+    {
+      "id": "sable_kill_confirm",
+      "speaker": "Sable",
+      "category": "kill_confirm",
+      "trigger": "Sable destroys an enemy",
+      "futz": true,
+      "lines": [
+        "Down.",
+        "One less.",
+        "Target's quiet."
+      ]
+    },
+    {
+      "id": "sable_kill_headshot",
+      "speaker": "Sable",
+      "category": "kill_confirm",
+      "trigger": "Sable scores a cockpit kill at range",
+      "futz": true,
+      "lines": [
+        "Head shot. Clean.",
+        "Pilot's gone. Frame's whole.",
+        "Through the glass."
+      ]
+    },
+    {
+      "id": "sable_taking_fire",
+      "speaker": "Sable",
+      "category": "taking_fire",
+      "trigger": "Sable takes incoming fire",
+      "futz": true,
+      "lines": [
+        "Taking fire. Adjusting.",
+        "They found me.",
+        "Under fire. Not hit yet."
+      ]
+    },
+    {
+      "id": "sable_taking_fire_pinned",
+      "speaker": "Sable",
+      "category": "taking_fire",
+      "trigger": "Sable is under sustained heavy fire",
+      "futz": true,
+      "lines": [
+        "Pinned. Could use eyes off me.",
+        "Heavy fire. Repositioning.",
+        "Too much incoming. Moving."
+      ]
+    },
+    {
+      "id": "sable_low_ammo",
+      "speaker": "Sable",
+      "category": "low_ammo",
+      "trigger": "Sable's ammunition runs low",
+      "futz": true,
+      "lines": [
+        "Ammo's thin.",
+        "Six rounds. Making them count.",
+        "Running low. Choosing shots."
+      ]
+    },
+    {
+      "id": "sable_status_ok",
+      "speaker": "Sable",
+      "category": "fireteam_status",
+      "trigger": "Status check while Sable is healthy",
+      "futz": true,
+      "lines": [
+        "Green.",
+        "Intact.",
+        "Still here."
+      ]
+    },
+    {
+      "id": "sable_status_damaged",
+      "speaker": "Sable",
+      "category": "fireteam_status",
+      "trigger": "Status check while Sable is significantly damaged",
+      "futz": true,
+      "lines": [
+        "Armor's open. Managing.",
+        "Took some. Functional.",
+        "Hit, not stopped."
+      ]
+    },
+    {
+      "id": "sable_heat_warning_player",
+      "speaker": "Sable",
+      "category": "heat_warning",
+      "trigger": "Player mech is visibly running hot near Sable",
+      "futz": true,
+      "lines": [
+        "You're glowing, Lodestar.",
+        "Heat bloom off your frame. Careful.",
+        "I can see you on thermal from here. So can they."
+      ]
+    },
+    {
+      "id": "sable_component_loss_self",
+      "speaker": "Sable",
+      "category": "component_loss",
+      "trigger": "Sable loses a weapon to a critical hit",
+      "futz": true,
+      "lines": [
+        "Lost my long gun. Switching.",
+        "Weapon's gone. Still useful.",
+        "Mount's dead. Adapting."
+      ]
+    },
+    {
+      "id": "sable_limb_loss_player",
+      "speaker": "Sable",
+      "category": "limb_loss",
+      "trigger": "Player loses an arm or leg while Sable is on comms",
+      "futz": true,
+      "lines": [
+        "You lost a limb. Adjust.",
+        "Saw it come off. Stay behind me.",
+        "You're leaking parts, Lodestar."
+      ]
+    },
+    {
+      "id": "sable_shutdown_player",
+      "speaker": "Sable",
+      "category": "shutdown",
+      "trigger": "Player mech shuts down in combat near Sable",
+      "futz": true,
+      "lines": [
+        "Lodestar's dark. Covering.",
+        "Shutdown. I have overwatch.",
+        "Stay down. I see them all."
+      ]
+    },
+    {
+      "id": "sable_salvage",
+      "speaker": "Sable",
+      "category": "salvage",
+      "trigger": "Post-combat salvage tally near Sable",
+      "futz": true,
+      "lines": [
+        "Good frames out there.",
+        "Clean kills. Worth collecting.",
+        "The wrecks will feed us."
+      ]
+    },
+    {
+      "id": "sable_mission_quiet",
+      "speaker": "Sable",
+      "category": "mission_flow",
+      "trigger": "Long stretch of a mission passes without contact",
+      "futz": true,
+      "lines": [
+        "Too quiet.",
+        "Nothing moving. Yet.",
+        "I don't trust this."
+      ]
+    },
+    {
+      "id": "sable_mission_contact",
+      "speaker": "Sable",
+      "category": "mission_flow",
+      "trigger": "Sable spots distant enemy movement before anyone else",
+      "futz": true,
+      "lines": [
+        "Movement. Two kilometers. Ridge line.",
+        "Contact, far. They haven't seen us.",
+        "Eyes up. We're not alone."
+      ]
+    },
+    {
+      "id": "tremor_ack_form_up",
+      "speaker": "Tremor",
+      "category": "order_ack",
+      "trigger": "Player issues Form Up (F1) to Tremor",
+      "futz": true,
+      "lines": [
+        "Coming to you, big and loud!",
+        "On my way! Try not to start without me.",
+        "Forming up. Somebody keep my spot warm."
+      ]
+    },
+    {
+      "id": "tremor_ack_attack_target",
+      "speaker": "Tremor",
+      "category": "order_ack",
+      "trigger": "Player issues Attack My Target (F2) to Tremor",
+      "futz": true,
+      "lines": [
+        "HA! That one's mine now!",
+        "Say goodnight to it, Lodestar!",
+        "Copy! Introducing myself with a cannon!"
+      ]
+    },
+    {
+      "id": "tremor_ack_hold_position",
+      "speaker": "Tremor",
+      "category": "order_ack",
+      "trigger": "Player issues Hold Position (F3) to Tremor",
+      "futz": true,
+      "lines": [
+        "Holding! Like a mountain holds!",
+        "This is my ground now. Come take it from me.",
+        "Not moving. You couldn't tow me off this spot."
+      ]
+    },
+    {
+      "id": "tremor_ack_move_to",
+      "speaker": "Tremor",
+      "category": "order_ack",
+      "trigger": "Player issues Move To (F4) to Tremor",
+      "futz": true,
+      "lines": [
+        "Moving! Feel that? That's me walking!",
+        "On the march! Clear a path!",
+        "Going! The ground will tell you where I am."
+      ]
+    },
+    {
+      "id": "tremor_kill_confirm",
+      "speaker": "Tremor",
+      "category": "kill_confirm",
+      "trigger": "Tremor destroys an enemy",
+      "futz": true,
+      "lines": [
+        "DOWN! Ha ha! Did you feel it fall?",
+        "Scratch one! That's for Veyra!",
+        "It's scrap now! Beautiful, beautiful scrap!"
+      ]
+    },
+    {
+      "id": "tremor_kill_close",
+      "speaker": "Tremor",
+      "category": "kill_confirm",
+      "trigger": "Tremor kills an enemy at point-blank range",
+      "futz": true,
+      "lines": [
+        "Close enough to shake hands! HA!",
+        "Right in its face! That's how it's done!",
+        "I looked in its cockpit and said goodbye!"
+      ]
+    },
+    {
+      "id": "tremor_taking_fire",
+      "speaker": "Tremor",
+      "category": "taking_fire",
+      "trigger": "Tremor takes incoming fire",
+      "futz": true,
+      "lines": [
+        "They're shooting me! Rude!",
+        "Taking hits! Armor's earning its pay!",
+        "That stings! Now I'm annoyed!"
+      ]
+    },
+    {
+      "id": "tremor_taking_fire_heavy",
+      "speaker": "Tremor",
+      "category": "taking_fire",
+      "trigger": "Tremor is focused by multiple enemies",
+      "futz": true,
+      "lines": [
+        "Okay, that's a LOT of guns pointed at me!",
+        "Heavy fire! Could use a friendly cannon over here!",
+        "They really want me dead! Flattering! Unpleasant!"
+      ]
+    },
+    {
+      "id": "tremor_low_ammo",
+      "speaker": "Tremor",
+      "category": "low_ammo",
+      "trigger": "Tremor's ammunition runs low",
+      "futz": true,
+      "lines": [
+        "Running dry! Save some scrap for my fists!",
+        "Ammo's low! When I get quiet, you worry!",
+        "Counting shells now! Never a good sign!"
+      ]
+    },
+    {
+      "id": "tremor_status_ok",
+      "speaker": "Tremor",
+      "category": "fireteam_status",
+      "trigger": "Status check while Tremor is healthy",
+      "futz": true,
+      "lines": [
+        "Never better! Well. Rarely better!",
+        "All green! The paint's ruined, though.",
+        "Still standing! Takes more than that!"
+      ]
+    },
+    {
+      "id": "tremor_status_damaged",
+      "speaker": "Tremor",
+      "category": "fireteam_status",
+      "trigger": "Status check while Tremor is significantly damaged",
+      "futz": true,
+      "lines": [
+        "I've been chewed on, but I'm chewing back!",
+        "Armor's open. Don't tell my knees.",
+        "Hurt, not done. Big difference!"
+      ]
+    },
+    {
+      "id": "tremor_limb_loss_player",
+      "speaker": "Tremor",
+      "category": "limb_loss",
+      "trigger": "Player loses a limb while Tremor is on comms",
+      "futz": true,
+      "lines": [
+        "Lodestar's hit bad! Get behind me, NOW!",
+        "They took your arm — I'll take their everything!",
+        "Fall back to me, friend. I'm wide enough for both of us."
+      ]
+    },
+    {
+      "id": "tremor_component_loss_self",
+      "speaker": "Tremor",
+      "category": "component_loss",
+      "trigger": "Tremor loses a weapon to a critical hit",
+      "futz": true,
+      "lines": [
+        "Lost a gun! Still got the other, still got attitude!",
+        "My cannon's dead. Moment of silence... okay, done. FIGHTING!",
+        "One mount down! The rest of me disagrees with retreat!"
+      ]
+    },
+    {
+      "id": "tremor_shutdown_player",
+      "speaker": "Tremor",
+      "category": "shutdown",
+      "trigger": "Player mech shuts down in combat near Tremor",
+      "futz": true,
+      "lines": [
+        "Lodestar's down — form a wall! NOBODY touches them!",
+        "Shutdown! You stand on them, I stand on you!",
+        "Cover the boss! I'm the biggest thing here — shoot ME!"
+      ]
+    },
+    {
+      "id": "tremor_salvage",
+      "speaker": "Tremor",
+      "category": "salvage",
+      "trigger": "Post-combat salvage tally near Tremor",
+      "futz": true,
+      "lines": [
+        "Look at all this beautiful junk! We're rich!",
+        "The techs are going to kiss us! Every one of us!",
+        "That's a month of parts lying there! Good work!"
+      ]
+    },
+    {
+      "id": "tremor_heat_warning_player",
+      "speaker": "Tremor",
+      "category": "heat_warning",
+      "trigger": "Player mech is visibly running hot near Tremor",
+      "futz": true,
+      "lines": [
+        "You're cooking, Lodestar! Ease off before you pop!",
+        "I can feel your heat from here! Breathe!",
+        "Steam bath's over, friend! Let it cool!"
+      ]
+    },
+    {
+      "id": "tremor_mission_push",
+      "speaker": "Tremor",
+      "category": "mission_flow",
+      "trigger": "An advance or push phase of the mission begins",
+      "futz": true,
+      "lines": [
+        "Now THIS is the good part! Forward!",
+        "You hear drums? Those are my footsteps! Let's GO!",
+        "Advance! First one there wins nothing! Go anyway!"
+      ]
+    },
+    {
+      "id": "vireo_ack_form_up",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Form Up (F1) to Vireo, early campaign",
+      "futz": true,
+      "lines": [
+        "Okay — okay, coming to you!",
+        "Forming up! Don't go too fast, please.",
+        "On my way — watch my left, someone?"
+      ]
+    },
+    {
+      "id": "vireo_ack_form_up_late",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Form Up (F1) to Vireo, late campaign, steadier",
+      "futz": true,
+      "lines": [
+        "Forming up.",
+        "Coming. Covering the rear.",
+        "On you, Lodestar."
+      ]
+    },
+    {
+      "id": "vireo_ack_attack_target",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Attack My Target (F2) to Vireo, early campaign",
+      "futz": true,
+      "lines": [
+        "That one? Okay. Okay, engaging!",
+        "Attacking — I hope this works —",
+        "Copy, firing! Sorry — firing!"
+      ]
+    },
+    {
+      "id": "vireo_ack_attack_target_late",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Attack My Target (F2) to Vireo, late campaign, steadier",
+      "futz": true,
+      "lines": [
+        "Target accepted. Engaging.",
+        "On it. Watch my tracers.",
+        "Copy. It's already dead, it just doesn't know."
+      ]
+    },
+    {
+      "id": "vireo_ack_hold_position",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Hold Position (F3) to Vireo, early campaign",
+      "futz": true,
+      "lines": [
+        "Holding! Holding here. Right here.",
+        "Copy, hold — for how long, roughly? Asking for my nerves.",
+        "Position held! I'm not moving. Definitely not."
+      ]
+    },
+    {
+      "id": "vireo_ack_move_to",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Move To (F4) to Vireo, early campaign",
+      "futz": true,
+      "lines": [
+        "Moving there — is it safe? It's not, is it.",
+        "Okay, relocating! Quickly!",
+        "Copy, moving — someone watch that ridge?"
+      ]
+    },
+    {
+      "id": "vireo_ack_move_to_late",
+      "speaker": "Vireo",
+      "category": "order_ack",
+      "trigger": "Player issues Move To (F4) to Vireo, late campaign, steadier",
+      "futz": true,
+      "lines": [
+        "Moving. Route looks clean.",
+        "Relocating now.",
+        "Copy. In transit."
+      ]
+    },
+    {
+      "id": "vireo_kill_confirm",
+      "speaker": "Vireo",
+      "category": "kill_confirm",
+      "trigger": "Vireo destroys an enemy, early campaign",
+      "futz": true,
+      "lines": [
+        "I got it! I actually — target down!",
+        "It's down! Is it down? It's down!",
+        "Kill confirmed! Oh, wow. Okay. Breathing."
+      ]
+    },
+    {
+      "id": "vireo_kill_late",
+      "speaker": "Vireo",
+      "category": "kill_confirm",
+      "trigger": "Vireo destroys an enemy, late campaign, steadier",
+      "futz": true,
+      "lines": [
+        "Target down.",
+        "Kill confirmed. Next.",
+        "That's another one for the Compact."
+      ]
+    },
+    {
+      "id": "vireo_kill_assist",
+      "speaker": "Vireo",
+      "category": "kill_confirm",
+      "trigger": "Vireo finishes off a target the player damaged",
+      "futz": true,
+      "lines": [
+        "Finished yours off! Team effort — mostly you.",
+        "Got the one you softened! Thanks for the head start!",
+        "Your target's down — I helped! A little!"
+      ]
+    },
+    {
+      "id": "vireo_taking_fire",
+      "speaker": "Vireo",
+      "category": "taking_fire",
+      "trigger": "Vireo takes incoming fire, early campaign",
+      "futz": true,
+      "lines": [
+        "Taking fire! Taking fire! Not loving it!",
+        "They're shooting at ME — why me?!",
+        "Incoming! Armor's holding — I think — it's holding!"
+      ]
+    },
+    {
+      "id": "vireo_taking_fire_late",
+      "speaker": "Vireo",
+      "category": "taking_fire",
+      "trigger": "Vireo takes incoming fire, late campaign, steadier",
+      "futz": true,
+      "lines": [
+        "Taking fire. Holding my line.",
+        "Under fire. Returning it.",
+        "They've picked me. Their mistake."
+      ]
+    },
+    {
+      "id": "vireo_low_ammo",
+      "speaker": "Vireo",
+      "category": "low_ammo",
+      "trigger": "Vireo's ammunition runs low",
+      "futz": true,
+      "lines": [
+        "Ammo's low — I counted twice — it's low!",
+        "Running out! Saving the rest for emergencies. This is an emergency, isn't it.",
+        "Low on rounds. Making each one matter. Trying to."
+      ]
+    },
+    {
+      "id": "vireo_status_ok",
+      "speaker": "Vireo",
+      "category": "fireteam_status",
+      "trigger": "Status check while Vireo is healthy, early campaign",
+      "futz": true,
+      "lines": [
+        "I'm okay! Mostly okay! Green, technically!",
+        "Still here! All limbs attached — mine and the mech's!",
+        "Status green! Heart rate... less green."
+      ]
+    },
+    {
+      "id": "vireo_status_ok_late",
+      "speaker": "Vireo",
+      "category": "fireteam_status",
+      "trigger": "Status check while Vireo is healthy, late campaign, steadier",
+      "futz": true,
+      "lines": [
+        "Green across the board.",
+        "Fully operational.",
+        "Standing and dangerous."
+      ]
+    },
+    {
+      "id": "vireo_status_damaged",
+      "speaker": "Vireo",
+      "category": "fireteam_status",
+      "trigger": "Status check while Vireo is significantly damaged",
+      "futz": true,
+      "lines": [
+        "I'm hit — armor's open on my right — managing it!",
+        "Took a bad one. Still combat capable. I checked.",
+        "Damaged but standing! Repeat, standing!"
+      ]
+    },
+    {
+      "id": "vireo_limb_loss_player",
+      "speaker": "Vireo",
+      "category": "limb_loss",
+      "trigger": "Player loses a limb while Vireo is on comms",
+      "futz": true,
+      "lines": [
+        "Lodestar! Your — okay, you're still up, you're still up!",
+        "That looked bad! Tell me what you need!",
+        "Limb's off — I'm covering your weak side!"
+      ]
+    },
+    {
+      "id": "vireo_component_loss_self",
+      "speaker": "Vireo",
+      "category": "component_loss",
+      "trigger": "Vireo loses a weapon to a critical hit",
+      "futz": true,
+      "lines": [
+        "Lost my launcher! I still have — okay, I still have one gun!",
+        "Weapon's dead! Improvising! Can you improvise in a mech?",
+        "Mount destroyed. Still fighting. It's fine. It's fine."
+      ]
+    },
+    {
+      "id": "vireo_shutdown_player",
+      "speaker": "Vireo",
+      "category": "shutdown",
+      "trigger": "Player mech shuts down in combat near Vireo",
+      "futz": true,
+      "lines": [
+        "Lodestar's dark! Somebody — okay, ME, I'm covering!",
+        "Shutdown! Standing over you — nobody gets through me! Probably!",
+        "Powered down — hold on, we've got you!"
+      ]
+    },
+    {
+      "id": "vireo_salvage",
+      "speaker": "Vireo",
+      "category": "salvage",
+      "trigger": "Post-combat salvage tally near Vireo",
+      "futz": true,
+      "lines": [
+        "That's... a lot of salvage. We did that?",
+        "The wrecks are ours! Tagging everything!",
+        "Salvage teams are going to love us!"
+      ]
+    },
+    {
+      "id": "vireo_heat_warning_player",
+      "speaker": "Vireo",
+      "category": "heat_warning",
+      "trigger": "Player mech is visibly running hot near Vireo",
+      "futz": true,
+      "lines": [
+        "Lodestar, your heat — the vents are glowing!",
+        "You're running hot! Really hot! Statistically dangerous hot!",
+        "Heat warning — yours, not mine! Please cool down!"
+      ]
+    },
+    {
+      "id": "relay_mission_objective_new",
+      "speaker": "Relay",
+      "category": "mission_flow",
+      "trigger": "A new objective is transmitted mid-mission",
+      "futz": true,
+      "lines": [
+        "New tasking on your map, Lodestar. Try to look surprised.",
+        "Objective update — marker's live. It's the big obvious one.",
+        "Fresh orders coming through. Painting it now."
+      ]
+    },
+    {
+      "id": "relay_mission_objective_complete",
+      "speaker": "Relay",
+      "category": "mission_flow",
+      "trigger": "An objective is completed and verified",
+      "futz": true,
+      "lines": [
+        "Objective complete. Confirmed and logged. Nicely done.",
+        "That's a tick in the box. Next item, coming up.",
+        "Done and verified. I'll tell the Commander you made it look easy."
+      ]
+    },
+    {
+      "id": "relay_mission_reinforcements",
+      "speaker": "Relay",
+      "category": "mission_flow",
+      "trigger": "Enemy reinforcements detected inbound",
+      "futz": true,
+      "lines": [
+        "Heads up — fresh hostiles inbound. They sound annoyed.",
+        "Reinforcements on the board. The Directorate doesn't like losing.",
+        "More contacts en route. You're popular today, Lodestar."
+      ]
+    },
+    {
+      "id": "relay_mission_extraction",
+      "speaker": "Relay",
+      "category": "mission_flow",
+      "trigger": "Extraction point becomes active",
+      "futz": true,
+      "lines": [
+        "Extraction's hot. Straight line, no sightseeing.",
+        "Ride's waiting. Recommend you be on it.",
+        "Exfil marker's up. The barge won't idle forever."
+      ]
+    },
+    {
+      "id": "relay_mission_intel",
+      "speaker": "Relay",
+      "category": "mission_flow",
+      "trigger": "Relay intercepts enemy communications mid-mission",
+      "futz": true,
+      "lines": [
+        "Intercepting their traffic — they're rattled. Good.",
+        "Enemy net's lit up about you. All complaints.",
+        "Directorate comms just changed cipher. That means you scared someone important."
+      ]
+    },
+    {
+      "id": "relay_taking_fire_ambush",
+      "speaker": "Relay",
+      "category": "taking_fire",
+      "trigger": "Hidden hostiles open fire on the fireteam",
+      "futz": true,
+      "lines": [
+        "Ambush! Contacts were masked — I see them NOW, sorry!",
+        "That's an ambush — sources marked, return the favor!",
+        "They were hiding in the clutter. Marked. Make them regret it."
+      ]
+    },
+    {
+      "id": "relay_taking_fire_air",
+      "speaker": "Relay",
+      "category": "taking_fire",
+      "trigger": "Strafing aircraft begin an attack run on the fireteam",
+      "futz": true,
+      "lines": [
+        "Air inbound! Fast movers, vector north — get under something!",
+        "Strafing run coming. Twenty seconds. Move, move!",
+        "Aircraft on attack run — break their line, don't stand in it!"
+      ]
+    },
+    {
+      "id": "relay_kill_notable",
+      "speaker": "Relay",
+      "category": "kill_confirm",
+      "trigger": "Player destroys a heavy or named enemy unit",
+      "futz": true,
+      "lines": [
+        "That was their heavy! Scratch one nightmare!",
+        "Big kill confirmed — their whole net just went quiet.",
+        "You dropped their anchor unit. The rest will wobble. Push!"
+      ]
+    },
+    {
+      "id": "relay_kill_area_clear",
+      "speaker": "Relay",
+      "category": "kill_confirm",
+      "trigger": "Last hostile in an engagement is destroyed",
+      "futz": true,
+      "lines": [
+        "Board's clear. No movers, no signals.",
+        "That's the last of them. Area's yours.",
+        "All hostiles down. Take a breath — you've earned ten seconds."
+      ]
+    },
+    {
+      "id": "relay_salvage_report",
+      "speaker": "Relay",
+      "category": "salvage",
+      "trigger": "Post-engagement salvage summary is compiled",
+      "futz": true,
+      "lines": [
+        "Salvage tally coming in — respectable haul, Lodestar.",
+        "Recovery teams dispatched. They say thanks, in advance.",
+        "Logging the wrecks. The quartermaster might actually smile."
+      ]
+    },
+    {
+      "id": "relay_salvage_prime",
+      "speaker": "Relay",
+      "category": "salvage",
+      "trigger": "Prime-condition salvage is logged",
+      "futz": true,
+      "lines": [
+        "Ooh — intact chassis. That's a payday.",
+        "Prime salvage on the board. Barely a scratch on it. Nice shooting.",
+        "That frame's nearly showroom. The techs will fight over it."
+      ]
+    },
+    {
+      "id": "relay_status_check",
+      "speaker": "Relay",
+      "category": "fireteam_status",
+      "trigger": "Periodic fireteam status query from base",
+      "futz": true,
+      "lines": [
+        "Fireteam, sound off — I want green lights only.",
+        "Status check. Short version. Alive is a good start.",
+        "Sound off, all callsigns. Make it quick, make it honest."
+      ]
+    },
+    {
+      "id": "relay_status_down",
+      "speaker": "Relay",
+      "category": "fireteam_status",
+      "trigger": "A fireteam member's telemetry feed is lost",
+      "futz": true,
+      "lines": [
+        "I lost a feed — say again, anyone — talk to me!",
+        "Telemetry's flat on one of ours. Confirm status. Please.",
+        "Signal's gone dark. Marking last position. Get eyes on them."
+      ]
+    },
+    {
+      "id": "relay_low_ammo",
+      "speaker": "Relay",
+      "category": "low_ammo",
+      "trigger": "Player hits critical ammunition levels and Relay is monitoring",
+      "futz": true,
+      "lines": [
+        "Ammo state noted. No resupply out there, so choose your arguments carefully.",
+        "Copy low ammo. Nearest reload is at base, which is not near.",
+        "You're light on shells. Lasers still work — heat's your problem now."
+      ]
+    },
+    {
+      "id": "ekene_mission_reminder",
+      "speaker": "Ekene",
+      "category": "mission_flow",
+      "trigger": "Player idles or strays from the objective for an extended time",
+      "futz": true,
+      "lines": [
+        "Lodestar. The objective isn't coming to you.",
+        "Clock's running. Get back on the mission.",
+        "Wander later. Fight now."
+      ]
+    },
+    {
+      "id": "ekene_mission_complete",
+      "speaker": "Ekene",
+      "category": "mission_flow",
+      "trigger": "Primary objectives complete, Ekene closes the mission",
+      "futz": true,
+      "lines": [
+        "That's the mission. Good work, all of you. Come home.",
+        "Objectives complete. Every one of these matters. Well done.",
+        "Clean and done. The Compact owes you one more."
+      ]
+    },
+    {
+      "id": "ekene_mission_hold",
+      "speaker": "Ekene",
+      "category": "mission_flow",
+      "trigger": "A defense or hold phase begins",
+      "futz": true,
+      "lines": [
+        "Hold this ground. It's ours as long as you stand on it.",
+        "They will come hard. Stand harder.",
+        "Nobody gives an inch without my say. Understood?"
+      ]
+    },
+    {
+      "id": "ekene_kill_confirm",
+      "speaker": "Ekene",
+      "category": "kill_confirm",
+      "trigger": "Player scores a notable kill while Ekene is on comms",
+      "futz": true,
+      "lines": [
+        "Good kill, Lodestar. Keep that discipline.",
+        "Confirmed. That's how the Compact fights.",
+        "One less gun pointed at our people."
+      ]
+    },
+    {
+      "id": "ekene_taking_fire",
+      "speaker": "Ekene",
+      "category": "taking_fire",
+      "trigger": "Player takes heavy sustained damage while Ekene is on comms",
+      "futz": true,
+      "lines": [
+        "Steady, Lodestar. Armor's doing its job. Let it.",
+        "You're taking hits. Move your feet — don't trade standing still.",
+        "Break their angle. Make them work for you."
+      ]
+    },
+    {
+      "id": "ekene_status_down",
+      "speaker": "Ekene",
+      "category": "fireteam_status",
+      "trigger": "A fireteam member is lost while Ekene commands",
+      "futz": true,
+      "lines": [
+        "We lost one. Grieve later. Fight now.",
+        "They're down. Hold the line — we don't waste what they paid for.",
+        "Mark the position. We bring our people home. After."
+      ]
+    },
+    {
+      "id": "ekene_status_rally",
+      "speaker": "Ekene",
+      "category": "fireteam_status",
+      "trigger": "Fireteam is heavily damaged and morale needs steadying",
+      "futz": true,
+      "lines": [
+        "You're hurt, not beaten. There's a difference. Show them.",
+        "Tighten up. We've walked out of worse.",
+        "Look after each other. That's the whole doctrine."
+      ]
+    },
+    {
+      "id": "ekene_limb_loss_player",
+      "speaker": "Ekene",
+      "category": "limb_loss",
+      "trigger": "Player loses a limb while Ekene is on comms",
+      "futz": true,
+      "lines": [
+        "You lost the limb, not the fight. Adjust and keep on.",
+        "Still standing? Then you're still fighting.",
+        "That mech can lose parts. You can't. Fight smart."
+      ]
+    },
+    {
+      "id": "ekene_heat_warning",
+      "speaker": "Ekene",
+      "category": "heat_warning",
+      "trigger": "Player rides the redline repeatedly in one engagement",
+      "futz": true,
+      "lines": [
+        "Watch your heat. Dead heroes shut down first.",
+        "Discipline, Lodestar. Cool mech, cool head.",
+        "Ease the triggers. The war's long."
+      ]
+    },
+    {
+      "id": "ekene_low_ammo",
+      "speaker": "Ekene",
+      "category": "low_ammo",
+      "trigger": "Player reports critically low ammunition to command",
+      "futz": true,
+      "lines": [
+        "Low ammo. Every shot's a decision now. Make good ones.",
+        "Count your rounds like they're people. Spend them the same way.",
+        "Dry guns win nothing. Conserve."
+      ]
+    },
+    {
+      "id": "ekene_salvage",
+      "speaker": "Ekene",
+      "category": "salvage",
+      "trigger": "A strong salvage haul is logged after an engagement",
+      "futz": true,
+      "lines": [
+        "Good salvage. Every wreck feeds the Compact.",
+        "That's armor for our next recruit. Well fought.",
+        "We build our army from theirs. Remember that."
+      ]
+    },
+    {
+      "id": "ekene_shutdown_player",
+      "speaker": "Ekene",
+      "category": "shutdown",
+      "trigger": "Player mech shuts down in combat while Ekene commands",
+      "futz": true,
+      "lines": [
+        "Lodestar's dark — fireteam, cover them! Nobody dies today.",
+        "Shutdown on Lodestar. Close ranks. Buy the restart.",
+        "Hold your nerve, Lodestar. We hold the ground."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "m23_the_long_climb",
+  "index": 23,
+  "op": 7,
+  "opName": "Spire Anchor",
+  "name": "The Long Climb",
+  "branch": "shared",
+  "branchVariants": {
+    "a": "Directorate orbital fire hammers the lower terraces until the defense grid falls — the grid uplinks his fire control, so killing it silences the sky mid-mission. The escape climber is crippled and winched down intact: Compact troops arrest Kryce on the gantry while Commander Ekene reads the Assembly's warrant over an open channel. Ends in grim daylight triumph.",
+    "b": "Compact orbital guns supported the approach but must fall silent above terrace one — danger-close geometry against the tether — so the climb is fought without the sky it paid for. The climber is destroyed fleeing; Kryce dies falling past the terraces, and no one on comms celebrates. Ends quieter, with the fireteam naming absent friends."
+  },
+  "biome": "spire_anchor",
+  "weather": "stormwall rising; wind shear across the terraces",
+  "timeOfDay": "storm-dark day",
+  "designIntent": "Fight up the Anchor's nine terraces to destroy the tether defense grid and stop Director Kryce's escape climber — the Directorate's head cut from its body before the final duel.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "This is the climb. The Anchor rises in nine terraces from the plate to the low cloud deck, and every one of them is a fortress: gun galleries, mech bays, the tether defense grid woven through the top three. Two jobs going up. First: the grid — kill its four control nodes, or nothing we own can ever approach the tether. Second: Kryce. His personal climber is prepped on the terrace-eight gantry, and the moment we bite into the lower levels he will run for it, because men like him always have a ship waiting. He does not get to leave. The Assembly wants him answering for eighteen months of Veyra in a courtroom, and I want that too — but between a courtroom and a getaway, you close your hand, Lodestar. The fireteam climbs with you the whole way. Watch the wind shear past terrace five, watch your footing on the galleries. It's a long way up. It's been a long way up since Breaker Coast. One more climb."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Terrace by Terrace", "description": "Fight up the Anchor terraces to the tether grid levels at terrace six.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "The Defense Grid", "description": "Destroy the four tether defense grid control nodes on terraces six through eight.", "optional": false },
+    { "id": "obj_3", "type": "destroy", "title": "Kryce's Climber", "description": "Disable or destroy the escape climber before it reaches the cloud deck.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "The Mech Bays", "description": "Destroy the terrace mech bays before they cycle fresh reinforcements onto the galleries.", "optional": true }
+  ],
+  "enemyForces": [
+    "Terrace gun galleries and pop-up turret belts on every level",
+    "Garrison mech lances cycling from the terrace bays: Gabbro, Basalt, and Dolerite mixes",
+    "Kryce's guard Batholiths — the final pair — holding the terrace-eight gantry",
+    "The tether defense grid: four hardened control nodes with point-defense",
+    "Branch a only: Directorate orbital fire until the grid falls; branch b only: hardened remnant loyalists fighting without sky cover"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The climb itself: nine terraces, each revealing the plain further below through the stormwall",
+    "Wind shear on the upper galleries staggers mechs mid-stride",
+    "Kryce's climber begins its ascent in real time once terrace seven falls — a visible countdown crawling up the tether",
+    "Branch a: the climber is crippled and winched back down; Compact troops walk Kryce out under warrant as Ekene reads the arrest",
+    "Branch b: the climber is shot from the gantry and falls burning past eight terraces of the army he abandoned",
+    "Marshal Sol's Craton-X is glimpsed motionless on the anchor plate far below as the mission ends — waiting"
+  ],
+  "failConditions": [
+    "Kryce's climber reaches the cloud deck",
+    "The tether defense grid is still active when the assault window closes",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "The terrace bays are an arsenal: bay-killed mechs are denied to the enemy, and bay-captured stock (optional objective) fills the Assembly Bay's stores before the finale. The guard Batholiths, legged on the gantry, are the last great salvage of the war. The climber yields nothing in either branch — one is evidence, one is ash.",
+  "musicSet": {
+    "ambient": "spire_anchor",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_climber_launch_alarm_ostinato", "cue_kryce_taken_resolution", "cue_sol_reveal_silence"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "Nine terraces. Grid nodes on six, seven, and eight. And a coward's ship warming up at the top. Climb well.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Tremor", "line": "Terrace one is OURS! Eight to go — best view I've ever bled for!", "futz": true },
+    { "trigger": "on_wind_shear", "speaker": "CAIRN", "line": "Wind shear exceeding gyro tolerance on the open galleries. Cross between gusts. I will call the rhythm.", "futz": false },
+    { "trigger": "on_grid_node_destroyed", "speaker": "Sable", "line": "Node down. Grid's limping.", "futz": true },
+    { "trigger": "on_grid_down_branch_a", "speaker": "Ekene", "line": "Grid's dead — and listen. Listen. His guns just went silent. The sky is nobody's now. Finish the climb.", "futz": true },
+    { "trigger": "on_grid_down_branch_b", "speaker": "Relay", "line": "Grid's dead. Tether's naked. All units, upward — for everyone who isn't here to see this.", "futz": true },
+    { "trigger": "on_climber_launch", "speaker": "Kryce", "line": "Gentlemen, adjust the manifest: departing early. Marshal — the Anchor is yours. Do try to make the ending dignified.", "futz": true },
+    { "trigger": "on_climber_launch_2", "speaker": "Relay", "line": "Climber's moving! Terrace eight, the gantry — he does NOT reach the clouds, Lodestar!", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "CAIRN", "line": "Guard Batholiths deploying on the gantry. His last two. They do not intend to survive this. Oblige them carefully.", "futz": false },
+    { "trigger": "on_kryce_stopped_branch_a", "speaker": "Ekene", "line": "Director Halden Kryce. By warrant of the restored Veyran Assembly, you are under arrest for the occupation and plunder of this world. Walk, or be carried. It's more than you gave us.", "futz": true },
+    { "trigger": "on_kryce_stopped_branch_b", "speaker": "Vireo", "line": "Climber's down. He's... it's over. Eighteen months. I thought it would feel bigger than this. Why doesn't it feel bigger?", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Damage critical. The summit will still be there after repairs. Kryce, however, will not wait. Your judgment, Lodestar.", "futz": false },
+    { "trigger": "on_sol_reveal", "speaker": "CAIRN", "line": "Contact on the anchor plate, far below. Single mech. Craton-class, prototype lattice. It is not moving. It is watching us, Lodestar.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Terraces secure. The Directorate is done — its Director is done. One machine stands between us and the tether. Marshal Edrik Sol. Tomorrow, the anchor plate. Rest. You've earned tonight.", "futz": true }
+  ]
+}

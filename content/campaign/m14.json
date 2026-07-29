@@ -1,0 +1,102 @@
+{
+  "id": "m14",
+  "designFile": "m14_the_mag_line",
+  "stage": 14,
+  "title": "THE MAG-LINE",
+  "map": "polar",
+  "spawn": { "x": -440, "z": 420, "yaw": 2.27 },
+  "playerMech": "basalt",
+  "heatMult": 1.1,
+  "extract": [220, -510],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-410, 390] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-470, 380] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-400, 460] }
+  ],
+  "structures": [
+    { "id": "escort_car_aster", "name": "Escort Car Aster", "kind": "crawler", "pos": [-40, 160], "hp": 110 },
+    { "id": "escort_car_bryn", "name": "Escort Car Bryn", "kind": "crawler", "pos": [180, -40], "hp": 110 },
+    { "id": "armored_engine", "name": "Armored Engine", "kind": "crawler", "pos": [400, -240], "hp": 120 },
+    { "id": "command_car", "name": "Command Car", "kind": "crawler", "pos": [250, -480], "hp": 120 },
+    { "id": "relief_locomotive", "name": "Relief Locomotive", "kind": "crawler", "pos": [-160, -380], "hp": 120 }
+  ],
+  "timedVO": [
+    { "atSec": 240, "trigger": "on_overheat_warning" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "BEAT THE TIMETABLE",
+      "sub": "Reach the Teviq viaduct ambush position before the train arrives.",
+      "at": [-300, 80],
+      "radius": 45,
+      "vo": "on_deploy",
+      "doneVO": "on_objective:obj_1"
+    },
+    {
+      "kind": "destroy",
+      "title": "KILL THE ESCORT",
+      "sub": "Destroy both escort cars and clear the hover skiff screen.",
+      "targets": ["escort_car_aster", "escort_car_bryn"],
+      "killAll": true,
+      "vo": "on_train_arrival",
+      "spawns": [
+        { "def": "pumice", "pos": [-20, 20], "alerted": true, "name": "Hover Skiff Screen" },
+        { "def": "pumice", "pos": [150, 90], "alerted": true, "name": "Hover Skiff Screen" },
+        { "def": "pumice", "pos": [240, -140], "alerted": true, "name": "Hover Skiff Screen" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "CRIPPLE THE ENGINE",
+      "sub": "Disable the armored engine to trap the train on the span.",
+      "targets": ["armored_engine"],
+      "killAll": false,
+      "vo": "on_enemy_wave",
+      "doneVO": "on_objective:obj_3",
+      "spawns": [
+        { "def": "gabbro", "pos": [330, -160], "alerted": true, "name": "Flatbed Gabbro", "yieldFrac": 0.3 },
+        { "def": "gabbro", "pos": [460, -320], "alerted": true, "name": "Flatbed Gabbro", "yieldFrac": 0.3 }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "BREACH THE COMMAND CAR",
+      "sub": "Protect the command car while Relay pulls the prisoner manifest.",
+      "protect": "command_car",
+      "seconds": 75,
+      "waveGap": 25,
+      "vo": "on_rauk_speech",
+      "doneVO": "on_objective:obj_4",
+      "waves": [
+        [
+          { "def": "halite", "pos": [420, -200], "alerted": true, "name": "Ferric QRA" },
+          { "def": "halite", "pos": [60, -300], "alerted": true, "name": "Ferric QRA" }
+        ],
+        [
+          { "def": "halite", "pos": [500, -420], "alerted": true, "name": "Ferric QRA" },
+          { "def": "chert", "pos": [0, -480], "alerted": true, "name": "Ferric QRA" }
+        ]
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "STRAND THE LINE",
+      "sub": "Destroy the relief locomotive before it tows the wreck clear.",
+      "targets": ["relief_locomotive"],
+      "killAll": false,
+      "vo": "on_rauk_escape",
+      "doneVO": "on_complete_2",
+      "spawns": [
+        { "def": "chert", "pos": [-260, -300], "alerted": true, "name": "Turret Car Escort" },
+        { "def": "chert", "pos": [-60, -460], "alerted": true, "name": "Turret Car Escort" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach the extraction point.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

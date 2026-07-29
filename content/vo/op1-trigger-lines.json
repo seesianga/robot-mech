@@ -1,0 +1,649 @@
+{
+  "missions": [
+    {
+      "missionId": "m01_cold_ignition",
+      "cues": [
+        {
+          "trigger": "Mission start — player view fades in on the impound gantry at night",
+          "speaker": "Relay",
+          "line": "There she is, Lodestar. Skarn-class, thirty-five tons, mothballed under a tarp and two years of gull mess. The Directorate impounded her — tonight we un-impound her.",
+          "futz": true
+        },
+        {
+          "trigger": "Opening beat — Ekene sets the stakes",
+          "speaker": "Ekene",
+          "line": "Listen well. The Compact has exactly no mechs. In ten minutes we'll have one. Everything we do after tonight starts with you reaching that cockpit.",
+          "futz": true
+        },
+        {
+          "trigger": "Player approaches the Skarn's boarding ladder",
+          "speaker": "Relay",
+          "line": "Gantry patrols cycle every four minutes. Climb quiet — quiet-ish. It's a ten-meter ladder, do your best.",
+          "futz": true
+        },
+        {
+          "trigger": "Player enters the cockpit",
+          "speaker": "Relay",
+          "line": "You're in. Master bus is on your left — the big ugly lever. The Directorate never changed the locks. Cheap of them. Lucky for us.",
+          "futz": true
+        },
+        {
+          "trigger": "Cold-start sequence begins, systems flickering awake",
+          "speaker": "CAIRN",
+          "line": "Unregistered pilot. Authorization matrix... absent. Overriding. Welcome aboard.",
+          "futz": false
+        },
+        {
+          "trigger": "Reactor catches — full startup litany plays",
+          "speaker": "CAIRN",
+          "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.",
+          "futz": false
+        },
+        {
+          "trigger": "Immediately after the startup litany",
+          "speaker": "Ekene",
+          "line": "Hear that hum? That's the sound of the Compact getting back up off its knees. Now walk her out.",
+          "futz": true
+        },
+        {
+          "trigger": "Throttle tutorial prompt appears",
+          "speaker": "Relay",
+          "line": "Throttle up gently. This is thirty-five tons of borrowed mech; the ground takes payment in vibration.",
+          "futz": true
+        },
+        {
+          "trigger": "Player takes their first steps out of the gantry cradle",
+          "speaker": "Relay",
+          "line": "And she walks! Every seismograph on the coast just noticed. Keep moving.",
+          "futz": true
+        },
+        {
+          "trigger": "Leg-steering tutorial prompt appears",
+          "speaker": "CAIRN",
+          "line": "Leg steering active. Your torso aims independently of your feet. This distinction will save your life.",
+          "futz": false
+        },
+        {
+          "trigger": "Torso-twist tutorial prompt appears",
+          "speaker": "Ekene",
+          "line": "Legs take you where you're going. Torso points where you're killing. Learn to walk one way and watch another.",
+          "futz": true
+        },
+        {
+          "trigger": "Player recenters torso with C for the first time",
+          "speaker": "CAIRN",
+          "line": "Torso recentered. Use this after checking your flanks. Disorientation kills more pilots than lasers.",
+          "futz": false
+        },
+        {
+          "trigger": "Player reaches the yard's perimeter gate",
+          "speaker": "Relay",
+          "line": "Straight through the gate — don't be gentle, it's their gate.",
+          "futz": true
+        },
+        {
+          "trigger": "Yard-wide alarm triggers after the gate falls",
+          "speaker": "Relay",
+          "line": "Aaand that's the alarm. Yard security waking up. Drones first — they're cheap and they know it.",
+          "futz": true
+        },
+        {
+          "trigger": "First drone contacts appear on radar",
+          "speaker": "Ekene",
+          "line": "Weapons free, Lodestar. First fight in a Compact mech. Make it a lesson — for them.",
+          "futz": true
+        },
+        {
+          "trigger": "Weapon-groups tutorial prompt appears",
+          "speaker": "CAIRN",
+          "line": "Weapon groups configured. Group one: autocannon. Group two: laser. Group three: rockets. Fire what the moment asks for.",
+          "futz": false
+        },
+        {
+          "trigger": "First drone destroyed",
+          "speaker": "Relay",
+          "line": "Drone down! You've officially cost the Directorate money. Feels good, doesn't it.",
+          "futz": true
+        },
+        {
+          "trigger": "Player's first kill of the mission, any target",
+          "speaker": "Ekene",
+          "line": "Good. Clean and calm. That's how we'll take this whole planet back.",
+          "futz": true
+        },
+        {
+          "trigger": "New objective — destroy the yard tracking mast",
+          "speaker": "Relay",
+          "line": "Priority target's up: the yard's tracking mast. That thing logs every hull that moves on Breaker Coast. It dies tonight or we never move again.",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene reinforces the mast objective",
+          "speaker": "Ekene",
+          "line": "As long as that mast stands, the Directorate sees every barge, skiff, and mech we'll ever launch. Bring it down and we go dark to them.",
+          "futz": true
+        },
+        {
+          "trigger": "Player passes the yard loudspeakers halfway to the mast",
+          "speaker": "Kryce",
+          "line": "Citizens of the coast: curfew remains in effect for your safety. The Directorate thanks you for your continued cooperation.",
+          "futz": true
+        },
+        {
+          "trigger": "Security mech powers up near the mast",
+          "speaker": "Relay",
+          "line": "Contact — light mech at the mast, powering up. Yard security actually earning their pay for once.",
+          "futz": true
+        },
+        {
+          "trigger": "Target-lock tutorial prompt appears",
+          "speaker": "CAIRN",
+          "line": "Target designated. Locked contacts display range, heading, and damage state. Knowledge first. Then violence.",
+          "futz": false
+        },
+        {
+          "trigger": "Player takes significant fire for the first time",
+          "speaker": "Ekene",
+          "line": "You're hit — that's what armor's for. Keep your feet moving and your torso on them.",
+          "futz": true
+        },
+        {
+          "trigger": "Player heat rises above 60% for the first time",
+          "speaker": "CAIRN",
+          "line": "Heat climbing. A full lesson awaits you later. For now: pause between volleys.",
+          "futz": false
+        },
+        {
+          "trigger": "Security mech destroyed",
+          "speaker": "Relay",
+          "line": "Mech down! First mech kill for the Free Veyran Compact. I'm noting the date.",
+          "futz": true
+        },
+        {
+          "trigger": "Tracking mast enters visual range",
+          "speaker": "Relay",
+          "line": "There's your mast — the tall lattice with the dish cluster. Subtle, right? Put everything into the base.",
+          "futz": true
+        },
+        {
+          "trigger": "Tracking mast at 50% integrity",
+          "speaker": "CAIRN",
+          "line": "Structural failure progressing. Continue fire.",
+          "futz": false
+        },
+        {
+          "trigger": "Tracking mast destroyed",
+          "speaker": "Relay",
+          "line": "Mast is DOWN — repeat, down! Their whole coastal picture just went white. Beautiful static everywhere!",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene reacts to the mast falling",
+          "speaker": "Ekene",
+          "line": "That's the Directorate blind on Breaker Coast. Now they know we exist. Let's make sure they regret learning it.",
+          "futz": true
+        },
+        {
+          "trigger": "Exfiltration objective becomes active",
+          "speaker": "Relay",
+          "line": "Exfil marker's live — the old slipway road. Reinforcements are inbound from the depot, so jog.",
+          "futz": true
+        },
+        {
+          "trigger": "Directorate hover skiffs spotted during exfiltration",
+          "speaker": "Relay",
+          "line": "Two hover skiffs sweeping the shore road. Avoid or delete — pilot's choice.",
+          "futz": true
+        },
+        {
+          "trigger": "Player strays far off the exfiltration route",
+          "speaker": "Relay",
+          "line": "Scenic route's mined, by the way. Marker. Follow it. Please.",
+          "futz": true
+        },
+        {
+          "trigger": "Player reaches the exfiltration point",
+          "speaker": "Ekene",
+          "line": "You made it. One stolen Skarn, one blind enemy, zero Compact losses. Best night this coast has had in eighteen months.",
+          "futz": true
+        },
+        {
+          "trigger": "Mission complete — screen begins to fade",
+          "speaker": "CAIRN",
+          "line": "Mission log recorded. Chassis registry updated: property of the Free Veyran Compact. I find the new designation agreeable.",
+          "futz": false
+        }
+      ]
+    },
+    {
+      "missionId": "m02_tide_tables",
+      "cues": [
+        {
+          "trigger": "Mission start — pre-dawn among the beached hull carcasses, startup litany",
+          "speaker": "CAIRN",
+          "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.",
+          "futz": false
+        },
+        {
+          "trigger": "Opening brief after the litany",
+          "speaker": "Relay",
+          "line": "Tide's out for six hours — the flats are open and the wrecks give cover. A Directorate patrol runs the causeway at dawn like clockwork. We're the clock breaking.",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene frames the ambush doctrine",
+          "speaker": "Ekene",
+          "line": "This is an ambush, Lodestar. Ambushes are patience with a trigger. Get in position and become part of the scenery.",
+          "futz": true
+        },
+        {
+          "trigger": "Player moves between the beached hulls",
+          "speaker": "Relay",
+          "line": "These hulls were ships my grandfather broke for a living. Now they're cover. The coast provides.",
+          "futz": true
+        },
+        {
+          "trigger": "Player reaches the marked ambush position",
+          "speaker": "Ekene",
+          "line": "Good position. Power to minimum, torso on the causeway, and wait. They'll come to us.",
+          "futz": true
+        },
+        {
+          "trigger": "Patrol column appears on the causeway",
+          "speaker": "Relay",
+          "line": "Contacts — patrol column, three vehicles and a light mech escort, right on schedule. Directorate punctuality: their one virtue.",
+          "futz": true
+        },
+        {
+          "trigger": "Patrol nears the kill zone while the player holds fire",
+          "speaker": "Ekene",
+          "line": "Not yet. Let them get fat and comfortable in the kill zone.",
+          "futz": true
+        },
+        {
+          "trigger": "Conditional — player opens fire before the order",
+          "speaker": "Ekene",
+          "line": "Early! Fine — no plan survives. Hit them hard before they spread!",
+          "futz": true
+        },
+        {
+          "trigger": "Ambush is sprung on Ekene's command",
+          "speaker": "Ekene",
+          "line": "NOW, Lodestar! All guns!",
+          "futz": true
+        },
+        {
+          "trigger": "First sustained volley — heat tutorial begins",
+          "speaker": "CAIRN",
+          "line": "Observe your heat gauge. Every weapon deposits heat; your sinks drain it. Fire in rhythm, not in panic.",
+          "futz": false
+        },
+        {
+          "trigger": "Player heat exceeds 75% for the first time this mission",
+          "speaker": "CAIRN",
+          "line": "Heat at three quarters. This is the discipline the Commander mentioned.",
+          "futz": false
+        },
+        {
+          "trigger": "Ekene reinforces heat discipline mid-fight",
+          "speaker": "Ekene",
+          "line": "Watch that gauge like it's your pulse. Because it is.",
+          "futz": true
+        },
+        {
+          "trigger": "Subtargeting tutorial unlocks",
+          "speaker": "CAIRN",
+          "line": "Subtargeting online. Cycle components: weapons, legs, cockpit. Aim at what you want them to lose.",
+          "futz": false
+        },
+        {
+          "trigger": "Player subtargets an enemy leg for the first time",
+          "speaker": "Ekene",
+          "line": "Good — take the legs. A mech on the ground is a mech in our workshop tomorrow.",
+          "futz": true
+        },
+        {
+          "trigger": "First enemy component destroyed via subtargeting",
+          "speaker": "CAIRN",
+          "line": "Component destroyed. Precision is economy.",
+          "futz": false
+        },
+        {
+          "trigger": "First enemy mech killed by legging",
+          "speaker": "Ekene",
+          "line": "That's a salvage kill, Lodestar. Legged and helpless. The Compact thanks you twice.",
+          "futz": true
+        },
+        {
+          "trigger": "Patrol escort mech destroyed",
+          "speaker": "Relay",
+          "line": "Escort's down! The column's got no teeth now.",
+          "futz": true
+        },
+        {
+          "trigger": "All first-patrol hostiles destroyed",
+          "speaker": "Relay",
+          "line": "Causeway's clear. Nice ambush, everyone. Textbook — if we had textbooks.",
+          "futz": true
+        },
+        {
+          "trigger": "Salvage tutorial begins over the fresh wrecks",
+          "speaker": "Relay",
+          "line": "Now the good part. Walk to a wreck and tag it — recovery crews do the rest. Kill condition sets the yield: legged and headshot pay best, ammo explosions pay in confetti.",
+          "futz": true
+        },
+        {
+          "trigger": "Player tags their first wreck",
+          "speaker": "CAIRN",
+          "line": "Salvage tagged. Recovery yield: substantial. Your kill method preserved the chassis.",
+          "futz": false
+        },
+        {
+          "trigger": "Ekene delivers the salvage-economy beat",
+          "speaker": "Ekene",
+          "line": "Everything we shoot, we own — if we shoot it right. This war will be won in the workshop as much as the field.",
+          "futz": true
+        },
+        {
+          "trigger": "Unplanned second patrol detected inbound",
+          "speaker": "Relay",
+          "line": "Ah. Problem. Second patrol inbound, off-schedule — someone missed a check-in. No ambush this time; they know something's wrong.",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene resets the plan for a straight fight",
+          "speaker": "Ekene",
+          "line": "Straight fight, then. Use the wrecks, watch your heat, and pick them apart piece by piece.",
+          "futz": true
+        },
+        {
+          "trigger": "Second patrol opens fire into the hulks",
+          "speaker": "Relay",
+          "line": "They're shooting at shadows in the hulls. Be a shadow with an autocannon.",
+          "futz": true
+        },
+        {
+          "trigger": "Conditional — player heat hits redline during the second fight",
+          "speaker": "CAIRN",
+          "line": "Redline. Shutdown imminent. This is the lesson, Lodestar.",
+          "futz": false
+        },
+        {
+          "trigger": "Conditional — player shuts down mid-fight",
+          "speaker": "Ekene",
+          "line": "Lodestar's dark! It happens to everyone once. Survive it and it never happens again.",
+          "futz": true
+        },
+        {
+          "trigger": "Conditional — player restarts after the shutdown",
+          "speaker": "CAIRN",
+          "line": "Restart complete. Consider what the gauge was telling you.",
+          "futz": false
+        },
+        {
+          "trigger": "Tide timer begins — water returning across the flats",
+          "speaker": "Relay",
+          "line": "Tide's turning — water's coming back over the flats. Fights slow, mechs sink. Finish this before we all learn to swim.",
+          "futz": true
+        },
+        {
+          "trigger": "Rising water reaches the player's position",
+          "speaker": "CAIRN",
+          "line": "Water at knee actuators. Footing degraded. Mind your stride.",
+          "futz": false
+        },
+        {
+          "trigger": "Last second-patrol enemy destroyed",
+          "speaker": "Relay",
+          "line": "Clear! All hostiles down, and the tide can have what's left.",
+          "futz": true
+        },
+        {
+          "trigger": "Final salvage sweep before the water covers the wrecks",
+          "speaker": "Relay",
+          "line": "Tag what you can before it drowns — the quartermaster says every tonne counts, and he counts loudly.",
+          "futz": true
+        },
+        {
+          "trigger": "Optional — player tags every available wreck",
+          "speaker": "Ekene",
+          "line": "Full sweep. Outstanding. That's next month's armor lying on that beach.",
+          "futz": true
+        },
+        {
+          "trigger": "Mission complete",
+          "speaker": "Ekene",
+          "line": "Two patrols gone and the Directorate still doesn't know our faces. Next we get our people off this coast. Rest — tomorrow we go loud.",
+          "futz": true
+        },
+        {
+          "trigger": "Mission end log as the screen fades",
+          "speaker": "CAIRN",
+          "line": "Mission log recorded. Salvage manifest transmitted. The arithmetic of this war has improved.",
+          "futz": false
+        }
+      ]
+    },
+    {
+      "missionId": "m03_loud_exit",
+      "cues": [
+        {
+          "trigger": "Mission start — dawn at the slipway, startup litany",
+          "speaker": "CAIRN",
+          "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.",
+          "futz": false
+        },
+        {
+          "trigger": "Opening brief — Ekene sets the stakes",
+          "speaker": "Ekene",
+          "line": "Everything the Compact owns is on that dropbarge — people, parts, and the future. It launches in twelve minutes. Nothing crosses that slipway until it's gone.",
+          "futz": true
+        },
+        {
+          "trigger": "Launch clock goes live",
+          "speaker": "Relay",
+          "line": "Launch clock is running. Twelve minutes of fuel, pumps, and prayer. The Directorate will hear the engines the second they light.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable is introduced to the fireteam",
+          "speaker": "Ekene",
+          "line": "You're not alone today. Riva Chen, callsign Sable — best long gun on the coast. Sable, meet Lodestar.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable's first words on the net",
+          "speaker": "Sable",
+          "line": "Copy. I'm on the crane. Won't miss.",
+          "futz": true
+        },
+        {
+          "trigger": "Fireteam command tutorial begins",
+          "speaker": "CAIRN",
+          "line": "Fireteam uplink active. Command rose: form up, attack my target, hold position, move to. Your squad extends your reach. Use them.",
+          "futz": false
+        },
+        {
+          "trigger": "Tutorial — player prompted to issue Attack My Target",
+          "speaker": "Ekene",
+          "line": "Try it now — designate a target and pass it to Sable. Command is a weapon. Learn its trigger.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable acknowledges the player's first order",
+          "speaker": "Sable",
+          "line": "Marked. Watch.",
+          "futz": true
+        },
+        {
+          "trigger": "First wave enters through the north yard gate",
+          "speaker": "Relay",
+          "line": "Contacts! Infantry carriers and drones through the north gate — they got here fast. First wave's the probe; don't waste ammo showing off.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable's first kill — a long-range cockpit shot",
+          "speaker": "Relay",
+          "line": "Did — did everyone see that? Four hundred meters, through the visor slit. I'm suddenly very glad she's on our side.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable comments on her own shot",
+          "speaker": "Sable",
+          "line": "One.",
+          "futz": true
+        },
+        {
+          "trigger": "First wave cleared",
+          "speaker": "Relay",
+          "line": "Wave one's done. Barge is at a quarter charge. They'll come heavier next.",
+          "futz": true
+        },
+        {
+          "trigger": "Dropbarge status reaches 25%",
+          "speaker": "Relay",
+          "line": "Pumps at twenty-five percent. The engineers say stop letting things explode near the fuel lines. Direct quote.",
+          "futz": true
+        },
+        {
+          "trigger": "First gun skiff appears offshore",
+          "speaker": "Relay",
+          "line": "Gun skiff off the point — it can shell the slipway from the water! That's a priority, Lodestar!",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene emphasizes the skiff threat",
+          "speaker": "Ekene",
+          "line": "That skiff outranges everything the barge has. Kill it or the launch dies at the dock.",
+          "futz": true
+        },
+        {
+          "trigger": "Player engages the first gun skiff",
+          "speaker": "CAIRN",
+          "line": "Hover skiff: light hull, heavy gun. Lead your ballistic fire. It will not stand still.",
+          "futz": false
+        },
+        {
+          "trigger": "First gun skiff destroyed",
+          "speaker": "Relay",
+          "line": "Skiff's swimming — poorly! Splash one!",
+          "futz": true
+        },
+        {
+          "trigger": "Second wave — light mechs advance up the beach road",
+          "speaker": "Relay",
+          "line": "Second wave: two light mechs coming up the beach road. They've stopped probing. This is the real push.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable calls target splits for the second wave",
+          "speaker": "Sable",
+          "line": "Left one's mine. Yours has the rockets.",
+          "futz": true
+        },
+        {
+          "trigger": "Player heat runs high mid-battle",
+          "speaker": "CAIRN",
+          "line": "Heat elevated. The barge needs you functional more than it needs you furious.",
+          "futz": false
+        },
+        {
+          "trigger": "Dropbarge status reaches 50%",
+          "speaker": "Relay",
+          "line": "Halfway! Fuel's flowing, everything's fine, nothing is on fire that shouldn't be.",
+          "futz": true
+        },
+        {
+          "trigger": "Dropbarge takes a direct artillery hit",
+          "speaker": "Relay",
+          "line": "The barge is HIT — hull's holding, but another one like that and we're walking to orbit!",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene steadies the defense after the barge is hit",
+          "speaker": "Ekene",
+          "line": "Eyes out, not back. Protect the water line and the gate, and that barge will finish its own countdown.",
+          "futz": true
+        },
+        {
+          "trigger": "Second wave cleared",
+          "speaker": "Ekene",
+          "line": "Second wave broken. Good shooting, both of you.",
+          "futz": true
+        },
+        {
+          "trigger": "Second gun skiff appears on the southern approach",
+          "speaker": "Relay",
+          "line": "Second skiff, southern approach — they learn! Same job, Lodestar!",
+          "futz": true
+        },
+        {
+          "trigger": "Second gun skiff destroyed",
+          "speaker": "Ekene",
+          "line": "Skiff down. The water's ours. Now hold the land.",
+          "futz": true
+        },
+        {
+          "trigger": "Dropbarge status reaches 75%",
+          "speaker": "Relay",
+          "line": "Seventy-five percent. Engines warming. It's starting to sound like a launch out there.",
+          "futz": true
+        },
+        {
+          "trigger": "Final wave — Halite-class heavy brawler on the mole",
+          "speaker": "Relay",
+          "line": "Big contact — Halite-class brawler on the mole, with friends. Forty-five tons of bad news. Wave three is everything they've got left.",
+          "futz": true
+        },
+        {
+          "trigger": "Sable coordinates against the Halite",
+          "speaker": "Sable",
+          "line": "I'll take its knee. You take everything else.",
+          "futz": true
+        },
+        {
+          "trigger": "Halite-class heavy destroyed",
+          "speaker": "Ekene",
+          "line": "Heavy's down! That's the last iron they had on this coast!",
+          "futz": true
+        },
+        {
+          "trigger": "Launch countdown begins — thirty seconds",
+          "speaker": "Relay",
+          "line": "Launch sequence! Thirty seconds! Clear the blast radius unless you enjoy being weather!",
+          "futz": true
+        },
+        {
+          "trigger": "Dropbarge lifts off — hero moment",
+          "speaker": "Ekene",
+          "line": "There she goes. Everything we are, going up on a pillar of fire. Look at it, Lodestar. Remember it. That's what we're fighting for.",
+          "futz": true
+        },
+        {
+          "trigger": "Kryce's first direct broadcast to the Compact",
+          "speaker": "Kryce",
+          "line": "To the vandals of Breaker Coast: the Directorate acknowledges your little theft. Enjoy the barge. Assets are replaceable. Order is not. We will be collecting both.",
+          "futz": true
+        },
+        {
+          "trigger": "Ekene answers the broadcast",
+          "speaker": "Ekene",
+          "line": "Let him talk. Talk is what men do when their skiffs are on the seabed. Fireteam — we're done here.",
+          "futz": true
+        },
+        {
+          "trigger": "Mission complete — operation wrap-up",
+          "speaker": "Ekene",
+          "line": "Operation Breaker Coast is closed. Next stop: the Halite Flats. Long sightlines, no cover, and a convoy with our name on it. Rest up.",
+          "futz": true
+        },
+        {
+          "trigger": "Mission end log as the screen fades",
+          "speaker": "CAIRN",
+          "line": "Mission log recorded. Dropbarge trajectory nominal. Fireteam roster updated: Sable. I have added her accuracy to my planning assumptions.",
+          "futz": false
+        }
+      ]
+    }
+  ]
+}

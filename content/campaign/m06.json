@@ -1,0 +1,107 @@
+{
+  "id": "m06",
+  "designFile": "m06_mirage_line",
+  "stage": 6,
+  "title": "MIRAGE LINE",
+  "map": "salt",
+  "spawn": { "x": -450, "z": -120, "yaw": 1.43 },
+  "playerMech": "gabbro",
+  "heatMult": 0.8,
+  "extract": [-140, 480],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-425, -85] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-480, -155] }
+  ],
+  "structures": [
+    { "id": "berm_shelter", "name": "Evaporation Berm Shelter", "kind": "bunker", "pos": [-35, -55], "hp": 240 }
+  ],
+  "artillery": { "fromStep": 1, "everySec": 12, "damage": 10, "radius": 28 },
+  "timedVO": [
+    { "atSec": 40, "trigger": "on_first_gauss" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "REACH THE BERM",
+      "sub": "Cross the open pan to the pinned cell behind the evaporation berm",
+      "vo": "on_start_brief",
+      "doneVO": "on_tremor_contact",
+      "at": [-40, -60],
+      "radius": 45
+    },
+    {
+      "kind": "defend",
+      "title": "KEEP THE WALL STANDING",
+      "sub": "Hold the berm shelter against the flanking APC probes",
+      "vo": "on_objective:obj_1",
+      "doneVO": "on_tremor_shield",
+      "protect": "berm_shelter",
+      "seconds": 75,
+      "waveGap": 25,
+      "waves": [
+        [
+          { "def": "pumice", "pos": [140, -250], "alerted": true, "name": "Ferric APC" }
+        ],
+        [
+          { "def": "pumice", "pos": [110, 140], "alerted": true, "name": "Ferric APC" }
+        ]
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "SPOTTER'S EYES",
+      "sub": "Destroy the forward observer skiff feeding the marksman corrections",
+      "vo": "on_duel_close",
+      "doneVO": "on_spotter_down",
+      "targets": [],
+      "killAll": true,
+      "spawns": [
+        {
+          "def": "pumice",
+          "pos": [290, -120],
+          "alerted": false,
+          "name": "Forward Observer Skiff",
+          "waypoints": [[240, -40], [350, -200]]
+        }
+      ]
+    },
+    {
+      "kind": "duel",
+      "title": "BREAK THE MIRAGE LINE",
+      "sub": "Close through the shimmer and destroy the dug-in Batholith marksman",
+      "vo": "on_shimmer_double",
+      "doneVO": "on_objective:obj_3",
+      "spawn": {
+        "def": "batholith",
+        "pos": [480, -320],
+        "alerted": true,
+        "name": "Mirage Line — Batholith Marksman"
+      }
+    },
+    {
+      "kind": "escort",
+      "title": "BRING THEM IN",
+      "sub": "Escort the cell's convoy to the extraction corridor at the north scarp",
+      "vo": "on_duel_won_followup",
+      "subject": "Compact Cell Convoy",
+      "subjectDef": "halite",
+      "from": [140, -20],
+      "route": [[40, 160], [-60, 320], [-120, 470]],
+      "ambushes": [
+        {
+          "atLeg": 1,
+          "spawns": [
+            { "def": "pumice", "pos": [-160, 240], "alerted": true, "name": "Pan Raider" },
+            { "def": "pumice", "pos": [60, 300], "alerted": true, "name": "Pan Raider" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach the extraction corridor as the dust squall rolls in",
+      "doneVO": "on_complete"
+    }
+  ]
+}

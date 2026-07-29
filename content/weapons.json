@@ -1,0 +1,23 @@
+{
+  "weapons": [
+    { "id": "blaze_s", "name": "Blaze Laser S", "type": "energy", "damage": 8, "salvo": 1, "heat": 6, "cooldown": 2.5, "range": 400, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 1 },
+    { "id": "blaze_m", "name": "Blaze Laser M", "type": "energy", "damage": 14, "salvo": 1, "heat": 10, "cooldown": 3.5, "range": 600, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 2 },
+    { "id": "blaze_l", "name": "Blaze Laser L", "type": "energy", "damage": 20, "salvo": 1, "heat": 16, "cooldown": 4.5, "range": 900, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 5 },
+    { "id": "pulse_array", "name": "Pulse Array", "type": "energy", "damage": 4, "salvo": 3, "heat": 12, "cooldown": 3.0, "range": 350, "projectileSpeed": 0, "spread": 0.4, "ammo": -1, "tons": 3 },
+    { "id": "particle_lance", "name": "Particle Lance", "type": "energy", "damage": 24, "salvo": 1, "heat": 20, "cooldown": 5.0, "range": 800, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 7, "tags": ["sensor_flicker"] },
+    { "id": "scattergun", "name": "Scattergun", "type": "ballistic", "damage": 2, "salvo": 10, "heat": 4, "cooldown": 3.0, "range": 180, "projectileSpeed": 600, "spread": 3.5, "ammo": 40, "tons": 5 },
+    { "id": "ac40", "name": "Autocannon 40", "type": "ballistic", "damage": 5, "salvo": 4, "heat": 3, "cooldown": 2.0, "range": 500, "projectileSpeed": 900, "spread": 0.5, "ammo": 120, "tons": 6 },
+    { "id": "ac80", "name": "Autocannon 80", "type": "ballistic", "damage": 16, "salvo": 1, "heat": 5, "cooldown": 3.0, "range": 550, "projectileSpeed": 850, "spread": 0.3, "ammo": 40, "tons": 9 },
+    { "id": "ac120", "name": "Autocannon 120", "type": "ballistic", "damage": 24, "salvo": 1, "heat": 7, "cooldown": 4.0, "range": 500, "projectileSpeed": 800, "spread": 0.3, "ammo": 25, "tons": 12 },
+    { "id": "gauss_driver", "name": "Gauss Driver", "type": "ballistic", "damage": 30, "salvo": 1, "heat": 4, "cooldown": 5.0, "range": 1200, "projectileSpeed": 1400, "spread": 0.1, "ammo": 16, "tons": 14, "tags": ["charge"] },
+    { "id": "rocket8", "name": "Rocket Pod 8", "type": "missile", "damage": 3, "salvo": 8, "heat": 8, "cooldown": 4.0, "range": 450, "projectileSpeed": 220, "spread": 2.2, "ammo": 64, "tons": 3 },
+    { "id": "rocket16", "name": "Rocket Pod 16", "type": "missile", "damage": 3, "salvo": 16, "heat": 14, "cooldown": 5.0, "range": 450, "projectileSpeed": 220, "spread": 2.6, "ammo": 96, "tons": 6 },
+    { "id": "swarm10", "name": "Swarm Rack 10", "type": "missile", "damage": 2.5, "salvo": 10, "heat": 9, "cooldown": 4.5, "range": 700, "projectileSpeed": 180, "spread": 1.5, "ammo": 80, "tons": 5, "tags": ["lock_on"] },
+    { "id": "swarm20", "name": "Swarm Rack 20", "type": "missile", "damage": 2.5, "salvo": 20, "heat": 16, "cooldown": 5.5, "range": 700, "projectileSpeed": 180, "spread": 1.8, "ammo": 120, "tons": 9, "tags": ["lock_on"] },
+    { "id": "ecm_veil", "name": "ECM Veil", "type": "utility", "damage": 0, "salvo": 0, "heat": 0, "cooldown": 0, "range": 0, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 2, "tags": ["passive"] },
+    { "id": "beacon_tagger", "name": "Beacon Tagger", "type": "utility", "damage": 0, "salvo": 1, "heat": 1, "cooldown": 8, "range": 800, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 1 },
+    { "id": "coolant_pod", "name": "Coolant Flush Pod", "type": "utility", "damage": 0, "salvo": 0, "heat": 0, "cooldown": 0, "range": 0, "projectileSpeed": 0, "spread": 0, "ammo": 1, "tons": 1, "tags": ["coolant"] },
+    { "id": "sensor_mast", "name": "Sensor Mast", "type": "utility", "damage": 0, "salvo": 0, "heat": 0, "cooldown": 0, "range": 0, "projectileSpeed": 0, "spread": 0, "ammo": -1, "tons": 2, "tags": ["passive"] },
+    { "id": "smoke_discharger", "name": "Smoke Discharger", "type": "utility", "damage": 0, "salvo": 1, "heat": 0, "cooldown": 20, "range": 0, "projectileSpeed": 0, "spread": 0, "ammo": 4, "tons": 1 }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "m23",
+  "designFile": "m23_the_long_climb",
+  "stage": 23,
+  "title": "THE LONG CLIMB",
+  "map": "anchor",
+  "spawn": { "x": 0, "z": -480, "yaw": 0 },
+  "playerMech": "batholith",
+  "extract": [180, 490],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-50, -510] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [50, -515] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-90, -450] }
+  ],
+  "structures": [
+    { "id": "bay_terrace_four", "name": "Terrace Four Mech Bay", "kind": "building", "pos": [-320, 0], "hp": 300 },
+    { "id": "bay_terrace_five", "name": "Terrace Five Mech Bay", "kind": "building", "pos": [40, 40], "hp": 280 },
+    { "id": "grid_node_six_a", "name": "Tether Grid Node A6", "kind": "bunker", "pos": [-440, 300], "hp": 240 },
+    { "id": "grid_node_six_b", "name": "Tether Grid Node B6", "kind": "bunker", "pos": [-180, 360], "hp": 240 },
+    { "id": "grid_node_seven", "name": "Tether Grid Node S7", "kind": "bunker", "pos": [80, 300], "hp": 220 },
+    { "id": "grid_node_eight", "name": "Tether Grid Node S8", "kind": "bunker", "pos": [340, 380], "hp": 240 },
+    { "id": "kryce_climber", "name": "Kryce's Escape Climber", "kind": "crawler", "pos": [-240, 470], "hp": 120 }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "TERRACE BY TERRACE",
+      "sub": "Fight up the lower terraces to the terrace-six approach.",
+      "at": [-140, -180],
+      "radius": 45,
+      "vo": "on_deploy",
+      "doneVO": "on_objective:obj_1",
+      "spawns": [
+        { "def": "gabbro", "pos": [-260, -40], "name": "Terrace One Garrison", "waypoints": [[-320, -120], [-160, 40]] },
+        { "def": "pumice", "pos": [140, -80], "name": "Gallery Sentry Drone", "waypoints": [[80, -160], [200, -20]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "BREAK THE MECH BAYS",
+      "sub": "Destroy the terrace mech bays before fresh lances cycle onto the galleries.",
+      "targets": ["bay_terrace_four", "bay_terrace_five"],
+      "killAll": false,
+      "spawns": [
+        { "def": "basalt", "pos": [-360, 140], "alerted": true, "name": "Bay Lance — Basalt" },
+        { "def": "gabbro", "pos": [-140, 100], "alerted": true, "name": "Bay Lance — Gabbro" },
+        { "def": "dolerite", "pos": [60, 160], "alerted": true, "name": "Bay Lance — Dolerite" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "KILL THE DEFENSE GRID",
+      "sub": "Destroy all four tether defense grid control nodes on terraces six through eight.",
+      "targets": ["grid_node_six_a", "grid_node_six_b", "grid_node_seven", "grid_node_eight"],
+      "killAll": false,
+      "vo": "on_wind_shear",
+      "perTargetVO": {
+        "grid_node_six_a": "on_grid_node_destroyed",
+        "grid_node_six_b": "on_grid_node_destroyed",
+        "grid_node_seven": "on_grid_node_destroyed",
+        "grid_node_eight": "on_grid_node_destroyed"
+      },
+      "doneVO": "on_climber_launch",
+      "spawns": [
+        { "def": "dolerite", "pos": [-300, 380], "alerted": true, "name": "Grid Warden — Dolerite" },
+        { "def": "basalt", "pos": [-20, 420], "alerted": true, "name": "Grid Warden — Basalt" },
+        { "def": "gabbro", "pos": [220, 340], "alerted": true, "name": "Grid Warden — Gabbro" }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "TO THE TERRACE-EIGHT GANTRY",
+      "sub": "The climber is moving — gain the terrace-eight gallery before it reaches the cloud deck.",
+      "at": [20, 450],
+      "radius": 45,
+      "vo": "on_climber_launch_2"
+    },
+    {
+      "kind": "destroy",
+      "title": "STOP KRYCE'S CLIMBER",
+      "sub": "Destroy the escape climber on the gantry — Kryce does not leave.",
+      "targets": ["kryce_climber"],
+      "killAll": false,
+      "vo": "on_enemy_wave",
+      "spawns": [
+        { "def": "batholith", "pos": [-320, 430], "alerted": true, "name": "Gantry Guard — Batholith Alpha", "yieldFrac": 0.25 },
+        { "def": "batholith", "pos": [-180, 500], "alerted": true, "name": "Gantry Guard — Batholith Omega", "yieldFrac": 0.25 }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "The terraces are yours. Move to the extraction beacon.",
+      "vo": "on_sol_reveal",
+      "doneVO": "on_complete"
+    }
+  ]
+}

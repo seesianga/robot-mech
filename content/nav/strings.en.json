@@ -1,0 +1,18 @@
+{
+  "comment": "PATHLIGHT guidance strings — the hud.nav.* namespace. Guidance is visual and continuous; these strings label it, they never do the guidance work. Waypoint display names in Basic Training are neutral (P1..P6), never fictional callsigns. VO lines here are <= 8 words, no key names, no bearings the HUD already shows.",
+  "hud.nav.wp.p1": "P1",
+  "hud.nav.wp.p2": "P2",
+  "hud.nav.wp.p3": "P3",
+  "hud.nav.wp.p4": "P4",
+  "hud.nav.wp.p5": "P5",
+  "hud.nav.wp.p6": "P6",
+  "hud.nav.state.behind": "BEHIND YOU",
+  "hud.nav.state.rerouting": "RECALCULATING",
+  "hud.nav.state.arrived": "ARRIVED",
+  "hud.nav.compass.brg": "BRG",
+  "hud.nav.offer.reposition": "Hold {bind:skip_step} to reposition onto the route.",
+  "hud.nav.vo.follow": "Follow the light.",
+  "hud.nav.vo.turn_around": "Turn around.",
+  "hud.nav.vo.reroute": "Path blocked. Recalculating.",
+  "hud.nav.vo.arrive": "Waypoint reached."
+}

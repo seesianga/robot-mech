@@ -1,0 +1,66 @@
+{
+  "id": "m21a_extraction",
+  "index": 21,
+  "op": 6,
+  "opName": "Vell Arcology",
+  "name": "Extraction",
+  "branch": "a",
+  "biome": "spire_anchor",
+  "weather": "clearing night, high wind off the anchor",
+  "timeOfDay": "pre-dawn",
+  "designIntent": "Rescue Commander Ekene and the imprisoned Assembly from the Spire Anchor holding decks, forfeiting the orbital override — the harder, hopeful road, ending under enemy orbital fire.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "You chose her. You chose all of them — the Assembly's alive in those decks too, the whole civilian government Kryce filed away like receipts. So here's the road you bought us. The holding decks hang off the Anchor's lower ring, level nine — guard rotation flips at oh-four-hundred, and for six minutes the transfer gantries stand open. You'll breach from the freight elevator shear-deck, crack the block gates, and walk twenty-two people onto a stolen dropbarge while the fireteam holds the ring. The Commander is in block D-nine. Vireo asked to cut that cell herself. I said yes. Be clear-eyed about the cost: the override ciphers burned with the Registry, which means Kryce keeps his orbital guns, which means everything we do from tonight on, we do under them. I ran the numbers anyway. A free Assembly, and Anchor back on the line? The Directorate can hold the sky. We'll take the ground and everyone standing on it. Bring her home, Lodestar. Bring them all home."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Shear-Deck Breach", "description": "Reach the freight elevator shear-deck during the six-minute guard rotation gap.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Kill the Deck Guns", "description": "Destroy the holding-ring gun clusters before they can seal the block gates.", "optional": false },
+    { "id": "obj_3", "type": "capture", "title": "Open Block D-Nine", "description": "Breach the holding block gates and free Commander Ekene and the Assembly.", "optional": false },
+    { "id": "obj_4", "type": "escort", "title": "Walk Them Out", "description": "Escort the twenty-two prisoners across the transfer gantries to the dropbarge.", "optional": false },
+    { "id": "obj_5", "type": "survive", "title": "Under Their Sky", "description": "Survive the orbital-gun bombardment as the dropbarge lifts clear of the ring.", "optional": false }
+  ],
+  "enemyForces": [
+    "Holding-ring garrison: elite Ferric sections with drone screens",
+    "Deck gun clusters on the lower ring",
+    "Kryce's guard Batholiths — two — converging on the transfer gantries",
+    "Hover skiff pursuit during the dropbarge escape",
+    "Directorate orbital defense guns firing danger-close onto their own decks in the final phase"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The rotation-gap infiltration: six minutes of open gantries counted down live on the HUD",
+    "Vireo cuts cell D-nine open herself; Ekene walks out asking for a sitrep before she asks for a medic",
+    "Kryce orders his own orbital guns to fire on the holding decks rather than lose the Assembly",
+    "Ekene takes tactical command mid-mission from the dropbarge ramp, her voice steadying every callsign",
+    "The dropbarge lifts through columns of orbital fire as dawn edges the storm"
+  ],
+  "failConditions": [
+    "Commander Ekene or any Assembly member is killed",
+    "The dropbarge is destroyed",
+    "The rotation gap closes before the shear-deck is breached, locking the holding decks",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "You leave with people, not parts: no field salvage flags survive the orbital barrage. The guard Batholiths, if legged on the gantries, are logged for recovery after the war — a promise, not a payout. Nobody on the dropbarge complains.",
+  "musicSet": {
+    "ambient": "spire_anchor",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_rotation_gap_ticking_percussion", "cue_ekene_freed_warm_strings", "cue_orbital_fire_escape", "stinger_complete_dawn_hymn_variant"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "Rotation flips in ninety seconds. Six minutes of open gantries. Everything we are fits through that gap.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Sable", "line": "Deck guns down. Gates are still soft. Go.", "futz": true },
+    { "trigger": "on_objective:obj_3", "speaker": "Vireo", "line": "Cutting D-nine. Commander? Commander, it's Vireo — it's Anja. We came. We all came.", "futz": true },
+    { "trigger": "on_ekene_freed", "speaker": "Ekene", "line": "Kessler. Your hands are steady. Good. Somebody give me a sitrep and a radio, in that order.", "futz": true },
+    { "trigger": "on_escort_start", "speaker": "Ekene", "line": "Assembly, move like miners — low, together, no heroes. Lodestar walks between you and every gun. That's what that machine is for.", "futz": true },
+    { "trigger": "on_kryce_orders", "speaker": "Kryce", "line": "Gunnery command, this is Kryce. Yes, on the holding decks. On MY decks. If I cannot keep the Assembly, then Veyra can bury it. Fire.", "futz": true },
+    { "trigger": "on_orbital_first_impact", "speaker": "CAIRN", "line": "Orbital impact registered on the ring. He is firing on his own installation. Recalculating safe corridors — such as they are.", "futz": false },
+    { "trigger": "on_enemy_wave", "speaker": "Tremor", "line": "Guard Batholiths on the gantries! Big and slow — just like the doors they're about to become!", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Structural collapse imminent. The gantry is rated for your tonnage. Barely. The dropbarge is close.", "futz": false },
+    { "trigger": "on_objective:obj_5", "speaker": "Relay", "line": "Barge is lifting — orbital fire walking across the ring — hold on to something, everybody HOLD —", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "This is Commander Mara Ekene, Free Veyran Compact, alive and inbound with your Assembly. Directorate personnel, listen well: you had eighteen months. We're taking the rest back.", "futz": true },
+    { "trigger": "on_complete_2", "speaker": "Vireo", "line": "Welcome back, Anchor. It's dawn, Commander. We saved you the good part.", "futz": true }
+  ]
+}

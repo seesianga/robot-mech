@@ -1,0 +1,45 @@
+{
+  "_note": [
+    "Landing-page key art. Deliberately small: everything else on the site is a",
+    "real in-engine capture, which is both cheaper and more persuasive than",
+    "generated imagery of a game.",
+    "",
+    "Items with a `base` are GRADE PASSES over a real render of the shipped GLB",
+    "(assets/site/raw/cap-*.png, produced by scripts/shot_plinth.mjs). The render",
+    "is captured with a transparent background, so the alpha channel is the",
+    "editable region and gpt-image-2 builds the hall around a machine it cannot",
+    "redesign. The mech on the poster is therefore the same mesh the visitor can",
+    "spin in the showroom.",
+    "",
+    "Generated at native 4K — gpt-image-2 accepts a 3840 px longest edge."
+  ],
+  "keyArt": [
+    {
+      "id": "art-hero",
+      "base": "cap-hero-craton",
+      "aspect": "landscape",
+      "usage": "Desktop hero plate. LCP element in every scenario including the full-3D path; the live canvas cross-fades over it and it remains underneath as the canvas background.",
+      "prompt": "Preserve the walking machine in this image exactly as it is — identical geometry, pose, proportions, panel layout, weapon placement and framing. Do not redesign, restyle or move it. Build the environment around it: a vast, near-black commissioning hall, cathedral-scale, its far walls lost in darkness. Wet dark concrete floor beneath the machine with a shallow reflection of its legs and a scatter of standing water. A low circular steel service plinth under its feet, scuffed and oil-stained. High overhead, a distant rig of hard industrial worklights raking down through thick suspended dust, throwing long volumetric shafts. Faint cold cyan bounce from unseen coolant lines at the left edge, warm sodium spill from the right. Heavy atmospheric haze with depth, deep blacks that stay black, subtle film grain. Grade the machine's own surfaces to match this light: photographic micro-detail in the armour, real metal specular response, dust settled on upward-facing surfaces, faint oil sheen at the joints."
+    },
+    {
+      "id": "art-hero-portrait",
+      "base": "cap-hero-craton-portrait",
+      "aspect": "portrait",
+      "usage": "Mobile and narrow-viewport hero. Below 900px the live stage never starts, so this plate carries the entire first screen alone. Same recipe as the landscape plate so the two cannot diverge in colour.",
+      "prompt": "Preserve the walking machine in this image exactly as it is — identical geometry, pose, proportions and framing. Do not redesign or move it. Build the environment around it: a near-black commissioning hall, the machine standing on a low circular steel service plinth on wet dark concrete with a shallow reflection under its feet. Empty graded darkness fills the upper third of the frame, with only a faint suggestion of distant overhead gantry structure and one hard worklight bleeding through suspended dust. Cold cyan rim from the left, warm sodium spill from the right, thick atmosphere, deep true blacks, subtle film grain. Grade the machine's surfaces to match: photographic micro-detail, real metal specular response, settled dust on upward faces, oil sheen at the joints."
+    },
+    {
+      "id": "art-og",
+      "base": "cap-hero-craton",
+      "aspect": "landscape",
+      "usage": "Open Graph and Twitter share card. Replaces the stale /site/hero.jpg prototype screenshot that is currently the first impression on every share. The wordmark is composited in code afterwards, never generated.",
+      "prompt": "Preserve the walking machine in this image exactly as it is — identical geometry, pose and proportions. Do not redesign it. Recompose the frame so the machine is weighted toward the right third, leaving clean empty graded darkness across the upper left for a wordmark to be placed later. Environment: a near-black commissioning hall, wet dark concrete floor with a shallow reflection, one hard overhead worklight raking down through suspended dust, cold cyan rim light from the left edge, deep true blacks. Cinematic, restrained, high contrast. Grade the machine's surfaces to photographic micro-detail with real metal specular response."
+    },
+    {
+      "id": "art-close",
+      "aspect": "landscape",
+      "usage": "Full-bleed backdrop behind the closing call to action. The only from-scratch generation on the page — a landscape with no machine in it, so there is no chassis for it to misrepresent.",
+      "prompt": "A vast desolate salt flat on an occupied industrial mining world at last light. Wide empty foreground of cracked salt crust and shallow standing brine reflecting a bruised orange and slate sky. On the far horizon, tiny against the scale, the silhouettes of enormous refinery towers and a distant orbital tether line rising into cloud. Low sun raking across the crust picking out every ridge and fracture. Cold blue shadow, warm horizon, heavy atmospheric depth, dust suspended in the air. No people, no vehicles, no machines in the foreground. Bleak, beautiful, enormous."
+    }
+  ]
+}

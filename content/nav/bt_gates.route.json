@@ -1,0 +1,39 @@
+{
+  "comment": "Basic Training gate slalom (A5). P2/P3/P4 sit at the three pad gates; chevrons thread the lane. Radius 14 matches the director's GATE_RADIUS so the route and the gate checklist advance on the same predicate and can never disagree.",
+  "id": "route_bt_gates",
+  "layers": { "chevrons": true, "beacon": true, "arrow": true, "compass": true },
+  "loop": false,
+  "arrive_vo": false,
+  "waypoints": [
+    {
+      "id": "p2",
+      "display_key": "hud.nav.wp.p2",
+      "position": [0, 0, 350],
+      "arrival": { "radius_m": 14, "vertical_tolerance_m": 10, "dwell_s": 0 },
+      "arrival_extra": null,
+      "los_verified": true,
+      "beacon_height_m": 32,
+      "next": "p3"
+    },
+    {
+      "id": "p3",
+      "display_key": "hud.nav.wp.p3",
+      "position": [0, 0, 290],
+      "arrival": { "radius_m": 14, "vertical_tolerance_m": 10, "dwell_s": 0 },
+      "arrival_extra": null,
+      "los_verified": true,
+      "beacon_height_m": 32,
+      "next": "p4"
+    },
+    {
+      "id": "p4",
+      "display_key": "hud.nav.wp.p4",
+      "position": [0, 0, 230],
+      "arrival": { "radius_m": 14, "vertical_tolerance_m": 10, "dwell_s": 0 },
+      "arrival_extra": null,
+      "los_verified": true,
+      "beacon_height_m": 32,
+      "next": null
+    }
+  ]
+}

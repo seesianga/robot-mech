@@ -1,0 +1,64 @@
+{
+  "id": "m15_breakwater",
+  "index": 15,
+  "op": 5,
+  "opName": "Storm Coast",
+  "name": "Breakwater",
+  "biome": "storm_coast",
+  "weather": "driving monsoon rain, gale gusts, heavy swell",
+  "timeOfDay": "storm-dark afternoon",
+  "designIntent": "Defend the civilian ferry evacuation of Marrow Bay against a naval gun monitor, hover skiff packs, and shore mechs in driving rain — the war's cost made visible.",
+  "teaches": ["storm-rain heat dissipation bonus (x1.15) and flooded-ground footing"],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "Marrow Bay is drowning twice tonight. The Directorate is pulling out of the coast, and they've decided the town doesn't get to stay behind them — Kryce calls it 'decommissioning non-viable settlements.' Four thousand people, Lodestar. The Compact has three ferries running them across the bay to the karst caves, and the Directorate means to sink every one. Threat board: a naval gun monitor is holding station past the breakwater — single turret, but it throws a shell the size of a Ferric. Hover skiffs will run the shallows in packs, and shore mechs are pushing up the coast road. You hold the waterline. Sable takes the lighthouse rock for overwatch, Tremor anchors the quay, Vireo screens the loading queues. Priority is always the ferries — let one wave of skiffs through and people die by the hundred. The rain will keep you cool. Use that. Fire until the barrels glow, and keep that monitor's gun off my boats."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "defend", "title": "Hold the Waterline", "description": "Defend the ferry loading quays through three full evacuation cycles.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Sink the Monitor", "description": "Destroy the naval gun monitor holding station beyond the breakwater.", "optional": false },
+    { "id": "obj_3", "type": "destroy", "title": "Break the Skiff Packs", "description": "Intercept the hover skiff waves running the shallows toward the quays.", "optional": false },
+    { "id": "obj_4", "type": "escort", "title": "Last Boat Out", "description": "Escort the final ferry through the breakwater gap and out of gun range.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "Coast Road", "description": "Collapse the coast road bridge to cut the shore mech advance off from the town.", "optional": true }
+  ],
+  "enemyForces": [
+    "Naval gun monitor 'Ledger' beyond the breakwater, firing heavy shells and illumination rounds",
+    "Hover skiff packs running the shallows in waves",
+    "Shore mech column on the coast road: Halite pairs led by a Basalt",
+    "Ferric APCs landing infantry at the fish quays",
+    "Strafing aircraft slipping in between squalls"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Monitor shells walk across the harbor, hurling water columns higher than the mechs",
+    "An illumination shell freezes the whole bay in white light mid-firefight",
+    "A near-miss lifts the second ferry's bow out of the water; it rights itself to ragged cheering on comms",
+    "The final ferry runs the breakwater gap under a full barrage as the monitor burns",
+    "Kryce's evacuation-denial broadcast plays over the town's public address towers during the fighting"
+  ],
+  "failConditions": [
+    "Any ferry is sunk",
+    "The ferry loading quay is destroyed",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Skiff wrecks wash ashore all mission — light pickings but plentiful. The shore Basalt is the prize: leg it on the coast road and the Compact drags it into town after the storm. The monitor goes down in deep water; nothing comes back from that.",
+  "musicSet": {
+    "ambient": "storm_coast",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_illumination_shell_choir_swell"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "First ferry's loading now. Thirteen hundred souls to a hull. No pressure, right?", "futz": true },
+    { "trigger": "on_monitor_first_shot", "speaker": "CAIRN", "line": "Heavy-caliber naval fire detected. Shell time-of-flight: eleven seconds.", "futz": false },
+    { "trigger": "on_enemy_wave", "speaker": "Vireo", "line": "Skiffs in the shallows — four, no, six! They're pushing for the quays!", "futz": true },
+    { "trigger": "on_wave_defeated", "speaker": "Tremor", "line": "That's the quay held! You want the town, you go through me and forty-five tons of bad news!", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Sable", "line": "Monitor's turret tracks slow between squalls. Wait for the rain to thicken. Then close.", "futz": true },
+    { "trigger": "on_ferry_near_miss", "speaker": "Relay", "line": "Ferry two took spray, not steel — she's upright, she's moving. Thank every saint of this coast.", "futz": true },
+    { "trigger": "on_kryce_broadcast", "speaker": "Kryce", "line": "Residents of the coastal exclusion zone: your relocation is proceeding ahead of schedule. The Directorate thanks you for your cooperation.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Hull integrity critical. The rain is aiding coolant recovery. Your armor is another matter.", "futz": false },
+    { "trigger": "on_overheat_warning", "speaker": "CAIRN", "line": "Heat elevated. Storm precipitation is accelerating dissipation. You may sustain fire longer than they expect.", "futz": false },
+    { "trigger": "on_monitor_destroyed", "speaker": "Tremor", "line": "SHE'S GONE UNDER! HA! The bay just got a new reef!", "futz": true },
+    { "trigger": "on_objective:obj_4", "speaker": "Relay", "line": "Last boat's away — keep the gap clear, Lodestar, and Marrow Bay lives to hate the rain another day.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "All ferries across. Four thousand and eleven. I counted. Somebody had to. Good work, everyone.", "futz": true }
+  ]
+}

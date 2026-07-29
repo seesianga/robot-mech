@@ -1,0 +1,52 @@
+{
+  "_note": [
+    "Landing-page audio. Three UI cues only, and no new voice.",
+    "",
+    "No VO is generated on purpose. The site's spoken beat is CAIRN's startup",
+    "litany, which already exists at public/audio/vo/cairn_litany.mp3 in the",
+    "exact read the game plays at the top of every mission. Reusing it makes the",
+    "site a promise the game keeps thirty seconds later, costs no ElevenLabs",
+    "quota (the Creator plan is nearly spent), and cannot drift from the game.",
+    "",
+    "Music is the shipped title theme, public/audio/music/theme_main.mp3.",
+    "",
+    "Cues are mixed deliberately quiet. Website UI sound that is even slightly",
+    "too loud reads as amateur; these should be felt as texture, not heard as",
+    "sounds. Levels are peak-normalised by ffmpeg and asserted after encoding, not judged by eye."
+  ],
+  "sfx": [
+    {
+      "id": "ui_select",
+      "seconds": 0.6,
+      "influence": 0.55,
+      "usage": "Chassis change in the showroom rail. Plays under the weight-settle.",
+      "prompt": "A single heavy servo clunk followed immediately by a magnetic latch engaging. Dry industrial machinery, close-miked in a small hard room. No reverb tail, no music, no ringing, no room ambience.",
+      "peak": -14
+    },
+    {
+      "id": "ui_hover",
+      "seconds": 0.5,
+      "influence": 0.6,
+      "usage": "Rail tile hover, rate-limited to one play per 120 ms. Subliminal by design \u2014 if it is audible as a sound rather than felt as texture, it is too loud.",
+      "prompt": "A very short dry electrical relay tick. Tiny, clean, almost inaudible. A single contact closing. No pitch, no ring, no reverb, no tail, no music.",
+      "peak": -22
+    },
+    {
+      "id": "ui_panel",
+      "seconds": 0.9,
+      "influence": 0.5,
+      "usage": "Section reveal on the campaign ladder and the FAQ.",
+      "prompt": "A soft pneumatic latch releasing on a metal access panel, followed by a short hydraulic sigh. Dry, close, industrial. No reverb, no music, no metallic ring.",
+      "peak": -17
+    },
+    {
+      "id": "ui_launch",
+      "seconds": 1.4,
+      "influence": 0.45,
+      "usage": "Play button press, immediately before navigation to the game.",
+      "prompt": "A heavy industrial power contactor closing, followed by a deep generator spinning up and holding. Dry, close-miked, mechanical and electrical. No music, no melody, no reverb wash.",
+      "peak": -11
+    }
+  ],
+  "vo": []
+}

@@ -1,0 +1,62 @@
+{
+  "id": "m08_sounding",
+  "index": 8,
+  "op": 3,
+  "opName": "Karst Highlands",
+  "name": "Sounding",
+  "biome": "karst_highlands",
+  "weather": "low cloud, drifting mist in the dolines",
+  "timeOfDay": "morning",
+  "designIntent": "A quiet reconnaissance of the collapsed dolines: sound a route for the heavies and paint the Directorate's AA nests for a Compact rocket strike. Passive-sensor tutorial and Vireo's nervous first drop.",
+  "teaches": ["passive_sensors", "beacon_tagging"],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "New terrain, Lodestar, and honestly it's showing off — the karst highlands are all sinkholes, cliff walls, and caves that go down further than my clearance. Here's our problem: the Directorate parked an anti-air umbrella across the dolines, and until it's gone, every rocket truck and resupply flight the Compact owns is grounded. Here's our answer: you. This one's a whisper job. You'll drop into the collapsed dolines, sound out a route our heavies can actually walk, and find their AA nests — we count four, but their emissions overlap, so somebody has to eyeball them. Go passive. No radar sweep, no active pings; you'll see less, but so will they. Paint each nest with the beacon tagger and our rocket teams handle the loud part from twelve klicks away. One more thing: you've got a new wing. Anja Kessler, callsign Vireo. First live drop. She's greener than the map, but Ekene sees something in her. So do I. Bring her home smarter. Relay out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "recon", "title": "Sound the Dolines", "description": "Survey the three collapsed dolines and confirm a route heavy mechs can walk.", "optional": false },
+    { "id": "obj_2", "type": "recon", "title": "Paint the Nests", "description": "Locate all four AA nests and paint each with the beacon tagger.", "optional": false },
+    { "id": "obj_3", "type": "survive", "title": "Danger Close", "description": "Hold cover with the fireteam while the Compact rocket barrage lands on the painted nests.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Sweep the Rim", "description": "Destroy surviving AA elements after the strike.", "optional": false },
+    { "id": "obj_5", "type": "recon", "title": "Ghost Protocol", "description": "Complete all four paints without triggering a sector alert.", "optional": true }
+  ],
+  "enemyForces": [
+    "Four AA nests: quad-flak turret clusters with swarm-rack emplacements",
+    "Active drone pickets sweeping the doline rims",
+    "One sentry Chert walking the ridge line",
+    "Hover skiff pair patrolling the gorge floor"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "First descent into the karst — sinkholes dropping into blue-dark and cave mouths breathing mist",
+    "Going passive: the HUD dims, the radar ring stills, and the world goes quiet",
+    "The rocket barrage arcs over the ridge and lands on your paint like a verdict",
+    "Vireo's first confirmed kill on the rim sweep — and her first steadying breath"
+  ],
+  "failConditions": [
+    "Fewer than four nests painted when the barrage window closes",
+    "Vireo's mech destroyed on her first drop",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "Rocket-struck nests leave flak barrels and swarm-rack cores worth good scrip. The sentry Chert is only claimable if taken quietly before the strike — an alert sends it home. Painted kills credit the whole fireteam.",
+  "musicSet": {
+    "ambient": "karst_highlands",
+    "combatIntensityCap": 2,
+    "specialCues": ["passive_mode_hush", "barrage_impact_hits"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_ally_join:vireo", "speaker": "Vireo", "line": "Vireo — um, Anja — on your wing, Lodestar. First live drop. I've done the simulations. All of them. Twice. That's... that's not reassuring anyone, is it.", "futz": true },
+    { "trigger": "on_vireo_welcome", "speaker": "Tremor", "line": "Breathe, little bird. Simulations don't have me in them. Stay on Lodestar's hip and you'll grow old bragging about today.", "futz": true },
+    { "trigger": "on_tutorial_passive", "speaker": "CAIRN", "line": "Passive mode engaged. Emissions minimized. Your detection range is reduced — and so is your signature. In the karst, silence sees further than radar.", "futz": false },
+    { "trigger": "on_tutorial_tagger", "speaker": "CAIRN", "line": "Beacon tagger armed. Hold line of sight on the target for three seconds to confirm paint. Painted coordinates stream to the rocket teams automatically.", "futz": false },
+    { "trigger": "on_first_nest", "speaker": "Relay", "line": "That's a nest all right — quad flak and a swarm rack, dug in like it pays rent. Paint it and drift on. Three more somewhere in the mist.", "futz": true },
+    { "trigger": "on_sentry_spot", "speaker": "Sable", "line": "Chert on the ridge. Walking its little route. It dies quiet or it goes home — your call, Lodestar.", "futz": true },
+    { "trigger": "on_alert_risk", "speaker": "CAIRN", "line": "Drone picket converging on your position. Movement recommended. Passive signature holds only if you do not fire.", "futz": false },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Four paints, four nests, zero screaming. Rocket trucks are spinning up — get the team below the rim, this is going to be loud on your behalf.", "futz": true },
+    { "trigger": "on_strike", "speaker": "Relay", "line": "Birds up! Thirty seconds of the Compact's entire artillery budget — heads down and enjoy the show.", "futz": true },
+    { "trigger": "on_post_strike", "speaker": "Vireo", "line": "That was— they're just gone. The whole nest is just... okay. Okay. Sweeping the rim. I can do this part.", "futz": true },
+    { "trigger": "on_vireo_first_kill", "speaker": "Vireo", "line": "Target down! I— that was mine. Confirmed. ...Tremor, you saw that, right?", "futz": true },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Route's sounded, sky's open, and the new kid shoots straight. Highlands, you're officially in trouble. Come on home, all four of you.", "futz": true }
+  ]
+}

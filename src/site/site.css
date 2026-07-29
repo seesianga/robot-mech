@@ -1,0 +1,1460 @@
+/* ==========================================================================
+   VEYRA PRIME — landing page design system
+
+   Built around one idea: the page is a hangar. Everything is dark, everything
+   is lit from a source, and the only bright things are the machine and the
+   signal green the Compact uses for its own instruments. Restraint is the
+   point — a dark page with two accent colours reads expensive; a dark page
+   with six reads like a template.
+
+   Structure: tokens, reset, primitives, chrome, then one block per section in
+   document order.
+   ========================================================================== */
+
+/* --- fonts ---------------------------------------------------------------
+   Self-hosted, subsetted (scripts/build_site_fonts.py). font-display:swap so
+   text is readable on the first paint rather than invisible behind a webfont. */
+
+@font-face {
+  font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/inter-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/inter-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/inter-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/inter-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter'; font-style: normal; font-weight: 900; font-display: swap;
+  src: url('/fonts/inter-900.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/jbmono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/jbmono-700.woff2') format('woff2');
+}
+
+/* --- tokens --------------------------------------------------------------- */
+
+:root {
+  /* Surfaces run from void to panel. Each step is small: big jumps between
+     dark greys look like banding, not depth. */
+  --void: #05070a;
+  --deep: #080b10;
+  --steel: #0b1016;
+  --panel: #10161d;
+  --raise: #161e27;
+  --line: #1d2731;
+  --line-hi: #2b3945;
+
+  /* Ink */
+  --ink: #e8eff4;
+  --ink-2: #b3c2cc;
+  --dim: #7f919d;
+  /* #56656f read at only 3.35:1 on --void, which fails WCAG AA for normal text,
+     and this tone carries real content: chassis tonnage in the roster rail, the
+     hero's platform note, and the footer legal line. #758794 is the smallest
+     hue-preserving lift that clears 4.5:1 on every surface it appears on
+     (void 5.43, deep 5.30, steel 5.14, panel 4.89, raise 4.52). */
+  --faint: #758794;
+
+  /* Signal. Mint is the Compact; amber is caution; ember is the Directorate.
+     Nothing else gets a colour. */
+  --mint: #6ee7a8;
+  --mint-hi: #9df5c6;
+  --mint-dim: rgba(110, 231, 168, 0.14);
+  --amber: #ffb347;
+  --ember: #ff6b4a;
+
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Rhythm. clamp() everywhere so the page breathes on a 4K display without
+     collapsing on a phone. */
+  --rail: 1320px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --section-y: clamp(72px, 9vw, 148px);
+
+  --r: 2px;                       /* corner radius — near-square reads industrial */
+  --chamfer: 12px;                /* clipped corner size for panels */
+
+  /* One easing for the entire page, three durations, nothing bounces. A single
+     curve is what makes unrelated elements feel like one machine; elastic and
+     spring easings are banned here on purpose — they read as playful, and this
+     product is about mass. */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-state: 220ms;    /* hover, focus, toggles */
+  --t-element: 520ms;  /* reveals, panel swaps */
+  --t-camera: 1200ms;  /* anything that feels like a camera move */
+}
+
+/* --- reset ---------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  /* The fixed header must not cover an anchored section heading. */
+  scroll-padding-top: 84px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg, canvas, video { display: block; max-width: 100%; }
+/* NOTE: every <img> here carries width/height attributes so the browser can
+   reserve space (CLS stays at 0). Any rule that sets a CSS width must therefore
+   also set a height — `auto` to honour aspect-ratio, or an explicit value —
+   because otherwise the attribute's pixel height wins and aspect-ratio is
+   ignored. A blanket `img[width][height] { height: auto }` is NOT the fix: at
+   0-2-1 it outranks `.biome img` and every other full-bleed rule. The
+   image-box check in scripts/shot_site.mjs catches this if it recurs. */
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+ul, ol { list-style: none; }   /* the litany is an <ol> for semantics, not for numerals */
+
+:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+
+::selection { background: var(--mint); color: #04140c; }
+
+/* --- primitives ----------------------------------------------------------- */
+
+.rail {
+  width: 100%;
+  max-width: var(--rail);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+section { padding-block: var(--section-y); position: relative; }
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--mint);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.kicker::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--mint);
+  opacity: 0.6;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 900;
+  letter-spacing: -0.018em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(30px, 4.6vw, 58px);
+  text-transform: uppercase;
+  margin-block: 16px 20px;
+}
+
+.lead {
+  font-size: clamp(16px, 1.35vw, 19px);
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+
+.muted { color: var(--dim); }
+
+/* Chamfered panel — one clipped corner, the house shape for every surface. */
+.panel {
+  background: linear-gradient(160deg, var(--panel), var(--steel));
+  border: 1px solid var(--line);
+  clip-path: polygon(
+    var(--chamfer) 0, 100% 0, 100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%, 0 100%, 0 var(--chamfer)
+  );
+}
+
+/* --- buttons -------------------------------------------------------------- */
+
+.btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-bd: var(--line-hi);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-bd);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: background var(--t-state) var(--ease), color var(--t-state) var(--ease),
+              border-color var(--t-state) var(--ease), transform var(--t-state) var(--ease);
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+/* clip-path clips the focus outline away entirely, which left the page's most
+   important controls with no visible keyboard focus at all. The ring is drawn
+   as an inset pseudo-element instead: it sits inside the chamfer, so the clip
+   cannot remove it, and the button keeps its shape. */
+.btn:focus-visible { outline: none; }
+.btn:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 2px solid currentColor;
+  pointer-events: none;
+}
+.btn--primary:focus-visible::after { border-color: #04150d; }
+
+.btn--primary {
+  --btn-bg: var(--mint);
+  --btn-fg: #04150d;
+  --btn-bd: var(--mint);
+  box-shadow: 0 0 0 0 rgba(110, 231, 168, 0.5);
+}
+.btn--primary:hover {
+  --btn-bg: var(--mint-hi);
+  --btn-bd: var(--mint-hi);
+  box-shadow: 0 14px 40px -12px rgba(110, 231, 168, 0.55);
+}
+
+.btn--ghost { --btn-bd: var(--line-hi); }
+.btn--ghost:hover { --btn-bd: var(--mint); --btn-fg: var(--mint); background: var(--mint-dim); }
+
+.btn--sm { padding: 11px 20px; font-size: 12px; }
+
+/* --- header --------------------------------------------------------------- */
+
+.hdr {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 80;
+  border-bottom: 1px solid transparent;
+  transition: background var(--t-element) var(--ease), border-color var(--t-element) var(--ease),
+              backdrop-filter var(--t-element) var(--ease);
+}
+/* Transparent over the hero, solid once scrolled — the header should not exist
+   until it is needed. */
+.hdr.is-stuck {
+  background: rgba(5, 7, 10, 0.82);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom-color: var(--line);
+}
+
+.hdr__bar {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 34px);
+  height: 72px;
+}
+
+.brand { display: flex; flex-direction: column; line-height: 1; }
+.brand__name {
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.brand__name em { font-style: normal; color: var(--mint); }
+.brand__sub {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--dim);
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+.nav { display: flex; gap: clamp(14px, 2vw, 28px); margin-left: auto; }
+.nav a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 8px 0;
+  position: relative;
+  transition: color var(--t-state) var(--ease);
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%; bottom: 2px;
+  height: 1px;
+  background: var(--mint);
+  transition: right var(--t-state) var(--ease);
+}
+.nav a:hover { color: var(--mint); }
+.nav a:hover::after { right: 0; }
+
+.hdr__actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.nav + .hdr__actions { margin-left: 0; }
+
+/* Sound toggle. Visible from first paint so audio is never a surprise. */
+.sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 9px 14px;
+  border: 1px solid var(--line);
+  transition: color var(--t-state) var(--ease), border-color var(--t-state) var(--ease);
+}
+.sound:hover { color: var(--mint); border-color: var(--line-hi); }
+.sound__bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+.sound__bars i {
+  width: 2px;
+  background: currentColor;
+  height: 3px;
+  transition: height var(--t-state) var(--ease);
+}
+.sound.is-on { color: var(--mint); border-color: rgba(110, 231, 168, 0.4); }
+.sound.is-on .sound__bars i { animation: eq 1.1s ease-in-out infinite; }
+.sound.is-on .sound__bars i:nth-child(2) { animation-delay: 0.18s; }
+.sound.is-on .sound__bars i:nth-child(3) { animation-delay: 0.36s; }
+.sound.is-on .sound__bars i:nth-child(4) { animation-delay: 0.54s; }
+
+@keyframes eq {
+  0%, 100% { height: 3px; }
+  50% { height: 12px; }
+}
+
+.burger { display: none; }
+
+/* --- hero ----------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-block: 132px clamp(60px, 10vh, 120px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__plate-wrap { position: absolute; inset: 0; z-index: -3; }
+
+.hero__plate {
+  position: absolute;
+  inset: -8% 0 0 0;
+  z-index: -3;
+  width: 100%;
+  height: 116%;
+  object-fit: cover;
+  /* Parallax is applied to this element via a CSS variable set in JS, so the
+     scroll handler never touches layout properties. */
+  transform: translate3d(0, var(--plate-y, 0px), 0) scale(1.06);
+  will-change: transform;
+}
+
+/* Two gradients: one to seat the text on the left, one to bleed the plate into
+   the page below so there is no visible edge. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(100deg, rgba(5,7,10,0.94) 0%, rgba(5,7,10,0.7) 38%, rgba(5,7,10,0.15) 68%, rgba(5,7,10,0.4) 100%),
+    linear-gradient(180deg, rgba(5,7,10,0.9) 0%, rgba(5,7,10,0.1) 26%, rgba(5,7,10,0.55) 74%, var(--void) 100%);
+}
+
+/* A vignette, and nothing else.
+   Deliberately NOT scanlines: repeating-gradient scanlines are the cheapest
+   effect on the web, they alias horribly on a 4K plate, and they announce
+   "stylised" over an image whose entire job is to look real. The grain that
+   sells the photography is baked into the plate itself by the grade pass. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 92% 82% at 50% 45%, transparent 42%, rgba(3, 5, 7, 0.55) 100%);
+}
+
+.hero__grid { width: 100%; }
+
+/* The plate composes the machine centre-right, so the copy takes the left and
+   the two do not fight. Capped in ch rather than px: the measure is what makes
+   a headline readable, not the container. */
+.hero__copy { max-width: min(46rem, 58%); }
+
+@media (max-width: 1100px) { .hero__copy { max-width: 100%; } }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mint);
+  border: 1px solid rgba(110, 231, 168, 0.34);
+  background: rgba(110, 231, 168, 0.07);
+  padding: 8px 14px;
+  margin-bottom: 26px;
+}
+.tag i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(110, 231, 168, 0.7);
+  animation: pip 2.4s ease-out infinite;
+}
+@keyframes pip {
+  0% { box-shadow: 0 0 0 0 rgba(110, 231, 168, 0.65); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(110, 231, 168, 0); }
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6.4vw, 88px);
+  line-height: 0.96;
+  text-transform: uppercase;
+  letter-spacing: -0.028em;
+}
+.hero h1 em { font-style: normal; color: var(--mint); }
+
+.hero__sub {
+  margin: 24px 0 34px;
+  font-size: clamp(16px, 1.4vw, 19.5px);
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+
+.hero__cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+.hero__note {
+  margin-top: 22px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+  text-transform: uppercase;
+}
+
+/* The live 3D stage. Sized by aspect-ratio so the canvas never causes layout
+   shift while the model streams in. */
+.stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-height: 74svh;
+  width: 100%;
+}
+.stage canvas { width: 100%; height: 100%; display: block; }
+
+.stage__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity var(--t-element) var(--ease);
+}
+.stage.is-fallback .stage__fallback { opacity: 1; }
+.stage.is-fallback canvas { display: none; }
+
+.stage__hint {
+  position: absolute;
+  left: 50%; bottom: 4px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+  opacity: 0;
+  transition: opacity var(--t-element) var(--ease);
+  pointer-events: none;
+}
+.stage:hover .stage__hint { opacity: 1; }
+
+.stage__load {
+  position: absolute;
+  /* Bottom-centre, not the middle of the viewport: a chassis fades in from
+     opacity 0 over ~600 ms, so a centred label sits directly on top of the
+     machine for the whole ramp. */
+  left: 50%; bottom: 22px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  opacity: 0;
+  transition: opacity var(--t-state) var(--ease);
+}
+/* Delayed in, instant out. A warm cache resolves in well under half a second,
+   and a label that flashes for 200 ms reads as jank rather than as feedback —
+   but a genuinely slow load still gets told. */
+.stage.is-loading .stage__load { opacity: 1; transition-delay: 500ms; }
+
+.scrollcue {
+  position: absolute;
+  left: 50%; bottom: 26px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.scrollcue span { display: block; width: 1px; height: 36px; background: linear-gradient(var(--mint), transparent); }
+
+/* --- stat strip ----------------------------------------------------------- */
+
+.strip {
+  border-block: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--deep), var(--void));
+}
+.strip__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-inline: 1px solid var(--line);
+}
+.strip__cell {
+  background: var(--void);
+  padding: clamp(22px, 3vw, 34px) clamp(16px, 2vw, 28px);
+  text-align: center;
+}
+.strip__n {
+  font-family: var(--mono);
+  font-size: clamp(26px, 3.4vw, 42px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.strip__n em { font-style: normal; color: var(--mint); }
+.strip__l {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* --- split sections ------------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+}
+.split--rev > *:first-child { order: 2; }
+
+.shot {
+  position: relative;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  background: var(--steel);
+}
+.shot img { width: 100%; height: auto; }
+.shot figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 20px 14px;
+  background: linear-gradient(transparent, rgba(5, 7, 10, 0.92));
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.ticks { display: grid; gap: 13px; margin: 24px 0 32px; }
+.ticks li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 12px;
+  color: var(--ink-2);
+  font-size: 15.5px;
+}
+.ticks li::before {
+  content: '';
+  width: 8px; height: 8px;
+  margin-top: 9px;
+  background: var(--mint);
+  transform: rotate(45deg);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 18px;
+  margin-top: clamp(36px, 5vw, 60px);
+}
+.card { padding: clamp(22px, 2.6vw, 32px); }
+.card h3 {
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+.card p { color: var(--dim); font-size: 14.5px; }
+.card__n {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mint);
+  letter-spacing: 0.2em;
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* --- roster (the showroom) ------------------------------------------------ */
+
+.roster { background: linear-gradient(180deg, var(--void), var(--deep) 40%, var(--void)); }
+
+.roster__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(24px, 4vw, 44px);
+}
+
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  transition: all var(--t-state) var(--ease);
+}
+.filter:hover { border-color: var(--line-hi); color: var(--ink-2); }
+.filter.is-on { border-color: var(--mint); color: var(--mint); background: var(--mint-dim); }
+
+.showroom {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr) minmax(0, 320px);
+  gap: clamp(16px, 2vw, 28px);
+  align-items: stretch;
+}
+
+/* chassis list */
+/* The rail scrolls: twelve chassis do not fit in 640px and only about ten are
+   visible. Without an edge treatment the list looks like it simply ends at
+   Corundum, and the three assault machines — the ones people most want to see —
+   are never discovered. The mask fades the last row so the cut reads as "more
+   below" rather than as the end. */
+.chassis {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 640px;
+  overflow-y: auto;
+  mask-image: linear-gradient(#000 calc(100% - 34px), transparent);
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 34px), transparent);
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-hi) transparent;
+}
+.chassis::-webkit-scrollbar { width: 6px; }
+.chassis::-webkit-scrollbar-thumb { background: var(--line-hi); }
+
+.chassis__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid transparent;
+  border-left: 2px solid var(--line);
+  text-align: left;
+  transition: all var(--t-state) var(--ease);
+}
+.chassis__item:hover { background: var(--panel); border-left-color: var(--line-hi); }
+.chassis__item.is-on {
+  background: linear-gradient(90deg, var(--mint-dim), transparent);
+  border-left-color: var(--mint);
+}
+.chassis__item > span:first-child { min-width: 0; }
+
+.chassis__name {
+  display: block;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.chassis__item.is-on .chassis__name { color: var(--mint); }
+.chassis__meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chassis__t {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  align-self: center;
+}
+.chassis__item[hidden] { display: none; }
+
+/* viewport */
+.showroom__view {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 62%, rgba(110, 231, 168, 0.05), transparent 70%),
+    linear-gradient(180deg, var(--steel), var(--void));
+  border: 1px solid var(--line);
+  min-height: 480px;
+}
+.showroom__view .stage { aspect-ratio: auto; height: 100%; max-height: none; position: absolute; inset: 0; }
+
+/* Faint floor grid so the machine reads as standing in a space, not floating. */
+.showroom__view::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(110,231,168,0.05) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(110,231,168,0.05) 0 1px, transparent 1px 40px);
+  mask-image: linear-gradient(transparent, #000 85%);
+  -webkit-mask-image: linear-gradient(transparent, #000 85%);
+}
+
+/* spec sheet */
+.spec { padding: clamp(20px, 2.4vw, 28px); display: flex; flex-direction: column; }
+.spec__cls {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.spec__name {
+  font-size: clamp(28px, 3.4vw, 40px);
+  text-transform: uppercase;
+  margin: 8px 0 4px;
+  letter-spacing: -0.02em;
+}
+.spec__role {
+  color: var(--dim);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 4.5em;
+  margin-bottom: 18px;
+}
+
+.spec__rows { margin: 22px 0 18px; display: grid; gap: 1px; background: var(--line); }
+.spec__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  background: var(--panel);
+  padding: 11px 14px;
+}
+.spec__k {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.spec__v {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Weight bar — one glance tells you where this chassis sits in the roster. */
+.spec__bar { height: 3px; background: var(--line); position: relative; margin-bottom: 20px; }
+.spec__bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, var(--mint), var(--amber));
+  width: var(--w, 0%);
+  transition: width var(--t-element) var(--ease);
+}
+
+.hardpoints { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.hp {
+  width: 27px; height: 27px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid;
+}
+.hp--energy { color: #7ad4ff; border-color: rgba(122, 212, 255, 0.45); background: rgba(122, 212, 255, 0.08); }
+.hp--ballistic { color: var(--amber); border-color: rgba(255, 179, 71, 0.45); background: rgba(255, 179, 71, 0.08); }
+.hp--missile { color: var(--ember); border-color: rgba(255, 107, 74, 0.45); background: rgba(255, 107, 74, 0.08); }
+.hp--utility { color: #c9a1ff; border-color: rgba(201, 161, 255, 0.45); background: rgba(201, 161, 255, 0.08); }
+
+.spec__load { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+.spec__load h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 400;
+  margin-bottom: 9px;
+}
+.spec__load ul { display: grid; gap: 4px; }
+.spec__load li {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.spec__load li span { color: var(--faint); }
+
+.hp-key {
+  margin-top: 22px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--dim);
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.hp-key b { display: inline-flex; align-items: center; gap: 7px; font-weight: 400; }
+
+/* --- campaign ------------------------------------------------------------- */
+
+.ops {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr));
+  gap: 8px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.op {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-size: 13.5px;
+  transition: all var(--t-state) var(--ease);
+}
+.op:hover { border-color: var(--line-hi); background: var(--raise); transform: translateY(-2px); }
+.op i { width: 6px; height: 6px; background: var(--mint); transform: rotate(45deg); }
+.op b {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--mint);
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+.op span { color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.biomes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 14px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.biome {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+.biome img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-camera) var(--ease), filter var(--t-element) var(--ease);
+  filter: saturate(0.82) brightness(0.8);
+}
+.biome:hover img { transform: scale(1.06); filter: saturate(1) brightness(0.95); }
+.biome figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 30px 16px 14px;
+  background: linear-gradient(transparent, rgba(5, 7, 10, 0.94));
+}
+.biome b {
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.biome em {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--dim);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* --- gallery -------------------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  /* min(300px, 100%) rather than a bare 300px: on a 320px viewport the gutters
+     leave less than 300px of content box, and a fixed minimum forces the track
+     wider than its container. */
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 14px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.gallery figure { position: relative; overflow: hidden; border: 1px solid var(--line); cursor: zoom-in; }
+.gallery img {
+  width: 100%;
+  /* height:auto is load-bearing. These <img> carry width/height attributes for
+     CLS, and with a CSS width set but height left to the attribute the browser
+     uses the attribute — 2160px — and aspect-ratio is ignored entirely, because
+     aspect-ratio only computes a dimension that is auto. The result is a 397 x
+     2160 box showing a hugely magnified crop. */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform var(--t-camera) var(--ease);
+}
+.gallery figure:hover img { transform: scale(1.045); }
+.gallery figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 34px 16px 13px;
+  background: linear-gradient(transparent, rgba(5, 7, 10, 0.93));
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.gallery__4k {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--mint);
+  border: 1px solid rgba(110, 231, 168, 0.4);
+  background: rgba(5, 7, 10, 0.7);
+  padding: 4px 8px;
+}
+
+/* lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 4vw, 56px);
+  background: rgba(3, 5, 7, 0.96);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t-state) var(--ease), visibility 0.3s;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox img { max-width: 100%; max-height: 86svh; object-fit: contain; border: 1px solid var(--line); }
+.lightbox__cap {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-align: center;
+}
+.lightbox__x {
+  position: absolute;
+  top: clamp(12px, 3vw, 28px); right: clamp(12px, 3vw, 28px);
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  font-size: 20px;
+}
+.lightbox__x:hover { color: var(--mint); border-color: var(--mint); }
+
+/* --- faq ------------------------------------------------------------------ */
+
+.faq { max-width: 860px; margin-inline: auto; margin-top: clamp(24px, 4vw, 40px); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 22px 44px 22px 0;
+  font-weight: 600;
+  font-size: 17px;
+  position: relative;
+  transition: color var(--t-state) var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--mint); }
+.faq summary::after {
+  content: '';
+  position: absolute;
+  right: 6px; top: 50%;
+  width: 11px; height: 11px;
+  border-right: 1.5px solid var(--mint);
+  border-bottom: 1.5px solid var(--mint);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform var(--t-state) var(--ease);
+}
+.faq details[open] summary::after { transform: translateY(-20%) rotate(225deg); }
+.faq .a { padding: 0 40px 24px 0; color: var(--dim); font-size: 15.5px; }
+
+/* --- final cta ------------------------------------------------------------ */
+
+.final {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: clamp(90px, 13vw, 190px);
+}
+.final__plate {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 70% 80% at 50% 50%, rgba(5,7,10,0.6), rgba(5,7,10,0.94) 72%),
+    linear-gradient(180deg, var(--void), transparent 22%, transparent 78%, var(--void));
+}
+.final h2 { font-size: clamp(32px, 5.4vw, 68px); }
+
+/* --- footer --------------------------------------------------------------- */
+
+footer { border-top: 1px solid var(--line); background: var(--deep); padding-block: clamp(46px, 6vw, 72px) 32px; }
+.foot {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+}
+.foot h4 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+.foot ul { display: grid; gap: 9px; }
+.foot a { color: var(--ink-2); font-size: 14.5px; transition: color var(--t-state) var(--ease); }
+.foot a:hover { color: var(--mint); }
+.foot p { color: var(--dim); font-size: 14px; margin-top: 14px; max-width: 38ch; }
+
+.legal {
+  margin-top: clamp(32px, 5vw, 52px);
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+}
+
+/* --- boot overlay ---------------------------------------------------------
+   Covers the first paint while fonts and the hero plate resolve. It is removed
+   on `load`, and a failsafe timer removes it regardless — a preloader that can
+   strand the page is worse than no preloader. */
+
+.boot { display: none; }
+
+/* Only ever shown when a script is present to remove it — see index.html.
+   The `.js` flag is set by an inline script, which proves scripting is ENABLED
+   but not that the module bundle actually arrived: a 404 on the entry chunk, a
+   parse error, or a blocked CDN would set the flag and then never lift the
+   cover. So there is also a CSS-only failsafe — a delayed animation that hides
+   the panel at 6 s no matter what JavaScript does or fails to do. main.ts
+   normally removes it long before that. */
+@keyframes bootFailsafe {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.js .boot {
+  display: grid;
+  animation: bootFailsafe 400ms linear 6s forwards;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  place-items: center;
+  background: var(--void);
+  transition: opacity var(--t-element) var(--ease), visibility 0.6s;
+}
+.boot.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot__inner { width: min(420px, 74vw); text-align: center; }
+.boot__brand {
+  font-weight: 900;
+  font-size: clamp(22px, 4vw, 30px);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+.boot__brand em { font-style: normal; color: var(--mint); }
+.boot__track { height: 1px; background: var(--line); position: relative; overflow: hidden; }
+.boot__track i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--p, 4%);
+  background: var(--mint);
+  transition: width var(--t-element) var(--ease);
+}
+.boot__line {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--faint);
+  min-height: 1.4em;
+}
+
+/* --- reveal animation ----------------------------------------------------- */
+
+/* Gated on `.js-ready`, NOT `.js`, and the difference matters.
+   `.js` is set by an inline script and only proves scripting is enabled.
+   `.js-ready` is set by main.ts itself, so it proves the module actually ran.
+   These elements start invisible and are revealed by an IntersectionObserver;
+   if the bundle 404s or fails to parse, nothing would ever reveal them and the
+   whole page would sit at opacity 0 — a blank document that still passes a link
+   check. Keying on `.js-ready` means a failed bundle leaves them simply visible.
+   The swap happens behind the boot cover, so there is no flash. */
+.js-ready [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity var(--t-camera) var(--ease), transform var(--t-camera) var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+.js-ready [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* --- responsive ----------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .showroom { grid-template-columns: minmax(0, 220px) minmax(0, 1fr); }
+  .spec { grid-column: 1 / -1; }
+  .chassis { max-height: 420px; }
+}
+
+@media (max-width: 900px) {
+  .hdr__bar { height: 64px; }
+  .nav {
+    position: fixed;
+    inset: 64px 0 auto 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(5, 7, 10, 0.98);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--t-state) var(--ease);
+  }
+  .nav.is-open { transform: none; opacity: 1; visibility: visible; }
+  .nav a { padding: 14px var(--gutter); border-bottom: 1px solid var(--line); }
+  .nav a::after { display: none; }
+
+  .burger {
+    display: grid;
+    place-items: center;
+    width: 42px; height: 42px;
+    border: 1px solid var(--line);
+    color: var(--mint);
+  }
+  .burger span, .burger span::before, .burger span::after {
+    content: '';
+    display: block;
+    width: 17px; height: 1.5px;
+    background: currentColor;
+    transition: transform var(--t-state) var(--ease), opacity 0.2s;
+  }
+  .burger span::before { transform: translateY(-5.5px); }
+  .burger span::after { transform: translateY(4px); }
+  .burger.is-open span { background: transparent; }
+  .burger.is-open span::before { transform: rotate(45deg); }
+  .burger.is-open span::after { transform: rotate(-45deg) translateY(0); }
+
+  .hero__grid { grid-template-columns: 1fr; }
+  /* On a phone the machine goes above the copy: it is the reason to keep
+     reading, and burying it under three paragraphs wastes it. */
+  .hero__stage { order: -1; }
+  .stage { max-height: 44svh; aspect-ratio: 4 / 3; }
+  .hero { min-height: auto; padding-block: 108px 64px; }
+  .scrollcue { display: none; }
+
+  .split { grid-template-columns: 1fr; }
+  .split--rev > *:first-child { order: 0; }
+
+  .strip__grid { grid-template-columns: repeat(2, 1fr); }
+  .showroom { grid-template-columns: 1fr; }
+  .showroom__view { min-height: 380px; order: -1; }
+  .chassis {
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: none;
+    padding-bottom: 6px;
+    mask-image: linear-gradient(90deg, #000 calc(100% - 34px), transparent);
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 34px), transparent);
+  }
+  .chassis__item {
+    /* width:auto is required: the base rule sets width:100%, and with
+       flex: 0 0 auto that resolves to the full rail width — one machine on
+       screen at a time, with the other eleven off to the right. */
+    width: auto;
+    flex: 0 0 auto;
+    min-width: 170px;
+    border-left: 0;
+    border-bottom: 2px solid var(--line);
+  }
+  .chassis__item.is-on { border-bottom-color: var(--mint); background: var(--mint-dim); }
+
+  .foot { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 560px) {
+  .strip__grid { grid-template-columns: 1fr; }
+  .foot { grid-template-columns: 1fr; }
+  .btn { width: 100%; }
+  .hero__cta { flex-direction: column; align-items: stretch; }
+}
+
+/* --- reduced motion -------------------------------------------------------
+   Honour it completely: no reveals, no parallax, no turntable, no smooth
+   scroll. The stage module refuses to start at all under this setting. */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .js-ready [data-reveal] { opacity: 1; transform: none; }
+  .hero__plate { transform: none; }
+}
+
+/* Printing a marketing page is rare but a blank sheet is embarrassing. */
+@media print {
+  .hdr, .boot, .lightbox, .scrollcue, .stage { display: none !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* --- additions for the rebuilt page --------------------------------------- */
+
+/* Skip link — present for keyboard users, out of the way for everyone else. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 400;
+  background: var(--mint);
+  color: #04150d;
+  padding: 12px 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+/* The weight settle. The showroom viewport dips under the tonnage of whatever
+   was just loaded and comes back up — deeper for a Craton than for a Flint.
+   It is the only place on the page where an animation carries information. */
+@keyframes settle {
+  0%   { transform: translateY(0); }
+  22%  { transform: translateY(var(--settle, 4px)); }
+  100% { transform: translateY(0); }
+}
+.showroom__view.is-settling { animation: settle 620ms var(--ease); }
+
+/* Litany lines light one at a time under the audio. */
+.litany { display: grid; gap: 10px; margin: 22px 0 26px; counter-reset: l; }
+.litany li {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--faint);
+  padding-left: 26px;
+  position: relative;
+  transition: color var(--t-element) var(--ease);
+}
+.litany li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 12px; height: 1px;
+  background: currentColor;
+}
+.litany li.is-lit { color: var(--mint); }
+
+.spec__loadline { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.7; }
+
+/* Basic Training sits above M01 and is marked as the entry point, not a mission. */
+.op--bt { border-color: rgba(110, 231, 168, 0.35); background: var(--mint-dim); }
+.op--bt b { color: var(--mint); }
+/* The two M21 endings are the same slot in the campaign, not two missions. */
+.op--fork { border-left: 2px solid var(--amber); }
+.op--fork b { color: var(--amber); }
+
+.ops { list-style: none; }
+
+/* The trust section is deliberately undesigned: no chamfer, no accent, no
+   ornament. Where the visitor has to take you at your word, the art direction
+   gets out of the way. */
+.trust { background: var(--deep); border-top: 1px solid var(--line); }
+.trust h2 { font-size: clamp(24px, 3vw, 34px); text-align: center; margin-bottom: 8px; }
+
+.colophon {
+  max-width: 860px;
+  margin: clamp(40px, 6vw, 64px) auto 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.colophon h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+.colophon ul { display: grid; gap: 8px; margin-bottom: 16px; }
+.colophon li { color: var(--ink-2); font-size: 14.5px; }
+.colophon li b { font-family: var(--mono); color: var(--ink); font-variant-numeric: tabular-nums; }
+.colophon p { font-size: 13.5px; }
+
+.cockpit { background: linear-gradient(180deg, var(--void), var(--deep) 50%, var(--void)); }
+
+.hdr__play { display: inline-flex; }
+@media (max-width: 560px) { .hdr__play { display: none; } }
+
+/* The nav and the actions both wanted margin-left:auto; only the nav gets it. */
+.hdr__actions { margin-left: 0; }
+
+.gallery figure a { display: block; position: relative; }
+
+.final .rail { position: relative; z-index: 1; }
+.final .kicker { display: inline-flex; }
+
+/* --- touch targets --------------------------------------------------------
+   Measured on a 390px viewport: footer links were 17px tall, which fails even
+   the WCAG 2.5.8 minimum of 24x24, and the filter chips, sound toggle and
+   burger all sat at 38-42px against the 44px guideline. Applied on coarse
+   pointers only — on a mouse these sizes are already comfortable and inflating
+   them would just loosen the layout. */
+
+@media (pointer: coarse) {
+  .foot a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .foot ul { gap: 0; }
+
+  .filter { min-height: 44px; padding-block: 0; display: inline-flex; align-items: center; }
+  .sound { min-height: 44px; }
+  .burger { width: 46px; height: 46px; }
+  .brand { padding-block: 6px; }
+  .nav a { min-height: 48px; display: flex; align-items: center; }
+  .faq summary { min-height: 48px; display: flex; align-items: center; }
+  .gallery figure a { min-height: 44px; }
+}
+
+/* Visually hidden, still announced. Used for the roster's filter status. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

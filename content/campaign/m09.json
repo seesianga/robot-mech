@@ -1,0 +1,110 @@
+{
+  "id": "m09",
+  "designFile": "m09_undertow",
+  "stage": 9,
+  "title": "UNDERTOW",
+  "map": "karst",
+  "spawn": { "x": -440, "z": 440, "yaw": 2.2 },
+  "playerMech": "gabbro",
+  "extract": [460, 240],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-418, 414] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-468, 408] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-408, 462] }
+  ],
+  "structures": [
+    { "id": "fuel_bunker", "name": "Reserve Fuel Bunker", "kind": "bunker", "pos": [260, -300], "hp": 240 },
+    { "id": "feed_tank_a", "name": "Feed Tank A", "kind": "tank", "pos": [296, -258], "hp": 72 },
+    { "id": "feed_tank_b", "name": "Feed Tank B", "kind": "tank", "pos": [222, -338], "hp": 78 }
+  ],
+  "artillery": { "fromStep": 4, "everySec": 8, "damage": 12, "radius": 32 },
+  "timedVO": [
+    { "atSec": 45, "trigger": "on_comms_thin" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "INTO THE MOUNTAIN",
+      "sub": "Descend through the Doline Twelve cave mouth",
+      "vo": "on_start_brief",
+      "doneVO": "on_descend",
+      "at": [-180, 260],
+      "radius": 45,
+      "spawns": [
+        {
+          "def": "flint",
+          "pos": [-160, 60],
+          "alerted": false,
+          "name": "Rail Drone String",
+          "waypoints": [[-240, 140], [-100, -20]]
+        }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "THE FLOODED GALLERY",
+      "sub": "Wade the gallery to the causeway approach",
+      "vo": "on_gallery_entry",
+      "doneVO": "on_vireo_dark",
+      "at": [-260, -60],
+      "radius": 45,
+      "spawns": [
+        {
+          "def": "flint",
+          "pos": [-260, -220],
+          "alerted": false,
+          "name": "Rail Drone String",
+          "waypoints": [[-320, -140], [-180, -260]]
+        }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "CLEAR THE CAUSEWAYS",
+      "sub": "Destroy the bunker's guard element on the causeways",
+      "vo": "on_contact",
+      "doneVO": "on_objective:obj_2",
+      "targets": [],
+      "killAll": true,
+      "spawns": [
+        { "def": "pumice", "pos": [-20, -200], "alerted": true, "name": "Ferric APC" },
+        { "def": "pumice", "pos": [60, -140], "alerted": true, "name": "Ferric APC" },
+        { "def": "flint", "pos": [10, -260], "alerted": true, "name": "Rocket Team" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DROWN THE RESERVE",
+      "sub": "Set the charges and destroy the fuel bunker",
+      "vo": "on_charges_set",
+      "targets": ["fuel_bunker"],
+      "killAll": false,
+      "perTargetVO": { "fuel_bunker": "on_detonation" },
+      "spawns": [
+        { "def": "flint", "pos": [180, -280], "alerted": true, "name": "Recessed Turret" },
+        { "def": "flint", "pos": [340, -350], "alerted": true, "name": "Recessed Turret" },
+        {
+          "def": "halite",
+          "pos": [300, -220],
+          "alerted": false,
+          "name": "Standing Picket",
+          "yieldFrac": 0.3
+        }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "BEAT THE SURGE",
+      "sub": "Sprint up the switchback galleries ahead of the flood",
+      "vo": "on_surge",
+      "at": [420, -40],
+      "radius": 45
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach the surface extraction point ahead of the water",
+      "doneVO": "on_complete"
+    }
+  ]
+}

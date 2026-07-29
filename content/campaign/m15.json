@@ -1,0 +1,115 @@
+{
+  "id": "m15",
+  "designFile": "m15_breakwater",
+  "stage": 15,
+  "title": "BREAKWATER",
+  "map": "storm",
+  "spawn": { "x": -430, "z": 420, "yaw": 2.2 },
+  "playerMech": "corundum",
+  "heatMult": 1.15,
+  "extract": [470, -260],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-405, 400] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-455, 395] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-420, 450] }
+  ],
+  "structures": [
+    { "id": "ferry_quay", "name": "Ferry Loading Quay", "kind": "bunker", "pos": [-150, 240], "hp": 240 },
+    { "id": "coast_bridge", "name": "Coast Road Bridge", "kind": "gate", "pos": [-60, -160], "hp": 130 }
+  ],
+  "artillery": { "fromStep": 1, "everySec": 11, "damage": 12, "radius": 30 },
+  "timedVO": [
+    { "atSec": 60, "trigger": "on_monitor_first_shot" },
+    { "atSec": 100, "trigger": "on_overheat_warning" },
+    { "atSec": 150, "trigger": "on_kryce_broadcast" },
+    { "atSec": 210, "trigger": "on_ferry_near_miss" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "REACH THE WATERLINE",
+      "sub": "Move down to the ferry quays at Marrow Bay",
+      "at": [-120, 205],
+      "radius": 45,
+      "vo": "on_deploy"
+    },
+    {
+      "kind": "defend",
+      "title": "HOLD THE WATERLINE",
+      "sub": "Protect the ferry loading quay through the evacuation cycles",
+      "protect": "ferry_quay",
+      "seconds": 90,
+      "waveGap": 25,
+      "vo": "on_enemy_wave",
+      "doneVO": "on_wave_defeated",
+      "waves": [
+        [
+          { "def": "pumice", "pos": [220, 180], "alerted": true, "name": "Hover Skiff" },
+          { "def": "pumice", "pos": [250, 110], "alerted": true, "name": "Hover Skiff" },
+          { "def": "pumice", "pos": [185, 260], "alerted": true, "name": "Hover Skiff" }
+        ],
+        [
+          { "def": "pumice", "pos": [280, 60], "alerted": true, "name": "Hover Skiff" },
+          { "def": "halite", "pos": [225, 210], "alerted": true, "name": "Quay Assault Team" }
+        ]
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "COAST ROAD",
+      "sub": "Collapse the coast road bridge to cut off the shore column",
+      "targets": ["coast_bridge"],
+      "killAll": false,
+      "spawns": [
+        { "def": "halite", "pos": [-140, -260], "alerted": true, "name": "Shore Lance" },
+        { "def": "halite", "pos": [-80, -300], "alerted": true, "name": "Shore Lance" },
+        { "def": "basalt", "pos": [-200, -220], "alerted": true, "name": "Shore Column Leader", "yieldFrac": 0.2 }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "SINK THE MONITOR",
+      "sub": "Destroy the gun monitor Ledger holding station past the breakwater",
+      "targets": [],
+      "killAll": true,
+      "vo": "on_objective:obj_2",
+      "doneVO": "on_monitor_destroyed",
+      "spawns": [
+        { "def": "dolerite", "pos": [330, -60], "alerted": true, "name": "Gun Monitor 'Ledger'" },
+        { "def": "pumice", "pos": [260, 10], "alerted": true, "name": "Hover Skiff" }
+      ]
+    },
+    {
+      "kind": "escort",
+      "title": "LAST BOAT OUT",
+      "sub": "Escort the final ferry through the breakwater gap",
+      "subject": "Evacuation Ferry",
+      "subjectDef": "halite",
+      "from": [-90, 180],
+      "route": [[80, 100], [230, 20], [340, -40]],
+      "vo": "on_objective:obj_4",
+      "ambushes": [
+        {
+          "atLeg": 0,
+          "spawns": [
+            { "def": "pumice", "pos": [200, 200], "alerted": true, "name": "Skiff Pack" },
+            { "def": "pumice", "pos": [280, 130], "alerted": true, "name": "Skiff Pack" }
+          ]
+        },
+        {
+          "atLeg": 1,
+          "spawns": [
+            { "def": "pumice", "pos": [400, 60], "alerted": true, "name": "Skiff Pack" },
+            { "def": "pumice", "pos": [430, -10], "alerted": true, "name": "Skiff Pack" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Withdraw past the breakwater to the extraction point",
+      "doneVO": "on_complete"
+    }
+  ]
+}

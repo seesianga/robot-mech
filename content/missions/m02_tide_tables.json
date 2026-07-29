@@ -1,0 +1,59 @@
+{
+  "id": "m02_tide_tables",
+  "index": 2,
+  "op": 1,
+  "opName": "Breaker Coast",
+  "name": "Tide Tables",
+  "biome": "breaker_coast",
+  "weather": "morning sea mist burning off",
+  "timeOfDay": "early morning, low tide",
+  "designIntent": "Ambush a punctual Directorate patrol among beached hull carcasses at low tide and strip the wrecks — the Compact's first field salvage. Teaches heat management and component subtargeting.",
+  "teaches": ["heat_discipline", "subtargeting", "field_salvage"],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "So here's a thing I love about the Directorate, Lodestar: they patrol the flats by the tide tables. Same route, same timing, every low tide, because heaven forbid an occupation run late. Which means today, for the first time ever, their schedule works for us. You'll set up inside the beached hull carcasses off Graver Point — big dead ships, lots of iron to hide a mech in — and when the patrol walks the tideline, you take them. Two things. One: watch your heat. Alpha-striking everything feels amazing right up until your reactor takes a nap in front of an autocannon. Short bursts, let the sinks breathe. Two: aim for parts, not paint. Leg them, arm them — whatever's left standing-ish is ours to strip. That's the other half of today: the first proper salvage run in Compact history. Tide turns in about forty minutes. Don't be in the kill zone when the water comes back. Relay out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Take Position", "description": "Reach the ambush marks inside the beached hull carcasses before the patrol arrives.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Spring the Ambush", "description": "Destroy the Directorate patrol element on the tide flats.", "optional": false },
+    { "id": "obj_3", "type": "capture", "title": "Strip the Wrecks", "description": "Secure salvage claims on the downed patrol before the tide returns.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Surgeon's Work", "description": "Disable at least one enemy mech by destroying its legs to preserve the chassis for salvage.", "optional": true }
+  ],
+  "enemyForces": [
+    "Patrol lead: one Gabbro in Directorate grey-and-amber",
+    "One Pumice outrider sweeping the hull shadows",
+    "Two Ferric tracked APCs with dismount squads",
+    "One hover skiff running the surf line"
+  ],
+  "allies": [],
+  "setPieces": [
+    "Low tide reveals a graveyard of cut-open ship carcasses big enough to hide a mech inside",
+    "The patrol walks the tideline exactly on schedule — the ambush is yours to spring",
+    "A legged mech drags itself through the wet salt, still firing",
+    "The tide returns on a visible timer, flooding the kill zone lane by lane"
+  ],
+  "failConditions": [
+    "Player mech destroyed — pilot ejects, mission failed",
+    "The patrol escapes the flats and raises the coastal garrison",
+    "All salvage claims lost to the returning tide"
+  ],
+  "salvageNotes": "First real salvage lesson: kill condition sets the yield. Legged or headshot kills leave near-intact chassis and weapons; center-torso ammunition kills leave slag. The optional legging objective pays the best claim of the op.",
+  "musicSet": {
+    "ambient": "breaker_coast",
+    "combatIntensityCap": 2,
+    "specialCues": ["ambush_sprung_hit", "salvage_claim_motif"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Relay", "line": "Tide's out, clock's running. Patrol crosses Graver Point in nine minutes — same as yesterday, same as forever. Get inside a carcass and be furniture.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Relay", "line": "Good spot. Now the hard part: doing nothing until they're all the way in the pocket.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "There they are — right on the minute. A Gabbro, a Pumice, two Ferrics and a skiff. Punctuality kills, Lodestar. Your call.", "futz": true },
+    { "trigger": "on_heat_high", "speaker": "CAIRN", "line": "Heat at seventy percent. Sustained fire will force an emergency shutdown. Recommend staggering weapon groups and letting the sinks breathe.", "futz": false },
+    { "trigger": "on_overheat_shutdown", "speaker": "CAIRN", "line": "Emergency shutdown engaged. Restart in five seconds. I advise not being shot during this interval.", "futz": false },
+    { "trigger": "on_target_locked", "speaker": "CAIRN", "line": "Subtargeting available. Press E to cycle components. Legs disable; heads decapitate; ammunition stores do neither cleanly.", "futz": false },
+    { "trigger": "on_legged_kill", "speaker": "Relay", "line": "Ooh — clean leg. The wrench crews are going to frame that one. That's a whole mech on our books, minus the walking.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Patrol's off the tide tables. Permanently. Claim beacons out — grab everything that isn't barnacles.", "futz": true },
+    { "trigger": "on_tide_warning", "speaker": "Relay", "line": "Water's coming back, Lodestar, and it does not negotiate. Two minutes, then the flats belong to the sea again.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "Relay tells me the flats owe us a patrol and the tide owes us nothing. Well cut, Lodestar. Every ton you stripped today walks with the Compact tomorrow.", "futz": true }
+  ]
+}

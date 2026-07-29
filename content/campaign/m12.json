@@ -1,0 +1,100 @@
+{
+  "id": "m12",
+  "designFile": "m12_flare_stack",
+  "stage": 12,
+  "title": "FLARE STACK",
+  "map": "polar",
+  "spawn": { "x": -430, "z": -410, "yaw": 0.6 },
+  "playerMech": "basalt",
+  "heatMult": 1.1,
+  "extract": [60, 480],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-455, -390] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-410, -445] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-465, -430] }
+  ],
+  "structures": [
+    { "id": "flare_alpha", "name": "Flare Stack Alpha", "kind": "pylon", "pos": [-290, -175], "hp": 150 },
+    { "id": "flare_beta", "name": "Flare Stack Beta", "kind": "pylon", "pos": [-70, -15], "hp": 150 },
+    { "id": "cracker_one", "name": "Cracking Unit One", "kind": "tank", "pos": [200, 60], "hp": 90 },
+    { "id": "cracker_two", "name": "Cracking Unit Two", "kind": "tank", "pos": [150, 360], "hp": 90 },
+    { "id": "cracker_three", "name": "Cracking Unit Three", "kind": "tank", "pos": [430, 220], "hp": 90 },
+    { "id": "bowser_park", "name": "Fuel Bowser Park", "kind": "crawler", "pos": [400, 490], "hp": 110 }
+  ],
+  "timedVO": [
+    { "atSec": 18, "trigger": "on_arctic_advisory" },
+    { "atSec": 50, "trigger": "on_tutorial_masking" },
+    { "atSec": 210, "trigger": "on_ice_slip" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "RIDE THE BLOOMS",
+      "sub": "Infiltrate the refinery field: reach Flare Stack Alpha inside the thermal bloom.",
+      "at": [-280, -190],
+      "radius": 45,
+      "vo": "on_start_brief",
+      "doneVO": "on_bloom_timing",
+      "spawns": [
+        { "def": "flint", "pos": [-140, -60], "name": "Sentry Drone", "waypoints": [[-220, 40], [-40, -140]] },
+        { "def": "flint", "pos": [-40, -300], "name": "Sentry Drone", "waypoints": [[-160, -320], [80, -240]] }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "STACK TO STACK",
+      "sub": "Move on the bloom, freeze in the dark: cross to Flare Stack Beta.",
+      "at": [-60, -30],
+      "radius": 45,
+      "vo": "on_drone_pass",
+      "doneVO": "on_relay_response",
+      "spawns": [
+        { "def": "flint", "pos": [120, 100], "name": "Sentry Drone", "waypoints": [[20, 180], [200, 20]] },
+        { "def": "pumice", "pos": [60, -180], "name": "Guard Skiff", "waypoints": [[220, -140], [-60, -220]] }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "BREAK THE CRACKING TRAIN",
+      "sub": "Destroy Cracking Unit One at the head of the refinery spine.",
+      "targets": ["cracker_one"],
+      "killAll": false,
+      "perTargetVO": { "cracker_one": "on_first_detonation" },
+      "vo": "on_charge_set",
+      "spawns": [
+        { "def": "flint", "pos": [280, 10], "name": "Recessed Turret", "alerted": true }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "TWO CRACKERS TO GO",
+      "sub": "Destroy Cracking Units Two and Three before the response lance seals the field.",
+      "targets": ["cracker_two", "cracker_three"],
+      "killAll": false,
+      "vo": "on_enemy_wave",
+      "doneVO": "on_objective:obj_2",
+      "spawns": [
+        { "def": "gabbro", "pos": [60, 320], "name": "Refinery Security Lance", "alerted": true },
+        { "def": "halite", "pos": [150, 250], "name": "Refinery Security Lance", "alerted": true, "yieldFrac": 0.25 },
+        { "def": "basalt", "pos": [500, 380], "name": "Garrison Response Element", "alerted": true }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "DRY THE RESERVES",
+      "sub": "Torch the fuel bowser park and clear its skiff escort.",
+      "targets": ["bowser_park"],
+      "killAll": true,
+      "spawns": [
+        { "def": "pumice", "pos": [330, 450], "name": "Guard Skiff", "alerted": true },
+        { "def": "pumice", "pos": [470, 460], "name": "Guard Skiff", "alerted": true }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "OUT OF THE LIGHT",
+      "sub": "Skate the pipe alleys to the glacier rim for extraction.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

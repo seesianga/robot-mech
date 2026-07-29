@@ -1,0 +1,984 @@
+{
+ "voices": [
+  {
+   "id": "cairn",
+   "character": "CAIRN (Cockpit Autonomic Intelligence, Reflex Node)",
+   "designPrompt": "calm, measured, softly synthetic androgynous voice, mid-low pitch, perfectly even pacing, faint digital smoothness, zero emotion but strangely reassuring",
+   "futz": false
+  },
+  {
+   "id": "ekene",
+   "character": "Commander Mara Ekene \"Anchor\"",
+   "designPrompt": "woman in her 50s, low gravelly voice with warm weight of authority, unhurried, faint parade-ground clip on commands",
+   "futz": true
+  },
+  {
+   "id": "relay",
+   "character": "Dae-jun Im \"Relay\"",
+   "designPrompt": "man early 20s, crisp bright tenor, fast talker, dry wit, slight vocal smile even in danger",
+   "futz": true
+  },
+  {
+   "id": "sable",
+   "character": "Riva Chen \"Sable\"",
+   "designPrompt": "woman 30s, quiet flat calm, almost a whisper on comms, precise consonants",
+   "futz": true
+  },
+  {
+   "id": "tremor",
+   "character": "Dozie Okafor \"Tremor\"",
+   "designPrompt": "man 40s, booming bass, big easy laugh, rounds every sentence off warmly",
+   "futz": true
+  },
+  {
+   "id": "vireo",
+   "character": "Anja Kessler \"Vireo\"",
+   "designPrompt": "woman early 20s, light voice with audible nerves early on; later-campaign delivery steadier and confident from the same voice",
+   "futz": true
+  },
+  {
+   "id": "kryce",
+   "character": "Director Halden Kryce",
+   "designPrompt": "older man, soft patrician baritone, unhurried, faint amusement, corporate-broadcast polish",
+   "futz": true
+  },
+  {
+   "id": "rauk",
+   "character": "Colonel Vesna Rauk",
+   "designPrompt": "woman 40s, clipped icy alto, open contempt, military brevity",
+   "futz": true
+  },
+  {
+   "id": "sol",
+   "character": "Marshal Edrik Sol",
+   "designPrompt": "man 60s, tired dignified baritone, regret under iron resolve",
+   "futz": true
+  },
+  {
+   "id": "ens_compact_male",
+   "character": "Compact ensemble (male)",
+   "designPrompt": "man 30s, rough working-class voice, honest and direct, slight wind-worn rasp, speaks like someone used to shouting over machinery",
+   "futz": true
+  },
+  {
+   "id": "ens_compact_female",
+   "character": "Compact ensemble (female)",
+   "designPrompt": "woman 40s, steady practical alto, calm under pressure, the voice of someone who has run a work crew for years",
+   "futz": true
+  },
+  {
+   "id": "ens_directorate_officer",
+   "character": "Directorate ensemble (officer)",
+   "designPrompt": "man 30s, flat corporate-military voice, procedural and clipped, faint boredom curdling into alarm under fire",
+   "futz": true
+  },
+  {
+   "id": "ens_civilian_female",
+   "character": "Civilian ensemble (female)",
+   "designPrompt": "woman 20s to 30s, ordinary warm voice, frightened but holding it together, relief breaking through when rescued",
+   "futz": true
+  }
+ ],
+ "vo": [
+  {
+   "id": "litany",
+   "character": "cairn",
+   "category": "litany",
+   "missionId": null,
+   "text": "Core ignition confirmed. Actuator lattice \u2014 green. Weapon buses \u2014 live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.",
+   "file": "public/audio/vo/litany.mp3"
+  },
+  {
+   "id": "cairn_heat_high",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Heat approaching redline.",
+   "file": "public/audio/vo/cairn_heat_high.mp3"
+  },
+  {
+   "id": "cairn_heat_critical",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Redline. Shutdown imminent.",
+   "file": "public/audio/vo/cairn_heat_critical.mp3"
+  },
+  {
+   "id": "cairn_shutdown",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Emergency shutdown engaged. Restart cycle initiated.",
+   "file": "public/audio/vo/cairn_shutdown.mp3"
+  },
+  {
+   "id": "cairn_restart",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Restart complete. All boards answer ready.",
+   "file": "public/audio/vo/cairn_restart.mp3"
+  },
+  {
+   "id": "cairn_override",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Override accepted. Structural damage accruing.",
+   "file": "public/audio/vo/cairn_override.mp3"
+  },
+  {
+   "id": "cairn_coolant_flush",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Coolant flush deployed. Core temperature falling.",
+   "file": "public/audio/vo/cairn_coolant_flush.mp3"
+  },
+  {
+   "id": "cairn_armor_breach",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Armor breach. Internal structure exposed.",
+   "file": "public/audio/vo/cairn_armor_breach.mp3"
+  },
+  {
+   "id": "cairn_weapon_lost",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Weapon system destroyed.",
+   "file": "public/audio/vo/cairn_weapon_lost.mp3"
+  },
+  {
+   "id": "cairn_leg_damage",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Leg actuator compromised. Locomotion capped.",
+   "file": "public/audio/vo/cairn_leg_damage.mp3"
+  },
+  {
+   "id": "cairn_ammo_low",
+   "character": "cairn",
+   "category": "bark",
+   "missionId": null,
+   "text": "Munition reserves below twenty percent.",
+   "file": "public/audio/vo/cairn_ammo_low.mp3"
+  },
+  {
+   "id": "briefing_m01",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m01",
+   "text": null,
+   "file": "public/audio/vo/briefing_m01.mp3"
+  },
+  {
+   "id": "briefing_m02",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m02",
+   "text": null,
+   "file": "public/audio/vo/briefing_m02.mp3"
+  },
+  {
+   "id": "briefing_m03",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m03",
+   "text": null,
+   "file": "public/audio/vo/briefing_m03.mp3"
+  },
+  {
+   "id": "briefing_m04",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m04",
+   "text": null,
+   "file": "public/audio/vo/briefing_m04.mp3"
+  },
+  {
+   "id": "briefing_m05",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m05",
+   "text": null,
+   "file": "public/audio/vo/briefing_m05.mp3"
+  },
+  {
+   "id": "briefing_m06",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m06",
+   "text": null,
+   "file": "public/audio/vo/briefing_m06.mp3"
+  },
+  {
+   "id": "briefing_m07",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m07",
+   "text": null,
+   "file": "public/audio/vo/briefing_m07.mp3"
+  },
+  {
+   "id": "briefing_m08",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m08",
+   "text": null,
+   "file": "public/audio/vo/briefing_m08.mp3"
+  },
+  {
+   "id": "briefing_m09",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m09",
+   "text": null,
+   "file": "public/audio/vo/briefing_m09.mp3"
+  },
+  {
+   "id": "briefing_m10",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m10",
+   "text": null,
+   "file": "public/audio/vo/briefing_m10.mp3"
+  },
+  {
+   "id": "briefing_m11",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m11",
+   "text": null,
+   "file": "public/audio/vo/briefing_m11.mp3"
+  },
+  {
+   "id": "briefing_m12",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m12",
+   "text": null,
+   "file": "public/audio/vo/briefing_m12.mp3"
+  },
+  {
+   "id": "briefing_m13",
+   "character": "ekene",
+   "category": "briefing",
+   "missionId": "m13",
+   "text": null,
+   "file": "public/audio/vo/briefing_m13.mp3"
+  },
+  {
+   "id": "briefing_m14",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m14",
+   "text": null,
+   "file": "public/audio/vo/briefing_m14.mp3"
+  },
+  {
+   "id": "briefing_m15",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m15",
+   "text": null,
+   "file": "public/audio/vo/briefing_m15.mp3"
+  },
+  {
+   "id": "briefing_m16",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m16",
+   "text": null,
+   "file": "public/audio/vo/briefing_m16.mp3"
+  },
+  {
+   "id": "briefing_m17",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m17",
+   "text": null,
+   "file": "public/audio/vo/briefing_m17.mp3"
+  },
+  {
+   "id": "briefing_m18",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m18",
+   "text": null,
+   "file": "public/audio/vo/briefing_m18.mp3"
+  },
+  {
+   "id": "briefing_m19",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m19",
+   "text": null,
+   "file": "public/audio/vo/briefing_m19.mp3"
+  },
+  {
+   "id": "briefing_m20",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m20",
+   "text": null,
+   "file": "public/audio/vo/briefing_m20.mp3"
+  },
+  {
+   "id": "briefing_m21a",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m21a",
+   "text": null,
+   "file": "public/audio/vo/briefing_m21a.mp3"
+  },
+  {
+   "id": "briefing_m21b",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m21b",
+   "text": null,
+   "file": "public/audio/vo/briefing_m21b.mp3"
+  },
+  {
+   "id": "briefing_m22",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m22",
+   "text": null,
+   "file": "public/audio/vo/briefing_m22.mp3"
+  },
+  {
+   "id": "briefing_m23",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m23",
+   "text": null,
+   "file": "public/audio/vo/briefing_m23.mp3"
+  },
+  {
+   "id": "briefing_m24",
+   "character": "relay",
+   "category": "briefing",
+   "missionId": "m24",
+   "text": null,
+   "file": "public/audio/vo/briefing_m24.mp3"
+  },
+  {
+   "id": "epilogue_21a",
+   "character": "ekene",
+   "category": "epilogue",
+   "missionId": "m24",
+   "text": null,
+   "file": "public/audio/vo/epilogue_21a.mp3"
+  },
+  {
+   "id": "epilogue_21b",
+   "character": "vireo",
+   "category": "epilogue",
+   "missionId": "m24",
+   "text": null,
+   "file": "public/audio/vo/epilogue_21b.mp3"
+  }
+ ],
+ "sfx": [
+  {
+   "id": "footstep_light_salt",
+   "prompt": "colossal metal footstep of a 30-ton walking machine on packed salt, quicker and lighter, sharp servo whine, sub-bass thump, hydraulic hiss follow-through, dry outdoor air, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_light_salt.mp3"
+  },
+  {
+   "id": "footstep_light_rock",
+   "prompt": "colossal metal footstep of a 30-ton walking machine on bare rock, quicker and lighter, sharp servo whine, sub-bass thump, hard slapback echo off stone, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_light_rock.mp3"
+  },
+  {
+   "id": "footstep_light_deck",
+   "prompt": "colossal metal footstep of a 30-ton walking machine on steel deck plating, quicker and lighter, sharp servo whine, hollow metallic resonance and structural ring, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_light_deck.mp3"
+  },
+  {
+   "id": "footstep_light_snow",
+   "prompt": "colossal metal footstep of a 30-ton walking machine on compacted snow, quicker and lighter, sharp servo whine, muffled crunch, cold damped air, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_light_snow.mp3"
+  },
+  {
+   "id": "footstep_heavy_salt",
+   "prompt": "colossal metal footstep of a 70-ton walking machine on packed salt, deep sub-bass thump, hydraulic hiss follow-through, dry outdoor air, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_heavy_salt.mp3"
+  },
+  {
+   "id": "footstep_heavy_rock",
+   "prompt": "colossal metal footstep of a 70-ton walking machine on bare rock, deep sub-bass thump, hydraulic hiss follow-through, hard slapback echo off stone, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_heavy_rock.mp3"
+  },
+  {
+   "id": "footstep_heavy_deck",
+   "prompt": "colossal metal footstep of a 70-ton walking machine on steel deck plating, deep sub-bass thump, hydraulic hiss follow-through, hollow metallic resonance and structural ring, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_heavy_deck.mp3"
+  },
+  {
+   "id": "footstep_heavy_snow",
+   "prompt": "colossal metal footstep of a 70-ton walking machine on compacted snow, deep sub-bass thump, hydraulic hiss follow-through, muffled crunch, cold damped air, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_heavy_snow.mp3"
+  },
+  {
+   "id": "footstep_assault_salt",
+   "prompt": "colossal metal footstep of a 95-ton walking machine on packed salt, ground-shaking sub-bass thump, hydraulic hiss follow-through, longer settling rumble, dry outdoor air, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_assault_salt.mp3"
+  },
+  {
+   "id": "footstep_assault_rock",
+   "prompt": "colossal metal footstep of a 95-ton walking machine on bare rock, ground-shaking sub-bass thump, longer settling rumble, hard slapback echo off stone, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_assault_rock.mp3"
+  },
+  {
+   "id": "footstep_assault_deck",
+   "prompt": "colossal metal footstep of a 95-ton walking machine on steel deck plating, ground-shaking sub-bass thump, longer settling rumble, hollow metallic resonance and structural groan, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_assault_deck.mp3"
+  },
+  {
+   "id": "footstep_assault_snow",
+   "prompt": "colossal metal footstep of a 95-ton walking machine on compacted snow, ground-shaking sub-bass thump, longer settling rumble, muffled crunch, cold damped air, 1.2 seconds",
+   "durationSeconds": 1.2,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/footstep_assault_snow.mp3"
+  },
+  {
+   "id": "servo_articulation",
+   "prompt": "heavy servo motor articulation, layered hydraulic whine and mechanical ratchet, slow powerful movement, 2 seconds loopable",
+   "durationSeconds": 2,
+   "loop": true,
+   "variants": 2,
+   "file": "public/audio/sfx/servo_articulation.mp3"
+  },
+  {
+   "id": "jumpjet_launch",
+   "prompt": "jump-jet ignition, concussive thruster light-off with dust blast and rising roar, 1.5 seconds",
+   "durationSeconds": 1.5,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/jumpjet_launch.mp3"
+  },
+  {
+   "id": "jumpjet_burn",
+   "prompt": "mech jump-jet sustained burn, roaring thruster with turbine underlayer and crackling exhaust, 2 seconds seamless loopable",
+   "durationSeconds": 2,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/jumpjet_burn.mp3"
+  },
+  {
+   "id": "jumpjet_land",
+   "prompt": "multi-ton machine landing from a jet-assisted jump, hydraulic shock absorbers compressing, heavy double thud with joint hiss, 2 seconds",
+   "durationSeconds": 2,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/jumpjet_land.mp3"
+  },
+  {
+   "id": "mech_collapse",
+   "prompt": "forty tons of machinery collapsing onto concrete, initial slam, cascading secondary metal impacts, settling debris, 4 seconds",
+   "durationSeconds": 4,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/mech_collapse.mp3"
+  },
+  {
+   "id": "laser_beam_s",
+   "prompt": "sustained energy beam, focused thermal hum with crackling ionization, high tight register, precise, 2 seconds seamless loopable",
+   "durationSeconds": 2,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/laser_beam_s.mp3"
+  },
+  {
+   "id": "laser_beam_m",
+   "prompt": "sustained energy beam, focused thermal hum with crackling ionization, mid register with more body, 2 seconds seamless loopable",
+   "durationSeconds": 2,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/laser_beam_m.mp3"
+  },
+  {
+   "id": "laser_beam_l",
+   "prompt": "sustained heavy energy beam, deep thermal roar with crackling ionization and air distortion, low register, 2 seconds seamless loopable",
+   "durationSeconds": 2,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/laser_beam_l.mp3"
+  },
+  {
+   "id": "pulse_array_burst",
+   "prompt": "three rapid energy bursts in quick succession, sharp electric zaps with snapping transients and short decay, 1 second",
+   "durationSeconds": 1,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/pulse_array_burst.mp3"
+  },
+  {
+   "id": "particle_lance",
+   "prompt": "heavy particle cannon discharge, deep thunderclap with electrical tearing onset, long rolling decay, ionized sizzle tail, 3 seconds",
+   "durationSeconds": 3,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/particle_lance.mp3"
+  },
+  {
+   "id": "autocannon_40",
+   "prompt": "autocannon hammer blow, light 40-class cannon, sharp mechanical bark with brass casing clink, 1 second",
+   "durationSeconds": 1,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/autocannon_40.mp3"
+  },
+  {
+   "id": "autocannon_80",
+   "prompt": "autocannon hammer blow, medium 80-class cannon, concussive slam with mechanical action cycling, 1 second",
+   "durationSeconds": 1,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/autocannon_80.mp3"
+  },
+  {
+   "id": "autocannon_120",
+   "prompt": "autocannon hammer blow, heavy 120-class cannon, artillery-grade detonation with long low tail, 1 second",
+   "durationSeconds": 1,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/autocannon_120.mp3"
+  },
+  {
+   "id": "gauss_charge",
+   "prompt": "electromagnetic charge-up whine rising smoothly through two octaves, capacitor hum swelling with tension, 1.5 seconds",
+   "durationSeconds": 1.5,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/gauss_charge.mp3"
+  },
+  {
+   "id": "gauss_fire",
+   "prompt": "supersonic slug crack, brutal flat detonation with whip-crack air split and distant echo, 2 seconds",
+   "durationSeconds": 2,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/gauss_fire.mp3"
+  },
+  {
+   "id": "scattergun_blast",
+   "prompt": "short-range scattergun blast, wide percussive boom with metal pellet spray rattling off armor plate, 1 second",
+   "durationSeconds": 1,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/scattergun_blast.mp3"
+  },
+  {
+   "id": "rocket_volley_launch",
+   "prompt": "staggered rocket volley launch, rapid overlapping whooshing ignitions with smoke hiss, 2 seconds",
+   "durationSeconds": 2,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/rocket_volley_launch.mp3"
+  },
+  {
+   "id": "rocket_flight_loop",
+   "prompt": "rocket motor in flight, hissing roar with doppler shimmer, 2 seconds seamless loopable",
+   "durationSeconds": 2,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/rocket_flight_loop.mp3"
+  },
+  {
+   "id": "rocket_impacts",
+   "prompt": "staggered rocket impact explosions, four to eight overlapping concussive blasts with debris scatter, 3 seconds",
+   "durationSeconds": 3,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/rocket_impacts.mp3"
+  },
+  {
+   "id": "swarm_launch",
+   "prompt": "twenty micro-missiles ripple-launching from a rack, fast popping ignitions blending into a rising swarm hiss, 2 seconds",
+   "durationSeconds": 2,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/swarm_launch.mp3"
+  },
+  {
+   "id": "armor_impact_clang",
+   "prompt": "armor-piercing round striking composite plate, sharp metallic clang with ricochet whine and stress groan, 1 second",
+   "durationSeconds": 1,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/armor_impact_clang.mp3"
+  },
+  {
+   "id": "internal_crunch",
+   "prompt": "internal structure damage, deep crunching metal deformation, snapping struts, electrical arcing, 1.5 seconds",
+   "durationSeconds": 1.5,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/internal_crunch.mp3"
+  },
+  {
+   "id": "ammo_cookoff",
+   "prompt": "ammunition magazine cooking off inside a metal hull, chain of muffled internal explosions ripping outward, tearing metal, 3 seconds",
+   "durationSeconds": 3,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/ammo_cookoff.mp3"
+  },
+  {
+   "id": "overheat_klaxon",
+   "prompt": "two-tone emergency klaxon, harsh industrial alarm alternating high-low, 1 second seamless loopable",
+   "durationSeconds": 1,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/overheat_klaxon.mp3"
+  },
+  {
+   "id": "core_shutdown",
+   "prompt": "fusion core emergency shutdown, huge turbine decelerating from full spin to silence, descending pitch, dying electrical hum, relays clunking off, 5 seconds",
+   "durationSeconds": 5,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/core_shutdown.mp3"
+  },
+  {
+   "id": "core_restart",
+   "prompt": "fusion core restart, turbine spooling up from silence to full spin, rising pitch, relays engaging, systems chime at full power, 5 seconds",
+   "durationSeconds": 5,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/core_restart.mp3"
+  },
+  {
+   "id": "coolant_flush",
+   "prompt": "high-pressure coolant flush, explosive pressurized hiss venting into steam, liquid spatter on hot metal, crackling condensation, 3 seconds",
+   "durationSeconds": 3,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/coolant_flush.mp3"
+  },
+  {
+   "id": "ejection",
+   "prompt": "cockpit ejection sequence, explosive canopy bolts firing, rocket seat igniting with violent whoosh, rushing wind tail, 3 seconds",
+   "durationSeconds": 3,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/ejection.mp3"
+  },
+  {
+   "id": "limb_shear",
+   "prompt": "giant mechanical limb shearing off, screaming metal tear, snapping hydraulic lines spraying fluid, heavy component crashing to the ground, 3 seconds",
+   "durationSeconds": 3,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/limb_shear.mp3"
+  },
+  {
+   "id": "spark_shower",
+   "prompt": "electrical short-circuit spark shower, crackling arcs and fizzing sparks with small metallic pings, 1.5 seconds",
+   "durationSeconds": 1.5,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/spark_shower.mp3"
+  },
+  {
+   "id": "amb_cockpit",
+   "prompt": "sealed mech cockpit interior room tone, low reactor hum, soft avionics fan whir, occasional relay ticks and instrument chirps, 30 seconds seamless loopable",
+   "durationSeconds": 30,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_cockpit.mp3"
+  },
+  {
+   "id": "amb_rain_canopy",
+   "prompt": "heavy monsoon rain drumming on an armored glass canopy, dense droplet impacts, muffled thunder, occasional wind gust, 30 seconds seamless loopable",
+   "durationSeconds": 30,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_rain_canopy.mp3"
+  },
+  {
+   "id": "amb_distant_war",
+   "prompt": "distant battlefield ambience, far-off artillery rumbles, faint mechanical footfalls, sporadic muffled gunfire on the wind, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_distant_war.mp3"
+  },
+  {
+   "id": "amb_salvage_yard",
+   "prompt": "industrial shipbreaking yard ambience, distant cutting torches, groaning hull metal, chain hoists clanking, gulls and sea wind, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_salvage_yard.mp3"
+  },
+  {
+   "id": "amb_salt_wind",
+   "prompt": "vast open salt-flat wind, dry hissing gusts carrying fine salt grains against metal, deep desert emptiness, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_salt_wind.mp3"
+  },
+  {
+   "id": "amb_cavern",
+   "prompt": "flooded limestone cavern ambience, echoing water drips, low subterranean air movement, distant stone settling, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_cavern.mp3"
+  },
+  {
+   "id": "amb_polar_wind",
+   "prompt": "arctic night wind, biting polar gusts whistling over refinery pipework, creaking ice, faint flare-stack roar far away, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_polar_wind.mp3"
+  },
+  {
+   "id": "amb_storm_surf",
+   "prompt": "storm coast ambience, driving rain, heavy surf pounding drowned quarry walls, rolling thunder, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_storm_surf.mp3"
+  },
+  {
+   "id": "amb_arcology",
+   "prompt": "dense vertical city under occupation, deep structural hum, distant public-address echoes, skybridge wind, sporadic sirens far below, 60 seconds seamless loopable",
+   "durationSeconds": 60,
+   "loop": true,
+   "variants": 1,
+   "file": "public/audio/sfx/amb_arcology.mp3"
+  },
+  {
+   "id": "ui_console_click",
+   "prompt": "single physical console switch click, satisfying mechanical toggle, soft plastic-metal contact, 0.3 seconds",
+   "durationSeconds": 0.3,
+   "loop": false,
+   "variants": 3,
+   "file": "public/audio/sfx/ui_console_click.mp3"
+  },
+  {
+   "id": "ui_target_lock",
+   "prompt": "target lock acquisition tone, short ascending two-note electronic confirmation, clean and precise, 0.5 seconds",
+   "durationSeconds": 0.5,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/ui_target_lock.mp3"
+  },
+  {
+   "id": "ui_warning_chirp",
+   "prompt": "cockpit warning chirp, urgent short electronic double-beep, slightly harsh, 0.5 seconds",
+   "durationSeconds": 0.5,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/ui_warning_chirp.mp3"
+  },
+  {
+   "id": "ui_squelch",
+   "prompt": "radio squelch click, brief static burst with carrier pop, channel keying open, 0.2 seconds",
+   "durationSeconds": 0.2,
+   "loop": false,
+   "variants": 2,
+   "file": "public/audio/sfx/ui_squelch.mp3"
+  },
+  {
+   "id": "ui_salvage_chime",
+   "prompt": "salvage tag confirmation chime, low industrial two-note bell, worn and analog, 0.8 seconds",
+   "durationSeconds": 0.8,
+   "loop": false,
+   "variants": 1,
+   "file": "public/audio/sfx/ui_salvage_chime.mp3"
+  }
+ ],
+ "music": [
+  {
+   "id": "theme_main",
+   "prompt": "hybrid orchestral-industrial main theme in D minor at 96 BPM, opens with a lone distorted solo cello, war-drum taiko groove enters at 0:40, heroic-tragic low brass theme at 1:20, struck-anvil industrial climax, resolves back to the lone cello, 2 minutes 30 seconds",
+   "bpm": 96,
+   "lengthSeconds": 150,
+   "loop": false,
+   "file": "public/audio/music/theme_main.mp3"
+  },
+  {
+   "id": "mus_biome_coast",
+   "prompt": "dark ambient biome loop for a shipbreaking coast, granular drones from groaning hull metal, slow tidal swells of low strings, distant metallic percussion, D minor pitch world, tempo-free, seamless loop, 2 minutes",
+   "bpm": null,
+   "lengthSeconds": 120,
+   "loop": true,
+   "file": "public/audio/music/mus_biome_coast.mp3"
+  },
+  {
+   "id": "mus_biome_salt",
+   "prompt": "desolate ambient biome loop for blinding salt flats, shimmering high string harmonics over a vast hollow drone, sparse dry percussion like cracking earth, D minor pitch world, tempo-free, seamless loop, 2 minutes",
+   "bpm": null,
+   "lengthSeconds": 120,
+   "loop": true,
+   "file": "public/audio/music/mus_biome_salt.mp3"
+  },
+  {
+   "id": "mus_biome_karst",
+   "prompt": "mysterious ambient biome loop for sinkhole highlands and flooded caverns, deep resonant drones with cavernous echoes, bowed metal textures, slow low woodwind fragments, D minor pitch world, tempo-free, seamless loop, 2 minutes",
+   "bpm": null,
+   "lengthSeconds": 120,
+   "loop": true,
+   "file": "public/audio/music/mus_biome_karst.mp3"
+  },
+  {
+   "id": "mus_biome_polar",
+   "prompt": "frozen ambient biome loop for arctic refinery fields at night, glassy icy pads, subharmonic industrial hum, distant slow anvil strikes muffled by snow, D minor pitch world, tempo-free, seamless loop, 2 minutes",
+   "bpm": null,
+   "lengthSeconds": 120,
+   "loop": true,
+   "file": "public/audio/music/mus_biome_polar.mp3"
+  },
+  {
+   "id": "mus_biome_arcology",
+   "prompt": "tense ambient biome loop for an occupied vertical city, pulsing sub-bass, clustered string dissonances drifting between floors, faint processed choir, ticking industrial percussion, D minor pitch world, tempo-free, seamless loop, 2 minutes",
+   "bpm": null,
+   "lengthSeconds": 120,
+   "loop": true,
+   "file": "public/audio/music/mus_biome_arcology.mp3"
+  },
+  {
+   "id": "mus_combat_l1",
+   "prompt": "combat layer one, muted string ostinato with rolling toms, restrained tension, D minor, 112 BPM, 16-bar seamless loop, stem aligned with combat layers two and three",
+   "bpm": 112,
+   "lengthSeconds": 34.3,
+   "loop": true,
+   "file": "public/audio/music/mus_combat_l1.mp3"
+  },
+  {
+   "id": "mus_combat_l2",
+   "prompt": "combat layer two, driving taiko war drums and low brass stabs over the layer-one string ostinato, D minor, 112 BPM, 16-bar seamless loop, stem aligned with combat layers one and three",
+   "bpm": 112,
+   "lengthSeconds": 34.3,
+   "loop": true,
+   "file": "public/audio/music/mus_combat_l2.mp3"
+  },
+  {
+   "id": "mus_combat_l3",
+   "prompt": "combat layer three, full frenzy, shrieking brass clusters, struck anvils, industrial percussion barrage over the shared ostinato, D minor, 112 BPM, 16-bar seamless loop, stem aligned with combat layers one and two",
+   "bpm": 112,
+   "lengthSeconds": 34.3,
+   "loop": true,
+   "file": "public/audio/music/mus_combat_l3.mp3"
+  },
+  {
+   "id": "sting_complete",
+   "prompt": "mission complete stinger, six-second rising brass lift with a single anvil accent, resolving on an open fifth, D minor",
+   "bpm": null,
+   "lengthSeconds": 6,
+   "loop": false,
+   "file": "public/audio/music/sting_complete.mp3"
+  },
+  {
+   "id": "sting_failed",
+   "prompt": "mission failed stinger, collapsing dissonant brass cluster sagging downward into silence, 6 seconds",
+   "bpm": null,
+   "lengthSeconds": 6,
+   "loop": false,
+   "file": "public/audio/music/sting_failed.mp3"
+  },
+  {
+   "id": "sting_ekene_down",
+   "prompt": "solo cello lament, slow grieving phrase in D minor, raw and close-miked with faint room, 20 seconds",
+   "bpm": null,
+   "lengthSeconds": 20,
+   "loop": false,
+   "file": "public/audio/music/sting_ekene_down.mp3"
+  },
+  {
+   "id": "sting_duel_start",
+   "prompt": "single massive war-drum hit with long natural decay into ringing silence, 5 seconds",
+   "bpm": null,
+   "lengthSeconds": 5,
+   "loop": false,
+   "file": "public/audio/music/sting_duel_start.mp3"
+  },
+  {
+   "id": "mus_ending_21a",
+   "prompt": "dawn hymn ending cue, hopeful strings blooming from a distorted solo cello motif, warm brass sunrise swell, resolving with quiet dignity, rooted in D minor opening into light, 90 seconds",
+   "bpm": null,
+   "lengthSeconds": 90,
+   "loop": false,
+   "file": "public/audio/music/mus_ending_21a.mp3"
+  },
+  {
+   "id": "mus_ending_21b",
+   "prompt": "cold ending cue, sparse solitary piano over a distorted solo cello line, distant and unresolved, slow and spacious, D minor, 90 seconds",
+   "bpm": null,
+   "lengthSeconds": 90,
+   "loop": false,
+   "file": "public/audio/music/mus_ending_21b.mp3"
+  },
+  {
+   "id": "mus_duel_rauk",
+   "prompt": "exclusive scripted duel suite for a rain-drowned quarry, relentless taiko and staccato low strings with icy metallic accents, building through three intensities with clean eight-bar seams for scripted wound thresholds, D minor, 112 BPM, 3 minutes",
+   "bpm": 112,
+   "lengthSeconds": 180,
+   "loop": false,
+   "file": "public/audio/music/mus_duel_rauk.mp3"
+  },
+  {
+   "id": "mus_duel_sol",
+   "prompt": "exclusive scripted final duel suite, funereal brass chorale over war drums breaking into full industrial-orchestral fury, distorted solo cello motif returning at the final threshold, clean eight-bar seams for scripted transitions, D minor, 112 BPM, 3 minutes 30 seconds",
+   "bpm": 112,
+   "lengthSeconds": 210,
+   "loop": false,
+   "file": "public/audio/music/mus_duel_sol.mp3"
+  },
+  {
+   "id": "mus_training",
+   "prompt": "calm training-ground music bed for a walker-cockpit tutorial, workmanlike and patient, 66 BPM with a half-time feel, D minor pitch world, deep fusion-reactor hum drone, soft slow industrial percussion like distant chain hoists and torque wrenches, warm low synth bass, sparse muted strings, an occasional far-off horn fragment, very low dynamic ceiling so a calm synthetic instructor voice sits clearly on top, seamless loop, 2 minutes",
+   "bpm": 66,
+   "lengthSeconds": 120,
+   "loop": true,
+   "file": "public/audio/music/mus_training.mp3"
+  }
+ ]
+}

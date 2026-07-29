@@ -1,0 +1,62 @@
+{
+  "id": "m19_counterweight",
+  "index": 19,
+  "op": 6,
+  "opName": "Vell Arcology",
+  "name": "Counterweight",
+  "biome": "vell_arcology",
+  "weather": "overcast, smoke haze drifting between towers",
+  "timeOfDay": "day",
+  "designIntent": "Crack the checkpoint fortresses sealing the western districts so Compact columns and the risen population can move — siege warfare fought under collateral rules.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "The Directorate runs Vell like a mine: everything gated, everything metered. Their grip on the western districts is three checkpoint fortresses — Counterweight Row, the locals call it — sitting on the only mech-rated crossings over the freight canyons. While those fortresses stand, the districts stay sealed, and half a million people who rose with the coast are locked in with Directorate patrols. Crack the Row and the west opens: our columns cross, the districts breathe, and Kryce loses the ability to pretend Vell is calm. Each fortress is a pop-up turret belt, a Ferric garrison, and a heavy anchor mech — a Basalt at the first two. Watchers say the third has a Batholith, so save your legs and your ammunition. Collateral discipline stands: those crossings hold up streets full of homes, so the fortresses die but the bridges stay standing. Sub-target. Be surgical. Tremor breaches, Sable overwatches the canyon lines, Vireo runs flank screen. Open my city, Lodestar. District by district."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "capture", "title": "Fortress West-One", "description": "Crack the first checkpoint fortress and raise the Compact signal over it.", "optional": false },
+    { "id": "obj_2", "type": "capture", "title": "Fortress West-Two", "description": "Crack the second checkpoint fortress guarding the mid-canyon crossing.", "optional": false },
+    { "id": "obj_3", "type": "capture", "title": "Fortress West-Three", "description": "Crack the final checkpoint fortress, anchored by a pre-ranged Batholith siege mech.", "optional": false },
+    { "id": "obj_4", "type": "defend", "title": "Keep the Crossings", "description": "Prevent the destruction of the freight-canyon crossings the fortresses sit on.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "The Drone Roost", "description": "Destroy the drone re-arm pad cycling swarms to the Row.", "optional": true }
+  ],
+  "enemyForces": [
+    "Three checkpoint fortresses with pop-up twin-autocannon turret belts and Ferric garrisons",
+    "Basalt anchor mechs at West-One and West-Two",
+    "Batholith siege mech at West-Three, pre-ranged on the crossing",
+    "Drone swarms cycling from a re-arm pad behind the Row",
+    "Halite counter-attack pairs moving along the canyon rim between fortresses"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The Batholith's gauss fire tears girders off the crossing in pre-ranged bracketing shots",
+    "District crowds appear on the balconies as each fortress falls, scattering salt — the Veyran gesture of mourning and thanks — down onto the plazas",
+    "Tremor shoulder-breaches West-Two's gate wall on command",
+    "Compact columns roll across the canyon crossing as the last fortress burns"
+  ],
+  "failConditions": [
+    "A freight-canyon crossing collapses",
+    "Excessive civilian-structure collateral",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Fortress anchors are prime salvage: both Basalts, and especially the West-Three Batholith — leg it rather than coring it and its gauss spines come home to the Assembly Bay. Turret wreckage yields ballistic ammunition stores. Anything knocked into the freight canyons is gone for good.",
+  "musicSet": {
+    "ambient": "vell_arcology",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_fortress_falls_percussion_hit"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Relay", "line": "Three locks on the western door. Break them in any order — the Row talks to itself, so expect each one meaner than the last.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Tremor", "line": "Point me at the gate wall. Architecture's just an enemy that stands still. HA!", "futz": true },
+    { "trigger": "on_fortress_1_down", "speaker": "Vireo", "line": "West-One's flying Compact grey! And — there are people on the balconies. They're throwing salt down. All of them.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "CAIRN", "line": "Counter-attack pair inbound along the canyon rim. They intend to catch you between fortresses.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Sable", "line": "Batholith. Pre-ranged on the crossing. It will bracket you in two shots. Don't be where the first one lands.", "futz": true },
+    { "trigger": "on_gauss_bracket", "speaker": "CAIRN", "line": "Gauss impact pattern suggests predictive fire. Recommend irregular throttle.", "futz": false },
+    { "trigger": "on_collateral_warning", "speaker": "CAIRN", "line": "The crossing's load rating is failing on the north girder. Redirect your fire, Lodestar.", "futz": false },
+    { "trigger": "on_kryce_broadcast", "speaker": "Kryce", "line": "To the western districts: the Directorate acknowledges localized disruption. Services will resume. They always do. Ask your grandparents.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Multiple zone breaches. Preserve the machine. The west can wait twenty minutes for repairs. It has waited eighteen months.", "futz": false },
+    { "trigger": "on_fortress_3_down", "speaker": "Tremor", "line": "The Row is OPEN! Roll the columns, Relay! Vell's got a west side again!", "futz": true },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Columns are across, districts are rising, and Kryce just lost half his city between breakfast and dark. Next stop is the Registry — and everything it knows.", "futz": true }
+  ]
+}

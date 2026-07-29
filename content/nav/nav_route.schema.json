@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "nav_route.schema.json",
+  "title": "PATHLIGHT nav route",
+  "description": "Routes are content, not code. Coordinates are world units on the 2400x2400 map centered at (0,0); authored coords stay within +/-520 like campaign content. The y component is informational - runtime height comes from terrain.heightAt. arrival.radius_m defaults to 15 m horizontal / 10 m vertical, tuned so the trainer frame can stop inside it at full throttle. A route with an unreachable leg fails the LOS content test (scripts/test_nav.mjs), which is what sets los_verified - never set it by hand. follow_entity is the escort/ping union member specified for campaign reuse; the validator rejects it until a provider ships.",
+  "type": "object",
+  "required": ["id", "layers", "loop", "waypoints"],
+  "additionalProperties": false,
+  "properties": {
+    "comment": { "type": "string" },
+    "id": { "type": "string", "pattern": "^route_[a-z0-9_]+$" },
+    "layers": {
+      "type": "object",
+      "required": ["chevrons", "beacon", "arrow", "compass"],
+      "additionalProperties": false,
+      "properties": {
+        "chevrons": { "type": "boolean" },
+        "beacon": { "type": "boolean" },
+        "arrow": { "type": "boolean", "const": true },
+        "compass": { "type": "boolean" }
+      }
+    },
+    "loop": { "type": "boolean" },
+    "arrive_vo": { "type": "boolean" },
+    "waypoints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "display_key", "arrival"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "display_key": { "type": "string", "pattern": "^hud\\.nav\\." },
+          "position": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "type": "number" }
+          },
+          "follow_entity": { "type": "string" },
+          "arrival": {
+            "type": "object",
+            "required": ["radius_m", "vertical_tolerance_m", "dwell_s"],
+            "additionalProperties": false,
+            "properties": {
+              "radius_m": { "type": "number", "minimum": 8 },
+              "vertical_tolerance_m": { "type": "number", "minimum": 2 },
+              "dwell_s": { "type": "number", "minimum": 0 }
+            }
+          },
+          "arrival_extra": {
+            "type": ["object", "null"],
+            "required": ["sim", "op", "value"],
+            "additionalProperties": false,
+            "properties": {
+              "sim": { "enum": ["speed_mps", "throttle"] },
+              "op": { "enum": ["<", ">", "<=", ">="] },
+              "value": { "type": "number" }
+            }
+          },
+          "los_verified": { "type": "boolean" },
+          "on_arrive": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["event"],
+              "additionalProperties": false,
+              "properties": {
+                "event": { "type": "string" },
+                "id": { "type": "string" }
+              }
+            }
+          },
+          "beacon_height_m": { "type": "number", "minimum": 5, "maximum": 120 },
+          "next": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

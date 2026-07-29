@@ -1,0 +1,156 @@
+[
+  {
+    "key": "ui.bt.confirm",
+    "variant": 1,
+    "prompt": "Soft single confirmation chime for a cockpit interface, warm synthetic bell with one brief low harmonic, clean fast decay, dry, no reverb, no melody, no alarm quality",
+    "duration_seconds": 0.6,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "0c856b804b2f80e8cc805173607e3768bde23ef425b1a263cb13c5d420245f7c",
+    "generated_at": "2026-07-24T16:31:51.923Z"
+  },
+  {
+    "key": "ui.bt.confirm",
+    "variant": 2,
+    "prompt": "Soft single confirmation chime for a cockpit interface, warm synthetic bell with one brief low harmonic, clean fast decay, dry, no reverb, no melody, no alarm quality",
+    "duration_seconds": 0.6,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "05c9af12c96f3ca27f7eeaeb5034b1c778fe6002c958f919da2f82b20fcac309",
+    "generated_at": "2026-07-24T16:31:54.312Z"
+  },
+  {
+    "key": "ui.bt.hint",
+    "variant": 1,
+    "prompt": "Quiet two-pulse electronic attention tick, gentle, rounded, non-alarming, dry, no melody",
+    "duration_seconds": 0.5,
+    "prompt_influence": 0.7,
+    "lufs_target": -18,
+    "request_id": null,
+    "sha256_raw": "f12fc21896402da270f8225100f756d0f692897a4b2c4f36e6cbd5da1a1f938d",
+    "generated_at": "2026-07-24T16:31:56.668Z"
+  },
+  {
+    "key": "ui.bt.hint",
+    "variant": 2,
+    "prompt": "Quiet two-pulse electronic attention tick, gentle, rounded, non-alarming, dry, no melody",
+    "duration_seconds": 0.5,
+    "prompt_influence": 0.7,
+    "lufs_target": -18,
+    "request_id": null,
+    "sha256_raw": "0a4f7ccbd72fe8043fcb922d515b0afebfd318e3ea3efab53afdf1c76602b11f",
+    "generated_at": "2026-07-24T16:31:59.041Z"
+  },
+  {
+    "key": "ui.bt.phase",
+    "variant": 1,
+    "prompt": "Short rising three-tone synthetic confirmation flourish, restrained industrial character, dry, no reverb tail, no melodic hook",
+    "duration_seconds": 1,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "52366309fe92f3ee2592d21f5d8f691698c815c4b6633fa21d482717a1f8bc46",
+    "generated_at": "2026-07-24T16:32:01.561Z"
+  },
+  {
+    "key": "ui.bt.phase",
+    "variant": 2,
+    "prompt": "Short rising three-tone synthetic confirmation flourish, restrained industrial character, dry, no reverb tail, no melodic hook",
+    "duration_seconds": 1,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "9e8410fe798880d972f36b3f0cb9a11b8828d40af9558d36b232c12d896a6b7f",
+    "generated_at": "2026-07-24T16:32:04.019Z"
+  },
+  {
+    "key": "amb.bt.pad",
+    "variant": 1,
+    "prompt": "Seamlessly looping calm interior landing-pad ambience, low ventilation hum, distant machinery, faint electrical texture, no music, no voices, no footsteps, restrained low frequencies, stable loop",
+    "duration_seconds": 22,
+    "prompt_influence": 0.7,
+    "lufs_target": -30,
+    "request_id": null,
+    "sha256_raw": "b44c153b20a36417d406dff04f85a5544e65b865bfe642d7f0f68300609f5c8a",
+    "generated_at": "2026-07-24T16:32:10.904Z"
+  },
+  {
+    "key": "ui.bt.confirm",
+    "variant": 1,
+    "prompt": "Soft single confirmation chime for a cockpit interface, warm synthetic bell with one brief low harmonic, clean fast decay, dry, no reverb, no melody, no alarm quality",
+    "duration_seconds": 0.6,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "54fb3d76db7d98093b75bf01759034fa37b3d6784c2d03e2167692f18583762d",
+    "generated_at": "2026-07-25T07:20:09.340Z"
+  },
+  {
+    "key": "ui.bt.confirm",
+    "variant": 2,
+    "prompt": "Soft single confirmation chime for a cockpit interface, warm synthetic bell with one brief low harmonic, clean fast decay, dry, no reverb, no melody, no alarm quality",
+    "duration_seconds": 0.6,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "839a2a8ead9df34ea4e34366627e5a0c817629023a24734485a09e348a67062b",
+    "generated_at": "2026-07-25T07:20:11.623Z"
+  },
+  {
+    "key": "ui.bt.hint",
+    "variant": 1,
+    "prompt": "Quiet two-pulse electronic attention tick, gentle, rounded, non-alarming, dry, no melody",
+    "duration_seconds": 0.5,
+    "prompt_influence": 0.7,
+    "lufs_target": -18,
+    "request_id": null,
+    "sha256_raw": "add2c7f2735ea5b1425ae17096f8d0bf46d48fe429bf1075612aebee1e59c763",
+    "generated_at": "2026-07-25T07:20:13.883Z"
+  },
+  {
+    "key": "ui.bt.hint",
+    "variant": 2,
+    "prompt": "Quiet two-pulse electronic attention tick, gentle, rounded, non-alarming, dry, no melody",
+    "duration_seconds": 0.5,
+    "prompt_influence": 0.7,
+    "lufs_target": -18,
+    "request_id": null,
+    "sha256_raw": "9c6f4df3937d621c0aa4a1cebe39d7ab570c37f0eea0f495eecf7ff640b148d9",
+    "generated_at": "2026-07-25T07:20:15.889Z"
+  },
+  {
+    "key": "ui.bt.phase",
+    "variant": 1,
+    "prompt": "Short rising three-tone synthetic confirmation flourish, restrained industrial character, dry, no reverb tail, no melodic hook",
+    "duration_seconds": 1,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "85fa425b6e5cd94c357fd4a3a0393d2358bb25635fcd435fe8cd1cdc90642071",
+    "generated_at": "2026-07-25T07:20:18.106Z"
+  },
+  {
+    "key": "ui.bt.phase",
+    "variant": 2,
+    "prompt": "Short rising three-tone synthetic confirmation flourish, restrained industrial character, dry, no reverb tail, no melodic hook",
+    "duration_seconds": 1,
+    "prompt_influence": 0.7,
+    "lufs_target": -16,
+    "request_id": null,
+    "sha256_raw": "99d4162188c8008c9ca7200f8a39f8c2079fd0da0e6b7278fae825c508b80c4e",
+    "generated_at": "2026-07-25T07:20:20.342Z"
+  },
+  {
+    "key": "amb.bt.pad",
+    "variant": 1,
+    "prompt": "Seamlessly looping calm interior landing-pad ambience, low ventilation hum, distant machinery, faint electrical texture, no music, no voices, no footsteps, restrained low frequencies, stable loop",
+    "duration_seconds": 22,
+    "prompt_influence": 0.7,
+    "lufs_target": -30,
+    "request_id": null,
+    "sha256_raw": "f92dd8e8cfa8c8400bd3027609e296a9087a6e767fb534f13bb6d44ebe256a14",
+    "generated_at": "2026-07-25T07:20:27.433Z"
+  }
+]

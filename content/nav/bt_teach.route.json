@@ -1,0 +1,19 @@
+{
+  "comment": "Basic Training teach leg (A4a/A4b). P1 sits ~60 m behind-right of the pad spawn at roughly 150 deg off the expected leg heading, so the very first thing the arrow demonstrates is the BEHIND state. Radius 15 / vtol 10 per schema default; y is informational (runtime uses terrain.heightAt).",
+  "id": "route_bt_teach",
+  "layers": { "chevrons": true, "beacon": true, "arrow": true, "compass": true },
+  "loop": false,
+  "arrive_vo": false,
+  "waypoints": [
+    {
+      "id": "p1",
+      "display_key": "hud.nav.wp.p1",
+      "position": [-30, 0, 472],
+      "arrival": { "radius_m": 15, "vertical_tolerance_m": 10, "dwell_s": 0 },
+      "arrival_extra": null,
+      "los_verified": true,
+      "beacon_height_m": 40,
+      "next": null
+    }
+  ]
+}

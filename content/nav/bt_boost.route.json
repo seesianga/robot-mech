@@ -1,0 +1,19 @@
+{
+  "comment": "Basic Training boost leg (F1). P6 sits beyond the barrier at (150,20); the beacon's depth-failed ghost pass reads through the wall, teaching that the dimmer column means 'on the other side'. The straight leg to P6 crosses the barrier collider on purpose - the LOS content test whitelists this leg (jump_jets step), and the arrow still points at the corner the re-router picks if the pilot walks instead of boosting.",
+  "id": "route_bt_boost",
+  "layers": { "chevrons": true, "beacon": true, "arrow": true, "compass": true },
+  "loop": false,
+  "arrive_vo": false,
+  "waypoints": [
+    {
+      "id": "p6",
+      "display_key": "hud.nav.wp.p6",
+      "position": [185, 0, 20],
+      "arrival": { "radius_m": 15, "vertical_tolerance_m": 10, "dwell_s": 0 },
+      "arrival_extra": null,
+      "los_verified": false,
+      "beacon_height_m": 40,
+      "next": null
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "m16_rauks_wager",
+  "index": 16,
+  "op": 5,
+  "opName": "Storm Coast",
+  "name": "Rauk's Wager",
+  "biome": "storm_coast",
+  "weather": "monsoon downpour thinning into an eerie lull",
+  "timeOfDay": "dusk",
+  "designIntent": "Colonel Rauk calls single combat in a drowned quarry to stall for her demolition teams; win the duel, then race to stop the rim-dam charges. Rauk dies here.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "This one is strange, and I don't like it. Rauk broadcast on an open channel at dawn — your callsign, by name. Single combat, the Vantle drowned quarry, dusk. Her Corundum-V against your machine, no seconds, no support. If you refuse, she says she'll 'get on with the tedious business of reprisals.' Here's what the strategy team thinks, and I agree: it's theater, but it's also a stall. Our watchers report demolition crews moving on the quarry's rim dam. If that dam blows, it floods every lowland district we just liberated — she loses the coast but drowns it on her way out. So you take her wager, and you make it quick. The fireteam holds the rim outside the quarry — the moment she's down, you move on those charges. Watch her. Rauk has studied you since the flats. She knows your loadout, your habits, your range. Whatever this duel is to her — pride, spite, a colonel's exit — don't give her one second more of it than you must."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "duel", "title": "Rauk's Wager", "description": "Defeat Colonel Rauk's Corundum-V in single combat on the flooded quarry floor.", "optional": false },
+    { "id": "obj_2", "type": "reach", "title": "The Rim Dam", "description": "Race to the quarry rim dam before the demolition timers run out.", "optional": false },
+    { "id": "obj_3", "type": "destroy", "title": "Cut the Charges", "description": "Destroy the three detonation relays before they fire the rim-dam charges.", "optional": false },
+    { "id": "obj_4", "type": "capture", "title": "Her Black Box", "description": "Recover the Corundum-V's command core from the wreck before exfiltration.", "optional": true }
+  ],
+  "enemyForces": [
+    "Colonel Vesna Rauk in the Corundum-V — named duel AI that reads your loadout, works range bands, and uses the quarry terraces as cover",
+    "Directorate demolition teams with Ferric escorts at the rim dam",
+    "Hover skiff pickets on the flood channels during the post-duel sprint"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The rain thins to an eerie hush as Rauk's Corundum-V walks onto the flooded quarry floor and salutes with her cannon",
+    "Wound-threshold VO exchanges as the duel turns — Rauk's contempt cracking into something like respect",
+    "Rauk refuses ejection; the Corundum-V powers down standing, knee-deep in the flood",
+    "Hard cut from duel silence to the sprint: demolition timers on the HUD, the fireteam pouring in over the rim"
+  ],
+  "failConditions": [
+    "The rim-dam charges detonate before all three relays are cut",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "The Corundum-V is the finest salvage on the coast: the duel's terms mean she is almost always mech-killed clean, yielding rare command-grade sensors and her particle lance. Her command core (optional) unlocks Directorate patrol overlays for the rest of Op 5. The demolition escorts give standard Ferric scrap.",
+  "musicSet": {
+    "ambient": "storm_coast",
+    "combatIntensityCap": 2,
+    "specialCues": ["cue_duel_start_single_drum_into_silence", "cue_duel_exclusive_scripted_score", "cue_rauk_falls_low_strings"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_duel_start", "speaker": "Rauk", "line": "You came. Good. I have commanded sieges, purges, and evacuations, and none of it required an equal. Indulge me once, miner. Then we can both stop pretending this planet matters.", "futz": true },
+    { "trigger": "on_duel_start_2", "speaker": "CAIRN", "line": "Duel parameters logged. Her chassis: Corundum-V, command refit. She has studied your loadout. Assume she knows your redline.", "futz": false },
+    { "trigger": "on_rauk_wound_25", "speaker": "Rauk", "line": "Adequate. The flats taught you patience. Did the glacier teach you anything but grief?", "futz": true },
+    { "trigger": "on_rauk_wound_50", "speaker": "Rauk", "line": "You fight like Ekene talks. Slow. Certain. I begin to see why they follow you people.", "futz": true },
+    { "trigger": "on_rauk_wound_75", "speaker": "Rauk", "line": "No — no withdrawal. Not from this one. Come on, then. Finish the ledger.", "futz": true },
+    { "trigger": "on_player_wound_50", "speaker": "CAIRN", "line": "Structural damage significant. She is herding you toward the deep water. Recommend the terraces.", "futz": false },
+    { "trigger": "on_rauk_defeated", "speaker": "Rauk", "line": "Well struck... Colonel Vesna Rauk, retiring from service. The charges are already set, miner. You traded minutes for pride. Just like me.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Timers confirmed live at the rim dam — nine minutes! Fireteam's moving. GO!", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Tremor", "line": "Demo crews and escorts on the dam! Vireo left, Sable's got the far relay — Lodestar, straight up the middle!", "futz": true },
+    { "trigger": "on_relay_cut", "speaker": "Sable", "line": "Relay down. Two to go.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Warning: internal structure exposed. The dam is not worth your reactor. Move with cover.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Charges dead, dam holding, and the Colonel's war is over. The lowlands sleep dry tonight. That was... that was a day, Lodestar.", "futz": true },
+    { "trigger": "on_complete_2", "speaker": "Vireo", "line": "She really wouldn't eject. I keep thinking about that. I don't want to become someone who'd rather drown standing.", "futz": true }
+  ]
+}

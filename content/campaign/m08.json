@@ -1,0 +1,97 @@
+{
+  "id": "m08",
+  "designFile": "m08_sounding",
+  "stage": 8,
+  "title": "SOUNDING",
+  "map": "karst",
+  "spawn": { "x": -440, "z": 400, "yaw": 2.1 },
+  "playerMech": "gabbro",
+  "extract": [480, -460],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-415, 370] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-470, 375] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-425, 430] }
+  ],
+  "structures": [
+    { "id": "aa_nest_krait", "name": "AA Nest Krait", "kind": "bunker", "pos": [120, -320], "hp": 220 },
+    { "id": "aa_nest_adder", "name": "AA Nest Adder", "kind": "bunker", "pos": [400, -180], "hp": 220 }
+  ],
+  "timedVO": [
+    { "atSec": 22, "trigger": "on_vireo_welcome" },
+    { "atSec": 48, "trigger": "on_tutorial_passive" },
+    { "atSec": 200, "trigger": "on_alert_risk" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "SOUND THE DOLINES",
+      "sub": "Descend into the collapsed dolines and confirm a route for the heavies",
+      "at": [-180, 240],
+      "radius": 50,
+      "vo": "on_ally_join:vireo",
+      "spawns": [
+        { "def": "pumice", "pos": [-60, 140], "alerted": false, "waypoints": [[-60, 140], [-200, -20]], "name": "Hover Skiff" },
+        { "def": "pumice", "pos": [-120, 60], "alerted": false, "waypoints": [[-120, 60], [20, -60]], "name": "Hover Skiff" }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "PAINT THE FIRST NEST",
+      "sub": "Close on the western AA nest and hold the beacon tagger on it",
+      "at": [40, 60],
+      "radius": 45,
+      "vo": "on_tutorial_tagger",
+      "doneVO": "on_first_nest",
+      "spawns": [
+        { "def": "flint", "pos": [150, 260], "alerted": false, "waypoints": [[150, 260], [40, 160]], "name": "Drone Picket" },
+        { "def": "flint", "pos": [90, -160], "alerted": false, "waypoints": [[90, -160], [-40, -60]], "name": "Drone Picket" }
+      ]
+    },
+    {
+      "kind": "reach",
+      "title": "PAINT THE FAR NESTS",
+      "sub": "Work the eastern rim and paint the remaining nests without going loud",
+      "at": [300, -80],
+      "radius": 45,
+      "vo": "on_sentry_spot",
+      "doneVO": "on_objective:obj_2",
+      "spawns": [
+        { "def": "chert", "pos": [420, 40], "alerted": false, "waypoints": [[420, 40], [300, 160]], "name": "Ridge Sentry", "yieldFrac": 0.3 }
+      ]
+    },
+    {
+      "kind": "survive",
+      "title": "DANGER CLOSE",
+      "sub": "Hold cover below the rim while the Compact barrage lands on your paint",
+      "seconds": 45,
+      "waves": [
+        [
+          { "def": "pumice", "pos": [150, -300], "alerted": true, "name": "Skiff Outrider" },
+          { "def": "pumice", "pos": [450, -260], "alerted": true, "name": "Skiff Outrider" }
+        ]
+      ],
+      "waveGap": 25,
+      "vo": "on_strike"
+    },
+    {
+      "kind": "destroy",
+      "title": "SWEEP THE RIM",
+      "sub": "Destroy the surviving AA nests and mop up their escorts",
+      "targets": ["aa_nest_krait", "aa_nest_adder"],
+      "killAll": true,
+      "perTargetVO": { "aa_nest_krait": "on_vireo_first_kill" },
+      "vo": "on_post_strike",
+      "spawns": [
+        { "def": "flint", "pos": [100, -300], "alerted": true, "name": "Sentry Drone" },
+        { "def": "flint", "pos": [280, -340], "alerted": true, "name": "Sentry Drone" },
+        { "def": "chert", "pos": [460, -280], "alerted": true, "name": "Swarm Rack Survivor" }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Bring the fireteam home through the northeast gorge",
+      "doneVO": "on_complete"
+    }
+  ]
+}

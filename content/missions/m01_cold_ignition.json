@@ -1,0 +1,58 @@
+{
+  "id": "m01_cold_ignition",
+  "index": 1,
+  "op": 1,
+  "opName": "Breaker Coast",
+  "name": "Cold Ignition",
+  "biome": "breaker_coast",
+  "weather": "coastal fog with light drizzle",
+  "timeOfDay": "night, pre-dawn",
+  "designIntent": "Steal the mothballed Skarn from the Directorate impound gantry, experience the first startup, and destroy the yard tracking mast on the way out. Teaches movement, torso twist, and weapon groups under minimal pressure.",
+  "teaches": ["throttle_and_reverse", "torso_twist_aim", "weapon_groups"],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "Lodestar. Eighteen months we have watched the Directorate strip this world down to the bone, and tonight we take the first piece back. There is a Skarn hanging in the impound gantry at Berth Twelve — mothballed, dusted over, forgotten by their own paperwork. It still answers. Our people bled to confirm that. You will get into that cockpit, run a cold start, and walk it out of the yard. Take it slow. A machine that heavy will fight you until you learn to lean with it. One more thing before you go over the wire: there is a tracking mast on the seaward wall, and the moment your reactor lights, it will be screaming your position to every patrol on the coast. Put it down before you leave. No heroics, no detours. Get the machine, kill the mast, come home. The Compact starts tonight, and it starts with you. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Board the Skarn", "description": "Cross the impound yard on foot and complete a cold start of the mothballed Skarn at Berth Twelve.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Kill the Tracking Mast", "description": "Destroy the yard tracking mast on the seaward wall before it fixes your reactor signature.", "optional": false },
+    { "id": "obj_3", "type": "reach", "title": "Walk It Out", "description": "Exit the breaker yard through the north breach and reach the coastal extraction route.", "optional": false },
+    { "id": "obj_4", "type": "destroy", "title": "Slow the Pursuit", "description": "Destroy the fuel bowsers at the vehicle pool to delay Directorate pursuit.", "optional": true }
+  ],
+  "enemyForces": [
+    "Unarmed spotter drones on fixed sweep routes",
+    "Two twin-autocannon pop-up turrets on the yard wall",
+    "Directorate security squad with one Ferric tracked APC",
+    "One Gabbro patrol mech arriving late from the coast road (avoidable)"
+  ],
+  "allies": [],
+  "setPieces": [
+    "Cold-start sequence in a dead cockpit: boards lighting one by one into the full CAIRN startup litany",
+    "Gantry clamps release and the Skarn drops to the deck with a yard-shaking footfall",
+    "Searchlights and klaxons sweep the yard the moment the reactor lights",
+    "Tracking mast collapses through the floodlight rigging in a cascade of sparks"
+  ],
+  "failConditions": [
+    "The Skarn is destroyed",
+    "Lodestar is killed on foot before reaching the cockpit",
+    "Exiting the yard perimeter while the tracking mast still stands"
+  ],
+  "salvageNotes": "No field salvage this mission — the Skarn itself is the haul. Destroyed turrets and the Ferric pay token scrap scrip; sparing the Gabbro costs nothing and keeps the exit quiet.",
+  "musicSet": {
+    "ambient": "breaker_coast",
+    "combatIntensityCap": 1,
+    "specialCues": ["first_ignition_litany_underscore", "mast_down_stinger"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "Relay", "line": "Relay here. You're a warm dot in a cold yard, Lodestar. Two hundred meters of gantry shadow between you and Berth Twelve — the cameras are as dead as their maintenance logs claim. Probably.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_first_steps", "speaker": "Ekene", "line": "Hear that hum, Lodestar? That's Veyra's own iron waking up angry. Take her slow — a machine that heavy fights you until you learn to lean with it.", "futz": true },
+    { "trigger": "on_tutorial_movement", "speaker": "CAIRN", "line": "Guidance: throttle drives the legs. Torso and arms track your reticle independently within the twist arc. Press C to recenter the torso over your heading.", "futz": false },
+    { "trigger": "on_tutorial_weapons", "speaker": "CAIRN", "line": "Weapon groups armed. Group one — autocannon. Group two — laser. Group three — rocket pod. Backslash toggles chainfire.", "futz": false },
+    { "trigger": "on_setpiece:yard_pa", "speaker": "Kryce", "line": "Citizens of the Breaker Coast: curfew remains a kindness. The Directorate does not punish; it corrects. Sleep well beneath our lights.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "Ferric APC through the south gate, rifle squad behind it. They still think you're a crane malfunction. Educate them.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Mast is down and so is their coverage — the whole sector grid just went to snow. I'd kiss you, but you're thirty-five tons of bad idea.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Structural warning. Torso armor compromised. Recommend breaking line of sight.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "Machine's out, pilot's alive, mast is scrap. That is the first thing the Compact has taken back in eighteen months, Lodestar. It will not be the last. Come home.", "futz": true }
+  ]
+}

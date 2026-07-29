@@ -1,0 +1,19 @@
+{
+  "comment": "Basic Training decoupling drill (B4): walk to P5 while holding the reticle on the aim board. The spec's 90-degree offset exceeds the trainer frame's +/-60 deg torso twist arc, so P5 sits ~45 deg off the board bearing from the gate-3 area - decoupled enough to land the two-pip mental model, shallow enough that the drill is physically completable. Kept clear of the light mast at (-150,150).",
+  "id": "route_bt_decouple",
+  "layers": { "chevrons": true, "beacon": true, "arrow": true, "compass": true },
+  "loop": false,
+  "arrive_vo": false,
+  "waypoints": [
+    {
+      "id": "p5",
+      "display_key": "hud.nav.wp.p5",
+      "position": [-110, 0, 170],
+      "arrival": { "radius_m": 15, "vertical_tolerance_m": 10, "dwell_s": 0 },
+      "arrival_extra": null,
+      "los_verified": true,
+      "beacon_height_m": 40,
+      "next": null
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "m06_mirage_line",
+  "index": 6,
+  "op": 2,
+  "opName": "Halite Flats",
+  "name": "Mirage Line",
+  "biome": "halite_flats",
+  "weather": "still air, severe heat shimmer",
+  "timeOfDay": "midday",
+  "designIntent": "Rescue a pinned Compact cell across the open pan while a dug-in Directorate marksman rules the mirage line — a long-range duel through heat shimmer. Tremor holds the breach and joins the fireteam.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "Bad morning, Lodestar. One of our cells got caught moving families across the open pan east of the evaporation works. They are pinned behind a berm with a Directorate gun mech sitting two kilometers out on the mirage line, dropping gauss slugs on anything that lifts its head. Holding the door for them is a man I have trusted for twenty years — Dozie Okafor, callsign Tremor. He is a wall, but even walls come down. Get out there. The shimmer will lie to you the whole way; you will see two of everything and hit neither unless you let your sensors do the honest work. Sable will spot for you from the north scarp. Close the distance, keep the berm between you and that gun, and when you take the shot, make it the last argument of the day. Bring the cell in, and bring me Tremor. The Compact is about to get louder. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Reach the Berm", "description": "Cross the open pan and reach the pinned cell behind the evaporation-works berm.", "optional": false },
+    { "id": "obj_2", "type": "defend", "title": "Keep the Wall Standing", "description": "Keep Tremor's Halite and the sheltering cell alive under the marksman's fire.", "optional": false },
+    { "id": "obj_3", "type": "duel", "title": "Break the Mirage Line", "description": "Close through the shimmer and destroy the dug-in Batholith marksman.", "optional": false },
+    { "id": "obj_4", "type": "escort", "title": "Bring Them In", "description": "Escort the cell's vehicles to the extraction corridor at the north scarp.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "Spotter's Eyes", "description": "Destroy the forward observer skiff feeding the marksman corrections.", "optional": true }
+  ],
+  "enemyForces": [
+    "One dug-in Batholith siege mech with twin gauss spines commanding the mirage line",
+    "Forward observer hover skiff relaying corrections",
+    "Two Ferric APCs probing the berm flanks with infantry",
+    "Pumice pair harassing the extraction corridor late"
+  ],
+  "allies": ["Sable", "Tremor"],
+  "setPieces": [
+    "Heat shimmer doubles every silhouette — two Batholiths stand where one is real",
+    "Gauss slugs crack past supersonic, kicking salt geysers off the berm",
+    "Tremor's Halite plants its riot shield and eats a gauss round to cover civilians",
+    "A dust squall rolls across the pan as the extraction begins"
+  ],
+  "failConditions": [
+    "The pinned cell's vehicles are destroyed",
+    "Tremor's Halite is destroyed before the fireteam link-up",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "The Batholith is the fattest claim of the op — its gauss spines alone re-arm the Compact's siege bench, but only if the kill avoids its drum magazines. Cook its ammunition and the mirage line keeps the wreck.",
+  "musicSet": {
+    "ambient": "halite_flats",
+    "combatIntensityCap": 2,
+    "specialCues": ["marksman_duel_tension_layer", "tremor_join_warm_brass"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Relay", "line": "Cell's four klicks out behind the old evaporation berm. Between you and them: open salt, bad physics, and one very patient gun. No pressure.", "futz": true },
+    { "trigger": "on_first_gauss", "speaker": "CAIRN", "line": "Hypersonic projectile detected. Origin beyond optical resolution. The shimmer is corrupting thermal returns; recommend sensor lock and lead reticle.", "futz": false },
+    { "trigger": "on_tremor_contact", "speaker": "Tremor", "line": "HA! Now that is what reinforcements look like! Dozie Okafor — friends call me Tremor, and pilot, you just made the list. Mind the big gun, it cheats!", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Relay", "line": "Cell's alive — bruised, dug in, and very glad to see you. Now about that Batholith on the mirage line...", "futz": true },
+    { "trigger": "on_shimmer_double", "speaker": "Sable", "line": "Two silhouettes. Left one hasn't disturbed the salt. Shoot the right.", "futz": true },
+    { "trigger": "on_tremor_shield", "speaker": "Tremor", "line": "Shield's up! Come on then, hit the wall — the wall LIKES it! Lodestar, go, I'll hold the door!", "futz": true },
+    { "trigger": "on_spotter_down", "speaker": "Relay", "line": "Observer skiff's down — the marksman just lost his eyes. Those next shots are guesses. Make him pay for guessing.", "futz": true },
+    { "trigger": "on_duel_close", "speaker": "CAIRN", "line": "Range six hundred meters and closing. The Batholith's firing solution degrades at close range.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Tremor", "line": "DOWN she goes! Ha-HA! Biggest fish on the pan, and you gutted it! Oh, I am going to like this fireteam.", "futz": true },
+    { "trigger": "on_duel_won_followup", "speaker": "Sable", "line": "Saw it. Good kill.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "The cell is in, the mirage line is broken, and Tremor is yours now, Lodestar — feed him targets and he will follow you anywhere. Well fought. The Weigh Station is next, and it will not be gentle.", "futz": true }
+  ]
+}

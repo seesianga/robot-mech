@@ -1,0 +1,60 @@
+{
+  "id": "m04_white_static",
+  "index": 4,
+  "op": 2,
+  "opName": "Halite Flats",
+  "name": "White Static",
+  "biome": "halite_flats",
+  "weather": "clear, extreme glare off the salt pan",
+  "timeOfDay": "midday",
+  "designIntent": "Blind the Directorate's desert sensor grid by destroying its three relay pylons across the Halite Flats. First exposure to extreme sightlines and the salt desert's punishing heat-dissipation penalty.",
+  "teaches": ["biome_heat_dissipation"],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "Welcome to the flats, Lodestar. Flat, white, gorgeous, and completely lethal, because out here everything can see everything, forever. The Directorate loves it. They've strung a sensor grid across the whole basin — three relay pylons, each one a lattice mast with a dish cluster, each one feeding every patrol, every gun, every drone within eighty klicks. As long as those pylons stand, the Compact can't move a bicycle across this desert. So: knock down all three, and their perfect picture turns into white static. Sable's riding with you — long sightlines are basically her love language. Couple of notes from your friendly intel voice. One, the salt pan holds heat like a grudge; your sinks run at eight-tenths out there, so give your weapons room to breathe. Two, when the second pylon drops they'll know it's not weather, and they will start throwing blind artillery at yesterday's coordinates. Keep moving and it's their money wasted. Three pylons, Lodestar. Make it all static. Relay out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "destroy", "title": "Pylon Aster", "description": "Destroy relay pylon Aster on the western pan.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Pylon Brine", "description": "Destroy relay pylon Brine at the dry channel crossing.", "optional": false },
+    { "id": "obj_3", "type": "destroy", "title": "Pylon Chalk", "description": "Destroy relay pylon Chalk on the eastern rise.", "optional": false },
+    { "id": "obj_4", "type": "reach", "title": "Fade to Static", "description": "Reach the exfiltration marker at the basin rim before the response lance corners you.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "Eyes on the Ground", "description": "Destroy the mobile sensor mast vehicle before it re-links the grid.", "optional": true }
+  ],
+  "enemyForces": [
+    "Static defenses at each pylon: paired pop-up turrets and drone screens",
+    "Hover skiff patrol pairs sweeping between pylons",
+    "One Chert lobbing missiles from beyond visual range near pylon Brine",
+    "Response lance — Gabbro and Halite — vectoring in after the second pylon falls",
+    "Blind Directorate artillery firing on stale coordinates late-mission"
+  ],
+  "allies": ["Sable"],
+  "setPieces": [
+    "White-out glare — the horizon dissolves and mechs float in mirage",
+    "Each pylon's collapse tears a visible dead zone in the tactical map's sensor overlay",
+    "After the second pylon, artillery begins hammering yesterday's coordinates behind you",
+    "Kryce's propaganda feed dies with the third pylon, mid-sentence"
+  ],
+  "failConditions": [
+    "Player mech destroyed — pilot ejects, mission failed",
+    "Exfiltration window missed — a Directorate armored column seals the basin rim"
+  ],
+  "salvageNotes": "Pylon wreckage yields sensor components for Assembly Bay utility mounts. The Chert is a rich claim if legged; hover skiffs vaporize messily and pay almost nothing. Artillery-cratered wrecks are lost claims — kill clean, claim fast.",
+  "musicSet": {
+    "ambient": "halite_flats",
+    "combatIntensityCap": 2,
+    "specialCues": ["pylon_collapse_hits", "white_static_resolve"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Relay", "line": "Three pylons, Lodestar — Aster, Brine, Chalk. While they stand, the Directorate sees every footprint on this pan. Make it all static.", "futz": true },
+    { "trigger": "on_heat_advisory", "speaker": "CAIRN", "line": "Environmental note: salt-pan thermal load reduces heat dissipation to eighty percent of rated. Extend your fire discipline accordingly.", "futz": false },
+    { "trigger": "on_setpiece:broadcast", "speaker": "Kryce", "line": "The desert teaches patience, citizens. The Directorate has more patience than the desert. Yield tonnage is love made measurable.", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Relay", "line": "Pylon Aster is down! That's a third of their picture gone dark. They're re-tasking drones — you have maybe six quiet minutes.", "futz": true },
+    { "trigger": "on_sable_spot", "speaker": "Sable", "line": "Chert. Two thousand meters, behind the shimmer. It hasn't seen us. Want it kept?", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Brine's down. Aaand there it is — they know it's not weather. Response lance spinning up from the weigh station, artillery going to blind fire. Don't stand anywhere twice.", "futz": true },
+    { "trigger": "on_artillery", "speaker": "CAIRN", "line": "Ballistic launch detected. Impact prediction: your previous position. Recommend continued movement.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Relay", "line": "Chalk's down — grid's blind, and get this, their propaganda feed rode the same trunk. Kryce just went silent across the whole basin. You're welcome, everyone.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "Response lance on your scope — Gabbro and a Halite, coming in angry and blind. You can fight them or ghost them. Blind favors ghosts.", "futz": true },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "The flats just went dark for everyone but us, Lodestar. Now the desert is a Compact road. Rest your sinks — tomorrow we take back our fuel.", "futz": true }
+  ]
+}

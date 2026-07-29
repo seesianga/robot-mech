@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Veyra Prime — Browser-Based Giant-Robot Combat Simulator</title>
+<meta name="description" content="Pilot multi-ton walking war machines for the Free Veyran Compact. %%FACT:chassisCount%% chassis, a %%FACT:missionCount%%-mission voiced campaign, and online multiplayer — free, in your browser, no install." />
+<meta name="theme-color" content="#05070a" />
+<link rel="canonical" href="https://robot-mech.pages.dev/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Veyra Prime" />
+<meta property="og:title" content="Veyra Prime — The Liberation Campaign" />
+<meta property="og:description" content="A browser-based giant-robot combat simulator. %%FACT:chassisCount%% chassis, %%FACT:missionCount%% voiced missions, online multiplayer. Free, no install." />
+<meta property="og:url" content="https://robot-mech.pages.dev/" />
+<meta property="og:image" content="https://robot-mech.pages.dev/site/art-og-1920.webp" />
+<meta property="og:image:width" content="1920" />
+<meta property="og:image:height" content="1080" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Veyra Prime — The Liberation Campaign" />
+<meta name="twitter:description" content="Browser-based giant-robot combat simulator. Free to play, no install." />
+<meta name="twitter:image" content="https://robot-mech.pages.dev/site/art-og-1920.webp" />
+
+<!-- The hero plate is the LCP element in every scenario, including the one
+     where the live 3D stage starts, so it is preloaded off the critical-path
+     waterfall.
+
+     Both preloads carry `media` matching the <picture> sources below. Without
+     it, a portrait viewport preloads the landscape plate that the picture will
+     never use AND then fetches the portrait one — two hero images downloaded,
+     and the LCP element itself not preloaded at all. -->
+<link rel="preload" as="image" media="(min-aspect-ratio: 0.65)" href="/site/art-hero-1920.avif"
+      imagesrcset="/site/art-hero-1280.avif 1280w, /site/art-hero-1920.avif 1920w, /site/art-hero-2560.avif 2560w, /site/art-hero.avif 3840w"
+      imagesizes="100vw" fetchpriority="high" />
+<link rel="preload" as="image" media="(max-aspect-ratio: 0.65)" href="/site/art-hero-portrait-1280.avif"
+      imagesrcset="/site/art-hero-portrait-640.avif 640w, /site/art-hero-portrait-1280.avif 1280w, /site/art-hero-portrait-1920.avif 1920w"
+      imagesizes="100vw" fetchpriority="high" />
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-900.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="/fonts/jbmono-400.woff2" crossorigin />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Veyra Prime",
+  "description": "A browser-based giant-robot combat simulator set on the occupied mining world of Veyra Prime.",
+  "url": "https://robot-mech.pages.dev/",
+  "genre": ["Simulation", "Action"],
+  "gamePlatform": "Web browser",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any (WebGL2)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<!-- Marks the document script-capable BEFORE first paint.
+     The boot cover is a full-viewport opaque panel, so it must only exist when
+     something is guaranteed to take it away. CSS keeps it display:none unless
+     this class is present, so no JavaScript, a blocked bundle or a failed chunk
+     means no cover at all rather than a permanently black page. Inline and
+     synchronous on purpose: a deferred module would run after first paint and
+     produce a visible flash. -->
+<script>document.documentElement.classList.add('js');</script>
+<script type="module" src="/src/site/main.ts"></script>
+</head>
+
+<body>
+
+<!-- Boot cover. Hidden entirely without JS (see the head), removed on `load`,
+     and unconditionally by a failsafe timer in main.ts. A preloader that can
+     strand the page is worse than no preloader. -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <div class="boot__brand">VEYRA <em>PRIME</em></div>
+    <div class="boot__track"><i id="boot-bar"></i></div>
+    <div class="boot__line" id="boot-line">Actuator lattice</div>
+  </div>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="rail hdr__bar">
+    <a class="brand" href="#top" aria-label="Veyra Prime — home">
+      <span class="brand__name">VEYRA <em>PRIME</em></span>
+      <span class="brand__sub">Giant-Robot Combat Sim</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#showroom">Chassis</a>
+      <a href="#campaign">Campaign</a>
+      <a href="#cockpit">Cockpit</a>
+      <a href="#multiplayer">Multiplayer</a>
+      <a href="#media">Media</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="hdr__actions">
+      <button class="sound" id="sound" aria-pressed="false" title="Toggle sound">
+        <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span id="sound-label">Sound</span>
+      </button>
+      <a class="btn btn--primary btn--sm hdr__play" href="/play" data-cue="launch"><span aria-hidden="true">▶</span> Play</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HERO ============================ -->
+<div class="hero" id="top">
+  <picture class="hero__plate-wrap">
+    <source media="(max-aspect-ratio: 0.65)" type="image/avif"
+            srcset="/site/art-hero-portrait-640.avif 640w, /site/art-hero-portrait-1280.avif 1280w, /site/art-hero-portrait-1920.avif 1920w" sizes="100vw" />
+    <source media="(max-aspect-ratio: 0.65)" type="image/webp"
+            srcset="/site/art-hero-portrait-640.webp 640w, /site/art-hero-portrait-1280.webp 1280w, /site/art-hero-portrait-1920.webp 1920w" sizes="100vw" />
+    <source type="image/avif"
+            srcset="/site/art-hero-640.avif 640w, /site/art-hero-1280.avif 1280w, /site/art-hero-1920.avif 1920w, /site/art-hero-2560.avif 2560w, /site/art-hero.avif 3840w" sizes="100vw" />
+    <source type="image/webp"
+            srcset="/site/art-hero-640.webp 640w, /site/art-hero-1280.webp 1280w, /site/art-hero-1920.webp 1920w, /site/art-hero-2560.webp 2560w, /site/art-hero.webp 3840w" sizes="100vw" />
+    <img class="hero__plate" id="hero-plate" src="/site/art-hero-1920.webp"
+         width="3840" height="2160" fetchpriority="high" decoding="async"
+         alt="A hundred-ton Craton assault machine standing on a service plinth in a darkened commissioning hall." />
+  </picture>
+
+  <!-- One live WebGL stage exists on this page and it lives in the showroom.
+       The hero is the graded plate — which is itself a render of the same
+       shipped Craton GLB, so the machine on the poster and the machine you can
+       turn two screens down are the same object. A second renderer here would
+       double the GPU texture residency (each lod0 is roughly 67 MB once its
+       2048 maps are uploaded) to buy motion the plate does not need. -->
+  <div class="rail hero__grid">
+    <div class="hero__copy">
+      <span class="tag" data-reveal><i></i>The full %%FACT:missionCount%%-mission campaign — playable now</span>
+      <h1 data-reveal style="--d:60ms">Nothing flies here.<br /><em>Everything walks.</em></h1>
+      <p class="hero__sub" data-reveal style="--d:140ms">
+        Take a stolen Skarn out of the Directorate's own yard and fight for the Free Veyran
+        Compact across an occupied mining world. Throttle, torso twist, heat, ammunition —
+        a simulator, running in the tab you already have open.
+      </p>
+      <div class="hero__cta" data-reveal style="--d:220ms">
+        <a class="btn btn--primary" href="/play" data-cue="launch"><span aria-hidden="true">▶</span> Play in browser</a>
+        <a class="btn btn--ghost" href="#showroom">Inspect the roster</a>
+      </div>
+      <p class="hero__note" data-reveal style="--d:300ms">
+        Free · No install · No account · WebGL2
+      </p>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true"><span></span>Scroll</div>
+</div>
+
+<!-- ============================ STRIP ============================ -->
+<div class="strip">
+  <div class="rail">
+    <div class="strip__grid">
+      <div class="strip__cell">
+        <div class="strip__n" data-count="%%FACT:chassisCount%%">%%FACT:chassisCount%%</div>
+        <span class="strip__l">Pilotable chassis</span>
+      </div>
+      <div class="strip__cell">
+        <div class="strip__n" data-count="%%FACT:missionCount%%">%%FACT:missionCount%%</div>
+        <span class="strip__l">Voiced missions</span>
+      </div>
+      <div class="strip__cell">
+        <div class="strip__n" data-count="%%FACT:mapCount%%">%%FACT:mapCount%%</div>
+        <span class="strip__l">Battle maps</span>
+      </div>
+      <div class="strip__cell">
+        <div class="strip__n"><em>Free</em></div>
+        <span class="strip__l">No install, no account</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ THE GAME ============================ -->
+<section id="game">
+  <div class="rail split">
+    <div>
+      <span class="kicker" data-reveal>The game</span>
+      <h2 data-reveal style="--d:60ms">A simulator,<br />not a shooter</h2>
+      <p class="lead" data-reveal style="--d:120ms">
+        Your chassis is a multi-ton industrial machine. It has a throttle and a torso that
+        turns independently of its legs. It has heat, and coolant, and a redline it will
+        shut down to protect. Every one of those matters in a firefight, and none of them
+        is a cosmetic readout.
+      </p>
+      <ul class="ticks" data-reveal style="--d:180ms">
+        <li>Independent legs and torso, heat management, per-group hardpoints</li>
+        <li>%%FACT:voiceLines%% recorded lines — your lance talks, and the enemy talks back</li>
+        <li>Chase cam or full cockpit, across %%FACT:mapCount%% uneven-terrain maps</li>
+        <li>Local pilot accounts keep campaign progress; guests can play instantly</li>
+      </ul>
+      <a class="btn btn--ghost" href="/play" data-cue="launch" data-reveal style="--d:240ms">Enlist with the Compact</a>
+    </div>
+
+    <figure class="shot" data-reveal style="--d:120ms">
+      <picture>
+        <source type="image/avif" srcset="/site/shot-karst-640.avif 640w, /site/shot-karst-1280.avif 1280w, /site/shot-karst-1920.avif 1920w" sizes="(max-width: 900px) 100vw, 50vw" />
+        <img src="/site/shot-karst-1280.webp" width="3840" height="2160" loading="lazy" decoding="async"
+             alt="A Compact lance advancing through the flooded karst highlands under a pale sky." />
+      </picture>
+      <figcaption>In-engine · Undertow, karst highlands</figcaption>
+    </figure>
+  </div>
+
+  <div class="rail cards">
+    <div class="card panel" data-reveal>
+      <span class="card__n">01</span>
+      <h3>%%FACT:chassisCountWord%% original chassis</h3>
+      <p>From the %%FACT:lightestTons%%-tonne %%FACT:lightestName%% scout to the %%FACT:heaviestTons%%-tonne
+         %%FACT:heaviestName%%, across %%FACT:weightClasses%% weight classes — distinct silhouettes,
+         hardpoints and battlefield roles.</p>
+    </div>
+    <div class="card panel" data-reveal style="--d:80ms">
+      <span class="card__n">02</span>
+      <h3>An original world</h3>
+      <p>The Free Veyran Compact against the Karst Directorate: a %%FACT:missionCount%%-mission
+         liberation war across salt flats, dune coasts and the understreets of an occupied
+         arcology. 100% original IP.</p>
+    </div>
+    <div class="card panel" data-reveal style="--d:160ms">
+      <span class="card__n">03</span>
+      <h3>Zero friction</h3>
+      <p>No launcher, no download, no account. The whole simulator ships to your browser and
+         runs on Three.js and Rapier physics against a Cloudflare Durable Object match server.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SHOWROOM ============================ -->
+<section id="showroom" class="roster">
+  <div class="rail">
+    <div class="roster__head">
+      <div>
+        <span class="kicker" data-reveal>The roster</span>
+        <h2 data-reveal style="--d:60ms">Stand next to one</h2>
+        <p class="lead muted" data-reveal style="--d:120ms">
+          These are the game's own models, loaded from the same files it ships, lit and
+          rendered live in this page. Pick a machine and turn it.
+        </p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter by weight class" data-reveal style="--d:160ms">
+        <button class="filter is-on" type="button" aria-pressed="true" data-filter="all">All</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="light">Light</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="medium">Medium</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="heavy">Heavy</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="assault">Assault</button>
+      </div>
+    </div>
+
+    <div class="showroom" data-reveal>
+      <p id="roster-status" class="sr-only" role="status" aria-live="polite"></p>
+      <div class="chassis" id="chassis" role="group" aria-label="Chassis roster — select a machine to inspect">
+%%FACT:ROSTER_LIST%%
+      </div>
+
+      <div class="showroom__view">
+        <div class="stage" id="show-stage">
+          <canvas id="show-canvas"></canvas>
+          <img class="stage__fallback" src="/site/cap-showroom-gabbro-1280.webp" alt="" aria-hidden="true" width="3840" height="2160" loading="lazy" />
+          <p class="stage__load">Loading chassis</p>
+          <p class="stage__hint">Drag to rotate</p>
+        </div>
+      </div>
+
+      <aside class="spec panel" id="spec" aria-live="polite" aria-label="Selected chassis specification">
+        <span class="spec__cls" id="spec-class">Light</span>
+        <h3 class="spec__name" id="spec-name">Flint</h3>
+        <p class="spec__role" id="spec-role">Recon</p>
+
+        <div class="spec__bar" aria-hidden="true"><i id="spec-bar"></i></div>
+
+        <div class="spec__rows">
+          <div class="spec__row"><span class="spec__k">Mass</span><span class="spec__v" id="spec-tons">25 t</span></div>
+          <div class="spec__row"><span class="spec__k">Top speed</span><span class="spec__v" id="spec-speed">118 km/h</span></div>
+          <div class="spec__row"><span class="spec__k">Torso arc</span><span class="spec__v" id="spec-twist">130°</span></div>
+          <div class="spec__row"><span class="spec__k">Heat sinks</span><span class="spec__v" id="spec-heat">10</span></div>
+          <div class="spec__row"><span class="spec__k">Jump jets</span><span class="spec__v" id="spec-jets">Yes</span></div>
+        </div>
+
+        <div class="hardpoints" id="spec-hp" role="list" aria-label="Hardpoints"></div>
+
+        <div class="spec__load">
+          <h4>Factory loadout</h4>
+          <p class="spec__loadline" id="spec-loadout">Blaze Laser S · Blaze Laser S · Sensor Mast</p>
+        </div>
+      </aside>
+    </div>
+
+    <p class="hp-key">
+      <b><i class="hp hp--energy">E</i> Energy</b>
+      <b><i class="hp hp--ballistic">B</i> Ballistic</b>
+      <b><i class="hp hp--missile">M</i> Missile</b>
+      <b><i class="hp hp--utility">U</i> Utility</b>
+      <span class="muted">Every frame runs its stock loadout in this build — the refit console is still being fitted.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============================ CAMPAIGN ============================ -->
+<section id="campaign">
+  <div class="rail">
+    <span class="kicker" data-reveal>The campaign</span>
+    <h2 data-reveal style="--d:60ms">%%FACT:missionCount%% missions to take back a world</h2>
+    <p class="lead" data-reveal style="--d:120ms">
+      Every mission is playable today — the salt flats, the karst highlands, the polar
+      refineries, the storm coast, the Vell Arcology and the Spire Anchor itself. At M21
+      the campaign forks, and the two endings are not the same story.
+    </p>
+
+    <ul class="ops" data-reveal style="--d:160ms">
+      <li class="op op--bt"><i></i><b>BT</b><span>Basic Training</span></li>
+%%FACT:MISSION_LADDER%%
+    </ul>
+
+    <div class="biomes" data-reveal>
+      <figure class="biome">
+        <img src="/site/shot-salt-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Salt flats under a bleached sky" />
+        <figcaption><b>Salt Flats</b><em>M04 – M07</em></figcaption>
+      </figure>
+      <figure class="biome">
+        <img src="/site/shot-karst-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Flooded karst highlands" />
+        <figcaption><b>Karst Highlands</b><em>M08 – M11</em></figcaption>
+      </figure>
+      <figure class="biome">
+        <img src="/site/shot-polar-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Polar refinery fields at night" />
+        <figcaption><b>Polar Refineries</b><em>M12 – M14</em></figcaption>
+      </figure>
+      <figure class="biome">
+        <img src="/site/shot-storm-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Storm-lashed breakwater coast" />
+        <figcaption><b>Storm Coast</b><em>M15 – M17</em></figcaption>
+      </figure>
+      <figure class="biome">
+        <img src="/site/shot-arcology-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="The understreets of the Vell Arcology" />
+        <figcaption><b>Vell Arcology</b><em>M18 – M20</em></figcaption>
+      </figure>
+      <figure class="biome">
+        <img src="/site/shot-anchor-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="The Spire Anchor" />
+        <figcaption><b>Spire Anchor</b><em>M21A · M22 – M24</em></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COCKPIT ============================ -->
+<section id="cockpit" class="cockpit">
+  <div class="rail split split--rev">
+    <div>
+      <span class="kicker" data-reveal>The seat</span>
+      <h2 data-reveal style="--d:60ms">Every mission opens the same way</h2>
+      <p class="lead" data-reveal style="--d:120ms">
+        CAIRN runs the startup litany before you take a single step. After
+        %%FACT:missionCount%% missions it still lands.
+      </p>
+      <ol class="litany" id="litany" data-reveal style="--d:180ms">
+        <li>Core ignition confirmed. Actuator lattice — green.</li>
+        <li>Weapon buses — live. Coolant loop pressurized.</li>
+        <li>All boards answer ready. Good hunting, Lodestar.</li>
+      </ol>
+      <button class="btn btn--ghost" id="litany-play" data-cue="open"><span aria-hidden="true">▶</span> Hear it</button>
+      <p class="hero__note" data-reveal style="--d:260ms">The actual file the game plays. Sound must be on.</p>
+    </div>
+
+    <figure class="shot" data-reveal style="--d:120ms">
+      <picture>
+        <source type="image/avif" srcset="/site/shot-cockpit-640.avif 640w, /site/shot-cockpit-1280.avif 1280w, /site/shot-cockpit-1920.avif 1920w" sizes="(max-width: 900px) 100vw, 50vw" />
+        <img src="/site/shot-cockpit-1280.webp" width="3840" height="2160" loading="lazy" decoding="async"
+             alt="The full cockpit view, looking out through the canopy frame across the low-tide flats." />
+      </picture>
+      <figcaption>In-engine · Cockpit view, Tide Tables</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ MULTIPLAYER ============================ -->
+<section id="multiplayer">
+  <div class="rail split">
+    <div>
+      <span class="kicker" data-reveal>Multiplayer</span>
+      <h2 data-reveal style="--d:60ms">Five on five.<br />Thirty seconds to drop.</h2>
+      <p class="lead" data-reveal style="--d:120ms">
+        Pick a mode and you are pooled with everyone who joins in the same thirty seconds.
+        Seats still empty when the counter hits zero are filled by robots, so a match always
+        starts. Matches run on a Cloudflare Durable Object at the edge — no lobby to find, no
+        ports to forward, nothing to install.
+      </p>
+      <ul class="ticks" data-reveal style="--d:180ms">
+        <li>Deathmatch — five on five, one point per kill, first team to twenty</li>
+        <li>Capture the Flag — turn the flag your colour and points accumulate while you hold it</li>
+        <li>Your six Deployment Bays are your deck, and it freezes at the drop: a frame destroyed in a match is spent</li>
+        <li>Practice Skirmish against bots — offline, instant, no server</li>
+      </ul>
+      <a class="btn btn--ghost" href="/play" data-cue="launch" data-reveal style="--d:240ms">Open the match console</a>
+    </div>
+
+    <figure class="shot" data-reveal style="--d:120ms">
+      <picture>
+        <source type="image/avif" srcset="/site/shot-coast-640.avif 640w, /site/shot-coast-1280.avif 1280w, /site/shot-coast-1920.avif 1920w" sizes="(max-width: 900px) 100vw, 50vw" />
+        <img src="/site/shot-coast-1280.webp" width="3840" height="2160" loading="lazy" decoding="async"
+             alt="A Skarn on the dune coast with the yard's tracking mast on the horizon." />
+      </picture>
+      <figcaption>In-engine · Cold Ignition, Breaker Coast</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ MEDIA ============================ -->
+<section id="media">
+  <div class="rail">
+    <span class="kicker" data-reveal>Media</span>
+    <h2 data-reveal style="--d:60ms">Field recordings</h2>
+    <p class="lead muted" data-reveal style="--d:120ms">
+      Captured from the running build at 3840 × 2160. No touch-ups, no bullshots — click any
+      frame for the full-resolution file.
+    </p>
+
+    <div class="gallery" data-reveal>
+      <figure><a href="/site/shot-arcology.webp" target="_blank" rel="noopener">
+        <img src="/site/shot-arcology-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="A machine crossing the Vell Arcology understreets between hab-stacks." />
+        <span class="gallery__4k">4K</span>
+        <figcaption>Understreets — Vell Arcology</figcaption></a></figure>
+      <figure><a href="/site/shot-polar.webp" target="_blank" rel="noopener">
+        <img src="/site/shot-polar-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Escorting a column across the polar ice at night under a searchlight." />
+        <span class="gallery__4k">4K</span>
+        <figcaption>Icebound — Polar Refineries</figcaption></a></figure>
+      <figure><a href="/site/shot-karst.webp" target="_blank" rel="noopener">
+        <img src="/site/shot-karst-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="A lance advancing into the flooded karst highlands." />
+        <span class="gallery__4k">4K</span>
+        <figcaption>Undertow — Karst Highlands</figcaption></a></figure>
+      <figure><a href="/site/shot-storm.webp" target="_blank" rel="noopener">
+        <img src="/site/shot-storm-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Holding the breakwater against a Directorate push in heavy weather." />
+        <span class="gallery__4k">4K</span>
+        <figcaption>Breakwater — Storm Coast</figcaption></a></figure>
+      <figure><a href="/site/shot-salt.webp" target="_blank" rel="noopener">
+        <img src="/site/shot-salt-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="Intercepting a convoy on the open salt flats." />
+        <span class="gallery__4k">4K</span>
+        <figcaption>Dust Convoy — Salt Flats</figcaption></a></figure>
+      <figure><a href="/site/shot-anchor.webp" target="_blank" rel="noopener">
+        <img src="/site/shot-anchor-640.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="The long climb toward the Spire Anchor." />
+        <span class="gallery__4k">4K</span>
+        <figcaption>The Long Climb — Spire Anchor</figcaption></a></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================
+     Deliberately undesigned. No chamfers, no accent, no ornament: where the
+     visitor has to take you at your word, the art direction gets out of the
+     way. Answers are carried over verbatim from the previous site. -->
+<section id="faq" class="trust">
+  <div class="rail">
+    <h2 data-reveal>Frequently asked questions</h2>
+    <div class="faq" data-reveal style="--d:80ms">
+      <details open>
+        <summary>Is it really free? What do I need to play?</summary>
+        <div class="a">Yes — completely free, no install, no account required. Any modern desktop
+        browser with WebGL2 (Chrome, Edge, Firefox, Safari) will run it. A keyboard and mouse are
+        strongly recommended.</div>
+      </details>
+      <details>
+        <summary>How do I save my progress?</summary>
+        <div class="a">Register a local pilot account from the sign-in screen (stored in your
+        browser) and your campaign progress persists per pilot. Playing as a guest keeps progress
+        for the lifetime of the tab.</div>
+      </details>
+      <details>
+        <summary>What's playable right now?</summary>
+        <div class="a">All of it: Basic Training (a fully-voiced, input-gated tutorial), all
+        %%FACT:missionCount%% campaign missions from Cold Ignition to Reclamation including the
+        M21 fork, and multiplayer — online five-on-five Deathmatch and Capture the Flag, plus an
+        offline bot skirmish.</div>
+      </details>
+      <details>
+        <summary>How does multiplayer work?</summary>
+        <div class="a">Open Multiplayer from the main menu and join a Deathmatch or Capture the
+        Flag queue. Everyone who joins within the same thirty seconds drops together, five on five,
+        and any seats still empty are filled by robots. Matches run on a Cloudflare Durable Object
+        match server — nothing to configure, nothing to install. There is also an offline Practice
+        Skirmish against bots.</div>
+      </details>
+      <details>
+        <summary>Is this a MechWarrior game?</summary>
+        <div class="a">No. Veyra Prime is an independent, 100% original work — its world, factions,
+        characters, chassis, weapons and audio are all original IP. It shares a genre (giant-robot
+        simulation), nothing more.</div>
+      </details>
+    </div>
+
+    <div class="colophon" data-reveal style="--d:120ms">
+      <h4>What is actually in the build</h4>
+      <ul>
+        <li><b>%%FACT:modelCount%%</b> 3D models — <b>%%FACT:machinesModelled%%</b> machines modelled, <b>%%FACT:chassisCount%%</b> of them pilotable</li>
+        <li><b>%%FACT:voiceLines%%</b> voice lines · <b>%%FACT:musicCues%%</b> music cues · <b>%%FACT:sfxCount%%</b> sound effects</li>
+        <li><b>%%FACT:textureSets%%</b> PBR ground and water material sets (<b>%%FACT:textureMaps%%</b> maps)</li>
+        <li><b>%%FACT:missionCount%%</b> campaign missions and Basic Training across <b>%%FACT:mapCount%%</b> maps, with <b>%%FACT:branchCount%%</b> branch endings</li>
+        <li>Three.js · Rapier physics · Cloudflare Pages · Durable Object match server</li>
+      </ul>
+      <p class="muted">Every count on this page is generated from the game's own data files at
+      build time, and the build fails if the markup contradicts them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CLOSE ============================ -->
+<section class="final">
+  <picture>
+    <source type="image/avif" srcset="/site/art-close-1280.avif 1280w, /site/art-close-1920.avif 1920w, /site/art-close-2560.avif 2560w, /site/art-close.avif 3840w" sizes="100vw" />
+    <img class="final__plate" src="/site/art-close-1920.webp" width="3840" height="2160" loading="lazy" decoding="async" alt="" />
+  </picture>
+  <div class="rail">
+    <span class="kicker" style="justify-content:center" data-reveal>The coast is waiting</span>
+    <h2 data-reveal style="--d:60ms">Your chassis is fuelled and armed</h2>
+    <a class="btn btn--primary" href="/play" data-cue="launch" data-reveal style="--d:140ms"><span aria-hidden="true">▶</span> Play Veyra Prime</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="rail">
+    <div class="foot">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <span class="brand__name">VEYRA <em>PRIME</em></span>
+          <span class="brand__sub">Giant-Robot Combat Sim</span>
+        </a>
+        <p>A browser-based giant-robot combat simulator. Pilot walking war machines for the Free
+        Veyran Compact and liberate the occupied mining world of Veyra Prime.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#showroom">Chassis roster</a></li>
+          <li><a href="#campaign">Campaign</a></li>
+          <li><a href="#multiplayer">Multiplayer</a></li>
+          <li><a href="#media">Media</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Play</h4>
+        <ul>
+          <li><a href="/play">Launch the game</a></li>
+          <li><a href="/play">Basic Training</a></li>
+          <li><a href="/play">Match console</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Built with</h4>
+        <ul>
+          <li><a href="https://threejs.org" rel="noopener external" target="_blank">Three.js</a></li>
+          <li><a href="https://rapier.rs" rel="noopener external" target="_blank">Rapier physics</a></li>
+          <li><a href="https://pages.cloudflare.com" rel="noopener external" target="_blank">Cloudflare Pages</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Veyra Prime. An original work — all factions, characters, chassis and audio are original IP.</span>
+      <span>%%FACT:missionCount%% missions live</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

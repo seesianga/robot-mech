@@ -1,0 +1,122 @@
+{
+  "id": "m07",
+  "designFile": "m07_the_weigh_station",
+  "stage": 7,
+  "title": "THE WEIGH STATION",
+  "map": "salt",
+  "spawn": { "x": -430, "z": 320, "yaw": 2.3 },
+  "playerMech": "gabbro",
+  "heatMult": 0.8,
+  "extract": [440, 250],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-405, 292] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-452, 345] }
+  ],
+  "structures": [
+    { "id": "gate_k90", "name": "Kilometer Ninety Gate", "kind": "gate", "pos": [40, -10], "hp": 120 },
+    { "id": "control_block", "name": "Weigh-Station Control Block", "kind": "bunker", "pos": [165, -95], "hp": 240 },
+    { "id": "scale_tower", "name": "Scale Tower", "kind": "mast", "pos": [110, 20], "hp": 140 },
+    { "id": "ore_hopper", "name": "Ore Hopper", "kind": "tank", "pos": [60, -140], "hp": 80 }
+  ],
+  "artillery": { "fromStep": 3, "everySec": 12, "damage": 10, "radius": 30 },
+  "timedVO": [
+    { "atSec": 200, "trigger": "on_sable_overwatch" },
+    { "atSec": 330, "trigger": "on_tremor_brawl" },
+    { "atSec": 450, "trigger": "on_heat_high" }
+  ],
+  "steps": [
+    {
+      "id": "approach_k90",
+      "kind": "reach",
+      "title": "CLOSE ON KILOMETER NINETY",
+      "sub": "Advance across the pan to the weigh-station approach.",
+      "at": [-190, 160],
+      "radius": 45,
+      "vo": "on_start_brief",
+      "spawns": [
+        {
+          "def": "flint",
+          "pos": [-40, 60],
+          "alerted": false,
+          "name": "Perimeter Picket",
+          "waypoints": [[-120, 10], [30, 120]]
+        }
+      ]
+    },
+    {
+      "id": "crack_the_scales",
+      "kind": "destroy",
+      "title": "CRACK THE SCALES",
+      "sub": "Breach the gate and destroy the garrison holding the complex.",
+      "targets": ["gate_k90"],
+      "killAll": true,
+      "perTargetVO": { "gate_k90": "on_gate_breach" },
+      "doneVO": "on_objective:obj_1",
+      "spawns": [
+        { "def": "skarn", "pos": [60, -60], "alerted": true, "name": "Gate Warden" },
+        {
+          "def": "pumice",
+          "pos": [95, 25],
+          "alerted": false,
+          "name": "Ferric APC",
+          "waypoints": [[130, -20], [70, -100]]
+        },
+        {
+          "def": "pumice",
+          "pos": [160, -120],
+          "alerted": false,
+          "name": "Ferric APC",
+          "waypoints": [[190, -40], [120, -150]]
+        }
+      ]
+    },
+    {
+      "id": "first_wave",
+      "kind": "hold",
+      "title": "HOLD THE COMPLEX — FIRST WAVE",
+      "sub": "Stay inside the perimeter and break the fast counter-lance.",
+      "at": [110, -60],
+      "radius": 120,
+      "seconds": 75,
+      "vo": "on_enemy_wave",
+      "doneVO": "on_wave1_cleared",
+      "waves": [
+        [
+          { "def": "pumice", "pos": [-330, -150], "alerted": true, "name": "Skiff Screen" },
+          { "def": "pumice", "pos": [-290, -80], "alerted": true, "name": "Skiff Screen" }
+        ],
+        [
+          { "def": "skarn", "pos": [-380, -100], "alerted": true, "name": "Fast Lance Skarn" },
+          { "def": "pumice", "pos": [-260, -220], "alerted": true, "name": "Skiff Screen" }
+        ]
+      ]
+    },
+    {
+      "id": "second_wave",
+      "kind": "defend",
+      "title": "HOLD THE LINE — SECOND WAVE",
+      "sub": "Protect the weigh-station control block until Compact armor arrives.",
+      "protect": "control_block",
+      "seconds": 90,
+      "waveGap": 30,
+      "vo": "on_enemy_wave_2",
+      "waves": [
+        [
+          { "def": "chert", "pos": [350, -350], "alerted": true, "name": "Arc Battery" },
+          { "def": "pumice", "pos": [190, -390], "alerted": true, "name": "Strafing Skiff" }
+        ],
+        [
+          { "def": "basalt", "pos": [430, -180], "alerted": true, "name": "Line-Breaker" },
+          { "def": "pumice", "pos": [340, -50], "alerted": true, "name": "Strafing Skiff" }
+        ]
+      ]
+    },
+    {
+      "id": "meet_the_relief",
+      "kind": "extract",
+      "title": "MEET THE RELIEF COLUMN",
+      "sub": "March to the eastern pan and link up with Compact armor.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

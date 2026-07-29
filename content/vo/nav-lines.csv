@@ -1,0 +1,5 @@
+line_id,kind,speaker,text_with_breaks,seed,notes
+vo_nav_follow,nudge,CAIRN,Follow the light.,53001,stuck ladder level 2
+vo_nav_turn_around,nudge,CAIRN,Turn around.,53002,stuck ladder level 2 when target is behind
+vo_nav_reroute,system,CAIRN,Path blocked. Recalculating.,53003,RE-ROUTING entry
+vo_nav_arrive,system,CAIRN,Waypoint reached.,53004,campaign routes only (arrive_vo)

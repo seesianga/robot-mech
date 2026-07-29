@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "source": "hangar-master-prompt",
+  "author": "meta-game systems",
+  "approval": "approved",
+  "currency": "scrip",
+  "sequentialUnlock": true,
+  "slots": [
+    { "id": "bay_1", "index": 1, "price": 0 },
+    { "id": "bay_2", "index": 2, "price": 2000 },
+    { "id": "bay_3", "index": 3, "price": 4500 },
+    { "id": "bay_4", "index": 4, "price": 8000 },
+    { "id": "bay_5", "index": 5, "price": 12500 },
+    { "id": "bay_6", "index": 6, "price": 18000 }
+  ]
+}

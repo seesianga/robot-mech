@@ -1,0 +1,67 @@
+{
+  "id": "m13_icebound",
+  "index": 13,
+  "op": 4,
+  "opName": "Polar Refineries",
+  "name": "Icebound",
+  "biome": "polar_refineries",
+  "weather": "ground blizzard with drifting artillery smoke",
+  "timeOfDay": "polar night",
+  "designIntent": "Defend Compact engineers crossing a glacier under sustained artillery fire; the bridging span collapses and Commander Ekene is captured alive covering the retreat — the campaign's gut-punch.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "Listen close, because the window's short. The Directorate pulled their mag-line security east, which means for about six hours the Sarn Glacier is the only road between us and Rauk's polar network. Our engineers are taking a bridging column across tonight — portable spans, thumper charges, everything we need to cut her supply lines for good. Problem: Rauk knows the glacier is the only road too. Her batteries at Station Nadir can range the whole crossing, and she will walk fire onto anything that moves. Your job is simple and ugly. Screen the column. Kill her spotters before they call corrections. If a span goes down, you hold the crevasse line until the engineers re-rig. I'll be on the ice with you in the Corundum — I'm done watching this one from a map table. Weather's foul, footing's worse. Keep your throttle honest and your heat low. We cross together, Lodestar. All of us."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "escort", "title": "Screen the Column", "description": "Escort the engineer bridging column across the Sarn Glacier crossing.", "optional": false },
+    { "id": "obj_2", "type": "destroy", "title": "Silence the Spotters", "description": "Destroy the three artillery spotter teams before they can walk fire onto the column.", "optional": false },
+    { "id": "obj_3", "type": "defend", "title": "Hold the Crevasse Line", "description": "Defend the engineers while they re-rig the collapsed bridging span.", "optional": false },
+    { "id": "obj_4", "type": "reach", "title": "Fall Back", "description": "Reach Rally Point Cairn-9 through the icefall while Commander Ekene covers the withdrawal.", "optional": false },
+    { "id": "obj_5", "type": "destroy", "title": "Nadir Relay", "description": "Destroy the counter-battery uplink mast to degrade artillery accuracy for the rest of the mission.", "optional": true }
+  ],
+  "enemyForces": [
+    "Off-map artillery batteries at Station Nadir delivering walking barrages",
+    "Hover skiff spotter teams marking the column for corrections",
+    "Tracked Ferric APC platoons deploying infantry across the ice",
+    "Halite brawler pair holding the ice picket line",
+    "Basalt heavy pair anchoring the moraine chokepoint",
+    "Strafing aircraft passes during the final withdrawal"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "Commander Ekene fights alongside the player in her Corundum for the first and only time",
+    "Walking artillery barrages crater the glacier in real time, opening crevasses that reroute the crossing",
+    "The main bridging span collapses mid-crossing, dropping a Ferric APC into the dark",
+    "Final withdrawal: Ekene's Corundum stands alone at the moraine gap, covering the retreat until her mech is legged and swarmed",
+    "Capture scene: Directorate recovery skiffs lift the downed Corundum away as the storm closes in, while CAIRN confirms her transponder is still alive"
+  ],
+  "failConditions": [
+    "The engineer bridging column is destroyed (fewer than two span carriers survive)",
+    "Rally Point Cairn-9 is not reached before the barrage saturates the icefall",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "Poor field salvage by design: the glacier swallows most wrecks and the withdrawal leaves no time to strip the rest. Spotter skiffs killed cleanly before the collapse yield sensor components; the Basalt pair at the moraine give up autocannon parts only if legged. Nothing left on the far ice can ever be recovered.",
+  "musicSet": {
+    "ambient": "polar_refineries",
+    "combatIntensityCap": 3,
+    "specialCues": ["cue_ekene_down_solo_cello_lament", "stinger_failed_extended_silence"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Ekene", "line": "Corundum on your left flank, Lodestar. Tonight you get to see how the old chassis dances. Column's moving — eyes up.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "Relay", "line": "Spotter uplink just lit up, grid two-two. Kill the callers before the guns learn our names.", "futz": true },
+    { "trigger": "on_spotter_down", "speaker": "Sable", "line": "Spotter down. They're blind on this axis.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Tremor", "line": "APCs on the ice! Ha — come on then, let's see who slips first!", "futz": true },
+    { "trigger": "on_artillery_barrage", "speaker": "CAIRN", "line": "Ballistic arcs inbound. Impact pattern advancing along the column's route.", "futz": false },
+    { "trigger": "on_span_collapse", "speaker": "Vireo", "line": "The span — the span's gone! They're in the crevasse — oh no, no —", "futz": true },
+    { "trigger": "on_objective:obj_3", "speaker": "Ekene", "line": "Engineers, re-rig on the south lip. Everyone else, you are a wall. Nothing crosses that ice.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Structural integrity failing. Recommend disengaging to the smoke line.", "futz": false },
+    { "trigger": "on_withdrawal_start", "speaker": "Ekene", "line": "Column's across. Fireteam, fall back to Cairn-nine. I'll hold the gap. That is not a request, Lodestar — move.", "futz": true },
+    { "trigger": "on_ekene_down", "speaker": "Relay", "line": "Anchor's hit — her leg's gone — she's down, she's down! Transponder still green — they're... Directorate skiffs are on her. They're taking her. They're taking her alive.", "futz": true },
+    { "trigger": "on_ekene_down_2", "speaker": "Tremor", "line": "Turn around. We turn around NOW — Relay, give me one reason we don't turn around!", "futz": true },
+    { "trigger": "on_ekene_down_3", "speaker": "Sable", "line": "Tremor. She said move. So we move. And then we get her back.", "futz": true },
+    { "trigger": "on_ekene_capture", "speaker": "CAIRN", "line": "Corundum transponder active. Signal bearing north-northeast, receding. Logging for recovery, Lodestar. This entry stays open.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "Cairn-nine, all surviving callsigns accounted... all but one. Mission's done. I'll write it up. Get some rest. That's... that's what she'd say.", "futz": true }
+  ]
+}

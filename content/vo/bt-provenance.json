@@ -1,0 +1,1722 @@
+[
+  {
+    "line_id": "vo_bt_a0_ok",
+    "text": "Power online. <break time=\"0.25s\" /> Systems nominal.",
+    "seed": 52001,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "oPJdrR1OUNNzpx2vl77E",
+    "sha256_raw": "a8d1d73162f8fb50f4036f785a76ad4597540e4e6549910d7535808e9bb99e19",
+    "generated_at": "2026-07-24T14:30:02.650Z",
+    "mastered_at": "2026-07-24T16:37:51.547Z"
+  },
+  {
+    "line_id": "vo_bt_a0_h1",
+    "text": "Confirm to power up.",
+    "seed": 52002,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "4KTJac2PIqvoihY2hLqG",
+    "sha256_raw": "23aa0dca5d2cb93e1a97faf4637bc69263a7df145a3c89edbd34fb2f1b312b7e",
+    "generated_at": "2026-07-24T14:30:04.470Z",
+    "mastered_at": "2026-07-24T16:37:51.733Z"
+  },
+  {
+    "line_id": "vo_bt_a1_ok",
+    "text": "Throttle set.",
+    "seed": 52003,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "EuSZsbVVXAglu4dRNLC1",
+    "sha256_raw": "85d3f4fdc7e8da915e05b7720ccea8ae86acd1f370cc4fadfbedb95823e4deb6",
+    "generated_at": "2026-07-24T14:30:06.071Z",
+    "mastered_at": "2026-07-24T16:37:51.877Z"
+  },
+  {
+    "line_id": "vo_bt_a1_h1",
+    "text": "Raise throttle now.",
+    "seed": 52004,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "iPGmxN4l9eP1GEYFenSp",
+    "sha256_raw": "50364c94291cd4a9216344f52938afb4980696d681be2e16f151f96fb478b9bc",
+    "generated_at": "2026-07-24T14:30:07.577Z",
+    "mastered_at": "2026-07-24T16:37:52.063Z"
+  },
+  {
+    "line_id": "vo_bt_a2_ok",
+    "text": "All stop.",
+    "seed": 52005,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "xIPRHw9FXPIpMujVJF5Z",
+    "sha256_raw": "1f366f45022f9ceb66295431ecdc1b6478b6b448a6b3b0bbd7d0b18e4e0a29d9",
+    "generated_at": "2026-07-24T14:30:09.055Z",
+    "mastered_at": "2026-07-24T16:37:52.229Z"
+  },
+  {
+    "line_id": "vo_bt_a2_h1",
+    "text": "Bring throttle to zero.",
+    "seed": 52006,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "On9lufwlvkH9dCNmpHWx",
+    "sha256_raw": "5acff06c4d37972f37de8baac3addc5b99c65412189c15ad8bee295d4691da1d",
+    "generated_at": "2026-07-24T14:30:10.542Z",
+    "mastered_at": "2026-07-24T16:37:52.435Z"
+  },
+  {
+    "line_id": "vo_bt_a3_ok",
+    "text": "Reverse engaged.",
+    "seed": 52007,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "cBQLVCvUs6UqeW9k1IAA",
+    "sha256_raw": "93343b72641b7bc1eb3380037eee00728cfae045e2abe3281b1bbde85c8b5f94",
+    "generated_at": "2026-07-24T14:30:12.014Z",
+    "mastered_at": "2026-07-24T16:37:52.620Z"
+  },
+  {
+    "line_id": "vo_bt_a3_h1",
+    "text": "Walk it backward.",
+    "seed": 52008,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "0qIbpEPb4aaRiAMJ9haI",
+    "sha256_raw": "2fdb903d8df699e5fdcb4ca72c08f557164f0333b02d360f01849fca17964b62",
+    "generated_at": "2026-07-24T14:30:13.582Z",
+    "mastered_at": "2026-07-24T16:37:52.791Z"
+  },
+  {
+    "line_id": "vo_bt_a4_ok",
+    "text": "Leg steering confirmed.",
+    "seed": 52009,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "yPo7ISKMsju3fYrl8iPb",
+    "sha256_raw": "18e9a85b8967214627b42776b5c2f9eeb2405398c0261efaa1599a5f741b519a",
+    "generated_at": "2026-07-24T14:30:15.062Z",
+    "mastered_at": "2026-07-24T16:37:52.956Z"
+  },
+  {
+    "line_id": "vo_bt_a4_h1",
+    "text": "Turn your legs. <break time=\"0.25s\" /> Both directions.",
+    "seed": 52010,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "5HhCtPrFqyqxHmTFvCkN",
+    "sha256_raw": "9435709eb379ff53cc1c0ee0f67d2a3e2e5ff1994e42e615698fb28e21814e37",
+    "generated_at": "2026-07-24T14:30:16.642Z",
+    "mastered_at": "2026-07-24T16:37:53.136Z"
+  },
+  {
+    "line_id": "vo_bt_a5_ok",
+    "text": "Gate run complete.",
+    "seed": 52011,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "5VDXRPjK3iawe7l7BHuc",
+    "sha256_raw": "72a376cde84e3a1d51239f701ba2ff2ce6b44a872d0cded8fd61e02173bb16aa",
+    "generated_at": "2026-07-24T14:30:19.101Z",
+    "mastered_at": "2026-07-24T16:37:53.298Z"
+  },
+  {
+    "line_id": "vo_bt_a5_h1",
+    "text": "Walk through the gates.",
+    "seed": 52012,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "vRLaPO0YAkvHWGnfpyVK",
+    "sha256_raw": "18a4c29be774a16868685e068bb2e40b71c3d41df44bac2b7c2587dd95d97753",
+    "generated_at": "2026-07-24T14:30:20.566Z",
+    "mastered_at": "2026-07-24T16:37:53.470Z"
+  },
+  {
+    "line_id": "vo_bt_a6_ok",
+    "text": "Full stop.",
+    "seed": 52013,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "Dn3xRd2JnRWfYKYY3m9E",
+    "sha256_raw": "c2c732a6f6f12273f96237322f5918680a00abfe6b32379352cd784c80f40058",
+    "generated_at": "2026-07-24T14:30:22.035Z",
+    "mastered_at": "2026-07-24T16:37:53.626Z"
+  },
+  {
+    "line_id": "vo_bt_a6_h1",
+    "text": "Try the instant stop.",
+    "seed": 52014,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "DobE0SLVv3pRsUfjA5Ha",
+    "sha256_raw": "7cc7c06c198d908a2e792cabc1f1ecc81c3fad5b1a65b311841b96169073cb05",
+    "generated_at": "2026-07-24T14:30:23.559Z",
+    "mastered_at": "2026-07-24T16:37:53.777Z"
+  },
+  {
+    "line_id": "vo_bt_b1_ok",
+    "text": "Torso articulation confirmed.",
+    "seed": 52015,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "rNzblNzoKPfeCY6mfpVQ",
+    "sha256_raw": "88934c5eec2a975dd20aa01b1f936fd964f2424f27a4f88de8d6373ac86bae6f",
+    "generated_at": "2026-07-24T14:30:25.199Z",
+    "mastered_at": "2026-07-24T16:37:54.041Z"
+  },
+  {
+    "line_id": "vo_bt_b1_h1",
+    "text": "Twist your torso. <break time=\"0.25s\" /> Both sides.",
+    "seed": 52016,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "05HnGYv7PM8JV8zq9mDr",
+    "sha256_raw": "9a609f4d8cc4fb5605d091d868bf007679ef48604b28b734f28b531df6a81160",
+    "generated_at": "2026-07-24T14:30:26.787Z",
+    "mastered_at": "2026-07-24T16:37:54.330Z"
+  },
+  {
+    "line_id": "vo_bt_b2_ok",
+    "text": "Tracking steady.",
+    "seed": 52017,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "IaigC7MhVCSkVCEEhemK",
+    "sha256_raw": "cdb4fe3e1200b191086966f80175e211c0e59890d87ed836cf126de77c998bea",
+    "generated_at": "2026-07-24T14:30:28.438Z",
+    "mastered_at": "2026-07-24T16:37:54.637Z"
+  },
+  {
+    "line_id": "vo_bt_b2_h1",
+    "text": "Hold the reticle on the board.",
+    "seed": 52018,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "ccq1fuCW44fqkZDi3aEF",
+    "sha256_raw": "a009ba0f3fc5c9903e25e9ede5d9dd78a02caccf1728c60e199939c2dbd73eb6",
+    "generated_at": "2026-07-24T14:30:30.161Z",
+    "mastered_at": "2026-07-24T16:37:54.891Z"
+  },
+  {
+    "line_id": "vo_bt_b3_ok",
+    "text": "Torso aligned.",
+    "seed": 52019,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "y3MvMfEzMbuGKnxU2eQT",
+    "sha256_raw": "e39b5dd12487dd517db1ce17e31b924c5acc2d76c6074f5b0b129594aad81b4a",
+    "generated_at": "2026-07-24T14:30:31.675Z",
+    "mastered_at": "2026-07-24T16:37:55.121Z"
+  },
+  {
+    "line_id": "vo_bt_b3_h1",
+    "text": "Recenter your torso.",
+    "seed": 52020,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "5rRIhKilHIgvFCD1CB2i",
+    "sha256_raw": "fd72b99afb5cb16e316a81847bccddb2031e66b527bbef16453a62d748a32900",
+    "generated_at": "2026-07-24T14:30:33.235Z",
+    "mastered_at": "2026-07-24T16:37:55.281Z"
+  },
+  {
+    "line_id": "vo_bt_b4_ok",
+    "text": "Moving fire posture confirmed.",
+    "seed": 52021,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "EUgBqYN3IXCFLMfHSIbh",
+    "sha256_raw": "0bd7addd85105f5cf90677c7bdb75f5c23ced21c9ea75ad22bf06e9d77019227",
+    "generated_at": "2026-07-24T14:30:34.805Z",
+    "mastered_at": "2026-07-24T16:37:55.452Z"
+  },
+  {
+    "line_id": "vo_bt_b4_h1",
+    "text": "Walk and hold your aim.",
+    "seed": 52022,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "2aSTG6iWRCN0RZdqubCD",
+    "sha256_raw": "87fe6eed12446a09b3ae771c276a208f316b9306db8222e834dc5b1876929d67",
+    "generated_at": "2026-07-24T14:30:36.494Z",
+    "mastered_at": "2026-07-24T16:37:55.620Z"
+  },
+  {
+    "line_id": "vo_bt_b5_ok",
+    "text": "Optics engaged.",
+    "seed": 52023,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "HPsXlUFYZXpUjSCAO0DA",
+    "sha256_raw": "a61afc161dc583c3a5d4347aa3cd3ce97190993e268fee33a2c71e814c4a3d6c",
+    "generated_at": "2026-07-24T14:30:38.163Z",
+    "mastered_at": "2026-07-24T16:37:55.792Z"
+  },
+  {
+    "line_id": "vo_bt_b5_h1",
+    "text": "Magnify your optics.",
+    "seed": 52024,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "pQVEnryEGJHXpmUnI88M",
+    "sha256_raw": "ccc768e69de5a90094b734f0b2a7001f02558b6eeecdeac0a8f095a84fc61446",
+    "generated_at": "2026-07-24T14:30:40.215Z",
+    "mastered_at": "2026-07-24T16:37:55.973Z"
+  },
+  {
+    "line_id": "vo_bt_c1_ok",
+    "text": "Target locked.",
+    "seed": 52025,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "fNakXgzXR29JT3hn3ebA",
+    "sha256_raw": "46e766f6b6fa0797d83f2d4e60b549affeebeeaf40e79bfec7ce0a4920f8ca4f",
+    "generated_at": "2026-07-24T14:30:41.872Z",
+    "mastered_at": "2026-07-24T16:37:56.153Z"
+  },
+  {
+    "line_id": "vo_bt_c1_h1",
+    "text": "Lock the contact under your reticle.",
+    "seed": 52026,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "vyPBPsCXbMeuxLE01NIJ",
+    "sha256_raw": "4a22a6b1ee1610c9ceaa8f5bd28fb05b28fb957dc6b2fd499f038b093a7cc3b0",
+    "generated_at": "2026-07-24T14:30:44.104Z",
+    "mastered_at": "2026-07-24T16:37:56.316Z"
+  },
+  {
+    "line_id": "vo_bt_c2_ok",
+    "text": "All contacts logged.",
+    "seed": 52027,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "d8TsSXoX7s9F9LyzRifD",
+    "sha256_raw": "2f6e2feddc4f130a2305a0553990f7075483f598c3e2f53824c0695be98ece9c",
+    "generated_at": "2026-07-24T14:30:47.705Z",
+    "mastered_at": "2026-07-24T16:37:56.478Z"
+  },
+  {
+    "line_id": "vo_bt_c2_h1",
+    "text": "Cycle your contacts.",
+    "seed": 52028,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "1FgBny4G6Lg1U1L1qufa",
+    "sha256_raw": "4a979d175d48114cdaee04f9e8af58e3eff455b508a4d2ddc26c5f16aadd6a73",
+    "generated_at": "2026-07-24T14:30:50.701Z",
+    "mastered_at": "2026-07-24T16:37:56.642Z"
+  },
+  {
+    "line_id": "vo_bt_c3_ok",
+    "text": "Section selected.",
+    "seed": 52029,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "Kh0M7DAO5vmQJUEfMqMh",
+    "sha256_raw": "fa1d6bf2a5ce6d61d6c80055529ca2cc6634832d014672be6a604ab4f6b7be0b",
+    "generated_at": "2026-07-24T14:30:52.891Z",
+    "mastered_at": "2026-07-24T16:39:11.602Z"
+  },
+  {
+    "line_id": "vo_bt_c3_h1",
+    "text": "Pick a section of the lock.",
+    "seed": 52030,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "D8geIUWDhy9IzJrVvGY3",
+    "sha256_raw": "02f6980727c10620665749b3b6fd3a63933fd5857a3fecf8f3002e7582e4fa2a",
+    "generated_at": "2026-07-24T14:30:54.954Z",
+    "mastered_at": "2026-07-24T16:37:57.011Z"
+  },
+  {
+    "line_id": "vo_bt_c4_ok",
+    "text": "Damage readout noted.",
+    "seed": 52031,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "QchlE7C35qzkjSrGhj43",
+    "sha256_raw": "24bbfd5fa9d377a28b3a042662e1b9509fd828db8d64d5b85cd4ce0c2a0b62f1",
+    "generated_at": "2026-07-24T14:30:56.665Z",
+    "mastered_at": "2026-07-24T16:37:57.179Z"
+  },
+  {
+    "line_id": "vo_bt_c4_h1",
+    "text": "Confirm when ready.",
+    "seed": 52032,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "ZVW1YZdB9OtVsyBnOWbZ",
+    "sha256_raw": "b11f99d1a46e2dce901fc8c21272bb04278f543e482694df6410cddc19564d0d",
+    "generated_at": "2026-07-24T14:30:58.406Z",
+    "mastered_at": "2026-07-24T16:37:57.349Z"
+  },
+  {
+    "line_id": "vo_bt_d1_ok",
+    "text": "Group one fired.",
+    "seed": 52033,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "usLu376Dt7AWTa17cgS0",
+    "sha256_raw": "ee466e726d800623949b42233057e1a63b321d711d1c0fd9b5395361108a59e1",
+    "generated_at": "2026-07-24T14:30:59.963Z",
+    "mastered_at": "2026-07-24T16:37:57.504Z"
+  },
+  {
+    "line_id": "vo_bt_d1_h1",
+    "text": "Fire group one.",
+    "seed": 52034,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "1FwQrGMccGB4Gn2GhrVt",
+    "sha256_raw": "1aa902be0864eca2d4f3a8b52e557957c841425b36c94c753a67292b6e921e8b",
+    "generated_at": "2026-07-24T14:31:01.834Z",
+    "mastered_at": "2026-07-24T16:37:57.690Z"
+  },
+  {
+    "line_id": "vo_bt_d2_ok",
+    "text": "Group two fired.",
+    "seed": 52035,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "Brmm50CH6dPjIYfPLVqd",
+    "sha256_raw": "52020658ce4623f38da957b4d9b72169c39ff9b781c85dd544c4a81cb8ee07e2",
+    "generated_at": "2026-07-24T14:31:03.503Z",
+    "mastered_at": "2026-07-24T16:37:57.851Z"
+  },
+  {
+    "line_id": "vo_bt_d2_h1",
+    "text": "Fire group two.",
+    "seed": 52036,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "Y6CMtIaItkecWXXWLCr3",
+    "sha256_raw": "6b65274cf0325cc9769cb21eef1170f7b18ddc40c1822025f27104f691225ac2",
+    "generated_at": "2026-07-24T14:31:05.555Z",
+    "mastered_at": "2026-07-24T16:37:58.011Z"
+  },
+  {
+    "line_id": "vo_bt_d3_ok",
+    "text": "Rockets away.",
+    "seed": 52037,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "EqEsnMvBs2IjphtXze2X",
+    "sha256_raw": "7681bd72890783e627f06452a16d9ebce0d13f9ee30a75bc3a43f2570554ed13",
+    "generated_at": "2026-07-24T14:31:07.523Z",
+    "mastered_at": "2026-07-24T16:37:58.175Z"
+  },
+  {
+    "line_id": "vo_bt_d3_h1",
+    "text": "Fire group three.",
+    "seed": 52038,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "3EMS3neqjQ3HkMZJZQOo",
+    "sha256_raw": "38ad53c7688f822f7f5b08cde0a6d8cecaff36d5fc20a14349308bae33393a18",
+    "generated_at": "2026-07-24T14:31:09.777Z",
+    "mastered_at": "2026-07-24T16:39:12.274Z"
+  },
+  {
+    "line_id": "vo_bt_d4_ok",
+    "text": "Range clear.",
+    "seed": 52039,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "wPR0US40j6b9d2uz9sAy",
+    "sha256_raw": "b63969017aaaacb96c2da257d188fc7ad6b30c774f355b17a9b29ead2d4b63c2",
+    "generated_at": "2026-07-24T14:31:11.802Z",
+    "mastered_at": "2026-07-24T16:37:58.487Z"
+  },
+  {
+    "line_id": "vo_bt_d4_h1",
+    "text": "Destroy the remaining boards.",
+    "seed": 52040,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "RieXvedQ7XFR0VexF62i",
+    "sha256_raw": "538cbc974401cb267fe86fdf81b63dac9a185f23f95d3f5cf660b05be88f88c3",
+    "generated_at": "2026-07-24T14:31:15.663Z",
+    "mastered_at": "2026-07-24T16:37:58.697Z"
+  },
+  {
+    "line_id": "vo_bt_e1_ok",
+    "text": "Heat at amber.",
+    "seed": 52041,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "9Cf39rkxoFn9iLHe3rux",
+    "sha256_raw": "a7b1c7c26242047ba79fefca4de78b045fdbf4327fbf2ea35c28726715321b93",
+    "generated_at": "2026-07-24T14:31:19.057Z",
+    "mastered_at": "2026-07-24T16:37:58.879Z"
+  },
+  {
+    "line_id": "vo_bt_e1_h1",
+    "text": "Keep firing. <break time=\"0.25s\" /> Build heat.",
+    "seed": 52042,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "C3hN1abJj0VrtAeYJMy7",
+    "sha256_raw": "9277e1b6c4f9530b95c627e96509fd8c6d24e1aa63ee9b3a0899c26376ecba4c",
+    "generated_at": "2026-07-24T14:31:21.452Z",
+    "mastered_at": "2026-07-24T16:37:59.074Z"
+  },
+  {
+    "line_id": "vo_bt_e2_ok",
+    "text": "Coolant purged. <break time=\"0.25s\" /> Temperature falling.",
+    "seed": 52043,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "tMZqKUqInJmHNUxrm4JD",
+    "sha256_raw": "6389ec79cb2cb9be9c4ba9ad951028ed4d548ef2a26383e68b5672e1e7914b42",
+    "generated_at": "2026-07-24T14:31:23.604Z",
+    "mastered_at": "2026-07-24T16:37:59.277Z"
+  },
+  {
+    "line_id": "vo_bt_e2_h1",
+    "text": "Purge coolant now.",
+    "seed": 52044,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "VU7MKsJbIgfFCO2m3wYN",
+    "sha256_raw": "2c4a42afc01d47cdc59c3748af0098f1151883ab348f159c110f4c6bd9c537aa",
+    "generated_at": "2026-07-24T14:31:25.483Z",
+    "mastered_at": "2026-07-24T16:37:59.504Z"
+  },
+  {
+    "line_id": "vo_bt_e3_ok",
+    "text": "Emergency shutdown.",
+    "seed": 52045,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "vVPzh8nfQETM21YpPRTk",
+    "sha256_raw": "7a51abbb9fc4e0b940a6832f7bb6c20c489865f75d99471ce9564346f77ddfa3",
+    "generated_at": "2026-07-24T14:31:27.791Z",
+    "mastered_at": "2026-07-24T16:37:59.734Z"
+  },
+  {
+    "line_id": "vo_bt_e3_h1",
+    "text": "Keep firing. <break time=\"0.25s\" /> Let it stop.",
+    "seed": 52046,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "aoHgdy8lArO4qr6z2FWF",
+    "sha256_raw": "531253f97b67335862b7e9b01d164d29e92955b85b069354ea0bdedf5b0b6c30",
+    "generated_at": "2026-07-24T14:31:29.784Z",
+    "mastered_at": "2026-07-24T16:37:59.904Z"
+  },
+  {
+    "line_id": "vo_bt_e4_ok",
+    "text": "Override accepted. <break time=\"0.25s\" /> Reactor risk noted.",
+    "seed": 52047,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "INMG6k0aInjZPgvIvOJP",
+    "sha256_raw": "5e53b523d7cd10f471b1a7c2f183060a8a627a254b31bee27008bbdb41670c52",
+    "generated_at": "2026-07-24T14:31:32.263Z",
+    "mastered_at": "2026-07-24T16:38:00.077Z"
+  },
+  {
+    "line_id": "vo_bt_e4_h1",
+    "text": "Hold override now.",
+    "seed": 52048,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "tfnwbxxAVGShCrrhS2D7",
+    "sha256_raw": "4829ec1c49f112cbbfb421ab782083082e4b65c09512530236ee52f72ad865e0",
+    "generated_at": "2026-07-24T14:31:34.002Z",
+    "mastered_at": "2026-07-24T16:38:00.243Z"
+  },
+  {
+    "line_id": "vo_bt_f1_ok",
+    "text": "Clean landing.",
+    "seed": 52049,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "FlyRXVQhuQSKmqQkUQaq",
+    "sha256_raw": "d352d20c79bf7c9bace76beeec57ca3444018f34b2df556ffed9629b6502f0eb",
+    "generated_at": "2026-07-24T14:31:35.657Z",
+    "mastered_at": "2026-07-24T16:38:00.405Z"
+  },
+  {
+    "line_id": "vo_bt_f1_h1",
+    "text": "Build speed. <break time=\"0.25s\" /> Boost over.",
+    "seed": 52050,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "W2YIEFuO2fwRgehJzV34",
+    "sha256_raw": "3abe3f9be2ea3b0de742933e4707bfd025b162a4dc52d8e44f7be11deb603410",
+    "generated_at": "2026-07-24T14:31:38.049Z",
+    "mastered_at": "2026-07-24T16:38:00.717Z"
+  },
+  {
+    "line_id": "vo_bt_g1_ok",
+    "text": "Wing engaging.",
+    "seed": 52051,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "wlhfNQ8lmfz6hF6JpqC5",
+    "sha256_raw": "d60d5794008ee0e4d2bca42aba7520a67c0132d450921efe32d98f8dd70448d3",
+    "generated_at": "2026-07-24T14:31:40.015Z",
+    "mastered_at": "2026-07-24T16:38:00.898Z"
+  },
+  {
+    "line_id": "vo_bt_g1_h1",
+    "text": "Open the command wheel.",
+    "seed": 52052,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "wUiaFSnY9I4nkAQPssL2",
+    "sha256_raw": "2298f15168638d551d7c54cbfebc7f82d71390dd6ce75b548a292e1c8056c278",
+    "generated_at": "2026-07-24T14:31:42.219Z",
+    "mastered_at": "2026-07-24T16:38:01.081Z"
+  },
+  {
+    "line_id": "vo_bt_g2_ok",
+    "text": "Wing returning.",
+    "seed": 52053,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "2nTSY4ouLaPUViK0TFbo",
+    "sha256_raw": "97f252bf06e35afaf2be0d318b7daaaada74ca069d5056c66c0a196a78725ab2",
+    "generated_at": "2026-07-24T14:31:44.052Z",
+    "mastered_at": "2026-07-24T16:38:01.262Z"
+  },
+  {
+    "line_id": "vo_bt_g2_h1",
+    "text": "Recall your wing.",
+    "seed": 52054,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "tmEQ94kCHrmO0PGhlf8g",
+    "sha256_raw": "2fd26317a36856d8af27f25ec947cb973948e6f017fa42f8e8c24246baf709ae",
+    "generated_at": "2026-07-24T14:31:45.930Z",
+    "mastered_at": "2026-07-24T16:38:01.451Z"
+  },
+  {
+    "line_id": "vo_bt_h1_ok",
+    "text": "Checkride complete.",
+    "seed": 52055,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "yZfVqPdxkVgQwPneYImB",
+    "sha256_raw": "2efa3ace7a740dfa69d99ad54e132012b32837cffd98b2eb9827457ab43a9c34",
+    "generated_at": "2026-07-24T14:31:47.397Z",
+    "mastered_at": "2026-07-24T16:39:13.070Z"
+  },
+  {
+    "line_id": "vo_bt_h1_h1",
+    "text": "Three drones. <break time=\"0.25s\" /> Weapons free.",
+    "seed": 52056,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "mOLzI8s6Sa24LmuaLAYH",
+    "sha256_raw": "d4f49e1e1340c19572ac24bf3f61e862f24a6fcd3cedf39250e192839c26141c",
+    "generated_at": "2026-07-24T14:31:49.372Z",
+    "mastered_at": "2026-07-24T16:38:01.812Z"
+  },
+  {
+    "line_id": "vo_bt_h2_ok",
+    "text": "Basic training complete.",
+    "seed": 52057,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "9KTDqR571rdq9blDUaYx",
+    "sha256_raw": "3de80557701075bcbb8251855538853fdcd352c62d6b0c89a7b2e84d97fbfa3e",
+    "generated_at": "2026-07-24T14:31:54.178Z",
+    "mastered_at": "2026-07-24T16:38:01.976Z"
+  },
+  {
+    "line_id": "vo_bt_a0_prompt",
+    "text": "Systems ready. <break time=\"0.25s\" /> Confirm to power up.",
+    "seed": 52058,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "KO1rNuwaK4v99hVOPClT",
+    "sha256_raw": "57fd2284ac457a0a9c18fbd8665862394eaeee6ace88ad6ac5e44437527904a2",
+    "generated_at": "2026-07-25T14:15:29.205Z",
+    "mastered_at": "2026-07-25T14:15:29.208Z"
+  },
+  {
+    "line_id": "vo_bt_a1_prompt",
+    "text": "Raise your throttle. Walk forward.",
+    "seed": 52059,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "s1DklZqPV2EsqnlZMZSG",
+    "sha256_raw": "571ff231fe262fd0a1d15ccd14bcd8f6c72bc0a4cd30cfa269574e20dda489d5",
+    "generated_at": "2026-07-25T14:33:12.432Z",
+    "mastered_at": "2026-07-25T14:33:12.434Z"
+  },
+  {
+    "line_id": "vo_bt_a2_prompt",
+    "text": "Lower throttle. Come to a stop.",
+    "seed": 52060,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "UvYKPRzwdHB4oiIUz5xb",
+    "sha256_raw": "b2c940e87a80dd42f6fb1854d6c8e0d60e1f8262aab8ebcb45399b7cb28e8999",
+    "generated_at": "2026-07-25T14:33:14.290Z",
+    "mastered_at": "2026-07-25T14:33:14.290Z"
+  },
+  {
+    "line_id": "vo_bt_a3_prompt",
+    "text": "Throttle down again. Walk backward.",
+    "seed": 52061,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "kO1KCI7BIFpENSLmSeI7",
+    "sha256_raw": "9aba8faef12dff6a591a8f5a586cc6f3eedbbaebddc598c6e1a7dfa08c4879e0",
+    "generated_at": "2026-07-25T14:33:16.041Z",
+    "mastered_at": "2026-07-25T14:33:16.041Z"
+  },
+  {
+    "line_id": "vo_bt_a4_prompt",
+    "text": "Steer your legs. Both directions.",
+    "seed": 52062,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "IuvHZWMUsQ96P4fJAGaD",
+    "sha256_raw": "336509dd668c8a46e73e1122f1b49cff712ceae61f5965a9f78286b361fda68d",
+    "generated_at": "2026-07-25T14:33:17.762Z",
+    "mastered_at": "2026-07-25T14:33:17.762Z"
+  },
+  {
+    "line_id": "vo_bt_a5_prompt",
+    "text": "Walk through all three gates.",
+    "seed": 52063,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "qxxTjdAxXO9QKdTd3SFX",
+    "sha256_raw": "ac48535c2876e40ea6b4bbe8be3abd7d591671214002eacb48bf126aa4aa7422",
+    "generated_at": "2026-07-25T14:33:19.710Z",
+    "mastered_at": "2026-07-25T14:33:19.710Z"
+  },
+  {
+    "line_id": "vo_bt_a6_prompt",
+    "text": "Execute an instant full stop.",
+    "seed": 52064,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "mnQsHfpYtWDg2FELLBXd",
+    "sha256_raw": "eec8a345db6c80ea6a7c0ee140adaf0b83edf6d31c3355af82c74c0e8aeae45d",
+    "generated_at": "2026-07-25T14:33:21.463Z",
+    "mastered_at": "2026-07-25T14:33:21.463Z"
+  },
+  {
+    "line_id": "vo_bt_b1_prompt",
+    "text": "Twist your torso. Scan both sides.",
+    "seed": 52065,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "wNya5epuAgsZlefzYJMh",
+    "sha256_raw": "03508202032aa69c8c0e002f7273dba46f66d0fda90ff3e2b8fa99c6e08ee436",
+    "generated_at": "2026-07-25T14:33:23.279Z",
+    "mastered_at": "2026-07-25T14:33:23.279Z"
+  },
+  {
+    "line_id": "vo_bt_b2_prompt",
+    "text": "Hold your reticle on the board.",
+    "seed": 52066,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "2zFgZfDHY3ylINNuv6zq",
+    "sha256_raw": "cf2c03afbb3b3b188195b2da97efeb9a92d64f9497505327b1702e9e37757020",
+    "generated_at": "2026-07-25T14:33:25.094Z",
+    "mastered_at": "2026-07-25T14:33:25.094Z"
+  },
+  {
+    "line_id": "vo_bt_b3_prompt",
+    "text": "Snap your torso back in line.",
+    "seed": 52067,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "iSePwdSBA0y6RtZQGOf4",
+    "sha256_raw": "2abbc1c43e8b95d9849043ded8e94600a2ac2fc44e4efaf3eab2913b5a5ea86b",
+    "generated_at": "2026-07-25T14:33:26.927Z",
+    "mastered_at": "2026-07-25T14:33:26.927Z"
+  },
+  {
+    "line_id": "vo_bt_b4_prompt",
+    "text": "Walk while holding aim on the board.",
+    "seed": 52068,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "2kFq0qs8bfvtV7eNoRuR",
+    "sha256_raw": "747617f144631391b40117100397760a203d7ebc9d5f57409b41d8e4411f8ff4",
+    "generated_at": "2026-07-25T14:33:28.878Z",
+    "mastered_at": "2026-07-25T14:33:28.878Z"
+  },
+  {
+    "line_id": "vo_bt_b5_prompt",
+    "text": "Magnify your optics on the far board.",
+    "seed": 52069,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "xXDbWTUhTxvWgnizhMyo",
+    "sha256_raw": "17dea8b6282bedf25cd06ad9911ed6eb348f3f01bbec1ebfeb2212a26f2e4eb5",
+    "generated_at": "2026-07-25T14:33:31.467Z",
+    "mastered_at": "2026-07-25T14:33:31.467Z"
+  },
+  {
+    "line_id": "vo_bt_c1_prompt",
+    "text": "A contact is up. Lock it.",
+    "seed": 52070,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "rDGJlE6b27zPpph8y8VT",
+    "sha256_raw": "c821543764c745e1e00ef85e3d2c91158fd492c44f1854ec2cf914468aafde83",
+    "generated_at": "2026-07-25T14:33:33.700Z",
+    "mastered_at": "2026-07-25T14:33:33.700Z"
+  },
+  {
+    "line_id": "vo_bt_c2_prompt",
+    "text": "Cycle your contacts. Lock all three.",
+    "seed": 52071,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "bx5OdHWaF2LoffbMNtyo",
+    "sha256_raw": "4476f43e7edb33be8fb8e113374b8a5eaef56cf2f510a8d8e0b8af5b10669468",
+    "generated_at": "2026-07-25T14:33:36.058Z",
+    "mastered_at": "2026-07-25T14:33:36.058Z"
+  },
+  {
+    "line_id": "vo_bt_c3_prompt",
+    "text": "Select a section of your lock.",
+    "seed": 52072,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "0TR059ieURhdvXfVJyNb",
+    "sha256_raw": "a45e5ef3f7e02cd18bdbcec13000268e56a31293daafe4fc09893b38021c1b9d",
+    "generated_at": "2026-07-25T14:33:38.630Z",
+    "mastered_at": "2026-07-25T14:33:38.630Z"
+  },
+  {
+    "line_id": "vo_bt_c4_prompt",
+    "text": "Study the damage readout. Confirm when ready.",
+    "seed": 52073,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "yO316tnjdxodmmLu5MGc",
+    "sha256_raw": "3e188425743ee56801b16ffd4ae9aefdbb6b64a67daa478ec5104e1d24c9439c",
+    "generated_at": "2026-07-25T14:33:41.473Z",
+    "mastered_at": "2026-07-25T14:33:41.473Z"
+  },
+  {
+    "line_id": "vo_bt_d1_prompt",
+    "text": "Fire the autocannon at a board.",
+    "seed": 52074,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "CIclD1MQCTUD6MA1SxWS",
+    "sha256_raw": "cf735cedc3adca801975c779e605a9a8d5e7ab24bf7a048fb7ede44b15e47160",
+    "generated_at": "2026-07-25T14:33:43.707Z",
+    "mastered_at": "2026-07-25T14:33:43.707Z"
+  },
+  {
+    "line_id": "vo_bt_d2_prompt",
+    "text": "Now the laser. Fire.",
+    "seed": 52075,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "3VFmnrBm4l8YVZu5ADqf",
+    "sha256_raw": "12acb2e5da27b3be4c2179d9ddddb2541835288ec6a6b4d71cbecf244f9de3e3",
+    "generated_at": "2026-07-25T14:33:46.262Z",
+    "mastered_at": "2026-07-25T14:33:46.262Z"
+  },
+  {
+    "line_id": "vo_bt_d3_prompt",
+    "text": "Rocket salvo. Fire.",
+    "seed": 52076,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "6o76O4eFiVXAlnO90J2b",
+    "sha256_raw": "9110738b4b4f6c9016d094e556b7b51c6dbb3d057fa9d6fd9bf30fe3628a004b",
+    "generated_at": "2026-07-25T14:33:48.361Z",
+    "mastered_at": "2026-07-25T14:33:48.361Z"
+  },
+  {
+    "line_id": "vo_bt_d4_prompt",
+    "text": "Weapons free. Destroy all four boards.",
+    "seed": 52077,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "BuLikhoMRUPoEIqvscKJ",
+    "sha256_raw": "426a7bf0debca5c0c9b4f2ffaa056f9b016bc4ba32ef8602ecc1dcf8da324c94",
+    "generated_at": "2026-07-25T14:33:50.606Z",
+    "mastered_at": "2026-07-25T14:33:50.606Z"
+  },
+  {
+    "line_id": "vo_bt_e1_prompt",
+    "text": "Fire until heat reaches the amber line.",
+    "seed": 52078,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "n0vAz4DHDX1XhCyYd74i",
+    "sha256_raw": "3b8eb74a91343fb17b5786154691309bddc03ae1396c6587458534e0889bb583",
+    "generated_at": "2026-07-25T14:33:52.810Z",
+    "mastered_at": "2026-07-25T14:33:52.810Z"
+  },
+  {
+    "line_id": "vo_bt_e2_prompt",
+    "text": "Heat is high. Purge coolant.",
+    "seed": 52079,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "x47YsKY6PBJGiwCppvme",
+    "sha256_raw": "922d79f23822b7ee868ee32f9967a414ed08c36558d4e2f6aa644d84d3d45eb6",
+    "generated_at": "2026-07-25T14:33:55.011Z",
+    "mastered_at": "2026-07-25T14:33:55.011Z"
+  },
+  {
+    "line_id": "vo_bt_e3_prompt",
+    "text": "Keep firing. Let it shut down.",
+    "seed": 52080,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "D8sBIx1HYchuBZKaagHJ",
+    "sha256_raw": "b8aa17dbb6b26c63206ec46b64e9b7bbcbf5cc8ee4a7c9943edf59c4b032fcf6",
+    "generated_at": "2026-07-25T14:33:57.513Z",
+    "mastered_at": "2026-07-25T14:33:57.513Z"
+  },
+  {
+    "line_id": "vo_bt_e4_prompt",
+    "text": "Hold override. Bring the reactor back.",
+    "seed": 52081,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "RJzaaCkuYNKO5fG4V2eS",
+    "sha256_raw": "0800c571bc46b44faf17cd96edd92f99ac96dd748601967f9604c2bf3b80e5d3",
+    "generated_at": "2026-07-25T14:34:00.858Z",
+    "mastered_at": "2026-07-25T14:34:00.858Z"
+  },
+  {
+    "line_id": "vo_bt_f1_prompt",
+    "text": "Build speed. Boost over the barrier.",
+    "seed": 52082,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "t2ExxvSgzGtOO2abUXaL",
+    "sha256_raw": "ebf68944a2b6fec5ec8bec328b7a134a62bc05a2d22152201873828e25bd5436",
+    "generated_at": "2026-07-25T14:34:03.240Z",
+    "mastered_at": "2026-07-25T14:34:03.240Z"
+  },
+  {
+    "line_id": "vo_bt_g1_prompt",
+    "text": "Command wheel. Order your wing to attack.",
+    "seed": 52083,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "sJ8w4Pvpa1DMU6wp1JUn",
+    "sha256_raw": "c0580cab9b192758b67c71425d3fd3cdeb9929ab5de4320b6070173e8866ee99",
+    "generated_at": "2026-07-25T14:34:05.462Z",
+    "mastered_at": "2026-07-25T14:34:05.462Z"
+  },
+  {
+    "line_id": "vo_bt_g2_prompt",
+    "text": "Recall your wing to the pad.",
+    "seed": 52084,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "ZF9E8vHR9mfNBFLjq70w",
+    "sha256_raw": "c49723561b524800227d9a8bb4ac046dd53be99527cce7801768f9e7e2d378fc",
+    "generated_at": "2026-07-25T14:34:07.736Z",
+    "mastered_at": "2026-07-25T14:34:07.736Z"
+  },
+  {
+    "line_id": "vo_bt_h1_prompt",
+    "text": "Checkride. Three drones inbound. Weapons free.",
+    "seed": 52085,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "Qs0c8JYz2KjSjrO7PAJq",
+    "sha256_raw": "e5bbf3a039601924dc75580a249890771842d4f69bfb55df96721e29b019a895",
+    "generated_at": "2026-07-25T14:34:10.503Z",
+    "mastered_at": "2026-07-25T14:34:10.503Z"
+  },
+  {
+    "line_id": "vo_bt_h2_prompt",
+    "text": "Checkride passed. Confirm to return.",
+    "seed": 52086,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "caORVnOA3JNa05tQMTAQ",
+    "sha256_raw": "dc17912f90d1e2aad8db7f05ba70a84fe740b20bec99a5cde38b9912b0547d72",
+    "generated_at": "2026-07-25T14:34:12.747Z",
+    "mastered_at": "2026-07-25T14:34:12.747Z"
+  }
+]

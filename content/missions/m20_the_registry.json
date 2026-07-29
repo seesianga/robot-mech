@@ -1,0 +1,63 @@
+{
+  "id": "m20_the_registry",
+  "index": 20,
+  "op": 6,
+  "opName": "Vell Arcology",
+  "name": "The Registry",
+  "biome": "vell_arcology",
+  "weather": "night rain washing the towers",
+  "timeOfDay": "night",
+  "designIntent": "Seize the Vell data-registry, which holds both Ekene's cell block location and the orbital-defense-gun override codes — but the failsafe burn means only one dataset can be saved, setting up the campaign's fork.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Relay",
+    "text": "The Registry is the Directorate's memory: every prisoner manifest, every override cipher, every lie they filed as paperwork. It sits in a hardened data-vault under the old Census Tower, and tonight we take it. Getting in is the easy half — Sable's cut a route through the maintenance galleries, and the garrison is thin since the Row fell. The hard half is what happens at the core. The vault is a cold-crypt: the moment we breach it, its failsafes start burning archives, and our rig can pull exactly one priority dataset before the rest is slag. Two things in there matter. One: the Anchor holding-deck schedule — cell block, guard rotation, the Commander's exact location. Two: the override ciphers for the orbital defense guns Kryce holds over the whole planet's head. We cannot pull both. I'm not going to pretend that isn't what this mission is. Fight your way in, hold the vault, and when the rig asks... you choose, Lodestar. Whatever you choose, we make it right."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "reach", "title": "Census Tower", "description": "Infiltrate via the maintenance galleries to the Registry vault level.", "optional": false },
+    { "id": "obj_2", "type": "capture", "title": "Breach the Vault", "description": "Capture the Registry cold-crypt and start the extraction rig.", "optional": false },
+    { "id": "obj_3", "type": "hold", "title": "Hold the Crypt", "description": "Hold the vault chamber while the rig spools against the failsafe archive burn.", "optional": false },
+    { "id": "obj_4", "type": "capture", "title": "One Dataset", "description": "Commit the rig to a single priority dataset — the Anchor holding-deck schedule or the orbital-gun override ciphers; the other burns.", "optional": false },
+    { "id": "obj_5", "type": "reach", "title": "Exfiltrate", "description": "Reach the Brace Street garage with the dataset intact.", "optional": false }
+  ],
+  "enemyForces": [
+    "Census Tower garrison: elite Ferric sections with drone screens",
+    "Pop-up turrets in the atrium galleries",
+    "Rapid-response Gabbro pair on the tower plaza",
+    "One of Kryce's guard Batholiths deploying at exfil — fought or evaded",
+    "The Registry failsafe itself: a non-combat archive-burn timer pressuring every phase"
+  ],
+  "allies": ["Sable", "Tremor", "Vireo"],
+  "setPieces": [
+    "The cold-crypt vault: frost-white server monoliths humming under the tower, breath-quiet after the gunfire",
+    "The rig interface fills the HUD with both datasets side by side — the campaign's one true choice, made in-cockpit, no pause",
+    "Kryce speaks to the player live and directly for the first time as the choice is being made",
+    "Exfiltration under the guard Batholith's searchlights through rain-flooded streets"
+  ],
+  "failConditions": [
+    "The Registry core is destroyed before a dataset is committed",
+    "The extraction rig is destroyed during the hold",
+    "Lodestar's mech is destroyed"
+  ],
+  "salvageNotes": "The garrison's elite Ferrics carry upgraded sensor packages worth stripping, and the plaza Gabbros are clean salvage if legged. But the true payload is the dataset — the choice made here decides Mission 21 and shadows everything after it. No salvage compensates for the archive that burns.",
+  "musicSet": {
+    "ambient": "vell_arcology",
+    "combatIntensityCap": 2,
+    "specialCues": ["cue_registry_choice_held_breath_strings", "cue_archive_burn_pulse"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_deploy", "speaker": "Sable", "line": "Galleries are clear to the tower root. I marked the route. Quiet feet.", "futz": true },
+    { "trigger": "on_objective:obj_2", "speaker": "CAIRN", "line": "Vault breach confirmed. Failsafe thermal purge initializing. The archive is now burning at approximately four percent per minute.", "futz": false },
+    { "trigger": "on_objective:obj_3", "speaker": "Relay", "line": "Rig's spooling! Hold the chamber — every minute you buy is data that doesn't die!", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Tremor", "line": "They really don't want us reading their mail! Contact, atrium side!", "futz": true },
+    { "trigger": "on_choice_presented", "speaker": "Relay", "line": "Rig's asking, Lodestar. One priority slot, one pull. Her cell block... or the override ciphers. I can't — I'm not choosing this for you. Nobody should.", "futz": true },
+    { "trigger": "on_choice_presented_2", "speaker": "Vireo", "line": "It's the Commander. It has to be the Commander. Doesn't it? ...Doesn't it?", "futz": true },
+    { "trigger": "on_choice_presented_3", "speaker": "Sable", "line": "Guns over every head on Veyra. Or the one who taught us to raise ours. Take your time. Take all of it.", "futz": true },
+    { "trigger": "on_kryce_live", "speaker": "Kryce", "line": "Ah. There you are — in my Registry, at my shelf. Whichever file you take, pilot, understand: I keep copies of everything. Except mercy. Choose well.", "futz": true },
+    { "trigger": "on_dataset_committed", "speaker": "CAIRN", "line": "Dataset committed. The remaining archive will finish burning in ninety seconds. What is done is done, Lodestar.", "futz": false },
+    { "trigger": "on_objective:obj_5", "speaker": "Relay", "line": "Guard Batholith on the plaza — searchlights up! Rain's your friend. Side streets. GO!", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Critical damage. The dataset survives only if you do.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Relay", "line": "You're clear. Dataset's safe at Brace Street. I'll brief everyone in the morning. Tonight, whatever you chose — you chose like she would have. Sleep, Lodestar.", "futz": true }
+  ]
+}

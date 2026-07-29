@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "source": "hangar-master-prompt",
+  "author": "meta-game systems",
+  "approval": "approved",
+  "currency": "scrip",
+  "scrapRefundPct": 50,
+  "entries": [
+    { "chassis": "flint", "price": 2750, "available": true },
+    { "chassis": "pumice", "price": 3300, "available": true },
+    { "chassis": "skarn", "price": 3850, "available": true },
+    { "chassis": "chert", "price": 4800, "available": true },
+    { "chassis": "halite", "price": 5400, "available": true },
+    { "chassis": "gabbro", "price": 6600, "available": true },
+    { "chassis": "basalt", "price": 7800, "available": true },
+    { "chassis": "dolerite", "price": 9100, "available": true },
+    { "chassis": "corundum", "price": 9750, "available": true },
+    { "chassis": "orogen", "price": 11600, "available": true },
+    { "chassis": "batholith", "price": 13050, "available": true },
+    { "chassis": "craton", "price": 14500, "available": true }
+  ]
+}

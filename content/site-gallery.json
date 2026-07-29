@@ -1,0 +1,49 @@
+{
+  "shots": [
+    {
+      "id": "shot-hero-range",
+      "caption": "Saltglass Cove — Basic Training",
+      "fps": 2
+    },
+    {
+      "id": "shot-cockpit",
+      "caption": "Cockpit view — Tide Tables",
+      "fps": 12
+    },
+    {
+      "id": "shot-coast",
+      "caption": "Breaker Coast — Cold Ignition",
+      "fps": 4
+    },
+    {
+      "id": "shot-salt",
+      "caption": "Salt Flats — Dust Convoy",
+      "fps": 7
+    },
+    {
+      "id": "shot-karst",
+      "caption": "Karst Highlands — Undertow",
+      "fps": 3
+    },
+    {
+      "id": "shot-polar",
+      "caption": "Polar Refineries — Icebound",
+      "fps": 3
+    },
+    {
+      "id": "shot-storm",
+      "caption": "Storm Coast — Breakwater",
+      "fps": 4
+    },
+    {
+      "id": "shot-arcology",
+      "caption": "Vell Arcology — Understreets",
+      "fps": 3
+    },
+    {
+      "id": "shot-anchor",
+      "caption": "Spire Anchor — The Long Climb",
+      "fps": 4
+    }
+  ]
+}

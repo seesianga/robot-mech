@@ -1,0 +1,60 @@
+{
+  "id": "m07_the_weigh_station",
+  "index": 7,
+  "op": 2,
+  "opName": "Halite Flats",
+  "name": "The Weigh Station",
+  "biome": "halite_flats",
+  "weather": "dust-laden wind rising through the night",
+  "timeOfDay": "dusk into night",
+  "designIntent": "Seize the fortified ore-weigh complex and hold it through two escalating counter-attacks — the Compact's first stand-up battle for ground it intends to keep.",
+  "teaches": [],
+  "briefing": {
+    "speaker": "Ekene",
+    "text": "The ore-weigh complex at Kilometer Ninety is where the Directorate's whole desert operation buckles together. Every ton they strip from the southern pits crosses those scales; every escort rotates through its fuel racks. Take it, and the flats stop paying for their occupation. So we take it — and then, Lodestar, we keep it, because they will absolutely come to collect. Twice, by Relay's count. First a fast lance to catch us disorganized, then the hammer when that fails. The complex is fortified: hardened gate, pop-up turrets, a garrison that thinks walls make them brave. Crack it fast — our techs move in behind you and turn those same turrets around. Then set your fireteam, pick your lanes, and hold. Sable owns the long approaches. Tremor holds the gate; God help whatever knocks. You are the reserve and the hammer both. Two waves, one night, and by morning the Directorate weighs nothing out here. Hold the line, Lodestar. Ekene out."
+  },
+  "objectives": [
+    { "id": "obj_1", "type": "capture", "title": "Crack the Scales", "description": "Breach the gate and seize the ore-weigh complex from its garrison.", "optional": false },
+    { "id": "obj_2", "type": "hold", "title": "First Wave", "description": "Hold the complex against the Directorate's fast counter-lance.", "optional": false },
+    { "id": "obj_3", "type": "hold", "title": "Second Wave", "description": "Hold the complex against the heavy counter-attack until Compact armor arrives.", "optional": false },
+    { "id": "obj_4", "type": "defend", "title": "Keep the Guns", "description": "Keep at least three captured pop-up turrets alive through both waves.", "optional": true }
+  ],
+  "enemyForces": [
+    "Garrison: hardened gate emplacements, pop-up turret ring, Ferric APC pair with infantry",
+    "First counter-wave: fast lance of Pumice and Skarn with hover skiff screens",
+    "Second counter-wave: Basalt line-breaker, Chert fire support, strafing aircraft",
+    "Artillery harassment between waves"
+  ],
+  "allies": ["Sable", "Tremor"],
+  "setPieces": [
+    "Gate breach under turret crossfire, Tremor shield-first",
+    "Compact techs sprint the courtyard to turn captured turrets around",
+    "Dusk falls between waves — headlights and tracers on the second assault",
+    "An ore hopper cooks off and showers the yard in burning slag"
+  ],
+  "failConditions": [
+    "The weigh-station control block is destroyed",
+    "The complex is overrun during either counter-wave",
+    "Player mech destroyed — pilot ejects, mission failed"
+  ],
+  "salvageNotes": "Defensive fights pay twice: everything dies inside your own perimeter, so claims survive. The Basalt line-breaker is the marquee chassis; drop it by legging inside the walls and the Compact fields its first true heavy.",
+  "musicSet": {
+    "ambient": "halite_flats",
+    "combatIntensityCap": 3,
+    "specialCues": ["gate_breach_hit", "second_wave_full_frenzy", "weigh_station_dawn_resolve"]
+  },
+  "voTriggers": [
+    { "trigger": "on_start", "speaker": "CAIRN", "line": "Core ignition confirmed. Actuator lattice — green. Weapon buses — live. Coolant loop pressurized. All boards answer ready. Good hunting, Lodestar.", "futz": false },
+    { "trigger": "on_start_brief", "speaker": "Ekene", "line": "Take the scales, hold the scales. Twice they will come, Lodestar. Twice they will leave lighter.", "futz": true },
+    { "trigger": "on_gate_breach", "speaker": "Tremor", "line": "Knock knock! HA! Gate's open, Lodestar — after you, I insist!", "futz": true },
+    { "trigger": "on_objective:obj_1", "speaker": "Relay", "line": "Complex is yours! Techs moving in — give them ninety seconds and those turrets change teams. Best kind of salvage: the kind still bolted down.", "futz": true },
+    { "trigger": "on_enemy_wave", "speaker": "Relay", "line": "First wave inbound, west pan — light and fast, Pumice and a Skarn with skiffs. They're here to rattle you before the real hammer. Rattle back.", "futz": true },
+    { "trigger": "on_sable_overwatch", "speaker": "Sable", "line": "On the tower. Long lanes are mine. Nothing crosses the white without a hole in it.", "futz": true },
+    { "trigger": "on_wave1_cleared", "speaker": "Relay", "line": "Wave one's scrap. Use the lull — rearm at the racks, breathe, and don't look at the horizon if you want to stay optimistic.", "futz": true },
+    { "trigger": "on_enemy_wave_2", "speaker": "Relay", "line": "Here's the hammer: Basalt front and center, Chert throwing arcs from the rear, air support on the deck. This is the one that decides who owns the desert.", "futz": true },
+    { "trigger": "on_low_health", "speaker": "CAIRN", "line": "Structural integrity below forty percent. The complex offers hull-down positions at the ore hoppers. Recommend using them.", "futz": false },
+    { "trigger": "on_tremor_brawl", "speaker": "Tremor", "line": "THAT'S IT, COME TO THE GATE! The gate is a DOOR and I am the LOCK! Ha-ha!", "futz": true },
+    { "trigger": "on_heat_high", "speaker": "CAIRN", "line": "Heat critical. Desert dissipation remains at eighty percent. Coolant flush is available if equipped.", "futz": false },
+    { "trigger": "on_complete", "speaker": "Ekene", "line": "Hold confirmed. The scales are ours, the flats are ours, and every settlement between here and the highlands felt the Directorate flinch tonight. Sleep, fireteam. You've earned tomorrow.", "futz": true }
+  ]
+}

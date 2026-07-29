@@ -1,0 +1,110 @@
+{
+  "id": "m21a",
+  "designFile": "m21a_extraction",
+  "stage": 21,
+  "branch": "a",
+  "title": "EXTRACTION",
+  "map": "anchor",
+  "spawn": { "x": -440, "z": 400, "yaw": 2.1 },
+  "playerMech": "batholith",
+  "extract": [455, -435],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-415, 370] },
+    { "callsign": "Tremor", "def": "basalt", "pos": [-470, 375] },
+    { "callsign": "Vireo", "def": "chert", "pos": [-425, 435] }
+  ],
+  "structures": [
+    { "id": "gun_cluster_west", "name": "Deck Gun Cluster West", "kind": "bunker", "pos": [-40, -20], "hp": 220 },
+    { "id": "gun_cluster_east", "name": "Deck Gun Cluster East", "kind": "bunker", "pos": [230, 60], "hp": 220 },
+    { "id": "gate_d9", "name": "Block D-Nine Gate", "kind": "gate", "pos": [60, -260], "hp": 130 },
+    { "id": "dropbarge", "name": "Stolen Dropbarge", "kind": "crawler", "pos": [440, -430], "hp": 120 }
+  ],
+  "artillery": { "fromStep": 4, "everySec": 9, "damage": 12, "radius": 32 },
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "SHEAR-DECK BREACH",
+      "sub": "Reach the freight elevator shear-deck before the rotation gap closes",
+      "vo": "on_deploy",
+      "at": [-160, 240],
+      "radius": 45,
+      "spawns": [
+        { "def": "skarn", "pos": [-120, 180], "alerted": false, "waypoints": [[-200, 120], [-60, 60]], "name": "Ring Picket" },
+        { "def": "flint", "pos": [-220, 40], "alerted": false, "waypoints": [[-140, -40], [-300, -20]], "name": "Ring Picket" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "KILL THE DECK GUNS",
+      "sub": "Destroy both holding-ring gun clusters before they seal the block gates",
+      "doneVO": "on_objective:obj_2",
+      "targets": ["gun_cluster_west", "gun_cluster_east"],
+      "killAll": false,
+      "spawns": [
+        { "def": "halite", "pos": [30, 60], "alerted": true, "name": "Ferric Guard Section" },
+        { "def": "chert", "pos": [265, 145], "alerted": true, "name": "Ferric Guard Section" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "OPEN BLOCK D-NINE",
+      "sub": "Breach the D-nine block gate and free Commander Ekene and the Assembly",
+      "vo": "on_objective:obj_3",
+      "doneVO": "on_ekene_freed",
+      "targets": ["gate_d9"],
+      "killAll": false,
+      "spawns": [
+        { "def": "flint", "pos": [0, -215], "alerted": true, "name": "Sentry Drone" },
+        { "def": "flint", "pos": [155, -320], "alerted": true, "name": "Sentry Drone" },
+        { "def": "skarn", "pos": [-65, -330], "alerted": true, "name": "Ferric Warden" }
+      ]
+    },
+    {
+      "kind": "escort",
+      "title": "WALK THEM OUT",
+      "sub": "Escort the Assembly transport across the transfer gantries to the dropbarge",
+      "vo": "on_escort_start",
+      "doneVO": "on_kryce_orders",
+      "subject": "Assembly Transport",
+      "subjectDef": "halite",
+      "from": [90, -290],
+      "route": [[240, -330], [340, -380], [420, -415]],
+      "ambushes": [
+        {
+          "atLeg": 1,
+          "spawns": [
+            { "def": "batholith", "pos": [430, -290], "alerted": true, "name": "Anchor Guard Batholith" },
+            { "def": "batholith", "pos": [300, -470], "alerted": true, "name": "Anchor Guard Batholith" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "UNDER THEIR SKY",
+      "sub": "Hold the dropbarge against the skiff pursuit while it spools for lift",
+      "vo": "on_orbital_first_impact",
+      "protect": "dropbarge",
+      "seconds": 75,
+      "waves": [
+        [
+          { "def": "pumice", "pos": [510, -310], "alerted": true, "name": "Hover Skiff" },
+          { "def": "pumice", "pos": [370, -515], "alerted": true, "name": "Hover Skiff" }
+        ],
+        [
+          { "def": "pumice", "pos": [285, -505], "alerted": true, "name": "Hover Skiff" },
+          { "def": "pumice", "pos": [515, -240], "alerted": true, "name": "Hover Skiff" },
+          { "def": "chert", "pos": [430, -175], "alerted": true, "name": "Skiff Missile Screen" }
+        ]
+      ],
+      "waveGap": 25
+    },
+    {
+      "kind": "extract",
+      "title": "BOARD THE DROPBARGE",
+      "sub": "Get aboard — the barge is lifting through the barrage",
+      "vo": "on_objective:obj_5",
+      "doneVO": "on_complete"
+    }
+  ]
+}

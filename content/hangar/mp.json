@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "source": "hangar-master-prompt",
+  "author": "meta-game systems",
+  "approval": "approved",
+  "note": "deckExhausted: what happens when every deck frame is spent. 'recycle' (deck refreshes) ships for dm/ctf because both are casual respawn modes; 'spectate' is the strict alternative for future single-life modes.",
+  "deckExhausted": "recycle",
+  "redeployAutoPickSecs": 15,
+  "matchScrip": { "win": 150, "loss": 50, "perKill": 15 }
+}

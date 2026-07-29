@@ -1,0 +1,99 @@
+{
+  "id": "m05",
+  "designFile": "m05_dust_convoy",
+  "stage": 5,
+  "title": "DUST CONVOY",
+  "map": "salt",
+  "spawn": { "x": -460, "z": -430, "yaw": 0.76 },
+  "playerMech": "skarn",
+  "heatMult": 0.8,
+  "extract": [450, 500],
+  "allies": [
+    { "callsign": "Sable", "def": "flint", "pos": [-430, -400] }
+  ],
+  "structures": [
+    { "id": "crawler_valta", "name": "Fuel Crawler Valta", "kind": "crawler", "pos": [420, 240], "hp": 110 },
+    { "id": "crawler_bray", "name": "Fuel Crawler Bray", "kind": "crawler", "pos": [455, 285], "hp": 100 },
+    { "id": "crawler_osk", "name": "Fuel Crawler Osk", "kind": "crawler", "pos": [470, 205], "hp": 100 }
+  ],
+  "timedVO": [
+    { "atSec": 150, "trigger": "on_crawler_hit" }
+  ],
+  "steps": [
+    {
+      "kind": "reach",
+      "title": "CUT THE ROAD",
+      "sub": "Reach the intercept point at the dry channel ahead of the convoy.",
+      "at": [-230, -190],
+      "radius": 45,
+      "vo": "on_start_brief",
+      "doneVO": "on_convoy_sighted"
+    },
+    {
+      "kind": "destroy",
+      "title": "BREAK THE OUTRIDERS",
+      "sub": "Bring down the skiff outriders screening the dust plume.",
+      "targets": [],
+      "killAll": true,
+      "vo": "on_engage",
+      "doneVO": "on_legged_kill",
+      "spawns": [
+        { "def": "pumice", "pos": [30, -70], "alerted": true, "name": "Skiff Outrider" },
+        { "def": "pumice", "pos": [95, -15], "alerted": true, "name": "Skiff Outrider" }
+      ]
+    },
+    {
+      "kind": "destroy",
+      "title": "UNHORSE THE ESCORT",
+      "sub": "Disable the Halite escorts — keep every round off the fuel crawlers.",
+      "targets": [],
+      "killAll": true,
+      "vo": "on_sable_mark",
+      "doneVO": "on_objective:obj_2",
+      "spawns": [
+        { "def": "halite", "pos": [280, -15], "alerted": true, "name": "Convoy Escort", "yieldFrac": 0.35 },
+        { "def": "halite", "pos": [340, 45], "alerted": true, "name": "Convoy Escort", "yieldFrac": 0.35 }
+      ]
+    },
+    {
+      "kind": "defend",
+      "title": "TAKE THE CABS",
+      "sub": "Protect the lead crawler while Compact drivers secure the convoy.",
+      "protect": "crawler_valta",
+      "seconds": 75,
+      "waveGap": 25,
+      "doneVO": "on_objective:obj_3",
+      "waves": [
+        [
+          { "def": "pumice", "pos": [510, -10], "alerted": true, "name": "Ferric APC" },
+          { "def": "pumice", "pos": [455, -60], "alerted": true, "name": "Ferric APC" }
+        ]
+      ]
+    },
+    {
+      "kind": "escort",
+      "title": "WALK THEM HOME",
+      "sub": "Escort the captured fuel convoy to the rally point at Break Ridge.",
+      "subject": "Captured Fuel Convoy",
+      "subjectDef": "halite",
+      "from": [430, 255],
+      "route": [[360, 380], [430, 470]],
+      "vo": "on_enemy_wave",
+      "ambushes": [
+        {
+          "atLeg": 0,
+          "spawns": [
+            { "def": "flint", "pos": [230, 430], "alerted": true, "name": "Garrison Strafe Flight" },
+            { "def": "flint", "pos": [285, 475], "alerted": true, "name": "Garrison Strafe Flight" }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "extract",
+      "title": "EXTRACT",
+      "sub": "Reach the extraction point above Break Ridge.",
+      "doneVO": "on_complete"
+    }
+  ]
+}

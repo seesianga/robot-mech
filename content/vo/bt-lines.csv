@@ -1,0 +1,93 @@
+line_id,step,kind,speaker,text_with_breaks,seed,notes
+vo_bt_a0_ok,bt_a0,ok,CAIRN,"Power online. <break time=""0.25s"" /> Systems nominal.",52001,plays on power-up confirm
+vo_bt_a0_h1,bt_a0,h1,CAIRN,"Confirm to power up.",52002,
+vo_bt_a1_ok,bt_a1,ok,CAIRN,"Throttle set.",52003,
+vo_bt_a1_h1,bt_a1,h1,CAIRN,"Raise throttle now.",52004,
+vo_bt_a2_ok,bt_a2,ok,CAIRN,"All stop.",52005,
+vo_bt_a2_h1,bt_a2,h1,CAIRN,"Bring throttle to zero.",52006,
+vo_bt_a3_ok,bt_a3,ok,CAIRN,"Reverse engaged.",52007,
+vo_bt_a3_h1,bt_a3,h1,CAIRN,"Walk it backward.",52008,
+vo_bt_a4_ok,bt_a4,ok,CAIRN,"Leg steering confirmed.",52009,
+vo_bt_a4_h1,bt_a4,h1,CAIRN,"Turn your legs. <break time=""0.25s"" /> Both directions.",52010,
+vo_bt_a5_ok,bt_a5,ok,CAIRN,"Gate run complete.",52011,
+vo_bt_a5_h1,bt_a5,h1,CAIRN,"Walk through the gates.",52012,
+vo_bt_a6_ok,bt_a6,ok,CAIRN,"Full stop.",52013,
+vo_bt_a6_h1,bt_a6,h1,CAIRN,"Try the instant stop.",52014,
+vo_bt_b1_ok,bt_b1,ok,CAIRN,"Torso articulation confirmed.",52015,
+vo_bt_b1_h1,bt_b1,h1,CAIRN,"Twist your torso. <break time=""0.25s"" /> Both sides.",52016,
+vo_bt_b2_ok,bt_b2,ok,CAIRN,"Tracking steady.",52017,
+vo_bt_b2_h1,bt_b2,h1,CAIRN,"Hold the reticle on the board.",52018,
+vo_bt_b3_ok,bt_b3,ok,CAIRN,"Torso aligned.",52019,
+vo_bt_b3_h1,bt_b3,h1,CAIRN,"Recenter your torso.",52020,
+vo_bt_b4_ok,bt_b4,ok,CAIRN,"Moving fire posture confirmed.",52021,
+vo_bt_b4_h1,bt_b4,h1,CAIRN,"Walk and hold your aim.",52022,
+vo_bt_b5_ok,bt_b5,ok,CAIRN,"Optics engaged.",52023,
+vo_bt_b5_h1,bt_b5,h1,CAIRN,"Magnify your optics.",52024,
+vo_bt_c1_ok,bt_c1,ok,CAIRN,"Target locked.",52025,
+vo_bt_c1_h1,bt_c1,h1,CAIRN,"Lock the contact under your reticle.",52026,
+vo_bt_c2_ok,bt_c2,ok,CAIRN,"All contacts logged.",52027,
+vo_bt_c2_h1,bt_c2,h1,CAIRN,"Cycle your contacts.",52028,
+vo_bt_c3_ok,bt_c3,ok,CAIRN,"Section selected.",52029,
+vo_bt_c3_h1,bt_c3,h1,CAIRN,"Pick a section of the lock.",52030,
+vo_bt_c4_ok,bt_c4,ok,CAIRN,"Damage readout noted.",52031,
+vo_bt_c4_h1,bt_c4,h1,CAIRN,"Confirm when ready.",52032,
+vo_bt_d1_ok,bt_d1,ok,CAIRN,"Group one fired.",52033,
+vo_bt_d1_h1,bt_d1,h1,CAIRN,"Fire group one.",52034,
+vo_bt_d2_ok,bt_d2,ok,CAIRN,"Group two fired.",52035,
+vo_bt_d2_h1,bt_d2,h1,CAIRN,"Fire group two.",52036,
+vo_bt_d3_ok,bt_d3,ok,CAIRN,"Rockets away.",52037,
+vo_bt_d3_h1,bt_d3,h1,CAIRN,"Fire group three.",52038,
+vo_bt_d4_ok,bt_d4,ok,CAIRN,"Range clear.",52039,
+vo_bt_d4_h1,bt_d4,h1,CAIRN,"Destroy the remaining boards.",52040,
+vo_bt_e1_ok,bt_e1,ok,CAIRN,"Heat at amber.",52041,
+vo_bt_e1_h1,bt_e1,h1,CAIRN,"Keep firing. <break time=""0.25s"" /> Build heat.",52042,
+vo_bt_e2_ok,bt_e2,ok,CAIRN,"Coolant purged. <break time=""0.25s"" /> Temperature falling.",52043,
+vo_bt_e2_h1,bt_e2,h1,CAIRN,"Purge coolant now.",52044,
+vo_bt_e3_ok,bt_e3,ok,CAIRN,"Emergency shutdown.",52045,
+vo_bt_e3_h1,bt_e3,h1,CAIRN,"Keep firing. <break time=""0.25s"" /> Let it stop.",52046,
+vo_bt_e4_ok,bt_e4,ok,CAIRN,"Override accepted. <break time=""0.25s"" /> Reactor risk noted.",52047,
+vo_bt_e4_h1,bt_e4,h1,CAIRN,"Hold override now.",52048,
+vo_bt_f1_ok,bt_f1,ok,CAIRN,"Clean landing.",52049,
+vo_bt_f1_h1,bt_f1,h1,CAIRN,"Build speed. <break time=""0.25s"" /> Boost over.",52050,
+vo_bt_g1_ok,bt_g1,ok,CAIRN,"Wing engaging.",52051,squad phase — auto-skipped in this build; line banked for when the feature ships
+vo_bt_g1_h1,bt_g1,h1,CAIRN,"Open the command wheel.",52052,
+vo_bt_g2_ok,bt_g2,ok,CAIRN,"Wing returning.",52053,
+vo_bt_g2_h1,bt_g2,h1,CAIRN,"Recall your wing.",52054,
+vo_bt_h1_ok,bt_h1,ok,CAIRN,"Checkride complete.",52055,
+vo_bt_h1_h1,bt_h1,h1,CAIRN,"Three drones. <break time=""0.25s"" /> Weapons free.",52056,
+vo_bt_h2_ok,bt_h2,ok,CAIRN,"Basic training complete.",52057,
+vo_bt_a0_prompt,bt_a0,prompt,CAIRN,"Systems ready. <break time=""0.25s"" /> Confirm to power up.",52058,plays when the power-up prompt first appears
+vo_bt_a1_prompt,bt_a1,prompt,CAIRN,Raise your throttle. Walk forward.,52059,spoken step arrival
+vo_bt_a2_prompt,bt_a2,prompt,CAIRN,Lower throttle. Come to a stop.,52060,spoken step arrival
+vo_bt_a3_prompt,bt_a3,prompt,CAIRN,Throttle down again. Walk backward.,52061,spoken step arrival
+vo_bt_a4_prompt,bt_a4,prompt,CAIRN,Steer your legs. Both directions.,52062,spoken step arrival
+vo_bt_a5_prompt,bt_a5,prompt,CAIRN,Walk through all three gates.,52063,spoken step arrival
+vo_bt_a6_prompt,bt_a6,prompt,CAIRN,Execute an instant full stop.,52064,spoken step arrival
+vo_bt_b1_prompt,bt_b1,prompt,CAIRN,Twist your torso. Scan both sides.,52065,spoken step arrival
+vo_bt_b2_prompt,bt_b2,prompt,CAIRN,Hold your reticle on the board.,52066,spoken step arrival
+vo_bt_b3_prompt,bt_b3,prompt,CAIRN,Snap your torso back in line.,52067,spoken step arrival
+vo_bt_b4_prompt,bt_b4,prompt,CAIRN,Walk while holding aim on the board.,52068,spoken step arrival
+vo_bt_b5_prompt,bt_b5,prompt,CAIRN,Magnify your optics on the far board.,52069,spoken step arrival
+vo_bt_c1_prompt,bt_c1,prompt,CAIRN,A contact is up. Lock it.,52070,spoken step arrival
+vo_bt_c2_prompt,bt_c2,prompt,CAIRN,Cycle your contacts. Lock all three.,52071,spoken step arrival
+vo_bt_c3_prompt,bt_c3,prompt,CAIRN,Select a section of your lock.,52072,spoken step arrival
+vo_bt_c4_prompt,bt_c4,prompt,CAIRN,Study the damage readout. Confirm when ready.,52073,spoken step arrival
+vo_bt_d1_prompt,bt_d1,prompt,CAIRN,Fire the autocannon at a board.,52074,spoken step arrival
+vo_bt_d2_prompt,bt_d2,prompt,CAIRN,Now the laser. Fire.,52075,spoken step arrival
+vo_bt_d3_prompt,bt_d3,prompt,CAIRN,Rocket salvo. Fire.,52076,spoken step arrival
+vo_bt_d4_prompt,bt_d4,prompt,CAIRN,Weapons free. Destroy all four boards.,52077,spoken step arrival
+vo_bt_e1_prompt,bt_e1,prompt,CAIRN,Fire until heat reaches the amber line.,52078,spoken step arrival
+vo_bt_e2_prompt,bt_e2,prompt,CAIRN,Heat is high. Purge coolant.,52079,spoken step arrival
+vo_bt_e3_prompt,bt_e3,prompt,CAIRN,Keep firing. Let it shut down.,52080,spoken step arrival
+vo_bt_e4_prompt,bt_e4,prompt,CAIRN,Hold override. Bring the reactor back.,52081,spoken step arrival
+vo_bt_f1_prompt,bt_f1,prompt,CAIRN,Build speed. Boost over the barrier.,52082,spoken step arrival
+vo_bt_g1_prompt,bt_g1,prompt,CAIRN,Command wheel. Order your wing to attack.,52083,spoken step arrival
+vo_bt_g2_prompt,bt_g2,prompt,CAIRN,Recall your wing to the pad.,52084,spoken step arrival
+vo_bt_h1_prompt,bt_h1,prompt,CAIRN,Checkride. Three drones inbound. Weapons free.,52085,spoken step arrival
+vo_bt_h2_prompt,bt_h2,prompt,CAIRN,Checkride passed. Confirm to return.,52086,spoken step arrival
+vo_bt_a4a_ok,bt_a4a,ok,CAIRN,"Good. <break time=""0.25s"" /> It always knows the way.",52087,PATHLIGHT teach step
+vo_bt_a4a_h1,bt_a4a,h1,CAIRN,"Confirm, then follow the arrow.",52088,
+vo_bt_a4b_ok,bt_a4b,ok,CAIRN,"Waypoint reached. <break time=""0.25s"" /> That's the whole trick.",52089,PATHLIGHT first arrival
+vo_bt_a4b_h1,bt_a4b,h1,CAIRN,"Turn until the arrow points up.",52090,
+vo_bt_a4a_prompt,bt_a4a,prompt,CAIRN,The arrow points your way. Confirm.,52091,spoken step arrival
+vo_bt_a4b_prompt,bt_a4b,prompt,CAIRN,Face the arrow. Walk to it.,52092,spoken step arrival
