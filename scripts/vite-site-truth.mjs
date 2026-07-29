@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { censusForBuild } from './asset_census.mjs';
 
 /**
  * Vite plugin: every factual number on the landing page is derived from the
@@ -192,15 +193,15 @@ function deriveFacts(root) {
   facts.lightestName = mechs.find((m) => m.tons === facts.lightestTons).name;
   facts.heaviestName = mechs.find((m) => m.tons === facts.heaviestTons).name;
 
+  // Assets live outside git (Drive-only, 400 MB), so the three asset-derived fact
+  // groups below come from content/asset-census.json. censusForBuild re-derives that
+  // census from the filesystem and throws on drift whenever the assets ARE present,
+  // so these numbers still cannot exceed what shipped. See scripts/asset_census.mjs.
+  const census = censusForBuild(root);
+
   // Machines modelled is a different number from chassis and must stay that way.
-  const modelDir = path.join(root, 'public', 'models');
-  const modelIds = new Set(
-    fs.readdirSync(modelDir)
-      .filter((f) => f.endsWith('.glb'))
-      .map((f) => f.replace(/\.lod\d\.glb$/, '')),
-  );
-  facts.modelCount = modelIds.size;
-  facts.machinesModelled = [...modelIds].filter((id) => id.startsWith('mech-')).length;
+  facts.modelCount = census.models.length;
+  facts.machinesModelled = census.models.filter((id) => id.startsWith('mech-')).length;
 
   // --- campaign ----------------------------------------------------------
   // Stages 1-3 are hardcoded in src/sim/campaign.ts; 4+ are data files. Parse
@@ -227,23 +228,17 @@ function deriveFacts(root) {
   // Count lines that actually SHIPPED, not lines the manifest declares. Ten
   // entries (four nav cues and six Basic Training a4a/a4b prompts) are wired but
   // have no file on disk, so "607 recorded lines" overstated the build by ten.
-  // Counting the filesystem means the number self-corrects if they are ever
-  // generated, and can never again be larger than reality.
-  facts.voiceLines = keys.filter((k) => {
-    if (!k.startsWith('vo.')) return false;
-    const entry = manifest[k];
-    const file = (typeof entry === 'string' ? entry : entry?.file) ?? '';
-    return file && fs.existsSync(path.join(root, 'public', file.replace(/^\//, '')));
-  }).length;
+  // The census records which vo.* keys resolve to a real file, so the number
+  // self-corrects if they are ever generated, and can never again be larger
+  // than reality.
+  facts.voiceLines = census.shippedVoiceKeys.length;
   facts.musicCues = keys.filter((k) => k.startsWith('music.')).length;
   facts.sfxCount = keys.filter((k) => k.startsWith('sfx.')).length;
 
   // --- textures ----------------------------------------------------------
   // Three maps per set (albedo / normal / roughness).
-  const texFiles = fs.readdirSync(path.join(root, 'public', 'textures'))
-    .filter((f) => f.endsWith('.webp'));
-  facts.textureMaps = texFiles.length;
-  facts.textureSets = texFiles.length / 3;
+  facts.textureMaps = census.textureFiles.length;
+  facts.textureSets = census.textureFiles.length / 3;
 
   return facts;
 }
