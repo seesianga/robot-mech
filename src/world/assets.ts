@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
 
 /**
  * Shared loader for the Tripo3D-derived GLBs in public/models/.
@@ -18,6 +19,40 @@ export type Lod = 'lod0' | 'lod1' | 'lod2';
 
 const loader = new GLTFLoader();
 loader.setMeshoptDecoder(MeshoptDecoder);
+
+/**
+ * §12.4 — KTX2 / Basis support.
+ *
+ * The models currently ship WebP (EXT_texture_webp), which is a correct web format but
+ * is decoded to full RGBA in VRAM: a 2048² albedo costs 16 MB resident whatever the
+ * file size was. KTX2/Basis stays GPU-compressed, which is the entire point of the
+ * §5.7 texture budgets.
+ *
+ * This must exist BEFORE any asset is transcoded. A GLB carrying KTX2 textures fails to
+ * load outright without the loader, so the client change comes first and the asset
+ * change second — the reverse order breaks every model in the game.
+ *
+ * detectSupport() needs the live renderer to know which GPU formats are available, so
+ * this is called from boot rather than at module scope. Until it is called, the loader
+ * simply has no KTX2 support and WebP assets keep loading exactly as before, which is
+ * why shipping this ahead of the transcode is safe.
+ */
+let ktx2: KTX2Loader | null = null;
+
+export function installKtx2(renderer: THREE.WebGLRenderer): void {
+  if (ktx2) return;
+  try {
+    ktx2 = new KTX2Loader()
+      .setTranscoderPath('/basis/')
+      .detectSupport(renderer);
+    loader.setKTX2Loader(ktx2);
+  } catch (e) {
+    // A missing or broken transcoder must not take the game down: without KTX2 the
+    // WebP assets still load. It only matters once assets are actually transcoded.
+    console.warn('[assets] KTX2 unavailable, continuing without it:', e);
+    ktx2 = null;
+  }
+}
 
 const cache = new Map<string, Promise<THREE.Group>>();
 const missing = new Set<string>();

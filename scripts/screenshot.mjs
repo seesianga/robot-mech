@@ -35,7 +35,12 @@ const consoleErrors = [];
 page.on('console', (m) => { if (m.type() === 'error') consoleErrors.push(m.text()); });
 page.on('pageerror', (e) => consoleErrors.push(String(e)));
 
-await page.goto(URL, { waitUntil: 'load', timeout: 30000 });
+// 90 s, matching test_campaign.mjs. The old 30 s was a fixed budget for a page that
+// compiles shaders and uploads meshes on a CPU-rendered swiftshader context, so it
+// tracked machine load rather than anything about the build: measured at 47 s on a box
+// under load average 25, and comfortably under 20 s on an idle one. A timeout that
+// fails with load rather than with breakage teaches people to ignore the smoke test.
+await page.goto(URL, { waitUntil: 'load', timeout: 90000 });
 await page.waitForTimeout(2500);
 const early = await page.evaluate(() => window.__STATE);
 // let the boot sequence release and the mech walk a bit
