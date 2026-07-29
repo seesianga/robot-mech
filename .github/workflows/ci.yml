@@ -164,22 +164,42 @@ jobs:
           fi
           echo "hygiene clean"
 
-      # ── gate 15: bundle budget ───────────────────────────────────────────
-      - name: 'Gate 15 — build and bundle budget'
-        run: |
-          set -euo pipefail
-          npm run build
-          # Cloudflare Workers reject any single file over 25 MiB. public/.assetsignore
-          # keeps models out of the upload; this asserts nothing else crept over.
-          big=$(find dist -type f -size +25M || true)
-          if [ -n "$big" ]; then echo "$big"; echo "::error::file exceeds the Workers 25 MiB limit"; exit 1; fi
-          echo "dist total: $(du -sh dist | cut -f1)"
+      # ── gate 15 is NOT here, deliberately ────────────────────────────────
+      # `npm run build` cannot run on a GitHub-hosted runner. The site-truth plugin
+      # in scripts/vite-site-truth.mjs derives the landing page's numbers by scanning
+      # public/models and public/audio on disk, so the page can never claim more than
+      # was actually shipped. Those trees are Drive-only (400 MB, git-lfs unavailable),
+      # so a fresh checkout has no assets and the build dies in deriveFacts:
+      #   ENOENT: no such file or directory, scandir '.../public/models'
+      #
+      # Making the plugin tolerate missing assets would defeat the one thing it exists
+      # to do, so the build gate lives where assets exist — see the build-assets job.
+      # Do NOT "fix" this by stubbing the directories: that ships false claims.
+      - name: 'Gate 15 — not run here (see build-assets job)'
+        run: echo "build gate requires assets; runs on a runner that has them"
 
   # ───────────────────────────────────────────────────────────────────────────
-  browser:
-    name: browser gates (slow)
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+  # Everything below needs public/models, public/audio and public/textures on disk —
+  # to build at all (site-truth scans them) and to render anything meaningful. Those
+  # trees are Drive-only, so this job requires a self-hosted runner whose checkout has
+  # them linked in, and is opted into with the repo variable ASSET_RUNNER=true.
+  #
+  # Until that runner exists this job does not run. That is a real coverage gap, stated
+  # plainly rather than papered over with a green check: nothing in GitHub CI currently
+  # builds the bundle or plays a mission. Closing it means one of —
+  #   1. git-lfs for public/ (400 MB; GitHub's free LFS bandwidth is 1 GB/month, so CI
+  #      clones would exhaust it quickly),
+  #   2. publishing the asset trees as a release artefact CI fetches, or
+  #   3. deriving site-truth counts from a committed manifest, kept honest by a local
+  #      manifest-vs-filesystem check.
+  # Option 3 is the cheapest and keeps the truth guarantee; it is a design change to a
+  # load-bearing plugin, so it is not made unilaterally here.
+  build-assets:
+    name: build + browser gates (needs assets)
+    if: >-
+      vars.ASSET_RUNNER == 'true' &&
+      (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    runs-on: [self-hosted, veyra-assets]
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
@@ -190,10 +210,21 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
 
-      # These suites need the built game served on :4199.
-      - name: build and serve
+      - name: 'Gate 15 — build and bundle budget'
         run: |
+          set -euo pipefail
+          test -d public/models || { echo "::error::assets missing on this runner"; exit 1; }
           npm run build
+          # Cloudflare Workers reject any single file over 25 MiB. public/.assetsignore
+          # keeps models out of the upload; this asserts nothing else crept over.
+          big=$(find dist -type f -size +25M || true)
+          if [ -n "$big" ]; then echo "$big"; echo "::error::file exceeds the Workers 25 MiB limit"; exit 1; fi
+          echo "dist total: $(du -sh dist | cut -f1)"
+
+      # These suites need the built game served on :4199.
+      # dist/ already exists from gate 15 above; just serve it.
+      - name: serve
+        run: |
           npm run preview &
           npx wait-on http://localhost:4199 -t 60000
 
