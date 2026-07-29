@@ -23,13 +23,40 @@ smart low-poly, and a real face_limit. Quad meshing in particular tends to produ
 connected surfaces rather than shell soup, which is exactly the property the simplifier
 needs.
 
-Honest caveat, worth reading before spending credits
-----------------------------------------------------
-Some of these subjects are genuinely many separate objects. env-bt-fence is a "modular
-open-frame lattice"; prop-hull-carcass is "exposed rib frames and deck plates". No
-generator setting makes a lattice one connected shell. So this is expected to help the
-buildings and help the lattices less, and the measurement below is what decides — not
-the assumption.
+RESULT: this does NOT fix the plateau. Measured, 2026-07-30, 90 credits
+------------------------------------------------------------------------
+Tested on prop-arcology-mid, the worst case. Two generations:
+
+  quad=True             -> task succeeds, returns a Kaydara FBX Binary, not a GLB.
+                           glTF has no quad primitive. Unusable without a convert_model
+                           round trip. 45 credits.
+  smart_low_poly, GLB   -> 1,390,011 -> 17,026 triangle source. 45 credits.
+
+Then the decisive test — simplify the NEW source toward the prop budgets:
+
+      target 11,000  ->  11,328     (LOD0, just over)
+      target  4,400  ->  11,333     (floor)
+      target  1,600  ->  11,333     (floor)
+
+The floor moved from 14,199 to 11,333. A 20% improvement, and still a floor. The mesh
+is still thousands of disconnected shells, because the SUBJECT is: this arcology is
+"repeating residential tiers with deep recessed window bands, external service rails and
+maintenance gondola tracks". env-bt-fence is a "modular open-frame lattice";
+prop-hull-carcass is "exposed rib frames and deck plates in cross-section". No generator
+setting collapses a lattice into one connected surface, because a lattice is not one
+surface.
+
+So regeneration is the wrong tool for this class, and the remaining 12 were NOT run —
+they would cost ~540 credits to reproduce this same answer.
+
+The right fix is the one §6.8 already names: **impostors**. Its prop row ends "LOD3:
+impostor", not "LOD3: fewer triangles". A distant background building should become a
+billboard, not a slightly cheaper mesh. That is a renderer feature, not an asset
+regeneration, and it is the correct next step for these 13.
+
+Nothing was promoted. The current shipped assets are visually fine and a different
+generation is different ART, not an optimisation — swapping shipped buildings for
+marginally cheaper but visually different ones is a content decision, not a budget one.
 
 Nothing is overwritten. Output goes to assets/tripo/regen/, and promotion is a separate,
 deliberate step.
@@ -69,13 +96,18 @@ PLATEAUED = [
 # §6.5 RUNTIME TOPOLOGY. face_limit here is the SOURCE density for a non-hero asset —
 # still far above the runtime budget, because build_lods.mjs does the final decimation.
 RUNTIME_TOPOLOGY = {
-    "quad": True,
+    # quad is deliberately OFF, and this cost 45 credits to learn: with quad=True the
+    # task succeeds but returns a **Kaydara FBX Binary**, not a GLB, because glTF has no
+    # quad primitive. The web pipeline cannot use that without a convert_model round
+    # trip — §6.5's own EXPORT preset says as much ("FBX only for DCC cleanup").
+    # smart_low_poly is the setting that actually produces connected topology; quad is
+    # only a representation choice, and the wrong one for this target.
+    "quad": False,
     "smart_low_poly": True,
-    # The API enforces this: with smart_low_poly enabled on a quad mesh, face_limit must
-    # be 500-10000. It rejected 60000 outright (code 1004). That constraint is a good
-    # fit rather than a nuisance — 10,000 quads is roughly 20,000 triangles, so the
-    # SOURCE arrives near the runtime budget instead of at 1.4M, and build_lods only has
-    # to trim rather than attempt a 130:1 reduction the topology will not allow.
+    # 10,000 is the API's ceiling when smart_low_poly is on (it rejected 60000 with
+    # code 1004). That is a good fit rather than a nuisance: the SOURCE arrives near the
+    # runtime budget instead of at 1.4M, so build_lods trims rather than attempting a
+    # 130:1 reduction the topology will not permit.
     "face_limit": 10000,
     "texture_quality": "detailed",
 }
