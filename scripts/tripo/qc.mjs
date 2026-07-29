@@ -93,7 +93,7 @@ export function qcAsset(file) {
   const nonKtx = imgs.filter((i) => i.type !== 'ktx2');
   if (nonKtx.length) {
     const kinds = [...new Set(nonKtx.map((i) => i.type))].join('/');
-    warn.push(`${nonKtx.length} embedded ${kinds} texture(s) — KTX2 transcode pending (§12.4; needs KTX2Loader first)`);
+    warn.push(`${nonKtx.length} embedded ${kinds} texture(s) — KTX2 deliberately not adopted, see ADR-0002`);
   }
 
   // ── 10. material calibration ───────────────────────────────────── ENFORCED
