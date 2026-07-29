@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
+import { withImpostor } from './impostor';
 
 /**
  * Shared loader for the Tripo3D-derived GLBs in public/models/.
@@ -245,7 +246,9 @@ export function dressBox(box: THREE.Mesh, assetId: string, lod: Lod = 'lod2'): v
     box.castShadow = false;
     box.receiveShadow = false;
 
-    box.add(model);
+    // §6.8 LOD3 — the 13 meshes that cannot decimate become a billboard past 140 m.
+    // Everything else is returned unchanged, so this is inert for 38 of 51 assets.
+    box.add(withImpostor(model, assetId));
   });
 }
 

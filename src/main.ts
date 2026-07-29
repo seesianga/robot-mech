@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { createRenderer, createScene, installEnvironment, trackSun } from './engine/renderer';
 import { detectQuality } from './engine/quality';
 import { installKtx2 } from './world/assets';
+import { setImpostorRenderer } from './world/impostor';
 import { createPostChain } from './engine/post';
 import { Input } from './engine/input';
 import { CameraRig } from './engine/camera';
@@ -86,6 +87,7 @@ function boot(): void {
   const scene = createScene(quality);
   installEnvironment(renderer, scene);   // IBL — see engine/renderer.ts for why
   installKtx2(renderer);                 // §12.4 — must precede any KTX2 asset (assets.ts)
+  setImpostorRenderer(renderer);         // §6.8 LOD3 impostors bake to a render target
   exposeScene(scene);
   const input = new Input(renderer.domElement);
   const rig = new CameraRig(window.innerWidth / window.innerHeight);
