@@ -25,24 +25,51 @@ import { promisify } from 'node:util';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { classOf } from './tripo/qc.mjs';
 
 const exec = promisify(execFile);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC_DIR = path.join(ROOT, 'assets', 'tripo', 'generated');
 const OUT_DIR = path.join(ROOT, 'public', 'models');
 
-// Budgets come from docs/tripo-prompt-library.md §9.1.
-//
 // We target the budget by RATIO, not by error tolerance. The error->triangle curve is
 // wildly model-dependent — at error 0.0004 Orogen lands at 150k while Gabbro lands at
 // 73k — so a fixed error silently blows the budget on dense models and wastes it on
 // sparse ones. ratio = budget/sourceTris with the error cap released hits the number
 // directly. `keep` leaves headroom for the welder, which can only merge, never split.
-const TIERS = [
-  { name: 'lod0', texture: 2048, budget: 120000, keep: 0.94 },
-  { name: 'lod1', texture: 1024, budget: 40000, keep: 0.94 },
-  { name: 'lod2', texture: 512, budget: 12000, keep: 0.94 },
-];
+//
+// Budgets are now PER CLASS, from §6.8 of the AAA redesign spec.
+//
+// The previous table was one tier set — 120k/40k/12k — applied to every asset. That is
+// the single defect the §6.6 QC gate found: every shipped model came out at ~112,800
+// triangles whether it was a hero mech or a supply crate, so 32 props carried 3.6M
+// triangles against §6.8's 600k per-level dressing ceiling. Frames happened to fit
+// their 180k budget; props were 9.4x over a 12k one.
+//
+// Class comes from scripts/tripo/qc.mjs so the gate and the builder cannot disagree
+// about what an asset IS — a builder that classifies differently from its own gate
+// produces assets that fail the moment they are written.
+const CLASS_TIERS = {
+  //          LOD0 tris   LOD1     LOD2    textures (LOD0/1/2)
+  frame:    { budgets: [170000, 75000, 32000], textures: [2048, 1024, 512] },
+  cockpit:  { budgets: [145000, 75000, 32000], textures: [2048, 1024, 512] },
+  vehicle:  { budgets: [ 48000, 15000,  6000], textures: [2048, 1024, 512] },
+  struct:   { budgets: [ 66000, 20000,  8000], textures: [2048, 1024, 512] },
+  // §6.8 puts props at 3-12k LOD0. Dressing is instanced many times per level, so this
+  // is where the frame-rate actually lives.
+  prop:     { budgets: [ 11000,  4400,  1600], textures: [1024,  512, 256] },
+};
+
+const TIER_NAMES = ['lod0', 'lod1', 'lod2'];
+const KEEP = 0.94;
+
+function tiersFor(id) {
+  const cls = classOf(id);
+  const t = CLASS_TIERS[cls] ?? CLASS_TIERS.prop;
+  return TIER_NAMES.map((name, i) => ({
+    name, cls, texture: t.textures[i], budget: t.budgets[i], keep: KEEP,
+  }));
+}
 
 const args = process.argv.slice(2);
 const has = (f) => args.includes(f);
@@ -95,11 +122,12 @@ async function main() {
   if (idFilter) sources = sources.filter((f) => idFilter.includes(path.basename(f, '.glb')));
   if (!sources.length) { console.error('no matching source GLBs'); process.exit(1); }
 
-  const tiers = onlyTier ? TIERS.filter((t) => t.name === onlyTier) : TIERS;
-  if (!tiers.length) { console.error(`unknown tier: ${onlyTier}`); process.exit(1); }
+  if (onlyTier && !TIER_NAMES.includes(onlyTier)) {
+    console.error(`unknown tier: ${onlyTier}`); process.exit(1);
+  }
 
   console.log(`sources : ${sources.length} raw GLBs in assets/tripo/generated/`);
-  console.log(`tiers   : ${tiers.map((t) => t.name).join(', ')}`);
+  console.log(`tiers   : ${onlyTier ?? TIER_NAMES.join(', ')} (budgets are PER CLASS, §6.8)`);
   console.log(`output  : public/models/\n`);
 
   const rows = [];
@@ -109,18 +137,19 @@ async function main() {
     const src = path.join(SRC_DIR, file);
     const srcTris = triCount(src);
     const line = [];
+    const tiers = tiersFor(id).filter((t) => !onlyTier || t.name === onlyTier);
     for (const tier of tiers) {
       try {
         const r = await buildTier(id, src, tier, srcTris);
         r.skipped ? skipped++ : built++;
-        rows.push({ ...r, srcTris, srcMb: mb(src) });
+        rows.push({ ...r, cls: tier.cls, budget: tier.budget, srcTris, srcMb: mb(src) });
         line.push(`${tier.name} ${r.tris.toLocaleString()}t/${r.mb.toFixed(2)}MB${r.skipped ? '*' : ''}`);
       } catch (e) {
         console.error(`  FAIL ${id} ${tier.name}: ${(e.stderr || e.message).toString().slice(0, 300)}`);
         rows.push({ id, tier: tier.name, failed: true });
       }
     }
-    console.log(`  ${id.padEnd(26)} ${(srcTris / 1e6).toFixed(2)}M → ${line.join('  ')}`);
+    console.log(`  ${id.padEnd(24)} ${classOf(id).padEnd(8)} ${(srcTris / 1e6).toFixed(2)}M → ${line.join('  ')}`);
   }
 
   const ok = rows.filter((r) => !r.failed);
@@ -133,14 +162,23 @@ async function main() {
   console.log(`raw sources : ${srcMb.toFixed(0)} MB (never served)`);
   console.log(`shipped     : ${totalMb.toFixed(1)} MB across ${ok.length} files`);
 
-  for (const t of tiers) {
-    const set = ok.filter((r) => r.tier === t.name);
-    if (!set.length) continue;
-    const over = set.filter((r) => r.tris > t.budget);
-    const max = Math.max(...set.map((r) => r.tris));
-    console.log(`  ${t.name}: max ${max.toLocaleString()} tris (budget ${t.budget.toLocaleString()})`
-      + (over.length ? ` — ${over.length} OVER: ${over.map((r) => r.id).join(', ')}` : ' — all within budget'));
+  const groups = new Map();
+  for (const r of ok) {
+    const k = `${r.cls}/${r.tier}`;
+    if (!groups.has(k)) groups.set(k, { budget: r.budget, tris: [] });
+    groups.get(k).tris.push(r.tris);
   }
+  let over = 0;
+  for (const [k, g] of [...groups].sort()) {
+    const max = Math.max(...g.tris);
+    const bad = g.tris.filter((t) => t > g.budget).length;
+    over += bad;
+    console.log(
+      `  ${k.padEnd(16)} n=${String(g.tris.length).padStart(3)}  max ${max.toLocaleString().padStart(9)}`
+      + `  budget ${g.budget.toLocaleString().padStart(9)}  ${bad ? `${bad} OVER` : 'ok'}`,
+    );
+  }
+  console.log(over ? `\n${over} outputs over budget` : '\nall outputs within their class budget');
   process.exit(failed.length ? 1 : 0);
 }
 

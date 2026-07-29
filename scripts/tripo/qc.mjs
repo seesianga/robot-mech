@@ -39,7 +39,9 @@ export function classOf(name) {
   // veh-dropship-heavy in 'prop' (nothing matched "veh-") and prop-searchlight-tower in
   // 'struct' (because "tower" appeared later in the name) — both then budgeted wrongly.
   if (/^(sa_)?frame[_-]|^mech-/.test(name)) return 'frame';
-  if (/^(sa_)?cockpit[_-]|^cockpit/.test(name)) return 'cockpit';
+  // "cockpit" anywhere is unambiguous — the shipped asset is int-cockpit, which the
+  // prefix-only form missed and budgeted as a prop.
+  if (/cockpit/.test(name)) return 'cockpit';
   if (/^(sa_)?vehicle[_-]|^veh-/.test(name)) return 'vehicle';
   if (/^(sa_)?struct[_-]|^struct-/.test(name)) return 'struct';
   if (/^(sa_)?prop[_-]|^prop-/.test(name)) return 'prop';
