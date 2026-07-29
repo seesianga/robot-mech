@@ -49,15 +49,52 @@ export function triangleCount(gltf) {
   return tris;
 }
 
-/** Embedded image dimensions, read from the PNG/JPEG headers inside the buffer. */
+/**
+ * Embedded image dimensions.
+ *
+ * WebP handling is not optional here. The first version of this scanned for PNG headers
+ * only — and every one of the 153 shipped models is WebP (EXT_texture_webp), so the
+ * §6.6 texture-budget check silently examined nothing and reported a pass for all of
+ * them. That is precisely the failure the NOT_ENFORCED list exists to prevent, shipped
+ * inside the gate that prints it. Any format added to the pipeline must be added here
+ * too, or the budget check quietly stops applying.
+ */
 export function imageSizes(file) {
   const buf = fs.readFileSync(file);
   const out = [];
-  // PNG: 89 50 4E 47 ... IHDR at +16 gives width/height big-endian
-  for (let i = 0; i + 24 < buf.length; i++) {
+
+  for (let i = 0; i + 30 < buf.length; i++) {
+    // PNG: 89 50 4E 47, IHDR width/height big-endian at +16
     if (buf[i] === 0x89 && buf[i + 1] === 0x50 && buf[i + 2] === 0x4e && buf[i + 3] === 0x47) {
       out.push({ type: 'png', w: buf.readUInt32BE(i + 16), h: buf.readUInt32BE(i + 20) });
       i += 24;
+      continue;
+    }
+    // WebP: 'RIFF' .... 'WEBP' <chunk>
+    if (buf[i] === 0x52 && buf[i + 1] === 0x49 && buf[i + 2] === 0x46 && buf[i + 3] === 0x46
+        && buf[i + 8] === 0x57 && buf[i + 9] === 0x45 && buf[i + 10] === 0x42 && buf[i + 11] === 0x50) {
+      const tag = buf.toString('ascii', i + 12, i + 16);
+      if (tag === 'VP8X') {
+        // extended: 24-bit canvas width-1 / height-1, little-endian, at +24
+        out.push({
+          type: 'webp',
+          w: (buf.readUIntLE(i + 24, 3) & 0xffffff) + 1,
+          h: (buf.readUIntLE(i + 27, 3) & 0xffffff) + 1,
+        });
+      } else if (tag === 'VP8L') {
+        // lossless: 14 bits each, packed little-endian after the 0x2f signature
+        const b = buf.readUInt32LE(i + 21);
+        out.push({ type: 'webp', w: (b & 0x3fff) + 1, h: ((b >> 14) & 0x3fff) + 1 });
+      } else if (tag === 'VP8 ') {
+        // lossy: 16-bit width/height (14 significant bits) after the start code
+        out.push({
+          type: 'webp',
+          w: buf.readUInt16LE(i + 26) & 0x3fff,
+          h: buf.readUInt16LE(i + 28) & 0x3fff,
+        });
+      }
+      i += 16;
+      continue;
     }
   }
   return out;

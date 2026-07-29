@@ -85,11 +85,16 @@ export function qcAsset(file) {
       fail.push(`embedded texture ${im.w}x${im.h} exceeds ${cls} budget of ${budget.tex}`);
     }
   }
-  // §6.4/§12.4: "no PNG texture ships". Embedded PNG in a runtime GLB means the KTX2
-  // transcode never happened. Reported as a warning, not a failure, because ALL 51
-  // shipped models are currently PNG-embedded — failing here would red the build on
-  // day one for a known, tracked migration rather than on a regression.
-  if (imgs.length) warn.push(`${imgs.length} embedded PNG texture(s) — KTX2 transcode pending (§12.4)`);
+  // §4/§12.4 want KTX2/Basis. These ship WebP (EXT_texture_webp), which is a correct
+  // web format but is decoded to full RGBA in VRAM — KTX2 stays GPU-compressed, which
+  // is the whole point of the §5.7 texture budgets. Warning, not failure: KTX2 also
+  // requires KTX2Loader and a Basis transcoder wired into the client, which is NOT
+  // done, so transcoding the assets today would break every model load.
+  const nonKtx = imgs.filter((i) => i.type !== 'ktx2');
+  if (nonKtx.length) {
+    const kinds = [...new Set(nonKtx.map((i) => i.type))].join('/');
+    warn.push(`${nonKtx.length} embedded ${kinds} texture(s) — KTX2 transcode pending (§12.4; needs KTX2Loader first)`);
+  }
 
   // ── 10. material calibration ───────────────────────────────────── ENFORCED
   for (const m of mats) {
