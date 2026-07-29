@@ -45,15 +45,26 @@ v3 while the balance endpoint answering is v2. Confirm which surface serves the 
 types we use (`multiview_to_model`, `texture_model`, `generate_parts`) and pin that one
 in `.env` before batching, along with current `model_version` strings.
 
-**Commercial rights are still unconfirmed.** A non-zero credit balance proves the key
-works and is funded. It does **not** prove the plan carries a commercial licence, and
-§6.1 is explicit that free-tier output is not licensed for commercial use. The 51 models
-already in `public/models` were generated before this was checked.
+### Commercial rights — owner attestation, 2026-07-29
 
-Outstanding, and it is a legal question rather than a technical one:
+The project owner (account holder for the Tripo and ElevenLabs keys in
+`API Information/.env`) has stated:
 
-1. Confirm the plan tier attached to this key carries commercial rights.
-2. Snapshot the terms to `assets-source/provenance/_terms/tripo_<date>.md` (§6.1).
-3. If any shipped model was generated on a free tier, it must be regenerated on a paid
-   plan. That is a schedule risk, not a rendering one, and it is worth settling before
-   more assets are made.
+> "I am the owner and I am paying money for API usage. I own the full rights with legal
+> authority."
+
+Recorded as the §6.1 rights decision. `rights_status: "owner-attested"` is written into
+every provenance record from this date, and the §6.6 QC gate no longer blocks on unknown
+rights.
+
+**What this does and does not settle.** It settles who decides, and it unblocks §6. It is
+an attestation by the rights holder, not a legal opinion, and nothing here is legal
+advice. Two things stay worth doing because they cost little and protect the attestation:
+
+1. Snapshot the vendor terms in force to `assets-source/provenance/_terms/tripo_<date>.md`
+   (§6.1). An attestation is much stronger with the terms it was made against attached.
+2. If any of the 51 shipped models predates the paid plan, note it. §6.1's concern is the
+   plan *at generation time*, not at attestation time — a model made on a free tier is
+   not retroactively licensed by a later upgrade.
+
+Neither blocks work. Both are cheap insurance on a decision that has been made.

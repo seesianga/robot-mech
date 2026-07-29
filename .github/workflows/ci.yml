@@ -263,3 +263,12 @@ jobs:
       # notices. Needs the assets, hence this job.
       - name: 'Gate 16 — lighting probe (all presets)'
         run: node scripts/lightprobe.mjs
+
+      # §6.6 asset QC. Baseline-aware: 111 of 153 shipped models are over their §6.8
+      # budget because the generator used one face_limit for every class (every asset is
+      # ~112,800 triangles, hero mech or supply crate alike). That debt is recorded in
+      # content/asset-qc-baseline.json and this gate fails on REGRESSION — a model that
+      # was passing and now fails, or a known-bad one that got worse. Shrink the baseline
+      # by fixing assets, never by raising a budget.
+      - name: 'Gate 17 — Tripo asset QC (§6.6)'
+        run: node scripts/tripo_qc.mjs

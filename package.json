@@ -55,7 +55,10 @@
     "deploy:worker": "npm run build && wrangler deploy",
     "sync:test": "node scripts/test_sync.mjs",
     "schema": "node scripts/content_schema.mjs",
-    "schema:types": "node scripts/content_schema.mjs --types"
+    "schema:types": "node scripts/content_schema.mjs --types",
+    "tripoqc": "node scripts/tripo_qc.mjs",
+    "tripoqc:baseline": "node scripts/tripo_qc.mjs --write-baseline",
+    "elevengate": "node scripts/eleven_gate.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "^0.14.0",
