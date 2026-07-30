@@ -1,4 +1,4 @@
-# Veyra Prime — Mech Appearance Bible & Loadout-Accurate Prompts
+# Robot Mech — Mech Appearance Bible & Loadout-Accurate Prompts
 
 Companion to `docs/tripo-prompt-library.md`. That handbook owns the **canonical bare-chassis**
 prompts (§4) mirrored in `assets/tripo/manifest.json`. This document is additive:

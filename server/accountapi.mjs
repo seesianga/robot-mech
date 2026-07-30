@@ -26,6 +26,9 @@ import { ApiError } from './accountcore.mjs';
 
 const DEFAULT_ORIGINS = [
   /^https:\/\/([a-z0-9-]+\.)?robot-mech\.pages\.dev$/,
+  /^https:\/\/([a-z0-9-]+\.)?robot-mech\.[a-z0-9-]+\.workers\.dev$/,
+  /^https:\/\/robot-mech\.[a-z0-9-]+\.workers\.dev$/,
+  // The previous Worker remains live as a rollback origin.
   /^https:\/\/([a-z0-9-]+\.)?veyra-prime\.[a-z0-9-]+\.workers\.dev$/,
   /^https:\/\/veyra-prime\.[a-z0-9-]+\.workers\.dev$/,
   /^http:\/\/localhost:\d+$/,
@@ -122,7 +125,7 @@ export async function handleAccountApi(request, service, opts = {}) {
     const get = request.method === 'GET';
 
     if (route === '/health' && get) {
-      return json({ ok: true, service: 'veyra-accounts', time: Date.now() }, 200, origin);
+      return json({ ok: true, service: 'robot-mech-accounts', time: Date.now() }, 200, origin);
     }
 
     if (route === '/auth/register' && post) {

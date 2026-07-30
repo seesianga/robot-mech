@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
 
-const OUT = process.argv[2] ?? '/tmp/veyra_smoke.png';
+const OUT = process.argv[2] ?? '/tmp/robot-mech-smoke.png';
 const URL = process.argv[3] ?? 'http://localhost:4199/play.html?test=1';
 
 const cacheDir = path.join(os.homedir(), 'Library', 'Caches', 'ms-playwright');

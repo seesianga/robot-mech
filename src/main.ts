@@ -35,6 +35,7 @@ import { HangarService, MATCH_SCRIP } from './save/hangar';
 import { MECHS } from './sim/content';
 import { AudioMan } from './audio/audio';
 import { ZONES, type ZoneId } from './sim/types';
+import { WORLD_NAME } from './brand';
 
 const PARAMS = new URLSearchParams(location.search);
 const TEST_MODE = PARAMS.has('test');
@@ -656,7 +657,7 @@ function boot(): void {
           title: 'THE WAR IS OVER',
           label: 'MAIN MENU',
           onClick: () => { reloadAfterSync(); },
-          note: `Reclamation is complete — the Anchor is yours and Veyra Prime is free. ${saveNote}`,
+          note: `Reclamation is complete — the Anchor is yours and ${WORLD_NAME} is free. ${saveNote}`,
           scrip,
         });
       }

@@ -1,4 +1,4 @@
-# Veyra Prime — see docs/PLATFORM_STANDARD.md §3.2
+# Robot Mech — see docs/PLATFORM_STANDARD.md §3.2
 #
 # Size budget, measured 2026-07-29 (git-lfs is NOT installed on this machine):
 #   src + content + docs + scripts + server + worker + migrations   ≈   3 MB  → plain git

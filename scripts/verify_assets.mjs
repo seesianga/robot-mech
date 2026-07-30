@@ -21,7 +21,7 @@ import { chromium } from 'playwright-core';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
-const OUT = process.argv[2] ?? '/tmp/veyra_assets';
+const OUT = process.argv[2] ?? '/tmp/robot-mech-assets';
 const PORT = 4213;
 
 const CHASSIS = ['flint', 'pumice', 'skarn', 'chert', 'halite', 'gabbro', 'basalt',

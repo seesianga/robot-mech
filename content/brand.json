@@ -1,0 +1,32 @@
+{
+  "productName": "Robot Mech",
+  "productSlug": "robot-mech",
+  "worldName": "Veyra Prime",
+  "pagesOrigin": "https://robot-mech.pages.dev",
+  "workerOrigin": "https://robot-mech.seesianga.workers.dev",
+  "legacyCompatibility": {
+    "workerOrigin": "https://veyra-prime.seesianga.workers.dev",
+    "ciRunnerLabel": "veyra-assets",
+    "d1Database": "veyra-accounts",
+    "d1DatabaseId": "fe404892-b11c-495b-9434-a597f229f5ce",
+    "credentialSaltPrefix": "veyra.prime.pilot.v1|",
+    "offlineDigestPrefix": "veyra.offline.v1|",
+    "storagePrefix": "veyra.",
+    "storageKeys": [
+      "veyra.account.v3",
+      "veyra.account.v2",
+      "veyra.device.v1",
+      "veyra.resume.v1",
+      "veyra.guest.progress.v1",
+      "veyra.bt.jump.v1",
+      "veyra.profiles.v1",
+      "veyra.session.v1",
+      "veyra.nav.v1",
+      "veyra.telemetry.v1",
+      "veyra.site.sound",
+      "veyra.hangar.coach.v1",
+      "vp.quality"
+    ],
+    "modelAssetPrefix": "vp_"
+  }
+}

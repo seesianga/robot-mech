@@ -1,7 +1,7 @@
 {
-  // Veyra Prime — game (static assets from dist/), the online match server
+  // Robot Mech — game (static assets from dist/), the online match server
   // (Durable Object at /ws) and the pilot-account API (/api/*, backed by D1).
-  "name": "veyra-prime",
+  "name": "robot-mech",
   "main": "worker/index.mjs",
   "compatibility_date": "2026-07-01",
   "assets": {

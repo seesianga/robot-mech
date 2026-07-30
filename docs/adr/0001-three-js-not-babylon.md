@@ -10,7 +10,7 @@
 The master prompt locks the stack to Babylon.js 9.x + WebGPU + Havok + pnpm/Turborepo,
 in a 13-package monorepo under `apps/` and `packages/`.
 
-The project it is being applied to is not a greenfield. It is **Veyra Prime**: a shipped,
+The project it is being applied to is not a greenfield. It is **Robot Mech**: a shipped,
 live browser mech sim on Three.js 0.180 + Rapier + npm, flat Vite layout, with a
 24-mission campaign, an input-gated tutorial, a hangar economy, pilot accounts on
 Cloudflare D1, multiplayer on a Durable Object, 51 models, 597 shipped voice lines and

@@ -15,11 +15,11 @@ browser  ── src/save/profiles.ts ──┐   write-through cache in localSto
                                    │
                             /api/* │   CORS allowlist (accountapi.mjs)
                                    ▼
-veyra-prime Worker ── worker/index.mjs
+robot-mech Worker ── worker/index.mjs
          ├── /ws     → MatchLobby Durable Object   (unchanged)
          └── /api/*  → AccountService              (server/accountcore.mjs)
                             │
-                            └── D1  "veyra-accounts"   (migrations/0001_accounts.sql)
+                            └── D1  "veyra-accounts"   (stable pre-rename database)
 ```
 
 The game itself is served from Cloudflare **Pages** (`robot-mech.pages.dev`). Pages can
@@ -27,6 +27,11 @@ host neither a Durable Object nor a D1-backed API, so both stay on the **Worker*
 browser reaches them cross-origin. `.env.production` bakes in `VITE_API_URL` and
 `VITE_MP_URL`; with neither set the client falls back to same-origin `/api` and `/ws`,
 which is correct if the game is ever served from the Worker again.
+
+The D1 database, credential salt, browser storage keys, and model namespace keep their
+pre-rename identifiers by design. Renaming them would orphan accounts, invalidate passcodes,
+discard local saves/settings, or break asset URLs. `content/brand.json` records that exact
+compatibility boundary while Robot Mech remains the only product/deployment identity.
 
 Everything above the storage adapter is runtime-agnostic, so the same service code runs
 in three places:

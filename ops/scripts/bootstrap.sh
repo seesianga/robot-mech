@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Veyra Prime — the only supported way to start work.
+# Robot Mech — the only supported way to start work.
 # docs/PLATFORM_STANDARD.md §3.2
 #
 # Splits the Drive mount (source of record) from the build directory (disposable):
@@ -29,7 +29,7 @@ if [ ! -d "$MIRROR" ]; then
   git -C "$MW_ROOT" init -q
   git -C "$MW_ROOT" add -A
   git -C "$MW_ROOT" -c user.name="bootstrap" -c user.email="bootstrap@local" \
-      commit -q -m "Import Veyra Prime at convergence (see docs/CONVERGENCE_PLAN.md)"
+      commit -q -m "Import Robot Mech at convergence (see docs/CONVERGENCE_PLAN.md)"
 
   mkdir -p "$(dirname "$MIRROR")"
   git clone -q --bare "$MW_ROOT" "$MIRROR"

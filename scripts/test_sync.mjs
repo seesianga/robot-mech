@@ -141,7 +141,7 @@ const settle = (ms = 0) => new Promise((r) => setTimeout(r, ms));
 
 // ---------------------------------------------------------------- bundle
 
-const outfile = path.join(os.tmpdir(), `veyra-profiles-${process.pid}.mjs`);
+const outfile = path.join(os.tmpdir(), `robot-mech-profiles-${process.pid}.mjs`);
 await build({
   entryPoints: [path.join(ROOT, 'src', 'save', 'profiles.ts')],
   bundle: true,
@@ -436,7 +436,7 @@ const suites = [
   ['v2 cache migration', testV2CacheMigration],
 ];
 
-console.log('Veyra Prime — client sync-engine suite\n');
+console.log('Robot Mech — client sync-engine suite\n');
 for (const [name, fn] of suites) {
   const before = failures.length;
   try {

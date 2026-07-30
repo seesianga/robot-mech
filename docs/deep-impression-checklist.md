@@ -1,4 +1,4 @@
-# Veyra Prime — Deep-Impression Checklist (Ship Gates)
+# Robot Mech — Deep-Impression Checklist (Ship Gates)
 
 These are the seven checks that define whether the game leaves the impression it was designed to leave. They are **ship gates**: 1.0 does not ship until **all seven pass in the same release-candidate build**. A pass in an earlier build does not carry forward.
 

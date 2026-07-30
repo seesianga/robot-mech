@@ -1,6 +1,6 @@
-# Veyra Prime — Production Roadmap
+# Robot Mech — Production Roadmap
 
-Working title "MechWarrior" (will be renamed before ship; internal codename **Veyra Prime**). Single-player browser mech simulator: TypeScript + Vite, Three.js (WebGL2 now, WebGPU scheduled), Rapier WASM physics, Web Audio, IndexedDB saves, all game data as JSON content files.
+Shipping title **Robot Mech**; campaign world **Veyra Prime**. Single-player browser mech simulator: TypeScript + Vite, Three.js (WebGL2 now, WebGPU scheduled), Rapier WASM physics, Web Audio, IndexedDB saves, all game data as JSON content files.
 
 Companion documents: `docs/GDD.md` (design source of truth), `docs/audio-bible.md` (voice/SFX/music specs), `docs/tripo-prompt-library.md` (asset generation prompts). Content data lives in `content/` (`mechs.json`, `weapons.json`, `missions/`, `vo/`, `audio-manifest.json`, `audio-plan.json`).
 
@@ -228,7 +228,9 @@ Dependency notation: **⟵ depends on** points at the task or milestone that mus
 - [ ] Decal persistence (battle scars remain across a mission), debris lifetime tuning.
 - [ ] Accessibility: full rebinding UI shipped, subtitles with speaker tags rendered, colorblind-safe IFF palette options, HUD minimalism toggle verified.
 - [ ] Load-time and streaming polish; IndexedDB save robustness (quota, corruption recovery).
-- [ ] Rename readiness: all "MechWarrior" working-title strings isolated behind one constant + one asset pass, so the final name drops in with a single change.
+- [x] Product rename: Robot Mech is centralized in `content/brand.json`, enforced by
+  `npm run brandcheck`, and separated from the Veyra Prime campaign setting and legacy
+  account/save/asset namespaces.
 
 ### Art (Tripo3D)
 - [ ] Hero polish pass on all 12 mechs: wear repaint QC, edge chipping, emissive tuning (Craton-X lattice), LOD pop audit.

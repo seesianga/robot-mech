@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
       const out = await handleAccountApi(request, accounts, { clientIp: req.socket.remoteAddress ?? '' });
       if (!out) {
         res.writeHead(404, { 'content-type': 'text/plain' });
-        res.end('veyra dev server: /api/* for accounts, ws:// for matches\n');
+        res.end('robot-mech dev server: /api/* for accounts, ws:// for matches\n');
         return;
       }
       const body = Buffer.from(await out.arrayBuffer());
@@ -62,7 +62,7 @@ const server = http.createServer((req, res) => {
 
 const wss = new WebSocketServer({ server });
 server.listen(PORT, () => {
-  console.log(`[mp] Veyra Prime match server (5v5 quick-match) on ws://0.0.0.0:${PORT}`);
+  console.log(`[mp] Robot Mech match server (5v5 quick-match) on ws://0.0.0.0:${PORT}`);
   console.log(`[api] pilot accounts on http://localhost:${PORT}/api  →  ${path.relative(ROOT, dbFile)}`);
 });
 

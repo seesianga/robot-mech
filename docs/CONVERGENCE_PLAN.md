@@ -1,4 +1,4 @@
-# CONVERGENCE PLAN — Veyra Prime
+# CONVERGENCE PLAN — Robot Mech
 
 **Status:** Adopted 2026-07-29. Supersedes conflicting statements in any other document.
 **Owner:** Technical Director / Executive Producer.
@@ -23,20 +23,19 @@ incompatible canons.
 **That description does not match this repository.** The audit of 2026-07-29 found:
 
 - **None of the eight named documents exist** — not under `$MW_ROOT`, not anywhere on the Drive.
-- `$MW_ROOT` is **Veyra Prime, a shipped and live game**: 14,508 lines of TypeScript across 43
+- `$MW_ROOT` is **Robot Mech, a shipped and live game**: 14,508 lines of TypeScript across 43
   files, 22 campaign runtime configs, 25 mission documents, 1,486 audio files, 357 GLB models,
   Cloudflare D1 pilot accounts with migrations, a Durable Object match server, 49 npm scripts,
   11 design documents, and two live deployments.
 - **The stack is Three.js 0.180 + Rapier3d + Vite 6** — not Babylon.js + Havok.
-- **There is no Track A / Track B canon split here.** Veyra Prime is already single-canon
-  original IP. A word-bounded scan for franchise terms across `docs/ src/ content/ scripts/
-  server/` returned **six hits, every one a self-aware disclaimer** of the form *"working title,
-  will be renamed pre-ship"*. Zero Dresari, Kentares, Steiner, Daishi, Vulture, Mauler, Uziel.
-  There is no Operation 8–9 material to port. §9 is therefore a **trademark and rename** section,
-  not an IP-laundering section.
+- **There is no Track A / Track B canon split here.** Robot Mech is single-canon original IP.
+  The shipping title was applied on 2026-07-30 and the brand gate now prevents title/config
+  drift. Zero Dresari, Kentares, Steiner, Daishi, Vulture, Mauler or Uziel ship. There is no
+  Operation 8–9 material to port. §9 therefore records the completed rename and ongoing IP
+  exclusion policy, not an IP-laundering exercise.
 - **One genuine canon leak was found, running the opposite way from the brief's assumption:**
   `src/ui/hangar.ts:326` displays `MERIDIAN ASSEMBLY` — a *Sovereign Ash* faction — in the live
-  hangar UI. Sovereign Ash canon has bled into Veyra Prime, not the reverse. Fixed in M0; the
+  hangar UI. Sovereign Ash canon has bled into Robot Mech, not the reverse. Fixed in M0; the
   retired-canon scan that caught it becomes permanent (§9.2).
 
 What *does* exist, in a different folder, is `Qoder game/sovereign-ash/` — the "Sovereign Ash:
@@ -50,7 +49,7 @@ that is fully configured and live; the design-docs-and-empty-repo project is the
 
 ### §0.1 The decision
 
-**Converge onto `$MW_ROOT` (Veyra Prime). Import Sovereign Ash's *discipline*, not its *scaffold*.**
+**Converge onto `$MW_ROOT` (Robot Mech). Import Sovereign Ash's *discipline*, not its *scaffold*.**
 
 Both projects are legally clean original IP, so the Prime Directive's purpose — only shippable IP
 ships — is already satisfied and does not favour either side. What differs is that one has a
@@ -63,7 +62,7 @@ rewrite is the most expensive line item available and buys the player nothing.
 
 **Consequences of this decision, binding:**
 
-1. Canon is **Veyra Prime**: Free Veyran Compact vs Karst Directorate, the occupied mining world
+1. Canon is **Robot Mech**: Free Veyran Compact vs Karst Directorate, the occupied mining world
    Veyra Prime, chassis Skarn → Craton. Nareth, Meridian Assembly and Helix Directorate are
    **retired**. They do not appear in source, assets, content or marketing.
 2. Renderer stays **Three.js**. The §5 upgrade is delivered *on Three*, not by porting.
@@ -215,17 +214,17 @@ Contract lines. At this budget the shape is few, senior, broad.
 ## §9. IP — trademark and rename, not laundering
 
 The brief's §9 assumed franchise-derived content needing a port into clean canon. **That work is
-already done.** Veyra Prime is original IP throughout. What remains is narrower and genuinely
+already done.** Robot Mech is original IP throughout. What remains is narrower and genuinely
 urgent.
 
 ### §9.1 The actual exposure
 
 | Item | Status | Action |
 |---|---|---|
-| Folder name `MechWarrior/` | **Live trademark of another rightsholder.** Appears in the repo path, `package.json` description, and 6 documentation strings. | Rename folder and strings at Milestone 1. Cosmetic, but it must not reach a build artefact, a commit message or a store page. |
-| Shipping title | Undecided. `veyra-prime` is the working name and the deployed subdomain. | **Trademark clearance search before Milestone 2.** A rename after asset production is a five-figure mistake. |
+| External asset-master folder | Retains a historical filesystem label outside the repository. It does not enter package metadata, built assets or public URLs. | Migrate only as a separately backed-up path operation; `MW_ROOT` path safety and asset parity are release-critical. |
+| Shipping title | **Robot Mech**, adopted 2026-07-30. Pages project and package slug: `robot-mech`. Campaign world remains Veyra Prime. | Maintain the product/world distinction in metadata, UI, documentation and release checks. |
 | World, factions, characters, chassis, weapons, VO, music | Original. Verified 2026-07-29. Frame roster is a consistent geology scheme — `flint · pumice · skarn · chert · halite · gabbro · basalt · dolerite · corundum · orogen · batholith · craton`. | Maintain. Re-scan in CI on every commit. |
-| **Retired-canon leak** | **`src/ui/hangar.ts:326` renders `MERIDIAN ASSEMBLY` — a *Sovereign Ash* faction — in the shipped hangar UI.** Correct usage elsewhere is `Free Veyran Compact` (3×). | **Fix in M0.** One line. The two-canon bleed the brief warned about is real; it just runs the other way. |
+| **Retired-canon leak** | **Fixed in M0.** `src/ui/hangar.ts:326` previously rendered `MERIDIAN ASSEMBLY` — a *Sovereign Ash* faction — in the shipped hangar UI. It now renders `FREE VEYRAN COMPACT`. | Keep the retired-canon zero-hit scan in CI to prevent recurrence. |
 | `'atlas'` test fixtures | `scripts/test_hangar.mjs:162, :243`. Not a shipped frame id — the roster above is clean. | Rename in M0. Needless exposure in a fixture. |
 | Chassis silhouettes (357 models) | Original generation, but **never audited for accidental resemblance** to protected designs. | Silhouette review against `IP_EXCLUSION_CHECKLIST.md` during the M2 re-material pass. |
 | Tripo commercial rights | Plan tier unverified. Free-tier output is **not licensed for commercial use**. | Verify the plan covers every already-generated asset **before Milestone 1 closes**. If any of the 357 models were generated on a free tier, they must be regenerated. This is a schedule risk, not a paperwork risk. |

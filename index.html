@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Veyra Prime — Browser-Based Giant-Robot Combat Simulator</title>
+<title>%%FACT:productName%% — Browser-Based Giant-Robot Combat Simulator</title>
 <meta name="description" content="Pilot multi-ton walking war machines for the Free Veyran Compact. %%FACT:chassisCount%% chassis, a %%FACT:missionCount%%-mission voiced campaign, and online multiplayer — free, in your browser, no install." />
 <meta name="theme-color" content="#05070a" />
-<link rel="canonical" href="https://robot-mech.pages.dev/" />
+<link rel="canonical" href="%%FACT:pagesOrigin%%/" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Veyra Prime" />
-<meta property="og:title" content="Veyra Prime — The Liberation Campaign" />
+<meta property="og:site_name" content="%%FACT:productName%%" />
+<meta property="og:title" content="%%FACT:productName%% — The Liberation Campaign" />
 <meta property="og:description" content="A browser-based giant-robot combat simulator. %%FACT:chassisCount%% chassis, %%FACT:missionCount%% voiced missions, online multiplayer. Free, no install." />
-<meta property="og:url" content="https://robot-mech.pages.dev/" />
-<meta property="og:image" content="https://robot-mech.pages.dev/site/art-og-1920.webp" />
+<meta property="og:url" content="%%FACT:pagesOrigin%%/" />
+<meta property="og:image" content="%%FACT:pagesOrigin%%/site/art-og-1920.webp" />
 <meta property="og:image:width" content="1920" />
 <meta property="og:image:height" content="1080" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Veyra Prime — The Liberation Campaign" />
+<meta name="twitter:title" content="%%FACT:productName%% — The Liberation Campaign" />
 <meta name="twitter:description" content="Browser-based giant-robot combat simulator. Free to play, no install." />
-<meta name="twitter:image" content="https://robot-mech.pages.dev/site/art-og-1920.webp" />
+<meta name="twitter:image" content="%%FACT:pagesOrigin%%/site/art-og-1920.webp" />
 
 <!-- The hero plate is the LCP element in every scenario, including the one
      where the live 3D stage starts, so it is preloaded off the critical-path
@@ -43,9 +43,9 @@
 {
   "@context": "https://schema.org",
   "@type": "VideoGame",
-  "name": "Veyra Prime",
-  "description": "A browser-based giant-robot combat simulator set on the occupied mining world of Veyra Prime.",
-  "url": "https://robot-mech.pages.dev/",
+  "name": "%%FACT:productName%%",
+  "description": "A browser-based giant-robot combat simulator set on the occupied mining world of %%FACT:worldName%%.",
+  "url": "%%FACT:pagesOrigin%%/",
   "genre": ["Simulation", "Action"],
   "gamePlatform": "Web browser",
   "applicationCategory": "Game",
@@ -72,7 +72,7 @@
      strand the page is worse than no preloader. -->
 <div class="boot" id="boot" aria-hidden="true">
   <div class="boot__inner">
-    <div class="boot__brand">VEYRA <em>PRIME</em></div>
+    <div class="boot__brand">ROBOT <em>MECH</em></div>
     <div class="boot__track"><i id="boot-bar"></i></div>
     <div class="boot__line" id="boot-line">Actuator lattice</div>
   </div>
@@ -82,8 +82,8 @@
 
 <header class="hdr" id="hdr">
   <div class="rail hdr__bar">
-    <a class="brand" href="#top" aria-label="Veyra Prime — home">
-      <span class="brand__name">VEYRA <em>PRIME</em></span>
+    <a class="brand" href="#top" aria-label="%%FACT:productName%% — home">
+      <span class="brand__name">ROBOT <em>MECH</em></span>
       <span class="brand__sub">Giant-Robot Combat Sim</span>
     </a>
 
@@ -486,8 +486,8 @@
         Skirmish against bots.</div>
       </details>
       <details>
-        <summary>Is Veyra Prime an original game?</summary>
-        <div class="a">Yes. Veyra Prime is an independent, 100% original work — its world, factions,
+        <summary>Is %%FACT:productName%% an original game?</summary>
+        <div class="a">Yes. %%FACT:productName%% is an independent, 100% original work — its world, factions,
         characters, chassis, weapons and audio are all original IP. It shares a genre (giant-robot
         simulation), nothing more.</div>
       </details>
@@ -517,7 +517,7 @@
   <div class="rail">
     <span class="kicker" style="justify-content:center" data-reveal>The coast is waiting</span>
     <h2 data-reveal style="--d:60ms">Your chassis is fuelled and armed</h2>
-    <a class="btn btn--primary" href="/play" data-cue="launch" data-reveal style="--d:140ms"><span aria-hidden="true">▶</span> Play Veyra Prime</a>
+    <a class="btn btn--primary" href="/play" data-cue="launch" data-reveal style="--d:140ms"><span aria-hidden="true">▶</span> Play %%FACT:productName%%</a>
   </div>
 </section>
 
@@ -528,11 +528,11 @@
     <div class="foot">
       <div class="foot-brand">
         <a class="brand" href="#top">
-          <span class="brand__name">VEYRA <em>PRIME</em></span>
+          <span class="brand__name">ROBOT <em>MECH</em></span>
           <span class="brand__sub">Giant-Robot Combat Sim</span>
         </a>
         <p>A browser-based giant-robot combat simulator. Pilot walking war machines for the Free
-        Veyran Compact and liberate the occupied mining world of Veyra Prime.</p>
+        Veyran Compact and liberate the occupied mining world of %%FACT:worldName%%.</p>
       </div>
       <div>
         <h4>Site</h4>
@@ -561,7 +561,7 @@
       </div>
     </div>
     <div class="legal">
-      <span>© 2026 Veyra Prime. An original work — all factions, characters, chassis and audio are original IP.</span>
+      <span>© 2026 %%FACT:productName%%. An original work — all factions, characters, chassis and audio are original IP.</span>
       <span>%%FACT:missionCount%% missions live</span>
     </div>
   </div>

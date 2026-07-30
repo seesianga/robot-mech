@@ -2,7 +2,7 @@
 /**
  * Verify the split deployment: the game is served from Cloudflare Pages
  * (robot-mech.pages.dev) but the match server is a Durable Object on the
- * veyra-prime Worker, because Pages cannot host a DO class.
+ * robot-mech Worker, because Pages cannot host a DO class.
  *
  * That makes multiplayer a CROSS-ORIGIN WebSocket, which nothing else in the test
  * suite covers — the local suites talk to the Node relay on :4177 and the Worker
@@ -21,7 +21,7 @@ const b=await chromium.launch({executablePath:exe,args:['--use-gl=swiftshader','
 const p=await b.newPage();
 await p.goto('https://robot-mech.pages.dev/play.html',{waitUntil:'domcontentloaded',timeout:60000});
 const res = await p.evaluate(() => new Promise((resolve) => {
-  const url = 'wss://veyra-prime.seesianga.workers.dev/ws';
+  const url = 'wss://robot-mech.seesianga.workers.dev/ws';
   const t0 = Date.now();
   const ws = new WebSocket(url);
   const out = { origin: location.origin, url, msgs: [] };

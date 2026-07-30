@@ -1,4 +1,4 @@
--- Veyra Prime — pilot accounts, sessions and campaign progress.
+-- Robot Mech — pilot accounts, sessions and campaign progress.
 -- Applied with: npm run db:migrate        (local  — .wrangler/state)
 --               npm run db:migrate:remote  (production D1)
 

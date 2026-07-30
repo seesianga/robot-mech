@@ -27,7 +27,7 @@ import { censusForBuild } from './asset_census.mjs';
  */
 export function siteTruth({ root, verbose = false } = {}) {
   return {
-    name: 'veyra-site-truth',
+    name: 'robot-mech-site-truth',
     transformIndexHtml: {
       order: 'pre',
       handler(html, ctx) {
@@ -158,6 +158,14 @@ const STRUCTURAL = [
 function deriveFacts(root) {
   const read = (p) => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
   const facts = {};
+
+  // --- product identity --------------------------------------------------
+  const brand = read('content/brand.json');
+  facts.productName = brand.productName;
+  facts.productSlug = brand.productSlug;
+  facts.worldName = brand.worldName;
+  facts.pagesOrigin = brand.pagesOrigin;
+  facts.workerOrigin = brand.workerOrigin;
 
   // --- chassis -----------------------------------------------------------
   const mechs = read('content/mechs.json').mechs;

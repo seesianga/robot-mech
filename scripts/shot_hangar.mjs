@@ -17,7 +17,7 @@ import { chromium } from 'playwright-core';
 import { fullProgress, seedOffline } from './seed_pilot.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = process.argv[2] ?? '/tmp/veyra_hangar.png';
+const OUT = process.argv[2] ?? '/tmp/robot-mech-hangar.png';
 const BASE = process.argv[3] ?? 'http://localhost:4199';
 
 const cacheDir = path.join(os.homedir(), 'Library', 'Caches', 'ms-playwright');

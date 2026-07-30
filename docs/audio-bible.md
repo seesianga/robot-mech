@@ -1,6 +1,6 @@
-# Veyra Prime — Audio Bible
+# Robot Mech — Audio Bible
 
-Complete audio production handbook for the Veyra Prime campaign (working title "MechWarrior", to be renamed pre-ship; 100% original IP). This document is the human-readable source of truth for voice design, VO scope, SFX generation prompts, and the adaptive music system. The machine-readable production plan lives in `content/audio-plan.json` — asset IDs in this document match that file exactly, and the JSON is canonical for build tooling.
+Complete audio production handbook for the Robot Mech campaign on Veyra Prime (100% original IP). This document is the human-readable source of truth for voice design, VO scope, SFX generation prompts, and the adaptive music system. The machine-readable production plan lives in `content/audio-plan.json` — asset IDs in this document match that file exactly, and the JSON is canonical for build tooling.
 
 ---
 

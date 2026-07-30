@@ -1,4 +1,4 @@
-# Veyra Prime — CI. docs/PLATFORM_STANDARD.md §10
+# Robot Mech — CI. docs/PLATFORM_STANDARD.md §10
 #
 # Two tiers, because they have very different runtimes:
 #
@@ -151,23 +151,31 @@ jobs:
           fi
           echo "source terms clean"
 
-      - name: 'Gate 7c — working-title drift (advisory)'
+      - name: 'Gate 7c — completed rename and retired-canon inventory'
         run: |
           set -euo pipefail
-          # "MechWarrior" survives as a disclaimed working title and a folder name.
-          # roadmap.md:231 tracks isolating it behind one constant before ship. This
-          # step reports the count so growth is visible; it does not fail the build.
-          # It becomes a hard gate at the rename milestone.
-          wt=$(grep -rIioE '\bmechwarrior\b' docs src content scripts server \
-                 README.md package.json --exclude-dir=_inbox | wc -l | tr -d ' ')
+          # Robot Mech is now the shipping title. Historical evidence in the
+          # convergence record and the exclusion checklist is intentionally
+          # preserved; no other source/config/document may revive the former
+          # third-party working label.
+          wt=$( { grep -rIioE '\bmechwarrior\b' docs src content scripts server \
+                 README.md package.json --exclude-dir=_inbox \
+                 --exclude=CONVERGENCE_PLAN.md \
+                 --exclude=IP_EXCLUSION_CHECKLIST.md || true; } | wc -l | tr -d ' ')
           rc=$(grep -rIioE '\b(sovereign ash|nareth|meridian assembly|helix directorate)\b' \
                  docs src content scripts server README.md package.json \
                  --exclude-dir=_inbox | wc -l | tr -d ' ')
-          echo "working-title mentions: $wt (baseline 12)"
+          echo "former working-label mentions outside historical records: $wt (required 0)"
           echo "retired-canon mentions in internal docs: $rc (baseline 24)"
-          [ "$wt" -gt 12 ] && echo "::warning::working-title mentions grew past baseline"
+          if [ "$wt" -ne 0 ]; then
+            echo "::error::former working label survived the Robot Mech rename"
+            exit 1
+          fi
           [ "$rc" -gt 24 ] && echo "::warning::retired-canon mentions grew past baseline"
           exit 0
+
+      - name: 'Gate 7d — Robot Mech identity and deployment configuration'
+        run: npm run brandcheck
 
       # ── gate 8: Drive-sync hygiene ───────────────────────────────────────
       - name: 'Gate 8 — Drive hygiene'
@@ -229,6 +237,8 @@ jobs:
     if: >-
       vars.ASSET_RUNNER == 'true' &&
       (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    # Compatibility label on the already-provisioned external runner. Rename it
+    # only together with the runner itself; a repo-only label change strands CI.
     runs-on: [self-hosted, veyra-assets]
     timeout-minutes: 120
     steps:
@@ -276,6 +286,9 @@ jobs:
 
       - name: 'Gate 2e — hangar UI'
         run: node scripts/test_hangar_ui.mjs
+
+      - name: 'Gate 7e — Robot Mech rendered identity'
+        run: npm run brandui -- http://localhost:4199
 
       # Serial by design. Measured locally: m04 alone 45 s and m21b alone 100 s, but
       # the two together at the old hardcoded concurrency of 2 did not finish inside

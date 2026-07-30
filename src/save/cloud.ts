@@ -55,7 +55,7 @@ export class OfflineError extends Error {
 /**
  * Where the account API lives — same resolution order as the match server:
  *   local/LAN  → the Node dev server on :4177
- *   configured → VITE_API_URL (production: the veyra-prime Worker)
+ *   configured → VITE_API_URL (production: the robot-mech Worker)
  *   otherwise  → same-origin /api
  */
 export function apiBase(): string {

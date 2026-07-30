@@ -13,7 +13,8 @@
  *    pre-Veyra setting and must not reach player-facing assets. Model filenames are a
  *    shipping surface: they appear in network requests, in the bundle, and in the
  *    provenance record. Stamping retired canon onto 153 shipped files to satisfy the
- *    letter of §6.3 would violate its own Prime Directive 1. `vp_` is Veyra Prime.
+ *    letter of §6.3 would violate its own Prime Directive 1. `vp_` is the stable
+ *    pre-rename asset namespace and must not be rewritten during a product rebrand.
  *
  * 2. No <variant> segment where no variant exists. The spec's example carries `_base`
  *    on an asset with one look. An always-constant segment is noise that people learn

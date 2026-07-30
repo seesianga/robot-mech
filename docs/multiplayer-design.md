@@ -1,8 +1,8 @@
-# Veyra Prime Multiplayer — Design & Production Package
+# Robot Mech Multiplayer — Design & Production Package
 
 The complete PvP suite specification, adapted from the source brief to what this project
-actually is: an original-IP browser mech sim (TypeScript + three.js, static-hosted, no cloud
-backend yet). Deliverables in order: design doc (§1), netcode & backend plan (§2),
+actually is: an original-IP browser mech sim (TypeScript + three.js, Pages-hosted with a
+Cloudflare Worker backend). Deliverables in order: design doc (§1), netcode & backend plan (§2),
 ElevenLabs package (§3), Tripo3D package (§4), integration tickets (§5), phased delivery
 (§6), acceptance criteria (§7). **What is already implemented and playable is marked
 [SHIPPED]; everything else is the forward plan.**
@@ -11,10 +11,10 @@ ElevenLabs package (§3), Tripo3D package (§4), integration tickets (§5), phas
 
 | Variable | Resolution |
 |---|---|
-| {GAME_NAME} | Veyra Prime (original IP — the brief's franchise framing is adapted by role, never by name) |
+| {GAME_NAME} | Robot Mech (original IP — the brief's franchise framing is adapted by role, never by name) |
 | {GAME_ENGINE} | In-house TS engine (Vite + three.js + Rapier debris) |
-| {NETCODE_STACK} | **[SHIPPED] Online: Cloudflare Worker + Durable Object match server** (`worker/`, deployed at https://veyra-prime.seesianga.workers.dev — the game and the match server share one origin; clients connect to `wss://…/ws`). LAN/dev fallback: the same protocol on a Node relay (`npm run mp`, port 4177), auto-selected when the site is served from a local address. Phase 2 = authoritative server-side mech sim at 30 Hz on the same protocol. |
-| {BACKEND} | **Cloudflare Workers (free plan)** — static assets + Durable Object rooms. Match results are still session-local; persistent results/matchmaking are the Phase-2 backend ticket. |
+| {NETCODE_STACK} | **[SHIPPED] Online: Cloudflare Pages at https://robot-mech.pages.dev plus the cross-origin `robot-mech` Worker and Durable Object match server** (`worker/`, `wss://robot-mech.seesianga.workers.dev/ws`). LAN/dev fallback: the same protocol on a Node relay (`npm run mp`, port 4177), auto-selected when the site is served from a local address. Phase 2 = authoritative server-side mech sim at 30 Hz on the same protocol. |
+| {BACKEND} | **Cloudflare Worker + Durable Object + D1** — match state in a Durable Object; pilot accounts and cloud saves in the stable `veyra-accounts` D1 database. Match results are still session-local; persistent results/matchmaking are the Phase-2 backend ticket. |
 | {MAX_PLAYERS} | 8 |
 | {REGIONS} | n/a for LAN Phase 1; Phase 2 picks regions with the backend |
 | {VOICE_CHAT_STACK} | None (text-free ping/bark comms by design; no runtime TTS, no player-name synthesis) |

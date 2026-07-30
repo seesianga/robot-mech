@@ -1,4 +1,4 @@
-// Veyra Prime — Cloudflare Worker. Three jobs on one origin:
+// Robot Mech — Cloudflare Worker. Three jobs on one origin:
 //   /api/*  pilot accounts + cloud campaign saves (D1)
 //   /ws     the ONLINE match server (MatchLobby Durable Object)
 //   *       the built game (static assets)

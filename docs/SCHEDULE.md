@@ -51,7 +51,7 @@ in this window, before asset production resumes (§2.4).
 Make asset production repeatable and rights-clean.
 
 - §6 `tools-tripo`: batch runner, de-light check, QC gate, provenance records
-- §6.3 rename to the `sa_<domain>_<biome>_<name>_<lod>` namespace
+- §6.3 retain the compatibility-safe `vp_<domain>_<biome>_<name>_<lod>` namespace
 - §6.6 QC gate in CI: triangle budgets, ORM packing, colour space, normal orientation
 - §7 `tools-eleven`: **on Pro** — masters archived, 192 kbps delivery encoded locally
 - §7.6 forced-alignment subtitles; §7.7 loudness measured in CI
@@ -102,6 +102,6 @@ Only now does §1.2 step 6 open.
 | Tripo commercial rights unconfirmed | 51 models already ship; free-tier output is not licensed commercially | Settle in M1, before more assets. Legal, not technical. |
 | ElevenLabs on Creator | Every line rendered now loses its master permanently; takes are not reproducible | Upgrade before the next VO batch, not before mastering |
 | ElevenLabs quota 89% consumed | ~25–40 lines of headroom | Meter per §2.4 |
-| Working title is a live trademark | Rename after asset production is five figures | Clearance in M1; `roadmap.md:231` tracks isolating the strings |
+| Product-title drift after the Robot Mech rename | Metadata, runtime and deployment identities can diverge | `content/brand.json` plus the fail-closed brand gate run in CI and release packaging |
 | No asset runner in CI | Nothing in CI builds with assets or plays a mission | Close per the three options in `ci.yml`'s `build-assets` job |
 | Solo maintainer, Drive-only mirror | Bus factor and backup both | GitHub remote now exists; keep pushing both |

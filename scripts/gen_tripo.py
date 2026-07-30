@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Tripo3D asset generation for Veyra Prime, at the max-quality configuration
+Tripo3D asset generation for Robot Mech, at the max-quality configuration
 baked into the shared TripoClient (model v3.1-20260211, detailed PBR textures,
 no face cap, auto real-world scale).
 

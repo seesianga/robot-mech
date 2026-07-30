@@ -1,8 +1,8 @@
-# VEYRA PRIME
+# ROBOT MECH
 
-*Working folder name "MechWarrior" — note that name is an existing franchise's trademark, so the
-shipping title must go through the same trademark pass the spec already requires for mech names.
-Everything inside is 100% original IP: the world, factions, characters, chassis, weapons, VO, and audio.*
+**Robot Mech** is the shipping product name. The campaign takes place on the mining world
+**Veyra Prime**; the Free Veyran Compact, Karst Directorate, characters, chassis, weapons,
+VO, and audio are original IP.
 
 > **Production plan (adopted 2026-07-29).** This project is converging on a single set of standards
 > for the 18-month production run. Read [docs/CONVERGENCE_PLAN.md](docs/CONVERGENCE_PLAN.md) first —
@@ -12,9 +12,9 @@ Everything inside is 100% original IP: the world, factions, characters, chassis,
 > [PIPELINE_STANDARD.md](docs/PIPELINE_STANDARD.md) ·
 > [PLATFORM_STANDARD.md](docs/PLATFORM_STANDARD.md).
 >
-> **Before doing anything else, run `ops/scripts/bootstrap.sh`.** This tree is not yet under
-> version control; the script creates the repository, moves the working tree off the Drive mount,
-> and is the only supported way to start work.
+> Use the exact `seesianga/robot-mech` checkout. `ops/scripts/bootstrap.sh` remains the supported
+> bootstrap path for build machines that need the external model, audio, texture, and site-asset
+> trees linked into `public/`.
 
 A single-player, browser-based **giant-robot combat simulator** — you pilot multi-ton walking war
 machines for the Free Veyran Compact, liberating the occupied mining world Veyra Prime from the
@@ -45,13 +45,14 @@ progress.
 
 ## Run it
 
-**Play online: https://veyra-prime.seesianga.workers.dev** — the root URL is the marketing
-landing page (mw5mercs-style layout, self-contained `index.html`; media regenerated with
-`node scripts/site_shots.mjs` while `npm run preview` runs); the game itself lives at
-**/play** (`play.html`). Game + online match server
-(Cloudflare Worker static assets + a Durable Object match lobby at `/ws`). Redeploy with
-`npm run build && npx wrangler deploy` (3-D models are excluded from upload via
-`public/.assetsignore` — Workers' 25 MiB/file limit).
+**Play online: https://robot-mech.pages.dev/** — the Cloudflare Pages project serves the
+marketing site and game (`/play`). The account API and Durable Object multiplayer service
+run at `https://robot-mech.seesianga.workers.dev` (`/api` and `/ws`). The previous
+`veyra-prime` Worker remains a cold/manual rollback endpoint; it is not the production client
+target. Rolling Pages back to it requires reverting the Worker URLs and CSP, rebuilding, and
+redeploying Pages—there is no automatic runtime fallback.
+Deploy the Worker first with `npm run deploy:worker`, then publish the same verified package
+to Pages with `npm run deploy:pages`.
 
 ```bash
 npm install

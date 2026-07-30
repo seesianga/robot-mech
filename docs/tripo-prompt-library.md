@@ -1,6 +1,6 @@
-# Veyra Prime — Tripo3D Asset Generation Handbook
+# Robot Mech — Tripo3D Asset Generation Handbook
 
-Internal codename: **Veyra Prime** (working title "MechWarrior", to be renamed pre-ship).
+Shipping product: **Robot Mech**. Campaign world: **Veyra Prime**.
 This document is the single source of truth for generating, cleaning, rigging, and shipping
 every 3D asset in the game via the Tripo3D pipeline. The machine-readable companion is
 `assets/tripo/manifest.json` — prompt strings, LOD budgets, texture tiers, and priorities in

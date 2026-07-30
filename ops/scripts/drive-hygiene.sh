@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Veyra Prime — Drive-mount hygiene sweep. docs/PLATFORM_STANDARD.md §3.2
+# Robot Mech — Drive-mount hygiene sweep. docs/PLATFORM_STANDARD.md §3.2
 #
 # Run nightly, and ALWAYS after any session where two machines may have touched
 # the folder. Reports by default; --fix removes litter.

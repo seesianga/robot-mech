@@ -7,6 +7,7 @@ import { controlsSummary } from '../engine/bindings';
 import { PRESETS, setQuality, type QualityName } from '../engine/quality';
 import { HangarService, type DeckFrame } from '../save/hangar';
 import { HangarScreen } from './hangar';
+import { PRODUCT_NAME, WORLD_NAME } from '../brand';
 
 export interface StageInfo {
   stage: number;
@@ -179,7 +180,7 @@ export class StartScreen {
   }
 
   private header(): string {
-    return `<h1>VEYRA PRIME</h1>
+    return `<h1>${PRODUCT_NAME.toUpperCase()}</h1>
       <h2>THE LIBERATION CAMPAIGN · 24 MISSIONS · 7 OPERATIONS</h2>`;
   }
 
@@ -337,7 +338,7 @@ export class StartScreen {
           <div class="menu">
             <button class="primary" id="mm-tut">TRAINING — BASIC TRAINING (~7 MIN) ${progress.tutorialDone ? '' : '<span class="rec">· RECOMMENDED</span>'}</button>
             ${phrow}
-            <button id="mm-camp">CAMPAIGN — LIBERATE VEYRA PRIME (24 MISSIONS)</button>
+            <button id="mm-camp">CAMPAIGN — LIBERATE ${WORLD_NAME.toUpperCase()} (24 MISSIONS)</button>
             <button id="mm-hangar">HANGAR — FRAMES &amp; DEPLOYMENT BAYS${bayNudge}</button>
             <button id="mm-mp">MULTIPLAYER</button>
             <button id="mm-set">SETTINGS</button>

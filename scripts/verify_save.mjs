@@ -45,7 +45,7 @@ server.listen(PORT);
 // localhost, so this MUST be our relay — a leftover one from another harness
 // would quietly take the traffic and write somewhere else, which reads as a
 // mystery failure. Fail loudly instead.
-const accountsFile = path.join(os.tmpdir(), `veyra-savetest-${Date.now()}.json`);
+const accountsFile = path.join(os.tmpdir(), `robot-mech-savetest-${Date.now()}.json`);
 const relayLog = [];
 const relay = spawn(process.execPath, [path.join(ROOT, 'server', 'mp-server.mjs')], {
   stdio: ['ignore', 'pipe', 'pipe'],

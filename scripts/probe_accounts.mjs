@@ -23,7 +23,12 @@ const argOf = (name, fallback) => {
   const i = args.indexOf(name);
   return i >= 0 && args[i + 1] ? args[i + 1] : fallback;
 };
-const BASE = (argOf('--url', process.env.VEYRA_API_URL ?? 'https://veyra-prime.seesianga.workers.dev/api')).replace(/\/+$/, '');
+const BASE = (argOf(
+  '--url',
+  process.env.ROBOT_MECH_API_URL
+    ?? process.env.VEYRA_API_URL
+    ?? 'https://robot-mech.seesianga.workers.dev/api',
+)).replace(/\/+$/, '');
 const ORIGIN = argOf('--origin', 'https://robot-mech.pages.dev');
 
 let failures = 0;
@@ -46,7 +51,7 @@ async function call(path, { method = 'GET', token = '', body } = {}) {
 const callsign = `Probe ${Math.random().toString(36).slice(2, 8)}`;
 const passcode = `pc-${Math.random().toString(36).slice(2, 10)}`;
 
-console.log(`Veyra Prime — pilot registry probe\n  API      ${BASE}\n  Origin   ${ORIGIN}\n  Callsign ${callsign}\n`);
+console.log(`Robot Mech — pilot registry probe\n  API      ${BASE}\n  Origin   ${ORIGIN}\n  Callsign ${callsign}\n`);
 
 // ---- reachability + CORS ----------------------------------------------------
 console.log('reachability');

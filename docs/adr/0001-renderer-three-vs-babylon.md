@@ -12,7 +12,7 @@ lighting, volumetric lighting, Frame Graph, textured area lights and OpenPBR gro
 levers this project needs.
 
 The brief described `$MW_ROOT` as design documents with no shipped configuration. **The audit of
-2026-07-29 found the opposite**: `$MW_ROOT` is Veyra Prime, a live game built on **Three.js
+2026-07-29 found the opposite**: `$MW_ROOT` is Robot Mech, a live game built on **Three.js
 r0.180 + Rapier3d 0.14 + Vite 6**, comprising 14,508 lines of TypeScript, 22 campaign runtime
 configs, 1,486 audio files, 357 models, a Cloudflare D1 account service, a Durable Object match
 server, and two live deployments.

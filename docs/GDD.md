@@ -1,7 +1,7 @@
-# VEYRA PRIME — Game Design Document
+# ROBOT MECH — Game Design Document
 
-**Working title:** "MechWarrior" (placeholder — WILL be renamed before ship)
-**Internal codename:** Veyra Prime
+**Shipping title:** Robot Mech
+**Campaign world:** Veyra Prime
 **Document status:** Source of truth. All content, code, and asset decisions defer to this document. Conflicts are resolved here first, then propagated to content JSON.
 **IP policy:** 100% original IP. No names, lore, lines, designs, or mechanics-as-branding from any existing franchise may appear in the game, its content files, its marketing, or its asset prompts.
 

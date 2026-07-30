@@ -152,8 +152,9 @@ must only be read by server-side tooling in `scripts/` and `ops/`.
   The landing page must never pull the sim.
 - Assets stream by biome. A mission loads its biome kit, its `lighting_profile` environment and its
   audio bank — not the whole catalogue.
-- **Cloudflare Workers enforce a 25 MiB per-file limit.** `public/.assetsignore` already excludes
-  3D models from Worker upload; this constraint is load-bearing and must survive any deploy change.
+- **Cloudflare Workers enforce a 25 MiB per-file limit.** The full verified release package,
+  including 3D models, is uploaded. `scripts/prune_release.mjs` and `scripts/verify_release.mjs`
+  enforce per-file size and package file-count gates before every Worker and Pages deployment.
 - KTX2 + meshopt on every mesh (PIPELINE §6.6). Currently unmet and a real download-size win.
 
 ## §8.2 Caching and headers

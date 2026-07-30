@@ -13,7 +13,7 @@ import WebSocketLib from 'ws';
 // Node's global WebSocket negotiates over HTTP/2 against Cloudflare and fails with
 // 1006; the ws package forces HTTP/1.1 Upgrade, which is what the DO expects.
 const WS = WebSocketLib;
-const URL = process.argv[2] ?? 'wss://veyra-prime.seesianga.workers.dev/ws';
+const URL = process.argv[2] ?? 'wss://robot-mech.seesianga.workers.dev/ws';
 const t0 = Date.now();
 const at = () => `+${((Date.now() - t0) / 1000).toFixed(1)}s`;
 

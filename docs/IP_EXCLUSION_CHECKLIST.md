@@ -5,21 +5,19 @@
 
 ---
 
-## A. Baseline — measured 2026-07-29
+## A. Baseline — measured 2026-07-29, product rename applied 2026-07-30
 
 ### A.1 Franchise-protected terms: clean
 
-A word-bounded scan across `docs/ src/ content/ scripts/ server/ README.md package.json` returned
-**6 working-title disclaimers and nothing else**:
+The shipping product is now **Robot Mech**, centralized in `content/brand.json`. The brand gate
+binds the package, HTML/social metadata, visible wordmarks, Pages project, production Worker,
+CSP and built release to that identity. **Veyra Prime remains the campaign world**, not the
+product title.
 
-| File | Nature |
-|---|---|
-| `README.md` | "Working folder name … is an existing franchise's trademark" |
-| `docs/GDD.md:3` | "Working title … placeholder — WILL be renamed before ship" |
-| `docs/roadmap.md:3, :231` | Working-title note + a rename-readiness task |
-| `docs/audio-bible.md:3` | "working title …, to be renamed pre-ship; 100% original IP" |
-| `docs/tripo-prompt-library.md:3` | "Internal codename: Veyra Prime (working title …)" |
-| `package.json:6` | Description string |
+The previous third-party working label is prohibited outside the two exact historical records
+that explain the convergence decision and this checklist. The external asset-master folder may
+retain its filesystem name until a separately planned path migration; that path is never emitted
+into the build.
 
 **Zero** hits for Dresari, Kentares, Steiner, Davion, Liao, Marik, Kurita, Daishi, Vulture,
 Timberwolf, Madcat, Loki, Mauler, Uziel, Inner Sphere, ComStar.
@@ -32,25 +30,22 @@ flint · pumice · skarn · chert · halite · gabbro
 basalt · dolerite · corundum · orogen · batholith · craton
 ```
 
-**The exposure is the working title, not the game.** There is no franchise-derived material to
-port, which is why CONVERGENCE §9 is a *trademark and rename* section rather than an
-IP-laundering one.
+There is no franchise-derived material to port. Product/world names and legacy compatibility
+identifiers are now explicitly separated in `content/brand.json`.
 
-**Target after Milestone 1: zero hits, including disclaimers** — the rename removes the need for them.
-
-### A.2 Retired-canon leak — FOUND, one live occurrence
+### A.2 Retired-canon leak — FOUND and fixed
 
 Adding the B.2 retired-canon terms to the scan caught a real defect on its first run:
 
-> **`src/ui/hangar.ts:326` renders `MERIDIAN ASSEMBLY — CHIEF OKAFOR'S SERVICE BAY` in the
-> shipped hangar UI.**
+> Before the M0 fix, **`src/ui/hangar.ts:326` rendered
+> `MERIDIAN ASSEMBLY — CHIEF OKAFOR'S SERVICE BAY` in the shipped hangar UI.**
 
-`Meridian Assembly` is a **Sovereign Ash faction**, not a Veyra Prime one. Correct usage across
-shipped source and content is `Free Veyran Compact` (3 occurrences) and `Karst Directorate`. This
-single string is retired canon that has already bled into the live product.
+`Meridian Assembly` is a **Sovereign Ash faction**, not a Robot Mech one. Correct usage across
+shipped source and content is `Free Veyran Compact` and `Karst Directorate`. The live string was
+replaced with `FREE VEYRAN COMPACT — CHIEF OKAFOR'S SERVICE BAY`; the retired-canon scan stays in
+CI to prevent a recurrence.
 
-- **Action: fix in M0.** One-line change. It is trivial to fix and would have been very awkward to
-  discover in a store screenshot.
+- **Action completed in M0.** The one-line shipped-UI correction is verified by the zero-hit scan.
 - **This is the evidence for keeping B.2 in the scan permanently.** The two-canon bleed the brief
   warned about is real; it simply runs in the opposite direction from what the brief assumed.
 
@@ -58,7 +53,7 @@ Also flagged, and **not** defects:
 
 | Hit | Verdict |
 |---|---|
-| `Okafor` (`src/ui/`, `content/audio-plan.json`) | **Original Veyra Prime character** — Chief Nadi Okafor, Dozie Okafor "Tremor". Not a leak. |
+| `Okafor` (`src/ui/`, `content/audio-plan.json`) | **Original Robot Mech character** — Chief Nadi Okafor, Dozie Okafor "Tremor". Not a leak. |
 | `pylon_meridian` / "Resonance Pylon Meridian" (`content/campaign/m22.json`) | Ordinary English word used as an object name. Review for confusion with A.2, but not canon bleed. |
 | "UV0 atlas" (`docs/tripo-prompt-library.md:58`) | **Texture atlas** — standard technical vocabulary. See the §B.1 false-positive note. |
 | `'atlas'` (`scripts/test_hangar.mjs:162, :243`) | **Test fixture strings only** — not a shipped frame id. Rename anyway in M0: a fixture named after a protected chassis is needless exposure. |
@@ -114,7 +109,7 @@ Signed by a named owner at each milestone. An unchecked box blocks the milestone
 
 ### M0 — Foundations
 
-- [ ] **Fix `src/ui/hangar.ts:326` — `MERIDIAN ASSEMBLY` → `FREE VEYRAN COMPACT`** (§A.2). One line, shipped UI, retired canon.
+- [x] **Fixed `src/ui/hangar.ts:326` — `MERIDIAN ASSEMBLY` → `FREE VEYRAN COMPACT`** (§A.2).
 - [ ] Rename the `'atlas'` test fixtures in `scripts/test_hangar.mjs:162, :243`
 - [ ] Folder renamed off the trademark; path no longer contains it
 - [ ] `package.json` description updated
