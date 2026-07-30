@@ -74,7 +74,6 @@ const CSS = `
 #navarrow.rm svg { animation: none !important; }
 .ebar { position: absolute; transform: translate(-50%,-100%); width: 72px; pointer-events: none; display: none; text-align: center; }
 .ebar .nm { font-size: 9px; color: #ffb0a0; letter-spacing: 1px; text-shadow: 0 1px 2px #000; white-space: nowrap; }
-.ebar .mc { display: block; margin: 1px auto; background: rgba(10,14,12,.45); border-radius: 2px; }
 .ebar .bg { height: 5px; background: rgba(10,14,12,.75); border: 1px solid rgba(255,120,90,.65); }
 .ebar .f { height: 100%; background: #ff5533; }
 #alert { position: absolute; left: 50%; top: 34%; transform: translateX(-50%); font-size: 26px; letter-spacing: 6px; color: var(--red);
@@ -420,8 +419,10 @@ export class HUD {
     } else (this.els.leadpip as HTMLElement).style.display = 'none';
   }
 
-  /** Floating opponent health bars: overall hull integrity over every living
-   *  Directorate machine that is on screen. */
+  /** Compact opponent markers: name and overall hull integrity over every
+   *  living Directorate machine that is on screen. Full paper dolls stay in
+   *  the self and selected-target readouts so fixed-size diagrams never cover
+   *  distant mechs. */
   private drawEnemyBars(mechs: Mech[], camera: THREE.PerspectiveCamera): void {
     const seen = new Set<number>();
     for (const m of mechs) {
@@ -435,7 +436,7 @@ export class HUD {
       if (!bar) {
         bar = document.createElement('div');
         bar.className = 'ebar';
-        bar.innerHTML = `<div class="nm"></div><canvas class="mc" width="44" height="48"></canvas><div class="bg"><div class="f"></div></div>`;
+        bar.innerHTML = `<div class="nm"></div><div class="bg"><div class="f"></div></div>`;
         (bar.querySelector('.nm') as HTMLElement).textContent = m.def.name.toUpperCase();
         this.root.appendChild(bar);
         this.enemyBars.set(m.id, bar);
@@ -458,8 +459,6 @@ export class HUD {
       const fill = bar.querySelector('.f') as HTMLElement;
       fill.style.width = `${Math.round(frac * 100)}%`;
       fill.style.background = frac > 0.6 ? '#39d98a' : frac > 0.3 ? '#ffb347' : '#ff5533';
-      // per-part readout: the same paper-doll, miniature
-      this.drawDoll(bar.querySelector('.mc') as HTMLCanvasElement, m, null, 0.44);
     }
     // drop bars for mechs that no longer exist
     for (const [id, bar] of this.enemyBars) {

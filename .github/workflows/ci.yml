@@ -70,6 +70,9 @@ jobs:
       - name: 'Gate 2e.0 — hangar generated-frame source'
         run: npm run hangarpreview:source
 
+      - name: 'Gate 2f.0 — compact enemy markers'
+        run: npm run enemybars:source
+
       # ── gate 6: no secrets anywhere in the tree or a build artefact ──────
       - name: 'Gate 6 — no secrets committed'
         run: |

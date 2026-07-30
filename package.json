@@ -38,6 +38,7 @@
     "hangarui": "node scripts/test_hangar_ui.mjs",
     "hangarpreview:source": "node scripts/verify_hangar_preview_source.mjs",
     "hangarpreview": "node scripts/test_hangar_preview.mjs",
+    "enemybars:source": "node scripts/verify_enemy_bars.mjs",
     "sitefonts": "python3 scripts/build_site_fonts.py",
     "siteart": "python3 scripts/gen_site_art.py",
     "siteaudio": "node scripts/gen_site_audio.mjs",
