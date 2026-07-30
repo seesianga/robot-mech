@@ -39,6 +39,54 @@ export interface PostChain {
   active: boolean;
 }
 
+/**
+ * GTAOPass renders its depth/normal buffer with one opaque override material. That is
+ * correct for meshes, but it discards a SpriteMaterial's texture alpha and alphaTest:
+ * a distant prop impostor then contributes its entire square billboard to AO, which is
+ * composited over the correctly cut-out beauty pass as a dark rectangle.
+ *
+ * The beauty RenderPass runs before GTAO, so sprites only need to be hidden while GTAO
+ * builds and composites its buffers. Hide an active sprite's LOD ancestor rather than
+ * only the sprite itself; THREE.LOD.update() runs during rendering and would otherwise
+ * make the distance-selected sprite visible again. Real meshes, including their cast
+ * shadows, remain unchanged.
+ */
+class SpriteSafeGTAOPass extends GTAOPass {
+  private readonly aoHiddenObjects: THREE.Object3D[] = [];
+
+  override render(
+    renderer: THREE.WebGLRenderer,
+    writeBuffer: THREE.WebGLRenderTarget,
+    readBuffer: THREE.WebGLRenderTarget,
+    deltaTime: number,
+    maskActive: boolean,
+  ): void {
+    const hidden = this.aoHiddenObjects;
+
+    this.scene.traverse((object) => {
+      if (!(object as THREE.Sprite).isSprite || !object.visible) return;
+
+      let target = object;
+      for (let parent = object.parent; parent && parent !== this.scene; parent = parent.parent) {
+        if ((parent as THREE.LOD).isLOD) {
+          target = parent;
+          break;
+        }
+      }
+      if (!target.visible || hidden.includes(target)) return;
+      hidden.push(target);
+      target.visible = false;
+    });
+
+    try {
+      super.render(renderer, writeBuffer, readBuffer, deltaTime, maskActive);
+    } finally {
+      for (const object of hidden) object.visible = true;
+      hidden.length = 0;
+    }
+  }
+}
+
 export function createPostChain(
   renderer: THREE.WebGLRenderer,
   scene: THREE.Scene,
@@ -75,7 +123,7 @@ export function createPostChain(
       scene: THREE.Scene, camera: THREE.Camera, w: number, h: number,
       parameters?: object, aoParameters?: object, pdParameters?: object,
     ) => GTAOPass;
-    const gtao = new (GTAOPass as unknown as GTAOCtor)(scene, camera, w, h, undefined, {
+    const gtao = new (SpriteSafeGTAOPass as unknown as GTAOCtor)(scene, camera, w, h, undefined, {
       // Radius in world metres. A mech is ~12 m; 0.4 m reads panel seams and foot
       // contact without haloing the silhouette against the terrain behind it.
       radius: 0.4,
