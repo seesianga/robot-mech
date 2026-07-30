@@ -2,9 +2,8 @@
 /**
  * Browser-level identity check for the built landing page and game menu.
  *
- * Veyra Prime is valid as the campaign world. This test guards the places where
- * it would be a product-name regression: titles, wordmarks, social metadata,
- * FAQ/CTA/copyright, and the main-menu heading.
+ * Guards the product identity across titles, wordmarks, social metadata,
+ * FAQ/CTA/copyright, and the post-entry main-menu heading.
  *
  * Prerequisite: npm run preview
  * Usage: node scripts/test_brand_ui.mjs [baseUrl]
@@ -93,8 +92,8 @@ await page.locator('#guest').click();
 await page.locator('#bt-skip').click();
 await page.waitForSelector('#mm-camp', { timeout: 10_000 });
 const campaign = (await page.locator('#mm-camp').textContent())?.trim() ?? '';
-check('campaign keeps the world name', campaign.includes('LIBERATE VEYRA PRIME'), campaign);
-check('campaign does not use product as the planet', !campaign.includes('LIBERATE ROBOT MECH'), campaign);
+check('campaign uses the Robot Mech name', campaign === 'CAMPAIGN — ROBOT MECH (24 MISSIONS)', campaign);
+check('campaign omits the old name', !campaign.includes('VEYRA PRIME'), campaign);
 
 check('browser console clean', errors.length === 0, errors.slice(0, 4).join(' | '));
 check('network responses clean', badResponses.length === 0, badResponses.slice(0, 4).join(' | '));

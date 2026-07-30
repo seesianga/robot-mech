@@ -91,6 +91,16 @@ requireText('public/_headers', /connect-src[^;\n]*https:\/\/robot-mech\.seesiang
 requireText('README.md', /https:\/\/robot-mech\.pages\.dev\//, 'canonical Pages URL');
 requireText('.github/workflows/ci.yml', /runs-on:\s*\[self-hosted,\s*veyra-assets\]/, 'stable asset-runner label');
 requireText('server/accountapi.mjs', /service:\s*'robot-mech-accounts'/, 'Robot Mech health service name');
+requireLiteral(
+  'src/ui/start.ts',
+  'CAMPAIGN — ${PRODUCT_NAME.toUpperCase()} (24 MISSIONS)',
+  'Robot Mech campaign menu label',
+);
+forbidText(
+  'src/ui/start.ts',
+  /CAMPAIGN[^`\n]*WORLD_NAME/,
+  'a campaign menu label sourced from the retired world-name copy',
+);
 
 // A manifest-only assertion is not a compatibility gate. Pin every retained
 // identifier at the runtime or release site that actually consumes it.
