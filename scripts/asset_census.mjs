@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 
 /**
@@ -64,10 +65,35 @@ export function scanAssets(root) {
     return Boolean(file) && fs.existsSync(path.join(root, 'public', file.replace(/^\//, '')));
   });
 
+  // Content hashes — the only record git has of what the binaries actually ARE.
+  //
+  // public/models is gitignored (400 MB, Drive-only), so rebuilding every shipped
+  // asset produces an EMPTY COMMIT. That happened: 39 objective structures were
+  // rebuilt from prop budgets to struct budgets, changing 13 MB of shipped geometry,
+  // and `git status` said "working tree clean". The id list could not see it — ids do
+  // not change when the bytes do — and neither could the QC baseline, which records
+  // which models fail rather than what they contain.
+  //
+  // Hashing the files fixes that for ~12 KB of JSON and no binary in the repo: a
+  // rebuild now shows up as a diff in this file, so the commit history records that
+  // the assets moved even though it cannot record the assets.
+  //
+  // Truncated to 12 hex chars. This is a change-detector, not a security boundary —
+  // 48 bits is far past collision risk for 153 files, and a full hash triples the
+  // size of the noisiest part of the diff.
+  const modelHashes = {};
+  for (const f of fs.readdirSync(path.join(root, 'public', 'models')).sort()) {
+    if (!f.endsWith('.glb')) continue;
+    modelHashes[f] = createHash('sha256')
+      .update(fs.readFileSync(path.join(root, 'public', 'models', f)))
+      .digest('hex').slice(0, 12);
+  }
+
   return {
     models: [...modelIds].sort(),
     textureFiles: textureFiles.sort(),
     shippedVoiceKeys: shippedVoiceKeys.sort(),
+    modelHashes,
   };
 }
 
@@ -82,6 +108,15 @@ export function readCensus(root) {
   const c = JSON.parse(fs.readFileSync(p, 'utf8'));
   for (const k of ['models', 'textureFiles', 'shippedVoiceKeys']) {
     if (!Array.isArray(c[k])) throw new Error(`[asset-census] ${CENSUS_PATH}: "${k}" must be an array`);
+  }
+  // Required, not optional. An absent hash map would silently restore the old
+  // behaviour where a full asset rebuild is invisible — the bug this key exists to
+  // close. Better to fail and be regenerated than to degrade quietly.
+  if (!c.modelHashes || typeof c.modelHashes !== 'object') {
+    throw new Error(
+      `[asset-census] ${CENSUS_PATH}: "modelHashes" is missing. Regenerate with `
+      + '`npm run assetcensus` on a machine that has the asset trees.',
+    );
   }
   return c;
 }
@@ -109,6 +144,18 @@ export function diffCensus(committed, actual) {
         + (removed.length ? `\n    - ${removed.slice(0, 8).join(', ')}${removed.length > 8 ? ` (+${removed.length - 8} more)` : ''}` : ''),
       );
     }
+  }
+
+  // Content drift: same files, different bytes. This is the case the id lists cannot
+  // see, and the reason a 13 MB rebuild of 39 shipped structures committed as nothing.
+  const was = committed.modelHashes ?? {};
+  const now = actual.modelHashes ?? {};
+  const changed = Object.keys(now).filter((f) => f in was && was[f] !== now[f]);
+  if (changed.length) {
+    out.push(
+      `modelHashes: ${changed.length} file(s) rebuilt (same name, different bytes)`
+      + `\n    ~ ${changed.slice(0, 8).join(', ')}${changed.length > 8 ? ` (+${changed.length - 8} more)` : ''}`,
+    );
   }
   return out;
 }
