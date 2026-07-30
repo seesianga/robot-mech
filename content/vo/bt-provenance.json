@@ -1718,5 +1718,131 @@
     "sha256_raw": "dc17912f90d1e2aad8db7f05ba70a84fe740b20bec99a5cde38b9912b0547d72",
     "generated_at": "2026-07-25T14:34:12.747Z",
     "mastered_at": "2026-07-25T14:34:12.747Z"
+  },
+  {
+    "line_id": "vo_bt_a4a_ok",
+    "text": "Good. <break time=\"0.25s\" /> It always knows the way.",
+    "seed": 52087,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "fTPV0sO3GQVxFtW80E7F",
+    "sha256_raw": "84bc4030ea44b070c996086d3358029e4ba7bf40a43b4c7c26b92074de7cd191",
+    "sha256_mastered": "cb75a118d6cf8deb057ef497569f9871396b2a2d72fc697ea798d7dba1aa20e6",
+    "generated_at": "2026-07-30T01:58:43.355Z",
+    "mastered_at": "2026-07-30T02:05:41.080Z"
+  },
+  {
+    "line_id": "vo_bt_a4a_h1",
+    "text": "Confirm, then follow the arrow.",
+    "seed": 52088,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "5HpoX1Kgq2NoHust5ISL",
+    "sha256_raw": "6be601d87d6a36006e19a234966a1a602507067236718537b309da9520f93d30",
+    "sha256_mastered": "5602e430813fe7ff8c8b9e167e67a465a52052ced984a7b89232ec81629430e9",
+    "generated_at": "2026-07-30T01:58:44.815Z",
+    "mastered_at": "2026-07-30T02:05:41.293Z"
+  },
+  {
+    "line_id": "vo_bt_a4b_ok",
+    "text": "Waypoint reached. <break time=\"0.25s\" /> That's the whole trick.",
+    "seed": 52089,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "sK6pKsuvRklKpZZUE1uO",
+    "sha256_raw": "3485cac91cfd68c5d8f8f0869c7f89c61b90c7cee475ae889cb0b8ff28a1252e",
+    "sha256_mastered": "c5963020cce6153c2dafdb414244a960b0177cd0c162058d6de3f33cbab816ed",
+    "generated_at": "2026-07-30T01:58:46.388Z",
+    "mastered_at": "2026-07-30T02:05:41.576Z"
+  },
+  {
+    "line_id": "vo_bt_a4b_h1",
+    "text": "Turn until the arrow points up.",
+    "seed": 52090,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "hE6DeBjIvMh0PEW6ZEMt",
+    "sha256_raw": "48e328fa232af917cd565bb3bea43fc2f71d92537f39ef4a5b0773008e7da2c1",
+    "sha256_mastered": "4dad10ddf9c9c151278574ce6f6476e5178b24f3b7bf879ad80140f8dae3e89a",
+    "generated_at": "2026-07-30T01:58:47.832Z",
+    "mastered_at": "2026-07-30T02:05:41.726Z"
+  },
+  {
+    "line_id": "vo_bt_a4a_prompt",
+    "text": "The arrow points your way. Confirm.",
+    "seed": 52091,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "hGJRqIwti9XEZPpMiNeM",
+    "sha256_raw": "1d649e8f187039cfcfebe93e08b84fb9fbe2642669660c1c8c7dc7a8095db93b",
+    "sha256_mastered": "f00aadf241d75a06f2c4b2b0cb0d3268051b8fb510e6bad3052638e5f4baff1e",
+    "generated_at": "2026-07-30T01:58:49.299Z",
+    "mastered_at": "2026-07-30T02:05:41.885Z"
+  },
+  {
+    "line_id": "vo_bt_a4b_prompt",
+    "text": "Face the arrow. Walk to it.",
+    "seed": 52092,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": "uLliNcpMWQymCjeZT3Jz",
+    "sha256_raw": "c628b9a19f3008cc29014c027e6c50178cc16d0bbe35e89c08fc63eaa6330021",
+    "sha256_mastered": "f36d42de4cc267cadf50571e300568286c2ab76e8601d4ceca1083376b5591bf",
+    "generated_at": "2026-07-30T01:58:50.719Z",
+    "mastered_at": "2026-07-30T02:05:42.094Z"
   }
 ]

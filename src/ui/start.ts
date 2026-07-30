@@ -4,6 +4,7 @@ import { MECHS } from '../sim/content';
 import { MpClient } from '../net/mpclient';
 import { netSession } from '../net/session';
 import { controlsSummary } from '../engine/bindings';
+import { PRESETS, setQuality, type QualityName } from '../engine/quality';
 import { HangarService, type DeckFrame } from '../save/hangar';
 import { HangarScreen } from './hangar';
 
@@ -45,6 +46,12 @@ const CSS = `
 #startscreen .phrow { display: flex; gap: 5px; justify-content: center; margin: -2px 0 4px; }
 #startscreen .phrow button { padding: 4px 8px; font-size: 11px; letter-spacing: 1px; }
 #startscreen .phrow button.donep { border-color: #ffb347; color: #ffb347; }
+#startscreen .quality-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; margin: 6px 0; }
+#startscreen .quality-grid button { min-height: 36px; padding: 6px 8px; white-space: normal; }
+#startscreen .quality-grid button.sel { background: rgba(255,179,71,.2); border-color: #ffb347; color: #ffb347; }
+#startscreen .quality-state { color: rgba(200,230,215,.75); font-size: 10px; line-height: 1.6; letter-spacing: 1px; margin: 7px 0; }
+#startscreen .quality-state b { color: #3fd8f0; }
+#startscreen .settings-panel { box-sizing: border-box; max-height: calc(100vh - 180px); overflow-y: auto; scrollbar-gutter: stable; }
 #startscreen .stub { color: rgba(200,230,215,.75); font-size: 12px; line-height: 1.9; letter-spacing: 1px; margin: 18px 0 10px; }
 #startscreen .sync { font-size: 10px; letter-spacing: 2px; margin-top: 8px; color: rgba(126,230,176,.55); }
 #startscreen .sync.pending, #startscreen .sync.syncing { color: #3fd8f0; }
@@ -97,6 +104,7 @@ export class StartScreen {
   private mpDeployIid = '';
   private sync: SyncStatus = { state: 'clean' };
   private migrateCallsign = '';
+  private selectedQuality: QualityName;
 
   constructor(
     private store: ProfileStore,
@@ -104,7 +112,9 @@ export class StartScreen {
     private onIgnite: (stage: number, profile: Profile | null, branch?: 'a' | 'b') => void,
     private onGesture?: () => void,
     private playSfx?: (id: string, volume?: number) => void,
+    private appliedQuality: QualityName = 'balanced',
   ) {
+    this.selectedQuality = appliedQuality;
     this.hangar = new HangarService(store);
     const style = document.createElement('style');
     style.textContent = CSS;
@@ -370,11 +380,17 @@ export class StartScreen {
       // route; the pilot may disable layers here; nothing may disable all of
       // them — the compass tick survives the minimal preset.
       const p = loadNavPrefs();
+      const qualityPending = this.selectedQuality !== this.appliedQuality;
+      const qualityButtons = (Object.keys(PRESETS) as QualityName[]).map((name) => {
+        const selected = name === this.selectedQuality;
+        return `<button data-quality="${name}" class="${selected ? 'sel' : ''}" aria-pressed="${selected}">
+          ${PRESETS[name].label.toUpperCase()}</button>`;
+      }).join('');
       const row = (id: string, label: string, value: string): string =>
         `<button data-set="${id}" style="display:flex;justify-content:space-between;width:100%;box-sizing:border-box;text-align:left;">
           <span>${label}</span><span style="color:#3fd8f0">${value}</span></button>`;
       this.el.innerHTML = `${this.header()}
-        <div class="panel2">
+        <div class="panel2 settings-panel">
           ${pilotline}
           <div class="pilotline">SETTINGS — GUIDANCE (PATHLIGHT)</div>
           <div class="menu" style="gap:5px">
@@ -389,6 +405,15 @@ export class StartScreen {
             ${row('assistReposition', 'REPOSITION ASSIST', p.assistReposition ? 'ALLOWED' : 'NEVER')}
             ${row('scale', 'NAV HUD SCALE', `${Math.round(p.scale * 100)}%`)}
           </div>
+          <div class="pilotline" style="margin-top:18px">SETTINGS — GRAPHICS QUALITY</div>
+          <div class="quality-grid">${qualityButtons}</div>
+          <div class="quality-state">
+            RUNNING: <b>${PRESETS[this.appliedQuality].label.toUpperCase()}</b><br>
+            ${qualityPending
+              ? `SAVED: <b>${PRESETS[this.selectedQuality].label.toUpperCase()}</b> · RELOAD REQUIRED TO APPLY`
+              : 'THIS PRESET IS ACTIVE'}
+          </div>
+          ${qualityPending ? '<button class="primary" id="quality-reload">APPLY &amp; RELOAD</button>' : ''}
           <div class="stub">Audio and controls tuning open after the next refit.<br>Guidance settings apply from the next sortie.</div>
           <button class="link" id="back">◂ back</button>
         </div>`;
@@ -413,6 +438,25 @@ export class StartScreen {
           saveNavPrefs(prefs);
           this.playSfx?.('ui.bt.confirm', 0.5);
           this.renderReady();
+        };
+      }
+      for (const b of this.el.querySelectorAll<HTMLButtonElement>('[data-quality]')) {
+        b.onclick = () => {
+          const name = b.dataset.quality as QualityName;
+          setQuality(name);
+          this.selectedQuality = name;
+          this.playSfx?.('ui.bt.confirm', 0.5);
+          this.renderReady();
+        };
+      }
+      const reload = this.el.querySelector<HTMLButtonElement>('#quality-reload');
+      if (reload) {
+        reload.onclick = () => {
+          // ?quality= is a QA override with priority over the saved preference.
+          // Remove only that parameter so the selected preset wins after boot.
+          const next = new URL(location.href);
+          next.searchParams.delete('quality');
+          location.replace(next.href);
         };
       }
       (this.el.querySelector('#back') as HTMLButtonElement).onclick = () => { this.view = 'main'; this.renderReady(); };

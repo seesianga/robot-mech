@@ -97,13 +97,14 @@ function measure(file) {
 }
 
 function master(rawMp3, outWav, targetLufs = -16) {
-  // full linear gain to target, then a true-peak limiter holds -1 dBTP —
-  // short lines have hot consonant peaks that a pure gain cap can't clear.
+  // Full linear gain to target, then leave 0.5 dB of inter-sample headroom
+  // below the -1 dBTP delivery ceiling. ffmpeg's alimiter limits sample peaks,
+  // so a -1.0 dBFS setting can still reconstruct above -1 dBTP.
   // One correction pass compensates the loudness the limiter takes back.
   let gain = targetLufs - measure(rawMp3).i;
   for (let pass = 0; pass < 2; pass++) {
     execFileSync(FFMPEG, ['-y', '-i', rawMp3, '-af',
-      `${TRIM},volume=${gain.toFixed(2)}dB,alimiter=limit=0.891251:attack=2:release=30:level=false`,
+      `${TRIM},volume=${gain.toFixed(2)}dB,alimiter=limit=0.841395:attack=2:release=30:level=false`,
       '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', outWav], { stdio: 'ignore' });
     const got = measure(outWav).i;
     if (Math.abs(got - targetLufs) <= 0.8) break;
@@ -143,11 +144,13 @@ for (const r of rows) {
     const buf = fs.readFileSync(rawFile);
     if (FFMPEG) master(rawFile, outFile);
     else fs.copyFileSync(rawFile, outFile);
+    const mastered = fs.readFileSync(outFile);
     provById.set(id, {
       line_id: id, text, seed, voice_id: VOICE, model_id: 'eleven_multilingual_v2',
       settings: SETTINGS, output_format: 'mp3_44100_192', mastered: !!FFMPEG,
       request_id: provReq.get(id) ?? provById.get(id)?.request_id ?? null,
       sha256_raw: crypto.createHash('sha256').update(buf).digest('hex'),
+      sha256_mastered: crypto.createHash('sha256').update(mastered).digest('hex'),
       generated_at: provById.get(id)?.generated_at ?? new Date().toISOString(),
       mastered_at: new Date().toISOString(),
     });

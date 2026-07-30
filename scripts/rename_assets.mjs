@@ -9,11 +9,10 @@
  *
  * Two deliberate departures, both recorded rather than silently taken:
  *
- * 1. The prefix is `vp_`, not `sa_`. "sa" is Sovereign Ash — the canon this project
- *    does NOT ship. docs/tutorial-design.md records it as the retired source canon, and
- *    CI gate 7a hard-fails "sovereign ash" on shipping surfaces. Model filenames are a
+ * 1. The prefix is `vp_`, not the legacy `sa_`. That prefix belongs to the retired
+ *    pre-Veyra setting and must not reach player-facing assets. Model filenames are a
  *    shipping surface: they appear in network requests, in the bundle, and in the
- *    provenance record. Stamping a retired canon onto 153 shipped files to satisfy the
+ *    provenance record. Stamping retired canon onto 153 shipped files to satisfy the
  *    letter of §6.3 would violate its own Prime Directive 1. `vp_` is Veyra Prime.
  *
  * 2. No <variant> segment where no variant exists. The spec's example carries `_base`

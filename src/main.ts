@@ -1171,6 +1171,7 @@ function boot(): void {
       (stage, prof, branch) => void launch(stage, prof, branch),
       primeTheme,
       (id, vol) => { void audio.play(id, { bus: 'ui', volume: vol ?? 0.7 }); },
+      quality.name,
     ).show();
   }
 

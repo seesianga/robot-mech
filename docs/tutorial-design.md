@@ -28,9 +28,9 @@ Hard rules, all lint- or code-enforced:
 
 ## §0.1 Variable resolution & standing assumptions
 
-The source brief targets a fictional Babylon.js monorepo ("Sovereign Ash: Nareth Protocol",
-instructor MIRA-7). Per the brief's own instruction it is adapted to `{EXISTING_INPUT}` /
-the shipped engine. Resolution:
+The source brief targets a fictional Babylon.js monorepo with a different retired setting
+and instructor (MIRA-7). Per the brief's own instruction it is adapted to
+`{EXISTING_INPUT}` / the shipped engine. Resolution:
 
 | Brief | Resolution here |
 |---|---|

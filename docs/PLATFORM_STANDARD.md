@@ -50,7 +50,7 @@ additions are marked **NEW**.
 │  ├─ BACKLOG_POST_LAUNCH.md        NEW  M13–M24 and everything deferred
 │  ├─ IP_EXCLUSION_CHECKLIST.md     NEW  signed off per milestone
 │  ├─ adr/                          NEW  one ADR per irreversible decision
-│  ├─ _inbox/                       NEW  archived sovereign-ash reference, READ-ONLY
+│  ├─ _inbox/                       NEW  archived inherited reference, READ-ONLY
 │  └─ GDD.md  audio-bible.md  roadmap.md  tripo-prompt-library.md  … (existing, kept)
 ├─ src/            existing — engine, sim, world, ui, net, save, site, audio, ai, physics
 ├─ server/         existing — accounts, match, hangar, progress merge

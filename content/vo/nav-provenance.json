@@ -1,0 +1,86 @@
+[
+  {
+    "line_id": "vo_nav_follow",
+    "text": "Follow the light.",
+    "seed": 53001,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": null,
+    "sha256_raw": "93bd92cdc2cc37d5e55e46c42257e91c48a1a11a94a3dea6929e691b84f1eb0b",
+    "sha256_mastered": "4bc123dbbf55e20ef7b8c4fb749c57ce79d86fdbc2dde06d7d464afe0c9da674",
+    "generated_at": "2026-07-30T02:02:02.963Z",
+    "mastered_at": "2026-07-30T02:05:42.000Z"
+  },
+  {
+    "line_id": "vo_nav_turn_around",
+    "text": "Turn around.",
+    "seed": 53002,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": null,
+    "sha256_raw": "e0e5269752292e65f1a2685e1f3fd6fe33a102fb08be804b57244846a2ec1617",
+    "sha256_mastered": "cbfc281a1eebf73f8ac2af6855a90188ff8c1ab689fac5aa0581e429ca21eabc",
+    "generated_at": "2026-07-30T02:02:04.305Z",
+    "mastered_at": "2026-07-30T02:05:42.000Z"
+  },
+  {
+    "line_id": "vo_nav_reroute",
+    "text": "Path blocked. Recalculating.",
+    "seed": 53003,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": null,
+    "sha256_raw": "243c6005958f3737b06a925b01852a08837e55e4cd8af5efd21cb2e084257074",
+    "sha256_mastered": "db736682618ccc69e34bc179fde53a9a9525c89c6bcbdb989d1218fc4c63289a",
+    "generated_at": "2026-07-30T02:02:05.794Z",
+    "mastered_at": "2026-07-30T02:05:43.000Z"
+  },
+  {
+    "line_id": "vo_nav_arrive",
+    "text": "Waypoint reached.",
+    "seed": 53004,
+    "voice_id": "SAz9YHcvj6GT2YYXdXww",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.9,
+      "similarity_boost": 0.75,
+      "style": 0,
+      "use_speaker_boost": true,
+      "speed": 0.95
+    },
+    "output_format": "mp3_44100_192",
+    "mastered": true,
+    "request_id": null,
+    "sha256_raw": "3190c6441861c84907a7a0a12d57e7d8926b401aefbeb5234ece8141f21b9ca7",
+    "sha256_mastered": "61f5ffd8c5fe815ea1d1054702171615cc5b06ca93aa2f8b63f0caee045fdd85",
+    "generated_at": "2026-07-30T02:02:07.152Z",
+    "mastered_at": "2026-07-30T02:05:43.000Z"
+  }
+]

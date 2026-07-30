@@ -88,21 +88,22 @@ jobs:
       #  * Word boundaries are mandatory. Unbounded 'thor' matches 'author' and
       #    produced ~93 false positives.
       #  * 'atlas' is NOT a term here — "texture atlas" is standard vocabulary.
-      #  * The naive one-list version failed instantly on 16 files, nearly all
-      #    legitimate: IP_EXCLUSION_CHECKLIST.md *is* the banned-term list, the
-      #    design docs carry a disclaimed "Working title: MechWarrior (placeholder
-      #    — WILL be renamed before ship)" header, and tutorial-design.md explains
-      #    which source canon was retired. A gate that cries wolf gets ignored, so
-      #    it is split by blast radius instead.
+      #  * IP_EXCLUSION_CHECKLIST.md is the term inventory, while the convergence
+      #    plan and renderer-migration ADR preserve exact names as historical
+      #    evidence. Gate 7b excludes only those named records. The former working
+      #    folder label is tracked internally by 7c and prohibited on every
+      #    shipping surface by 7a.
       - name: 'Gate 7a — shipping surfaces (zero tolerance)'
         run: |
           set -euo pipefail
           # Anything here reaches players. No exceptions, no allowlist.
           TERMS='dresari|kentares|steiner|davion|liao|marik|kurita|comstar|clanner'
           TERMS="$TERMS"'|daishi|vulture|timberwolf|madcat|mauler|uziel'
-          TERMS="$TERMS"'|battlemech|battletech|mechwarrior|inner sphere'
-          TERMS="$TERMS"'|sovereign ash|nareth|meridian assembly|helix directorate'
-          hits=$(grep -rInoE "\\b($TERMS)\\b" src content index.html play.html || true)
+          TERMS="$TERMS"'|battlemech|battletech|mechwarrior|inner[[:space:]_-]+sphere'
+          TERMS="$TERMS"'|sovereign[[:space:]_-]+ash|nareth'
+          TERMS="$TERMS"'|meridian[[:space:]_-]+assembly|helix[[:space:]_-]+directorate'
+          hits=$(grep -rniaoE "\\b($TERMS)\\b" \
+                  src content worker public ./*.html || true)
           if [ -n "$hits" ]; then
             echo "$hits"
             echo "::error::franchise or retired-canon term on a SHIPPING surface"
@@ -110,26 +111,45 @@ jobs:
           fi
           echo "shipping surfaces clean"
 
-      - name: 'Gate 7b — franchise proper nouns repo-wide'
+      - name: 'Gate 7b — protected and retired terms in source'
         run: |
           set -euo pipefail
-          # These have no legitimate use anywhere except the banned-term list itself
-          # and the read-only inherited briefs in docs/_inbox/.
-          TERMS='dresari|kentares|steiner|davion|liao|marik|kurita|comstar'
-          TERMS="$TERMS"'|daishi|timberwolf|madcat|mauler|uziel'
-          TERMS="$TERMS"'|battlemech|battletech|inner sphere'
-          hits=$(grep -rInoE "\\b($TERMS)\\b" \
+          # The internal working-folder label is handled by 7c; all other protected
+          # proper nouns are forbidden in source regardless of capitalization.
+          PROTECTED='dresari|kentares|steiner|davion|liao|marik|kurita|comstar|clanner'
+          PROTECTED="$PROTECTED"'|daishi|vulture|timberwolf|madcat|mauler|uziel'
+          PROTECTED="$PROTECTED"'|battlemech|battletech|inner[[:space:]_-]+sphere'
+          protected_hits=$(grep -rInioE "\\b($PROTECTED)\\b" \
                   --exclude-dir=node_modules --exclude-dir=.git \
-                  --exclude-dir=_inbox --exclude-dir=.github \
+                  --exclude-dir=_inbox \
                   --exclude=IP_EXCLUSION_CHECKLIST.md \
-                  --exclude=vite-site-truth.mjs \
-                  docs src content scripts server README.md package.json || true)
-          if [ -n "$hits" ]; then
-            echo "$hits"
-            echo "::error::franchise proper noun outside the checklist and docs/_inbox/"
+                  --exclude=CONVERGENCE_PLAN.md \
+                  docs src content scripts server worker README.md package.json || true)
+          if [ -n "$protected_hits" ]; then
+            echo "$protected_hits"
+            echo "::error::protected proper noun outside the exact history exclusions"
             exit 1
           fi
-          echo "no stray franchise proper nouns"
+
+          # Retired-canon terms are also hard failures in source. Preserve only
+          # the exact convergence record, renderer migration ADR, checklist, and
+          # inherited read-only briefs that document why those terms were retired.
+          RETIRED='sovereign[[:space:]_-]+ash|nareth'
+          RETIRED="$RETIRED"'|meridian[[:space:]_-]+assembly'
+          RETIRED="$RETIRED"'|helix[[:space:]_-]+directorate'
+          retired_hits=$(grep -rInioE "\\b($RETIRED)\\b" \
+                  --exclude-dir=node_modules --exclude-dir=.git \
+                  --exclude-dir=_inbox \
+                  --exclude=IP_EXCLUSION_CHECKLIST.md \
+                  --exclude=CONVERGENCE_PLAN.md \
+                  --exclude=0001-renderer-three-vs-babylon.md \
+                  docs src content scripts server worker README.md package.json || true)
+          if [ -n "$retired_hits" ]; then
+            echo "$retired_hits"
+            echo "::error::retired-canon term outside the exact history exclusions"
+            exit 1
+          fi
+          echo "source terms clean"
 
       - name: 'Gate 7c — working-title drift (advisory)'
         run: |
@@ -143,10 +163,10 @@ jobs:
           rc=$(grep -rIioE '\b(sovereign ash|nareth|meridian assembly|helix directorate)\b' \
                  docs src content scripts server README.md package.json \
                  --exclude-dir=_inbox | wc -l | tr -d ' ')
-          echo "working-title mentions: $wt (baseline 16)"
-          echo "retired-canon mentions in internal docs: $rc (baseline 26)"
-          [ "$wt" -gt 16 ] && echo "::warning::working-title mentions grew past baseline"
-          [ "$rc" -gt 26 ] && echo "::warning::retired-canon mentions grew past baseline"
+          echo "working-title mentions: $wt (baseline 12)"
+          echo "retired-canon mentions in internal docs: $rc (baseline 24)"
+          [ "$wt" -gt 12 ] && echo "::warning::working-title mentions grew past baseline"
+          [ "$rc" -gt 24 ] && echo "::warning::retired-canon mentions grew past baseline"
           exit 0
 
       # ── gate 8: Drive-sync hygiene ───────────────────────────────────────
@@ -180,8 +200,10 @@ jobs:
         run: |
           set -euo pipefail
           npm run build
-          # Cloudflare Workers reject any single file over 25 MiB. public/.assetsignore
-          # keeps models out of the upload; this asserts nothing else crept over.
+          # Cloudflare Pages Direct Upload rejects any single file over 25 MiB.
+          # This fast job has no Drive-backed asset trees, so it guards the
+          # asset-less application bundle; the asset runner below checks the
+          # complete release package.
           big=$(find dist -type f -size +25M || true)
           if [ -n "$big" ]; then echo "$big"; echo "::error::file exceeds the Workers 25 MiB limit"; exit 1; fi
           echo "dist total: $(du -sh dist | cut -f1)"
@@ -210,7 +232,14 @@ jobs:
     runs-on: [self-hosted, veyra-assets]
     timeout-minutes: 120
     steps:
+      # The asset trees are gitignored symlinks provisioned once by
+      # ops/scripts/bootstrap.sh. checkout's default git clean -ffdx would
+      # delete them before this job could verify or build the complete release.
+      # release:prepare below hash-checks the preserved trees against the
+      # committed census, so stale or substituted assets still fail closed.
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -222,9 +251,10 @@ jobs:
         run: |
           set -euo pipefail
           test -d public/models || { echo "::error::assets missing on this runner"; exit 1; }
-          npm run build
-          # Cloudflare Workers reject any single file over 25 MiB. public/.assetsignore
-          # keeps models out of the upload; this asserts nothing else crept over.
+          npm run release:prepare
+          # release:prepare checks complete asset census/hash parity, source-only
+          # pruning, required headers and Cloudflare Pages limits. Keep this
+          # independent size assertion as a readable CI failure.
           big=$(find dist -type f -size +25M || true)
           if [ -n "$big" ]; then echo "$big"; echo "::error::file exceeds the Workers 25 MiB limit"; exit 1; fi
           echo "dist total: $(du -sh dist | cut -f1)"

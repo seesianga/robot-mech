@@ -26,6 +26,7 @@ const UI_OUT = path.join(ROOT, 'public', 'audio', 'ui');
 const CSV = path.join(ROOT, 'content', 'vo', 'nav-lines.csv');
 const MANIFEST = path.join(ROOT, 'content', 'audio-manifest.json');
 const PROVENANCE = path.join(ROOT, 'content', 'vo', 'nav-provenance.json');
+const SFX_PROVENANCE = path.join(ROOT, 'content', 'vo', 'nav-sfx-provenance.json');
 fs.mkdirSync(RAW, { recursive: true });
 fs.mkdirSync(UI_OUT, { recursive: true });
 
@@ -94,7 +95,9 @@ function master(rawMp3, outWav, targetLufs = -16) {
   let gain = targetLufs - measure(rawMp3).i;
   for (let pass = 0; pass < 2; pass++) {
     execFileSync(FFMPEG, ['-y', '-i', rawMp3, '-af',
-      `${TRIM},volume=${gain.toFixed(2)}dB,alimiter=limit=0.891251:attack=2:release=30:level=false`,
+      // alimiter is sample-peak based; -1.5 dBFS leaves inter-sample headroom
+      // below the -1 dBTP delivery ceiling.
+      `${TRIM},volume=${gain.toFixed(2)}dB,alimiter=limit=0.841395:attack=2:release=30:level=false`,
       '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', outWav], { stdio: 'ignore' });
     const got = measure(outWav).i;
     if (Math.abs(got - targetLufs) <= 0.8) break;
@@ -106,6 +109,7 @@ const manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 let provenance = [];
 try { provenance = JSON.parse(fs.readFileSync(PROVENANCE, 'utf8')); } catch { /* fresh */ }
 const provById = new Map(provenance.map((p) => [p.line_id, p]));
+const provReq = new Map();
 
 let ok = 0, skip = 0, fail = 0;
 for (const r of rows) {
@@ -125,16 +129,21 @@ for (const r of rows) {
       });
       if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
       fs.writeFileSync(rawFile, Buffer.from(await res.arrayBuffer()));
+      provReq.set(id, res.headers.get('request-id') ?? res.headers.get('x-request-id') ?? null);
       await new Promise((r2) => setTimeout(r2, 350));
     }
     const buf = fs.readFileSync(rawFile);
     if (FFMPEG) master(rawFile, outFile);
     else fs.copyFileSync(rawFile, outFile);
+    const mastered = fs.readFileSync(outFile);
     provById.set(id, {
       line_id: id, text, seed, voice_id: VOICE, model_id: 'eleven_multilingual_v2',
       settings: SETTINGS, output_format: 'mp3_44100_192', mastered: !!FFMPEG,
+      request_id: provReq.get(id) ?? provById.get(id)?.request_id ?? null,
       sha256_raw: crypto.createHash('sha256').update(buf).digest('hex'),
+      sha256_mastered: crypto.createHash('sha256').update(mastered).digest('hex'),
       generated_at: provById.get(id)?.generated_at ?? new Date().toISOString(),
+      mastered_at: new Date().toISOString(),
     });
     console.log(`  vo ${id}`);
     ok++;
@@ -157,9 +166,27 @@ if (!fs.existsSync(pingOut)) {
       body: JSON.stringify({ text: PING_PROMPT, duration_seconds: 0.5, prompt_influence: 0.7 }),
     });
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-    fs.writeFileSync(pingRaw, Buffer.from(await res.arrayBuffer()));
+    const requestId = res.headers.get('request-id') ?? res.headers.get('x-request-id') ?? null;
+    const generatedAt = new Date().toISOString();
+    const raw = Buffer.from(await res.arrayBuffer());
+    fs.writeFileSync(pingRaw, raw);
     if (FFMPEG) master(pingRaw, pingOut, -18);
     else fs.copyFileSync(pingRaw, pingOut);
+    const mastered = fs.readFileSync(pingOut);
+    fs.writeFileSync(SFX_PROVENANCE, `${JSON.stringify({
+      asset_id: 'ui.nav.ping',
+      prompt: PING_PROMPT,
+      endpoint: 'sound-generation',
+      duration_seconds: 0.5,
+      prompt_influence: 0.7,
+      output_format: 'mp3_44100_192',
+      mastered: !!FFMPEG,
+      request_id: requestId,
+      sha256_raw: crypto.createHash('sha256').update(raw).digest('hex'),
+      sha256_mastered: crypto.createHash('sha256').update(mastered).digest('hex'),
+      generated_at: generatedAt,
+      mastered_at: new Date().toISOString(),
+    }, null, 2)}\n`);
     console.log('  sfx ui.nav.ping');
     ok++;
   } catch (e) {

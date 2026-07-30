@@ -1,0 +1,14 @@
+{
+  "asset_id": "ui.nav.ping",
+  "prompt": "Single short clean navigation sonar ping, soft synthetic cockpit locator blip, bright but gentle, 300 milliseconds, no reverb tail, UI sound",
+  "endpoint": "sound-generation",
+  "duration_seconds": 0.5,
+  "prompt_influence": 0.7,
+  "output_format": "mp3_44100_192",
+  "mastered": true,
+  "request_id": null,
+  "sha256_raw": "fa84e98b844dc47eb7cf607165343e8bc89470eb02dc2a4acf4cb9fd65876334",
+  "sha256_mastered": "6855b5a0ef3d74f42e83ac367ad5ffd79f53deb8e0ba3d7060d54751d6334d37",
+  "generated_at": "2026-07-30T02:05:45.000Z",
+  "mastered_at": "2026-07-30T02:05:45.000Z"
+}

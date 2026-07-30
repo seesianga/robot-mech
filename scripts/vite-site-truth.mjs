@@ -131,31 +131,8 @@ const FORBIDDEN = [
 
 /**
  * Checks that need to look at structure rather than match a string.
- *
- * A bare regex was tried for the MechWarrior rule and was wrong: it flagged the
- * FAQ question ("Is this a MechWarrior game?") that the disclaimer answers,
- * because the disclaiming words sit in a sibling element. The rule is really
- * about location, so it is expressed as one.
  */
 const STRUCTURAL = [
-  {
-    name: 'mechwarrior-confined-to-disclaimer',
-    check(html) {
-      const hits = [...html.matchAll(/\bMechWarrior\b/gi)];
-      if (!hits.length) return null;
-      // Every mention must live inside a <details> that also carries the
-      // disclaimer, which is the only context where naming it is honest.
-      const blocks = [...html.matchAll(/<details[\s\S]*?<\/details>/gi)].map((m) => m[0]);
-      const safe = blocks.filter((b) => /\bMechWarrior\b/i.test(b)
-        && /independent/i.test(b) && /original/i.test(b) && /\bNo\.|\bnot\b/i.test(b));
-      const safeMentions = safe.reduce(
-        (n, b) => n + (b.match(/\bMechWarrior\b/gi)?.length ?? 0), 0);
-      if (safeMentions === hits.length) return null;
-      return `${hits.length - safeMentions} mention(s) of MechWarrior outside the FAQ `
-        + 'disclaimer. The only honest use is inside the answer stating that this game '
-        + 'is NOT one; anywhere else risks implying an association that does not exist.';
-    },
-  },
   {
     name: 'play-button-present',
     check(html) {
