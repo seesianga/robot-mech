@@ -64,6 +64,12 @@ jobs:
           node scripts/test_sync.mjs
           node scripts/test_nav_unit.mjs
 
+      # The full visual transition runs in the asset-backed browser tier below.
+      # This source-level half runs on every push and prevents the obsolete
+      # procedural-first preview path from being reintroduced between nightlies.
+      - name: 'Gate 2e.0 — hangar generated-frame source'
+        run: npm run hangarpreview:source
+
       # ── gate 6: no secrets anywhere in the tree or a build artefact ──────
       - name: 'Gate 6 — no secrets committed'
         run: |
@@ -286,6 +292,9 @@ jobs:
 
       - name: 'Gate 2e — hangar UI'
         run: node scripts/test_hangar_ui.mjs
+
+      - name: 'Gate 2e.1 — hangar generated-frame first paint'
+        run: npm run hangarpreview
 
       - name: 'Gate 7e — Robot Mech rendered identity'
         run: npm run brandui -- http://localhost:4199

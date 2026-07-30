@@ -63,8 +63,9 @@ function key(id: string, lod: Lod): string {
 }
 
 /**
- * Load a model, or resolve null if it has not been generated. Never rejects —
- * a missing asset must degrade to the procedural fallback, not break the frame.
+ * Load a model, or resolve null if it has not been generated. Never rejects:
+ * each caller owns its fallback policy (procedural gameplay geometry, a static
+ * plate, or a neutral unavailable state such as the hangar preview).
  */
 export function loadModel(id: string, lod: Lod = 'lod1'): Promise<THREE.Group | null> {
   const k = key(id, lod);
@@ -85,7 +86,7 @@ export function loadModel(id: string, lod: Lod = 'lod1'): Promise<THREE.Group | 
   return p.catch(() => {
     missing.add(k);
     cache.delete(k);
-    console.warn(`[assets] ${k}.glb unavailable — falling back to procedural geometry`);
+    console.warn(`[assets] ${k}.glb unavailable — using the caller's fallback state`);
     return null;
   });
 }

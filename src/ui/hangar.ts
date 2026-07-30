@@ -1,7 +1,5 @@
 import * as THREE from 'three';
-import { Mech } from '../sim/mech';
-import { mechDef, MECHS, WEAPONS } from '../sim/content';
-import { buildMechVisual, COMPACT_PALETTE } from '../world/mechfactory';
+import { MECHS, WEAPONS } from '../sim/content';
 import { loadModel, instantiate, fitToHeight, orientToGameForward } from '../world/assets';
 import type { Profile, ProfileStore } from '../save/profiles';
 import { HangarService, errorCopy, BAY_COUNT, type FrameInstance, type Account } from '../save/hangar';
@@ -81,9 +79,13 @@ const CSS = `
 #hangarscreen .hg-stats b { color: #7ee6b0; font-weight: normal; }
 #hangarscreen .hg-actions { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 12px; border-top: 1px solid rgba(126,230,176,.2); }
 #hangarscreen .turn { height: 220px; border-bottom: 1px solid rgba(126,230,176,.2); position: relative; flex: none; }
-#hangarscreen .turn canvas { width: 100%; height: 100%; display: block; }
-#hangarscreen .turn .fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  color: rgba(126,230,176,.4); font-size: 40px; letter-spacing: 8px; }
+#hangarscreen .turn canvas { width: 100%; height: 100%; display: block; visibility: hidden; }
+#hangarscreen .turn[data-preview-state="ready"] canvas { visibility: visible; }
+#hangarscreen .turn .preview-status { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: rgba(126,230,176,.62); font-size: 11px; letter-spacing: 4px; text-align: center;
+  padding: 16px; box-sizing: border-box; opacity: 0; pointer-events: none; }
+#hangarscreen .turn[data-preview-state="loading"] .preview-status,
+#hangarscreen .turn[data-preview-state="unavailable"] .preview-status { opacity: 1; }
 #hangarscreen .req-row { display: flex; align-items: center; gap: 10px; border: 1px solid rgba(126,230,176,.3);
   padding: 8px 10px; margin-bottom: 8px; }
 #hangarscreen .req-row.sel { border-color: #ffb347; background: rgba(255,179,71,.08); }
@@ -144,14 +146,21 @@ class Turntable {
   private renderer: THREE.WebGLRenderer | null = null;
   private scene = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(42, 1.6, 0.1, 300);
+  private status: HTMLDivElement;
   private current: THREE.Object3D | null = null;
   private raf = 0;
   private chassis = '';
+  private loadVersion = 0;
 
   constructor() {
     this.el = document.createElement('div');
     this.el.className = 'turn';
     this.el.setAttribute('aria-hidden', 'true');
+    this.el.dataset.previewState = 'idle';
+    this.el.dataset.previewSource = 'none';
+    this.status = document.createElement('div');
+    this.status.className = 'preview-status';
+    this.el.appendChild(this.status);
     try {
       this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -161,7 +170,7 @@ class Turntable {
       this.scene.add(key);
       const grid = new THREE.GridHelper(40, 16, 0x2e4a3e, 0x1d2c26);
       this.scene.add(grid);
-      this.el.appendChild(this.renderer.domElement);
+      this.el.insertBefore(this.renderer.domElement, this.status);
       const loop = (): void => {
         this.raf = requestAnimationFrame(loop);
         if (!this.renderer || !this.el.isConnected) return;
@@ -181,50 +190,74 @@ class Turntable {
   }
 
   show(chassis: string): void {
-    if (!this.renderer) {
-      this.el.innerHTML = `<div class="fallback">${(MECHS[chassis]?.name ?? '?').slice(0, 3).toUpperCase()}</div>`;
-      return;
-    }
     if (chassis === this.chassis) return;
     this.chassis = chassis;
+    const version = ++this.loadVersion;
     if (this.current) this.scene.remove(this.current);
     this.current = null;
+    this.setPreviewState(chassis, 'loading', 'none', `LOADING ${(MECHS[chassis]?.name ?? chassis).toUpperCase()} FRAME…`);
+
+    if (!this.renderer) {
+      this.setPreviewState(chassis, 'unavailable', 'none', '3D FRAME PREVIEW UNAVAILABLE');
+      return;
+    }
+
+    void this.loadGenerated(chassis, version);
+  }
+
+  private setPreviewState(
+    chassis: string,
+    state: 'loading' | 'ready' | 'unavailable',
+    source: 'none' | 'generated-lod0',
+    message = '',
+  ): void {
+    this.el.dataset.previewChassis = chassis;
+    this.el.dataset.previewState = state;
+    this.el.dataset.previewSource = source;
+    if (source === 'generated-lod0') this.el.dataset.renderedChassis = chassis;
+    else delete this.el.dataset.renderedChassis;
+    this.status.textContent = message;
+  }
+
+  /**
+   * Load only the final generated frame. The previous procedural stand-in
+   * caused a visible 1–2 second "old mech" flash on every cold hangar visit.
+   * While this request is in flight the canvas stays hidden and the inspector
+   * shows a neutral loading message; an older chassis is never left onscreen.
+   */
+  private async loadGenerated(chassis: string, version: number): Promise<void> {
+    const src = await loadModel(`vp_frame_shared_${chassis}`, 'lod0');
+    this.el.dataset.lastSettledChassis = chassis;
+    this.el.dataset.lastSettledVersion = String(version);
+    // A→B→A can leave two A requests in flight, so chassis equality alone is
+    // insufficient. Only the newest show() call may install a model.
+    if (version !== this.loadVersion || this.chassis !== chassis) return;
+    if (!src) {
+      this.setPreviewState(chassis, 'unavailable', 'none', '3D FRAME PREVIEW UNAVAILABLE');
+      return;
+    }
+
     try {
-      const mech = new Mech(mechDef(chassis), 'compact', 'DISPLAY');
-      const visual = buildMechVisual(mech, COMPACT_PALETTE, false);
-      const box = new THREE.Box3().setFromObject(visual.root);
+      const targetHeight = 7 + (MECHS[chassis]?.tons ?? 50) * 0.08;
+      const model = fitToHeight(orientToGameForward(instantiate(src)), targetHeight);
+      const box = new THREE.Box3().setFromObject(model);
       const size = box.getSize(new THREE.Vector3());
-      const c = box.getCenter(new THREE.Vector3());
-      visual.root.position.sub(c).add(new THREE.Vector3(0, size.y / 2, 0));
+      if (size.x <= 1e-6 || size.y <= 1e-6 || size.z <= 1e-6) throw new Error('empty model bounds');
       const group = new THREE.Group();
-      group.add(visual.root);
+      group.add(model);
       this.scene.add(group);
       this.current = group;
       const d = Math.max(size.x, size.y, size.z) * 1.15;
       this.camera.position.set(d * 0.8, size.y * 0.62, d);
       this.camera.lookAt(0, size.y * 0.45, 0);
-
-      // Upgrade to the real Tripo model once it arrives. The turntable is a pure
-      // display context — no rig, no hit zones — so the full LOD0 mesh drops
-      // straight in. The procedural build above stays on screen until then, and
-      // stays permanently if the asset was never generated.
-      void this.upgrade(chassis, group, size.y);
+      this.setPreviewState(chassis, 'ready', 'generated-lod0');
     } catch {
-      /* turntable is garnish — stats and actions carry the screen */
+      this.setPreviewState(chassis, 'unavailable', 'none', '3D FRAME PREVIEW UNAVAILABLE');
     }
   }
 
-  /** Swap the procedural placeholder for the generated mesh, if one exists. */
-  private async upgrade(chassis: string, group: THREE.Group, height: number): Promise<void> {
-    const src = await loadModel(`vp_frame_shared_${chassis}`, 'lod0');
-    // Bail if the player clicked to another chassis while this was in flight.
-    if (!src || this.chassis !== chassis || this.current !== group) return;
-    const model = fitToHeight(orientToGameForward(instantiate(src)), height);
-    group.clear();
-    group.add(model);
-  }
-
   destroy(): void {
+    this.loadVersion++;
     cancelAnimationFrame(this.raf);
     this.renderer?.dispose();
     this.renderer = null;

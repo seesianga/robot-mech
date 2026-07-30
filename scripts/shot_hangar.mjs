@@ -5,7 +5,7 @@
  * test_hangar_ui.mjs asserts the hangar's behaviour but never looks at it, so it
  * passes just as happily with a procedural box on the turntable as with the real
  * generated mech. This drives menu -> HANGAR on the real build and captures the
- * screen, which is the only way to confirm the LOD0 swap actually landed.
+ * screen after the LOD0-only preview reports that it is ready.
  *
  * Prereq: npm run build, and a preview server on 4199.
  */
@@ -52,20 +52,31 @@ await page.focus('#mm-hangar');
 await page.keyboard.press('Enter');
 await page.waitForSelector('#hangarscreen', { timeout: 10000 });
 
-// Give the LOD0 GLB time to download and swap in over the procedural placeholder.
-await page.waitForTimeout(6000);
+await page.waitForSelector(
+  '#hangarscreen .turn[data-preview-state="ready"][data-preview-source="generated-lod0"]',
+  { timeout: 20000 },
+);
 await page.screenshot({ path: OUT });
 
 const info = await page.evaluate(() => {
-  const c = document.querySelector('#hangarscreen .turn canvas');
-  return { hasCanvas: !!c, w: c?.width ?? 0, h: c?.height ?? 0 };
+  const turn = document.querySelector('#hangarscreen .turn');
+  const c = turn?.querySelector('canvas');
+  return {
+    hasCanvas: !!c,
+    w: c?.width ?? 0,
+    h: c?.height ?? 0,
+    state: turn?.getAttribute('data-preview-state') ?? '',
+    source: turn?.getAttribute('data-preview-source') ?? '',
+    chassis: turn?.getAttribute('data-rendered-chassis') ?? '',
+  };
 });
 
 await browser.close();
 console.log(`turntable canvas: ${info.hasCanvas ? `${info.w}x${info.h}` : 'MISSING'}`);
+console.log(`turntable preview: ${info.state} / ${info.source} / ${info.chassis}`);
 if (errors.length) {
   console.log(`console errors (${errors.length}):`);
   for (const e of [...new Set(errors)].slice(0, 6)) console.log(`  ${e}`);
 }
 console.log(`screenshot: ${OUT}`);
-process.exit(info.hasCanvas ? 0 : 1);
+process.exit(info.hasCanvas && info.state === 'ready' && info.source === 'generated-lod0' ? 0 : 1);

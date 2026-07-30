@@ -36,6 +36,8 @@
     "hangartest": "node scripts/test_hangar.mjs",
     "hangarcheck": "node scripts/validate_hangar.mjs",
     "hangarui": "node scripts/test_hangar_ui.mjs",
+    "hangarpreview:source": "node scripts/verify_hangar_preview_source.mjs",
+    "hangarpreview": "node scripts/test_hangar_preview.mjs",
     "sitefonts": "python3 scripts/build_site_fonts.py",
     "siteart": "python3 scripts/gen_site_art.py",
     "siteaudio": "node scripts/gen_site_audio.mjs",
