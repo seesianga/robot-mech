@@ -166,6 +166,24 @@ for (const file of expectedModelFiles) {
   }
 }
 
+// The landing-page showroom is generated from content/mechs.json. Its data-mech
+// ids are runtime URLs, not decoration: a stale pre-namespace id silently falls
+// back to the still image while the page keeps returning 200. Bind every tile to
+// the current vp_frame_shared_* namespace and require its hero LOD in the release.
+const mechContent = readJson(path.join(ROOT, 'content', 'mechs.json'), 'mech content');
+const expectedShowroomModels = Array.isArray(mechContent.mechs)
+  ? mechContent.mechs.map((mech) => `vp_frame_shared_${mech.id}`).sort()
+  : [];
+if (!expectedShowroomModels.length) fail('mech content has no showroom chassis');
+const releaseIndex = requireFile(path.join(DIST, 'index.html'), 'release index.html')
+  ? fs.readFileSync(path.join(DIST, 'index.html'), 'utf8') : '';
+const showroomModels = [...releaseIndex.matchAll(/\bdata-mech="([^"]+)"/g)]
+  .map((match) => match[1]).sort();
+compareSets('release showroom model ids vs mech content', expectedShowroomModels, showroomModels);
+for (const id of expectedShowroomModels) {
+  requireFile(path.join(DIST, 'models', `${id}.lod0.glb`), `showroom model ${id}.lod0.glb`);
+}
+
 const expectedTextures = Array.isArray(census.textureFiles) ? [...census.textureFiles].sort() : [];
 const sourceTextures = listFiles(path.join(PUBLIC, 'textures'));
 const releaseTextures = listFiles(path.join(DIST, 'textures'));
@@ -328,6 +346,7 @@ if (fs.existsSync(headersPath)) {
   const headers = fs.readFileSync(headersPath, 'utf8');
   const requiredHeaders = [
     /Content-Security-Policy:/,
+    /\bconnect-src\b[^;\n]*\bblob:/i,
     /Cross-Origin-Opener-Policy:\s*same-origin/i,
     /Cross-Origin-Embedder-Policy:\s*require-corp/i,
     /Strict-Transport-Security:/i,

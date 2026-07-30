@@ -353,8 +353,10 @@ const audio = new SiteAudio();
         // the Flint and the Corundum, which are the tallest silhouettes.
         distance: 0.82,
         staticMode: reduceMotion,
-        onLoaded: (_id, ok) => {
+        onLoaded: (id, ok) => {
           host.classList.remove('is-loading');
+          if (ok) host.dataset.loadedMech = id;
+          else delete host.dataset.loadedMech;
           // Toggle, never latch. A single missing GLB used to pin the fallback
           // still on for the rest of the session, so every later chassis showed
           // the wrong machine.
@@ -401,6 +403,7 @@ const audio = new SiteAudio();
     audio.play('select', 0.8);
     if (stage) {
       host!.classList.add('is-loading');
+      delete host!.dataset.loadedMech;
       void stage.show(pending);
     } else {
       void ensureStage();

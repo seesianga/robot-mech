@@ -178,7 +178,8 @@ function deriveFacts(root) {
 
   // Machines modelled is a different number from chassis and must stay that way.
   facts.modelCount = census.models.length;
-  facts.machinesModelled = census.models.filter((id) => id.startsWith('mech-')).length;
+  facts.machinesModelled = census.models
+    .filter((id) => id.startsWith('vp_frame_shared_')).length;
 
   // --- campaign ----------------------------------------------------------
   // Stages 1-3 are hardcoded in src/sim/campaign.ts; 4+ are data files. Parse
@@ -202,12 +203,9 @@ function deriveFacts(root) {
   // --- audio -------------------------------------------------------------
   const manifest = read('content/audio-manifest.json').entries;
   const keys = Object.keys(manifest);
-  // Count lines that actually SHIPPED, not lines the manifest declares. Ten
-  // entries (four nav cues and six Basic Training a4a/a4b prompts) are wired but
-  // have no file on disk, so "607 recorded lines" overstated the build by ten.
-  // The census records which vo.* keys resolve to a real file, so the number
-  // self-corrects if they are ever generated, and can never again be larger
-  // than reality.
+  // Count lines that actually SHIPPED, not lines the manifest declares. This
+  // previously caught ten wired-but-missing nav and Basic Training files; the
+  // census keeps the claim tied to on-disk delivery as future lines are added.
   facts.voiceLines = census.shippedVoiceKeys.length;
   facts.musicCues = keys.filter((k) => k.startsWith('music.')).length;
   facts.sfxCount = keys.filter((k) => k.startsWith('sfx.')).length;
@@ -252,7 +250,7 @@ function deriveFragments(root) {
     // "Flint, light, 118 km/h, pressed" describes exactly what this does.
     return `<button class="chassis__item${i === 0 ? ' is-on' : ''}" type="button"`
       + ` aria-pressed="${i === 0 ? 'true' : 'false'}"`
-      + ` data-mech="mech-${esc(m.id)}"`
+      + ` data-mech="vp_frame_shared_${esc(m.id)}"`
       + ` data-name="${esc(m.name)}" data-class="${esc(m.class)}"`
       + ` data-tons="${m.tons}" data-speed="${m.speedKmh}"`
       + ` data-twist="${m.twistArcDeg}" data-heat="${m.heatSinks}"`

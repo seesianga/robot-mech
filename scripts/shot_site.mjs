@@ -108,7 +108,29 @@ for (const v of VIEWS) {
     await page.evaluate(() => {
       document.getElementById('showroom')?.scrollIntoView({ block: 'center' });
     });
-    await page.waitForTimeout(4000);
+    await page.waitForFunction(() => {
+      const host = document.getElementById('show-stage');
+      return !!host?.dataset.loadedMech || !!host?.classList.contains('is-fallback');
+    }, null, { timeout: 20000 }).catch(() => {});
+    const showroom = await page.evaluate(() => {
+      const host = document.getElementById('show-stage');
+      const selected = document.querySelector('.chassis__item.is-on')?.getAttribute('data-mech') ?? '';
+      return {
+        loaded: host?.dataset.loadedMech ?? '',
+        selected,
+        fallback: host?.classList.contains('is-fallback') ?? true,
+        loading: host?.classList.contains('is-loading') ?? false,
+      };
+    });
+    if (showroom.fallback || showroom.loading || !showroom.loaded
+      || showroom.loaded !== showroom.selected) {
+      console.log(
+        `    ! showroom: selected=${showroom.selected || 'none'} `
+        + `loaded=${showroom.loaded || 'none'} fallback=${showroom.fallback} `
+        + `loading=${showroom.loading}`,
+      );
+      failures++;
+    }
     await shoot('desktop-showroom.png');
   }
 
