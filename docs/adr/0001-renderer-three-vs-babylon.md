@@ -85,3 +85,37 @@ necessary for the frame budget. That combination would mean paying a renderer-re
 regardless, at which point Babylon deserves a fresh comparison. The M1 spike in
 [LIGHTING_STANDARD.md §5.9](../LIGHTING_STANDARD.md) answers it. **Do not begin a migration on the
 strength of a specification document.**
+
+Also revisit if: a second application needs to share the simulation; WebGPU clustered lighting
+becomes the difference between shipping and not; or the campaign moves to night-city biomes where
+hundreds of shadowed practicals are the core look.
+
+---
+
+## Implementation record — from the first §5 work (2026-07-30)
+
+*A second file also numbered ADR-0001 was written during the §5 rendering work; it recorded the
+same decision plus the measured consequences below, and was merged into this file on 2026-08-01
+so one number means one decision.*
+
+The first day of §5 work (IBL, fitted shadow frustum, GTAO, SMAA, bloom, four presets) produced a
+visible improvement without changing renderer — confirming Rationale 2. Substitutions and
+deferrals, recorded so nobody rediscovers them as bugs:
+
+- **TAA → SMAA.** Three's TAA needs a static camera to converge; SMAA is the honest substitute
+  for a game played in motion.
+- **SSAO2 → GTAO.** Ground-truth ambient occlusion — strictly better than the spec's ask.
+- **No cascaded shadow maps yet.** Three's `CSM` requires `setupMaterial()` per material; this
+  codebase has 28 `MeshStandardMaterial` sites across 9 files with no central factory, and
+  creates more at runtime. A missed patch renders visibly wrong shadows and a newly added
+  material regresses silently. Deferred until §3.3 gives us one material factory; the
+  texel-density win was taken instead by fitting the frustum to the preset's combat sightline
+  (0.34 → 0.07 m/texel at Ultra).
+- **Unavailable vs §5.7** (IBL shadows, clustered lighting, volumetric lighting, SSR, PCSS):
+  enumerated in `src/engine/quality.ts` as `UNAVAILABLE_FEATURES`, so the gap is visible in code
+  rather than implied by silence.
+- **The brief's `apps/` + `packages/` monorepo layout is not materialised.** The flat layout
+  stays. The 13-package split is a shape for a 7-person team with separate build targets;
+  imposing it on a working single-app codebase is churn without a beneficiary. Revisit if a real
+  second app (e.g. `admin`) needs to share `game-core`. pnpm/Turborepo not adopted for the same
+  reason — one app, one lockfile.

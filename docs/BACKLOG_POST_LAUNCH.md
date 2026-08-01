@@ -32,6 +32,16 @@ the only work to ship them is the §5 re-light and a QC pass.
 **Post-launch cost:** re-light + QC only. Measured at M1 (CONVERGENCE §1.2 step 5). This is the
 highest-value, lowest-risk content drop available and should be the first post-launch beat.
 
+**Design reference for operations beyond M24:** the inherited Op 8–9 brief
+(`docs/_inbox/prompts/mw4_extended_missions_op8-9.md`, archived 2026-08-01) carries nine proven
+mission *shapes* — launch-timer starport assault, coastal target denial under a storm front,
+convoy escort into an ambush, convoy interception with a capture-or-destroy midpoint, fortress
+assault with a timed hostage phase, night recon with beacon placement and a hot exfil,
+escort-and-demolish with a timed defence, three-wave evacuation hold, comms-jammed final duel.
+The brief is franchise-derived and unshippable as written; its structures may be used only under
+the rewrite rule in [`docs/_inbox/prompts/README.md`](_inbox/prompts/README.md) — new briefings,
+new names, new terrain, in Veyra Prime canon.
+
 ---
 
 ## 2. Multiplayer

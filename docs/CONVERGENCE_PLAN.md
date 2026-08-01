@@ -74,6 +74,22 @@ rewrite is the most expensive line item available and buys the player nothing.
    asset ships, craft floor before content ceiling, verify under the lighting rig, data not code)
    carry over **unchanged** and are enforced by [PLATFORM_STANDARD.md](PLATFORM_STANDARD.md) §10.
 
+### §0.2 Addendum — 2026-08-01: the eight briefs surfaced
+
+§0 recorded that none of the eight commissioning documents existed anywhere on the Drive. On
+2026-08-01 all eight, plus the AAA-redesign master prompt itself, were located outside the Drive
+in `~/Downloads/prompt for MechWarrior/` and archived read-only to
+[`docs/_inbox/prompts/`](_inbox/prompts/README.md), whose README carries the per-file
+disposition. Nothing in them changes §0.1 — the decision was made on the measured state of the
+repository, and stands. Two things are worth recording:
+
+1. The Op 8–9 mission **structures** now exist as reference for post-launch operations. The
+   material is franchise-derived and unshippable as written; it may be used only under the
+   rewrite rule (beat outline, never text — see the _inbox README). Cross-referenced from
+   [BACKLOG_POST_LAUNCH.md](BACKLOG_POST_LAUNCH.md) §1.
+2. The music brief's 192 kbps / 44.1 kHz PCM render pipeline — promoted project-wide by the
+   master prompt and adopted in PIPELINE §7 — is confirmed as the origin of that standard.
+
 ---
 
 ## §1. THE MIGRATION
