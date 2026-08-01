@@ -70,11 +70,22 @@ source .hdr / .exr   (4096×2048 equirect, 16/32-bit float, sun not clipped)
   → runtime loads the prefiltered artefact, NOT the .hdr
 ```
 
-Prefilter offline and ship the result. `PMREMGenerator` at load time costs a visible hitch on low
-GPUs and repeats work that never changes. **[ASSUMPTION]** Three has no direct equivalent of
-Babylon's single-file `.env`; the shippable form is an RGBE/KTX2 cubemap plus a small JSON sidecar
-carrying `sunDirection`, `sunIntensity` and `environmentIntensity`. Confirm the exact container at
-M1 and record it here.
+**Container — confirmed at M1 (2026-08-02).** The shippable form is a **1024×512 RLE RGBE
+equirect** (`public/env/<biome>_1k.hdr`, ~1.2 MB) plus the biome's profile JSON in
+`content/lighting/<biome>.json` carrying the extracted sun, rotation, intensities, bias, EV and
+provenance hashes. The prefilter itself runs at **load time** via
+`PMREMGenerator.fromEquirectangular` in `src/engine/lighting.ts` — a one-time cost during the
+mission load screen, logged per apply as `[lighting] <id>: prefilter N ms`; **measured 14.7 ms**
+at 1024×512 on Apple Silicon hardware GL (2026-08-02). The original
+"prefilter offline" plan was dropped: Three's PMREM output is a version-internal 2D atlas with no
+stable serialised form, and at 1k the load-time cost does not justify maintaining a custom
+container. **Software rasterisers decline the profile** (`isSoftwareRenderer()` in
+`engine/quality.ts`) and keep the neutral probe + MOODS path: under swiftshader the prefilter
+alone measured 54.7 s (on a contended host — tens of seconds regardless), which blows every CI
+harness timeout to produce pixels the lightprobe does not measure. `?ibl=1` forces the profile
+for manual QA on any GL; `?ibl=0` skips it anywhere. Bake tool: `scripts/build_env.mjs` (decode → sun extraction → highlight clamp →
+linear downsample → RLE re-encode → profile merge). Masters stay in `assets/hdri/<name>/` beside
+their `LICENSE.txt` and never ship.
 
 ### Per-biome profiles
 

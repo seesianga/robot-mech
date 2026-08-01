@@ -1,0 +1,49 @@
+{
+  "id": "vp_light_coast",
+  "biome": "coast",
+  "maps": ["yard"],
+  "envUrl": "/env/coast_1k.hdr",
+  "envRotationY": 0.6792,
+  "environmentIntensity": 1.15,
+  "backgroundIntensity": 1,
+  "backgroundBlurriness": 0.02,
+  "exposureEV": 1,
+  "hemiIntensity": 0.15,
+  "sun": {
+    "direction": [
+      0.7083,
+      0.5827,
+      0.3984
+    ],
+    "intensity": 1.6,
+    "colorHex": "#fff7ec",
+    "extracted": {
+      "direction": [
+        0.8014,
+        0.5827,
+        -0.1349
+      ],
+      "azimuthDeg": -9.6,
+      "elevationDeg": 35.6,
+      "contrast": 6,
+      "colorHex": "#fff7ec"
+    }
+  },
+  "shadow": {
+    "bias": -0.00035,
+    "normalBias": 0.03
+  },
+  "fog": {
+    "colorHex": "#aebcc2",
+    "near": 250,
+    "far": 1900
+  },
+  "provenance": {
+    "source": "assets/hdri/overcast_soil_puresky/overcast_soil_puresky_4k.hdr",
+    "licence": "CC0 1.0 (see LICENSE.txt beside the master)",
+    "masterSha256": "717958e9dfd092fcead82ff4691f3d615088803dd1888bb638ba948669021140",
+    "bakedSha256": "d32ed7674cf38bcabd93c836cbcffd13521c8bd655c49f64cbf7e024306be25b",
+    "size": "1024x512",
+    "tool": "scripts/build_env.mjs"
+  }
+}

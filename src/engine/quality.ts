@@ -80,6 +80,28 @@ export const UNAVAILABLE_FEATURES = [
 
 const STORAGE_KEY = 'vp.quality';
 
+let softwareGL: boolean | null = null;
+
+/**
+ * True on software rasterisers (swiftshader/llvmpipe) — what CI and the lightprobe
+ * run on. Separate from the preset because the probe FORCES presets via ?quality= to
+ * exercise the post chain; anything that must key off the actual GPU (like skipping
+ * the §5.2 prefilter, measured at 54.7 s under swiftshader) checks this instead.
+ */
+export function isSoftwareRenderer(): boolean {
+  if (softwareGL !== null) return softwareGL;
+  try {
+    const gl = document.createElement('canvas').getContext('webgl2') as WebGL2RenderingContext | null;
+    if (!gl) return (softwareGL = true);
+    const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu = (dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : '').toLowerCase();
+    softwareGL = /swiftshader|llvmpipe|software|basic render/.test(gpu);
+  } catch {
+    softwareGL = true;
+  }
+  return softwareGL;
+}
+
 /**
  * §5.7 auto-selection. The spec calls for a 3-second GPU probe; a timed probe on a
  * loading screen measures the loading screen, not the game, so this reads the actual

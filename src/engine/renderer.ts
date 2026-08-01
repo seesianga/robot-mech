@@ -25,6 +25,12 @@ const SHADOW_FILTER = {
   hard: THREE.BasicShadowMap,
 } as const;
 
+/**
+ * §5.1 fixed exposure for biomes without a lighting profile. Biomes WITH one carry
+ * their own exposureEV (content/lighting/*.json) and engine/lighting.ts applies it.
+ */
+export const DEFAULT_EXPOSURE = 1.05;
+
 export function createRenderer(container: HTMLElement, quality: QualityPreset): THREE.WebGLRenderer {
   const renderer = new THREE.WebGLRenderer({
     // SMAA replaces MSAA where the preset affords it (§5.5 item 7). Keeping both
@@ -41,7 +47,7 @@ export function createRenderer(container: HTMLElement, quality: QualityPreset): 
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   // §5.1 fixed exposure, no auto-exposure in combat. 1.3 predates IBL and now
   // double-counts against the environment probe the same way hemi did.
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = DEFAULT_EXPOSURE;
   container.appendChild(renderer.domElement);
   return renderer;
 }
@@ -132,7 +138,8 @@ export function installEnvironment(renderer: THREE.WebGLRenderer, scene: THREE.S
   scene.environment = env;
   scene.environmentIntensity = 1.0;   // per-biome value applied by applyMood()
   scene.userData.envMap = env;        // so a biome swap can dispose it later
-  pmrem.dispose();
+  scene.userData.neutralEnv = env;    // engine/lighting.ts restores this when a
+  pmrem.dispose();                    // biome has no §5.2 profile
 }
 
 /** Keeps the shadow frustum centered on the player as they cross the map. */

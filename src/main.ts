@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createRenderer, createScene, installEnvironment, trackSun } from './engine/renderer';
+import { lightingProfileFor, applyLightingProfile, resetLighting } from './engine/lighting';
 import { detectQuality } from './engine/quality';
 import { installKtx2 } from './world/assets';
 import { setImpostorRenderer } from './world/impostor';
@@ -716,7 +717,16 @@ function boot(): void {
       setPlayerChassis(campaignEntry.cfg.playerMech);
     }
 
-    terrain = buildTerrain(scene, campaignEntry ? campaignEntry.cfg.map : stageMap(stage));
+    const mapId = campaignEntry ? campaignEntry.cfg.map : stageMap(stage);
+    terrain = buildTerrain(scene, mapId);
+    // §5.2 — biomes with an authored lighting profile get the real prefiltered sky;
+    // the await keeps the first rendered frame correct (no neutral-probe pop). Biomes
+    // without one — and software rasterisers, where the profile declines itself —
+    // keep the MOODS values buildTerrain just applied.
+    const lightProfile = lightingProfileFor(mapId);
+    if (!lightProfile || !(await applyLightingProfile(renderer, scene, lightProfile))) {
+      resetLighting(renderer, scene);
+    }
     staticColliders = buildStaticColliders(terrain);
     __STATE.bc.push('prePhysics');
     physics = await PhysicsWorld.create(terrain.heightAt, terrain.size);
