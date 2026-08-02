@@ -36,6 +36,16 @@ export class AudioMan {
   private deescalateAt = 0; // earliest ctx.currentTime a lower level may apply
   onSubtitle: ((speaker: string, text: string, seconds: number) => void) | null = null;
 
+  /**
+   * True once the context is actually running. One-shots started on a suspended
+   * context all fire the moment resume() lands — fine for the queued menu theme,
+   * a machine-gun burst for hover ticks. UI callers that fire on non-gesture
+   * events (mouseover) must check this first.
+   */
+  uiReady(): boolean {
+    return this.ctx !== null && this.ctx.state === 'running';
+  }
+
   /** Must be called from a user gesture (or test mode). Safe to call again —
    *  a repeat call re-attempts resume, which un-suspends a context that was
    *  created before the browser had a user gesture to honor. */

@@ -1183,6 +1183,7 @@ function boot(): void {
       primeTheme,
       (id, vol) => { void audio.play(id, { bus: 'ui', volume: vol ?? 0.7 }); },
       quality.name,
+      () => audio.uiReady(), // hover ticks must not queue into a suspended context
     ).show();
   }
 

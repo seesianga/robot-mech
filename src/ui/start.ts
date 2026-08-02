@@ -18,15 +18,67 @@ export interface StageInfo {
 }
 
 const CSS = `
-#startscreen .panel2 { border: 1px solid rgba(126,230,176,.4); background: rgba(8,16,13,.8); padding: 20px 28px; min-width: 380px; text-align: center; }
+/* ── §8.7-adjacent menu shell: hero art behind everything, content above ────── */
+#startscreen { background: #05080e url('/site/art-hero-1920.webp') center / cover no-repeat; }
+#startscreen::before { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,8,14,.62), rgba(5,8,14,.5) 40%, rgba(5,8,14,.85)),
+    radial-gradient(ellipse at 50% 42%, transparent 30%, rgba(4,6,10,.55) 100%); }
+#startscreen > * { position: relative; z-index: 1; }
+#startscreen .vp-title { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 800;
+  font-size: clamp(40px, 6.5vw, 64px); letter-spacing: .09em; color: #e9f1ff; margin: 0 0 6px;
+  background: linear-gradient(180deg, #f2f7ff 30%, #8fb3f8); -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; text-shadow: 0 10px 40px rgba(70,120,255,.25); }
+#startscreen .vp-sub { font-size: 12px; letter-spacing: .45em; color: rgba(210,222,240,.55); margin: 0 0 30px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; text-transform: uppercase; }
+/* the wanted-layout stack: rounded slate buttons, one blue primary */
+#startscreen .mainmenu { display: flex; flex-direction: column; gap: 11px; width: min(380px, 86vw); }
+#startscreen .mainmenu > button { display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; box-sizing: border-box; padding: 14px 18px; border-radius: 11px;
+  background: rgba(22,29,42,.9); border: 1px solid rgba(255,255,255,.08); color: #dfe6f2;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 700; font-size: 13.5px;
+  letter-spacing: .18em; cursor: pointer; transition: background .12s, transform .12s, box-shadow .12s; }
+#startscreen .mainmenu > button:hover { background: rgba(34,44,64,.95); transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+#startscreen .mainmenu > button.go { background: linear-gradient(180deg, #4a7dfd, #2f5ce0);
+  border-color: rgba(130,168,255,.6); color: #fff; box-shadow: 0 8px 28px rgba(59,110,246,.38); }
+#startscreen .mainmenu > button.go:hover { background: linear-gradient(180deg, #5b8aff, #3a67ee); }
+#startscreen .mainmenu .ico { font-size: 15px; line-height: 1; }
+#startscreen .mainmenu .rec { color: #ffd28a; font-size: 10px; letter-spacing: .15em; }
+#startscreen .statpill { display: flex; align-items: center; justify-content: center; gap: 16px;
+  width: min(420px, 90vw); box-sizing: border-box; margin-top: 20px; padding: 10px 18px; border-radius: 12px;
+  background: rgba(13,18,28,.78); border: 1px solid rgba(255,255,255,.07); color: #cfd9ea;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 12px; letter-spacing: .06em; }
+#startscreen .statpill b { color: #fff; font-weight: 700; }
+#startscreen .statpill span { white-space: nowrap; }
+#startscreen .statpill .scrip2 { color: #ffd28a; }
+#startscreen .pbar { width: 110px; height: 7px; border-radius: 4px; background: rgba(255,255,255,.12); overflow: hidden; }
+#startscreen .pbar i { display: block; height: 100%; background: linear-gradient(90deg, #4a7dfd, #77a1ff); }
+#startscreen .signedrow { display: flex; align-items: center; gap: 10px; margin-top: 12px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 12px; color: rgba(205,216,235,.75); }
+#startscreen .signedrow .minibtn { border-radius: 9px; border: 1px solid rgba(255,255,255,.14);
+  background: rgba(24,31,45,.92); color: #e6ecf8; padding: 7px 14px; font-size: 11.5px; letter-spacing: .08em;
+  font-family: inherit; font-weight: 600; cursor: pointer; }
+#startscreen .signedrow .minibtn:hover { background: rgba(38,48,70,.95); }
+#startscreen .howto { width: min(380px, 86vw); box-sizing: border-box; margin-top: 10px; padding: 12px 16px;
+  border-radius: 11px; background: rgba(13,18,28,.85); border: 1px solid rgba(255,255,255,.08);
+  color: rgba(208,220,238,.85); font-size: 11px; line-height: 1.9; letter-spacing: .04em; text-align: center;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+#startscreen .phrow2 { display: flex; gap: 6px; justify-content: center; margin: -3px 0 0; }
+#startscreen .phrow2 button { width: 30px; height: 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,.12);
+  background: rgba(22,29,42,.9); color: #cdd8ec; font-family: system-ui, sans-serif; font-size: 11px;
+  font-weight: 700; cursor: pointer; padding: 0; }
+#startscreen .phrow2 button.donep { border-color: rgba(130,168,255,.6); color: #8fb3f8; background: rgba(47,92,224,.25); }
+#startscreen .phrow2 button:hover { background: rgba(34,44,64,.95); }
+#startscreen .panel2 { border: 1px solid rgba(255,255,255,.09); background: rgba(11,16,24,.88); border-radius: 14px;
+  padding: 20px 28px; min-width: 380px; text-align: center; }
 #startscreen .pilotline { color: #7ee6b0; font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; }
 #startscreen .pilotline b { color: #ffb347; }
 #startscreen input { display: block; width: 100%; box-sizing: border-box; margin: 6px 0; padding: 8px 10px; background: #0a1310;
   border: 1px solid rgba(126,230,176,.45); color: #cfe; font-family: inherit; font-size: 13px; letter-spacing: 1px; }
 #startscreen input:focus { outline: none; border-color: #ffb347; }
 #startscreen .btnrow { display: flex; gap: 8px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
-#startscreen button { background: none; border: 1px solid #7ee6b0; color: #7ee6b0; font-family: inherit;
-  font-size: 12px; letter-spacing: 2px; padding: 7px 16px; cursor: pointer; }
+#startscreen button { background: rgba(10,19,16,.6); border: 1px solid #7ee6b0; color: #7ee6b0; font-family: inherit;
+  font-size: 12px; letter-spacing: 2px; padding: 7px 16px; cursor: pointer; border-radius: 9px; }
 #startscreen button:hover { background: rgba(126,230,176,.15); }
 #startscreen button.primary { border-color: #ffb347; color: #ffb347; }
 #startscreen button.primary:hover { background: rgba(255,179,71,.15); }
@@ -55,6 +107,7 @@ const CSS = `
 #startscreen .settings-panel { box-sizing: border-box; max-height: calc(100vh - 180px); overflow-y: auto; scrollbar-gutter: stable; }
 #startscreen .stub { color: rgba(200,230,215,.75); font-size: 12px; line-height: 1.9; letter-spacing: 1px; margin: 18px 0 10px; }
 #startscreen .sync { font-size: 10px; letter-spacing: 2px; margin-top: 8px; color: rgba(126,230,176,.55); }
+#startscreen .signedrow .sync { margin: 0; letter-spacing: 1px; }
 #startscreen .sync.pending, #startscreen .sync.syncing { color: #3fd8f0; }
 #startscreen .sync.offline { color: #ffb347; }
 #startscreen .sync.error, #startscreen .sync.signed-out { color: #ff5533; }
@@ -114,6 +167,7 @@ export class StartScreen {
     private onGesture?: () => void,
     private playSfx?: (id: string, volume?: number) => void,
     private appliedQuality: QualityName = 'balanced',
+    private audioLive?: () => boolean,
   ) {
     this.selectedQuality = appliedQuality;
     this.hangar = new HangarService(store);
@@ -123,6 +177,19 @@ export class StartScreen {
     this.el = document.createElement('div');
     this.el.id = 'startscreen';
     document.body.appendChild(this.el);
+    // Menu feedback: a soft tick on hover, the confirm chime on any click.
+    // Delegated on the container so it survives every innerHTML repaint. Hover
+    // fires on non-gesture events, and one-shots queued into a suspended
+    // AudioContext all fire at once on resume — audioLive gates that burst.
+    let hovered: Element | null = null;
+    this.el.addEventListener('pointerover', (e) => {
+      const b = (e.target as HTMLElement).closest('button');
+      if (b && b !== hovered && this.audioLive?.()) this.playSfx?.('ui.bt.hint', 0.22);
+      hovered = b;
+    });
+    this.el.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('button')) this.playSfx?.('ui.bt.confirm', 0.3);
+    });
     // the sync line is live: a background flush finishing repaints it in place
     // rather than waiting for the next navigation
     this.store.onSync((s) => {
@@ -180,8 +247,8 @@ export class StartScreen {
   }
 
   private header(): string {
-    return `<h1>${PRODUCT_NAME.toUpperCase()}</h1>
-      <h2>THE LIBERATION CAMPAIGN · 24 MISSIONS · 7 OPERATIONS</h2>`;
+    return `<div class="vp-title">${PRODUCT_NAME.toUpperCase()}</div>
+      <div class="vp-sub">The Liberation Campaign · 24 Missions · 7 Operations</div>`;
   }
 
   /**
@@ -324,7 +391,7 @@ export class StartScreen {
       // G (squad) is feature-gated off in this build — offering it would just
       // land the pilot in the checkride; re-add when the wingmate AI ships
       const phrow = progress.tutorialDone
-        ? `<div class="phrow">${['A', 'B', 'C', 'D', 'E', 'F', 'H'].map((p) =>
+        ? `<div class="phrow2">${['A', 'B', 'C', 'D', 'E', 'F', 'H'].map((p) =>
           `<button data-ph="${p}" class="${phasesDone.includes(p) ? 'donep' : ''}">${p}</button>`).join('')}</div>`
         : '';
       // hangar nudge: something new is within reach ("Bay 3 is 2,400 short" moments)
@@ -332,27 +399,36 @@ export class StartScreen {
       const nextBay = this.hangar.nextLockedBay(this.profile);
       const bayNudge = nextBay >= 0 && acct.scrip >= this.hangar.bayPrice(nextBay)
         ? ` <span class="rec">· BAY ${nextBay + 1} AFFORDABLE</span>` : '';
+      const done = Math.max(0, Math.min(24, progress.unlocked - 1));
+      const btDone = phasesDone.length;
       this.el.innerHTML = `${this.header()}
-        <div class="panel2">
-          ${pilotline}
-          <div class="menu">
-            <button class="primary" id="mm-tut">TRAINING — BASIC TRAINING (~7 MIN) ${progress.tutorialDone ? '' : '<span class="rec">· RECOMMENDED</span>'}</button>
-            ${phrow}
-            <button id="mm-camp">CAMPAIGN — ${PRODUCT_NAME.toUpperCase()} (24 MISSIONS)</button>
-            <button id="mm-hangar">HANGAR — FRAMES &amp; DEPLOYMENT BAYS${bayNudge}</button>
-            <button id="mm-mp">MULTIPLAYER</button>
-            <button id="mm-set">SETTINGS</button>
-          </div>
-          <button class="link" id="logout">${this.profile ? 'switch pilot' : 'sign in / register'}</button>
+        <div class="mainmenu">
+          <button class="go" id="mm-camp"><span class="ico">⚔️</span>TO BATTLE — CAMPAIGN</button>
+          <button id="mm-tut"><span class="ico">🎯</span>TUTORIAL — BASIC TRAINING ${progress.tutorialDone ? '' : '<span class="rec">· RECOMMENDED</span>'}</button>
+          ${phrow}
+          <button id="mm-hangar"><span class="ico">🔧</span>HANGAR — FRAMES &amp; BAYS${bayNudge}</button>
+          <button id="mm-mp"><span class="ico">🌐</span>MULTIPLAYER — 5 V 5</button>
+          <button id="mm-set"><span class="ico">⚙️</span>SETTINGS</button>
+          <button id="mm-howto"><span class="ico">❓</span>HOW TO PLAY</button>
+        </div>
+        <div class="howto" id="howto" hidden>${c1}<br>${c2}</div>
+        <div class="statpill">
+          <span class="scrip2">◈ <b>${acct.scrip.toLocaleString()}</b> scrip</span>
+          <span>CAMPAIGN <b>${done}</b>/24</span>
+          <span class="pbar"><i style="width:${Math.round((done / 24) * 100)}%"></i></span>
+          <span>TRAINING <b>${btDone}</b>/7</span>
+        </div>
+        <div class="signedrow">
+          <span>${this.profile ? `Signed in as <b>${escapeHtml(this.profile.callsign)}</b>` : 'Playing as <b>guest</b> (unsaved)'}</span>
           ${this.syncLine()}
-          <div class="small">${c1}<br>${c2}</div>
+          <button class="minibtn" id="logout">${this.profile ? 'Switch pilot' : 'Sign in'}</button>
         </div>`;
       (this.el.querySelector('#mm-tut') as HTMLButtonElement).onclick = () => {
         this.el.remove();
         this.onIgnite(0, this.profile); // stage 0 = Basic Training; the click is the audio gesture
       };
       (this.el.querySelector('#mm-hangar') as HTMLButtonElement).onclick = () => this.openHangar();
-      for (const b of this.el.querySelectorAll<HTMLButtonElement>('.phrow button')) {
+      for (const b of this.el.querySelectorAll<HTMLButtonElement>('.phrow2 button')) {
         b.onclick = () => {
           this.store.setBtPhase(b.dataset.ph ?? 'A');
           this.el.remove();
@@ -362,6 +438,10 @@ export class StartScreen {
       (this.el.querySelector('#mm-camp') as HTMLButtonElement).onclick = () => { this.view = 'stages'; this.renderReady(); };
       (this.el.querySelector('#mm-mp') as HTMLButtonElement).onclick = () => { this.view = 'multiplayer'; this.renderReady(); };
       (this.el.querySelector('#mm-set') as HTMLButtonElement).onclick = () => { this.view = 'settings'; this.renderReady(); };
+      (this.el.querySelector('#mm-howto') as HTMLButtonElement).onclick = () => {
+        const panel = this.el.querySelector('#howto') as HTMLElement;
+        panel.hidden = !panel.hidden;
+      };
       (this.el.querySelector('#logout') as HTMLButtonElement).onclick = () => {
         const wasCallsign = this.profile?.callsign ?? '';
         this.store.takeBtPhase(); // a phase hint never crosses identities
@@ -437,7 +517,6 @@ export class StartScreen {
           const prefs = loadNavPrefs();
           cycle(prefs, b.dataset.set!);
           saveNavPrefs(prefs);
-          this.playSfx?.('ui.bt.confirm', 0.5);
           this.renderReady();
         };
       }
@@ -446,7 +525,6 @@ export class StartScreen {
           const name = b.dataset.quality as QualityName;
           setQuality(name);
           this.selectedQuality = name;
-          this.playSfx?.('ui.bt.confirm', 0.5);
           this.renderReady();
         };
       }
