@@ -543,8 +543,16 @@ export class ProfileStore {
   }
 
   takeBtPhase(): string | null {
-    const raw = localStorage.getItem(BT_JUMP);
+    const phase = this.peekBtPhase();
     localStorage.removeItem(BT_JUMP);
+    return phase;
+  }
+
+  /** Non-destructive read of the phase hint: launch needs it BEFORE terrain
+   *  build to pick the phase's venue, while the mission constructor stays the
+   *  one true consumer via takeBtPhase(). */
+  peekBtPhase(): string | null {
+    const raw = localStorage.getItem(BT_JUMP);
     if (!raw) return null;
     try {
       const v = JSON.parse(raw) as { phase: string; at: number };

@@ -41,27 +41,35 @@ const pageErrors = [];
 page.on('pageerror', (e) => pageErrors.push(String(e)));
 await page.goto(URL, { waitUntil: 'load', timeout: 30000 });
 
-const S = () => page.evaluate(() => window.__STATE);
-const mouse = (dx, dy = 0) => page.evaluate(([x, y]) => window.__MOUSE?.(x, y), [dx, dy]);
+// A venue handoff reloads the page mid-run (each phase trains on its own map),
+// so evaluate() can land during navigation — swallow that into null and let the
+// pollers ride through the reload instead of crashing on a destroyed context.
+const S = () => page.evaluate(() => window.__STATE).catch(() => null);
+const mouse = (dx, dy = 0) => page.evaluate(([x, y]) => window.__MOUSE?.(x, y), [dx, dy]).catch(() => {});
 const sleep = (ms) => page.waitForTimeout(ms);
 const wrap = (a) => { while (a > Math.PI) a -= 2 * Math.PI; while (a < -Math.PI) a += 2 * Math.PI; return a; };
+
+/** Generous ceiling for any wait that has a venue reload + boot inside it. */
+const VENUE_WAIT = 480000;
 
 async function waitStep(id, timeoutMs = 30000) {
   const t0 = Date.now();
   while (Date.now() - t0 < timeoutMs) {
     const s = await S();
-    if (s.btStep === id) return s;
+    if (s?.btStep === id) return s;
     await sleep(120);
   }
-  throw new Error(`timeout waiting for step ${id} (at ${(await S()).btStep})`);
+  throw new Error(`timeout waiting for step ${id} (at ${(await S())?.btStep})`);
 }
 
 async function whileStep(id, actFn, timeoutMs = 60000) {
   const t0 = Date.now();
   while (Date.now() - t0 < timeoutMs) {
     const s = await S();
-    if (s.btStep !== id) return s;
-    await actFn(s);
+    if (s?.btStep && s.btStep !== id) return s;
+    // don't drive inputs at a page that is still rebooting from a venue handoff
+    if (s?.btStep && s.playerPos) await actFn(s);
+    else await sleep(250);
   }
   throw new Error(`step ${id} did not confirm within ${timeoutMs} ms`);
 }
@@ -83,8 +91,15 @@ async function steerTo(s, tx, tz) {
   const [px, , pz] = s.playerPos;
   const want = Math.atan2(tx - px, tz - pz);
   const d = wrap(want - s.legYaw);
-  if (d > 0.06) { await page.keyboard.down('KeyA'); await sleep(90); await page.keyboard.up('KeyA'); }
-  else if (d < -0.06) { await page.keyboard.down('KeyD'); await sleep(90); await page.keyboard.up('KeyD'); }
+  if (Math.abs(d) > 0.5) {
+    // stop and rotate in place — short taps cannot out-turn the spin-up ramp
+    await page.keyboard.press('KeyX');
+    const key = d > 0 ? 'KeyA' : 'KeyD';
+    await page.keyboard.down(key); await sleep(Math.min(900, 250 + Math.abs(d) * 350)); await page.keyboard.up(key);
+    return;
+  }
+  if (d > 0.06) { await page.keyboard.down('KeyA'); await sleep(120); await page.keyboard.up('KeyA'); }
+  else if (d < -0.06) { await page.keyboard.down('KeyD'); await sleep(120); await page.keyboard.up('KeyD'); }
 }
 
 /** Torso twist is clamped to the chassis arc (±60° on the Skarn) — when the
@@ -107,7 +122,7 @@ const mark = (id) => { stepLog.push([id, ((Date.now() - t0) / 1000).toFixed(1)])
 
 try {
   // ---------- A0: cold cockpit ----------
-  let s = await waitStep('bt_a0', 40000);
+  let s = await waitStep('bt_a0', 300000);
   // NEGATIVE: throttle key must not power up or advance
   await page.keyboard.down('KeyW'); await sleep(900); await page.keyboard.up('KeyW');
   s = await S();
@@ -137,11 +152,27 @@ try {
   await whileStep('bt_a3', () => sleep(120));
   await page.keyboard.up('KeyS'); mark('bt_a3');
 
-  // ---------- A4: leg steering both ways ----------
-  await page.keyboard.down('KeyA'); await sleep(1000); await page.keyboard.up('KeyA');
-  await page.keyboard.down('KeyD');
-  await whileStep('bt_a4', () => sleep(120), 20000);
-  await page.keyboard.up('KeyD'); mark('bt_a4');
+  // ---------- A4: leg steering both ways (closed-loop) ----------
+  // The leg turn spins up from rest, so a fixed-length hold banks an
+  // fps-dependent number of degrees under swiftshader jank. Steer by the
+  // measured excursion instead: hold A until >=52 deg is banked, then D
+  // until the step's own 45/45 predicate confirms.
+  {
+    const entryYaw = (await S()).legYaw;
+    let leftDone = false;
+    await page.keyboard.down('KeyA');
+    await whileStep('bt_a4', async (st) => {
+      if (!leftDone && st.legYaw - entryYaw >= 0.9) {
+        await page.keyboard.up('KeyA');
+        await page.keyboard.down('KeyD');
+        leftDone = true;
+      }
+      await sleep(150);
+    }, 90000);
+    await page.keyboard.up('KeyA').catch(() => {});
+    await page.keyboard.up('KeyD').catch(() => {});
+    mark('bt_a4');
+  }
 
   // ---------- A4a: PATHLIGHT teach card (arrow + beacon light up) ----------
   s = await waitStep('bt_a4a', 8000);
@@ -178,9 +209,18 @@ try {
     else if (st.throttle < 0.35) { await page.keyboard.down('KeyW'); await sleep(70); await page.keyboard.up('KeyW'); }
     const want = Math.atan2(GATES[gate][0] - px, GATES[gate][1] - pz);
     const d = wrap(want - st.legYaw);
+    if (Math.abs(d) > 0.5) {
+      // way off the lane: stop and rotate in place — walking taps cannot
+      // out-turn the leg spin-up ramp at headless fps, they just orbit
+      await page.keyboard.press('KeyX');
+      const key = d > 0 ? 'KeyA' : 'KeyD';
+      await page.keyboard.down(key); await sleep(Math.min(900, 250 + Math.abs(d) * 350)); await page.keyboard.up(key);
+      await sleep(50);
+      return;
+    }
     if (Math.abs(d) > 0.08) {
       const key = d > 0 ? 'KeyA' : 'KeyD';
-      await page.keyboard.down(key); await sleep(Math.min(400, Math.abs(d) * 500)); await page.keyboard.up(key);
+      await page.keyboard.down(key); await sleep(Math.min(400, 120 + Math.abs(d) * 500)); await page.keyboard.up(key);
     }
     await sleep(50);
   }, 180000);
@@ -189,7 +229,7 @@ try {
   // ---------- A6: instant full stop ----------
   await page.keyboard.down('KeyW'); await sleep(600); await page.keyboard.up('KeyW');
   await page.keyboard.press('KeyX');
-  await waitStep('bt_b1', 8000); mark('bt_a6');
+  await waitStep('bt_b1', VENUE_WAIT); mark('bt_a6'); // A→B venue reload
 
   // ---------- B1: torso twist both ways ----------
   await mouse(-360); await sleep(400);
@@ -229,7 +269,7 @@ try {
         await faceAndAim(st, AIM_BOARD[0], st.playerPos[1] + 9, AIM_BOARD[1]);
         await sleep(90);
       }
-    }, 240000);
+    }, VENUE_WAIT); // E→F venue reload rides inside this wait
     await page.keyboard.press('KeyX'); // full stop — the throttle target latches where W left it
     mark('bt_b4');
   }
@@ -251,7 +291,7 @@ try {
     await sleep(180);
     await page.keyboard.press('KeyT');
     await sleep(220);
-  }, 60000); mark('bt_c1');
+  }, VENUE_WAIT); mark('bt_c1'); // B→C venue reload rides inside this wait
 
   // ---------- C2: cycle-lock all three ----------
   await whileStep('bt_c2', async () => { await page.keyboard.press('KeyR'); await sleep(350); }, 20000);
@@ -263,7 +303,7 @@ try {
 
   // ---------- C4: readout info card ----------
   await page.keyboard.press('Enter');
-  await waitStep('bt_d1', 8000); mark('bt_c4');
+  await waitStep('bt_d1', VENUE_WAIT); mark('bt_c4'); // C→D venue reload
 
   // ---------- D1: autocannon on a board ----------
   await whileStep('bt_d1', async (st) => {
@@ -295,7 +335,7 @@ try {
 
   // ---------- E1–E3: heat drill ----------
   const spamFire = async () => { await page.keyboard.press('Digit1'); await page.keyboard.press('Digit2'); await page.keyboard.press('Digit3'); await sleep(280); };
-  await whileStep('bt_e1', spamFire, 60000); mark('bt_e1');
+  await whileStep('bt_e1', spamFire, VENUE_WAIT); mark('bt_e1'); // D→E venue reload
   await page.keyboard.press('KeyF');
   await whileStep('bt_e2', () => sleep(200), 20000); mark('bt_e2');
   await whileStep('bt_e3', spamFire, 60000); mark('bt_e3');
@@ -355,7 +395,7 @@ try {
   }
 
   // ---------- G auto-skips → H1 checkride ----------
-  s = await waitStep('bt_h1', 10000); // proves bt_g1/bt_g2 auto-skipped
+  s = await waitStep('bt_h1', VENUE_WAIT); // F→H venue reload; G (squad-gated) is jumped with the venue change
   await whileStep('bt_h1', async (st) => {
     const alive = st.enemies.filter((e) => e[4]
       && !CONTACT_SPAWNS.some(([cx, cz]) => Math.hypot(e[1] - cx, e[3] - cz) < 12));

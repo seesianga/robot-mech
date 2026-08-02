@@ -24,8 +24,9 @@ export interface Terrain {
   colliders: THREE.Mesh[];
   size: number;
   map: MapId;
-  /** Basic Training pad geometry (range map only): gate centers in walk
-   *  order + the boost-barrier line (crossing along +x within ±halfW of z). */
+  /** Basic Training pad geometry (built on the range map and on any BT venue
+   *  via buildTerrain opts.btPad): gate centers in walk order + the
+   *  boost-barrier line (crossing along +x within ±halfW of z). */
   pad?: {
     gates: [number, number][];
     barrier: { x: number; z: number; halfW: number };
@@ -310,9 +311,21 @@ function addHullCarcass(group: THREE.Group, colliders: THREE.Mesh[], mat: THREE.
   colliders.push(...parts);
 }
 
-export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
+export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard', opts: { btPad?: boolean } = {}): Terrain {
   const mood = MOODS[map];
-  const h = HEIGHT_FN[map];
+  // BT venues: with opts.btPad, ANY biome hosts the calibration pad — the drill
+  // apron is graded into the local heightfield (elliptical blend, full grade
+  // across the whole furniture footprint: gates to z 350, spawn z 420, teach
+  // waypoint z 472, contacts to z -320) so every BT coordinate — and the
+  // bttest mirror of them — holds on every venue. Beyond the apron the biome's
+  // own relief, water and dressing carry the view.
+  const base = HEIGHT_FN[map];
+  const h: (x: number, z: number) => number = opts.btPad && map !== 'range'
+    ? (x, z) => {
+      const m = smoothstep(620, 380, Math.hypot(x, z * 0.72));
+      return THREE.MathUtils.lerp(base(x, z), heightRange(x, z), m);
+    }
+    : base;
   const group = new THREE.Group();
   const SIZE = 2400;
   const SEGS = 300;
@@ -386,7 +399,12 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
   const colliders: THREE.Mesh[] = [];
   const structures: Structure[] = [];
 
-  if (map === 'yard') {
+  // A BT venue is a CLEARED training ground: the biome's own scenery would
+  // land inside the apron (yard crates in the D-phase fire lane, wreck hulls
+  // on the board row) and block drills, so with btPad only the pad furniture
+  // dresses the field — the venue's identity comes from its terrain, light
+  // and sky.
+  if (!opts.btPad && map === 'yard') {
     for (const [hx, hz, rot] of [[-340, -160, 0.4], [-420, 120, -0.8], [-280, 260, 2.2], [-460, -60, 1.4]] as Array<[number, number, number]>) {
       addHullCarcass(group, colliders, hullMat, h, hx, hz, rot);
     }
@@ -449,9 +467,13 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     const s: Structure = { id: 'tracking_mast', name: 'Tracking Mast', hp: 120, hpMax: 120, group: mast, meshes, destroyed: false, topple: true };
     for (const m of meshes) m.userData.structureId = s.id;
     structures.push(s);
-  } else if (map === 'range') {
-    // --- Basic Training calibration pad: quiet ferrocrete apron, gate pylons,
-    // aim board, target-board row, boost barrier, practice-drone pen ---
+  }
+
+  // --- Basic Training calibration pad: quiet ferrocrete apron, gate pylons,
+  // aim board, target-board row, boost barrier, practice-drone pen. A function,
+  // not a map branch: the pad TRAVELS — each BT phase trains on its own biome
+  // (opts.btPad), with the apron graded into that biome's heightfield above.
+  const buildPadFurniture = (): NonNullable<Terrain['pad']> => {
     const GATES: Array<[number, number]> = [[0, 350], [0, 290], [0, 230]];
     const BARRIER = { x: 150, z: 20, halfW: 18 };
 
@@ -583,9 +605,10 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
       dressBox(c, 'vp_prop_range_crate');
     }
 
-    scene.add(group);
-    return { group, heightAt: h, structures, colliders, size: SIZE, map, pad: { gates: GATES, barrier: BARRIER } };
-  } else if (map === 'tideflats') {
+    return { gates: GATES, barrier: BARRIER };
+  };
+
+  if (!opts.btPad && map === 'tideflats') {
     // --- tide flats: the beached wreck line the patrol is picking through ---
     const wrecks: Array<[number, number, number, number]> = [
       [-220, -140, 0.5, 1.0], [-320, -40, -0.9, 1.2], [-160, 20, 2.4, 0.8],
@@ -781,8 +804,12 @@ export function buildTerrain(scene: THREE.Scene, map: MapId = 'yard'): Terrain {
     }
   }
 
+  // The pad ships on the classic range map unconditionally (campaign/BT legacy)
+  // and on any biome that asked for it via opts.btPad.
+  const pad = (opts.btPad || map === 'range') ? buildPadFurniture() : undefined;
+
   scene.add(group);
-  return { group, heightAt: h, structures, colliders, size: SIZE, map };
+  return { group, heightAt: h, structures, colliders, size: SIZE, map, pad };
 }
 
 /** Mission-placed destructible structures (campaign objectives). */

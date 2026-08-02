@@ -17,7 +17,7 @@ import { WeaponsSystem } from './sim/weapons';
 import { EnemyController } from './ai/enemy';
 import { createMission, stageMap, stageSpawn, type EnemySpawn, type MissionLike, type MissionPhase } from './sim/mission';
 import { CampaignMission, campaignForStage, briefingAudioId, stageList, MAX_STAGE, type AllySpawnReq, type CampaignEntry } from './sim/campaign';
-import { BasicTrainingMission, type BtInput } from './sim/basictraining';
+import { BasicTrainingMission, btMapForPhase, btSpawnForPhase, type BtInput } from './sim/basictraining';
 import { BtOverlay } from './ui/btoverlay';
 import { codeOf, resolveBindTokens } from './engine/bindings';
 import { NavGuidanceSystem, navRoute, type NavEvent } from './sim/nav';
@@ -717,8 +717,14 @@ function boot(): void {
       setPlayerChassis(campaignEntry.cfg.playerMech);
     }
 
-    const mapId = campaignEntry ? campaignEntry.cfg.map : stageMap(stage);
-    terrain = buildTerrain(scene, mapId);
+    // Basic Training trains each phase on its own venue: peek (never consume —
+    // the mission constructor is the one true consumer) the phase hint to pick
+    // the map and drop point; a full run starts at A on the classic range pad.
+    const btPhase = stage === 0 ? store.peekBtPhase() ?? 'A' : null;
+    const mapId = campaignEntry ? campaignEntry.cfg.map
+      : btPhase ? btMapForPhase(btPhase)
+        : stageMap(stage);
+    terrain = buildTerrain(scene, mapId, { btPad: stage === 0 });
     // §5.2 — biomes with an authored lighting profile get the real prefiltered sky;
     // the await keeps the first rendered frame correct (no neutral-probe pop). Biomes
     // without one — and software rasterisers, where the profile declines itself —
@@ -732,7 +738,9 @@ function boot(): void {
     physics = await PhysicsWorld.create(terrain.heightAt, terrain.size);
     __STATE.bc.push('postPhysics');
 
-    const spawn = campaignEntry ? campaignEntry.cfg.spawn : stageSpawn(stage);
+    const spawn = campaignEntry ? campaignEntry.cfg.spawn
+      : btPhase ? btSpawnForPhase(btPhase)
+        : stageSpawn(stage);
     player.pos.set(spawn.x, terrain.heightAt(spawn.x, spawn.z), spawn.z);
     player.legYaw = spawn.yaw;
 
@@ -973,7 +981,19 @@ function boot(): void {
           reloadAfterSync();
         },
       });
-      bt.onEvent((ev) => btOverlay?.handle(ev));
+      bt.onEvent((ev) => {
+        if (ev.t === 'handoff') {
+          // Venue transit: bank the phases confirmed so far, seed the next
+          // phase's hint, and relaunch — the reload lands stage 0 on the new
+          // map with the jump machinery marking earlier steps 'jumped'.
+          store.saveBtPhases(profile, ev.done);
+          store.setBtPhase(ev.phase);
+          store.setResume(0);
+          reloadAfterSync();
+          return;
+        }
+        btOverlay?.handle(ev);
+      });
       if (TEST_MODE) (window as unknown as Record<string, unknown>).__BT = bt;
     } else if (campaignEntry) {
       const campaignHooks = {

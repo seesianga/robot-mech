@@ -8,6 +8,14 @@ import { PRESETS, setQuality, type QualityName } from '../engine/quality';
 import { HangarService, type DeckFrame } from '../save/hangar';
 import { HangarScreen } from './hangar';
 import { PRODUCT_NAME } from '../brand';
+import { btMapForPhase } from '../sim/basictraining';
+
+/** Venue display names for the Basic Training phase chips (tooltips). */
+const VENUE_LABEL: Record<string, string> = {
+  range: 'SALTGLASS COVE', tideflats: 'TIDE FLATS', polar: 'POLAR NIGHT',
+  yard: 'IMPOUND YARD', salt: 'HALITE FLATS', karst: 'KARST HIGHLANDS',
+  storm: 'STORM COAST', arcology: 'VELL ARCOLOGY',
+};
 
 export interface StageInfo {
   stage: number;
@@ -347,6 +355,15 @@ export class StartScreen {
     const progress = this.store.progressOf(this.profile);
     if (!this.selInit) {
       const resume = this.store.takeResume();
+      // resume 0 = Basic Training in flight (a venue handoff or a summary-card
+      // replay seeded a phase hint and reloaded) — relaunch it directly instead
+      // of stranding the pilot on the menu mid-course.
+      if (resume === 0) {
+        this.selInit = true;
+        this.el.remove();
+        this.onIgnite(0, this.profile);
+        return;
+      }
       if (resume !== null && resume >= 1) this.view = 'stages'; // mid-campaign CONTINUE lands on stage select
       this.selectedStage = Math.min(Math.max(1, resume ?? progress.unlocked), progress.unlocked);
       this.selInit = true;
@@ -392,7 +409,8 @@ export class StartScreen {
       // land the pilot in the checkride; re-add when the wingmate AI ships
       const phrow = progress.tutorialDone
         ? `<div class="phrow2">${['A', 'B', 'C', 'D', 'E', 'F', 'H'].map((p) =>
-          `<button data-ph="${p}" class="${phasesDone.includes(p) ? 'donep' : ''}">${p}</button>`).join('')}</div>`
+          `<button data-ph="${p}" class="${phasesDone.includes(p) ? 'donep' : ''}"
+            title="PHASE ${p} — ${VENUE_LABEL[btMapForPhase(p)] ?? btMapForPhase(p).toUpperCase()}">${p}</button>`).join('')}</div>`
         : '';
       // hangar nudge: something new is within reach ("Bay 3 is 2,400 short" moments)
       const acct = this.hangar.account(this.profile);

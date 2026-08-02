@@ -4,7 +4,7 @@ import stringsJson from '../../content/tutorial/strings.en.json';
 import { isBound } from '../engine/bindings';
 import type { Mech } from './mech';
 import type { NavGuidanceSystem } from './nav';
-import type { Structure, Terrain } from '../world/terrain';
+import type { MapId, Structure, Terrain } from '../world/terrain';
 import type { MissionCallbacks, MissionLike, MissionPhase, SalvageEntry } from './mission';
 
 /**
@@ -104,7 +104,33 @@ export type BtEvent =
   | { t: 'rail'; rail: BtRail[] }
   | { t: 'taught'; actions: string[] }
   | { t: 'powerup' }
-  | { t: 'done'; summary: BtSummary };
+  | { t: 'done'; summary: BtSummary }
+  /** The next phase trains on a different venue — main relaunches stage 0
+   *  there (phase hint + reload). `done` = phases fully confirmed so far. */
+  | { t: 'handoff'; phase: string; done: string[] };
+
+/**
+ * Which map hosts a Basic Training phase. Data-driven from the step table's
+ * phase_maps block; phases without an entry (or a null phase) fall back to the
+ * classic range pad, so a content edit can never strand a launch.
+ */
+const PHASE_MAPS: Record<string, string> =
+  (stepsJson as { phase_maps?: Record<string, string> }).phase_maps ?? {};
+
+export function btMapForPhase(phase: string | null | undefined): MapId {
+  return ((phase ? PHASE_MAPS[phase] : undefined) ?? 'range') as MapId;
+}
+
+const PHASE_SPAWNS: Record<string, [number, number, number]> =
+  (stepsJson as unknown as { phase_spawns?: Record<string, [number, number, number]> }).phase_spawns ?? {};
+
+/** Per-venue drop point [x,z,yaw]: each phase starts beside its own furniture
+ *  (C inside lock range of the contacts, F facing the barrier runway) instead
+ *  of walking the full pad from the south gate every time. */
+export function btSpawnForPhase(phase: string | null | undefined): { x: number; z: number; yaw: number } {
+  const s = phase ? PHASE_SPAWNS[phase] : undefined;
+  return s ? { x: s[0], z: s[1], yaw: s[2] } : { x: 0, z: 420, yaw: Math.PI };
+}
 
 function logEvent(ev: string, data?: Record<string, unknown>): void {
   try {
@@ -130,7 +156,7 @@ export class BasicTrainingMission implements MissionLike {
 
   private steps = CONTENT.steps;
   private idx = -1;
-  private state: 'active' | 'confirmed' | 'finished' = 'active';
+  private state: 'active' | 'confirmed' | 'finished' | 'handoff' = 'active';
   private stepTime = 0;
   private beatTime = 0;
   private totalTime = 0;
@@ -249,7 +275,7 @@ export class BasicTrainingMission implements MissionLike {
   paused = false;
 
   update(dt: number): void {
-    if (this.state === 'finished' || this.paused) return;
+    if (this.state === 'finished' || this.state === 'handoff' || this.paused) return;
     this.totalTime += dt;
     const st = this.steps[this.idx];
     if (!st) return;
@@ -399,6 +425,7 @@ export class BasicTrainingMission implements MissionLike {
 
   private advance(via: 'start' | 'confirm' | 'skip'): void {
     this.cb.onHint?.('');
+    const fromPhase = this.idx >= 0 ? this.steps[this.idx]?.phase ?? null : null;
     this.idx++;
     // conditional steps auto-skip with a rail tick — no VO, no nag
     while (this.idx < this.steps.length) {
@@ -414,6 +441,20 @@ export class BasicTrainingMission implements MissionLike {
     }
     if (this.idx >= this.steps.length) {
       this.finish(true);
+      return;
+    }
+    // Venue boundary: the next phase trains on a different map. Freeze here and
+    // hand the launch back to main — it banks the confirmed phases, seeds the
+    // phase hint and relaunches stage 0 on the new venue. 'start' never hands
+    // off: a fresh launch (or phase jump) is already standing on the right map.
+    const next = this.steps[this.idx];
+    if (via !== 'start' && fromPhase && next.phase !== fromPhase
+      && btMapForPhase(next.phase) !== btMapForPhase(fromPhase)) {
+      this.state = 'handoff';
+      this.safetiesOn();
+      this.nav?.stopRoute();
+      logEvent('bt_venue_handoff', { from: fromPhase, to: next.phase });
+      this.emit({ t: 'handoff', phase: next.phase, done: this.phasesDoneNow() });
       return;
     }
     // no content edit may ever strand a cold cockpit past A0 — power up on
@@ -445,15 +486,20 @@ export class BasicTrainingMission implements MissionLike {
     this.emit({ t: 'rail', rail: this.rail() });
   }
 
+  /** Phases whose every step is confirmed — used by finish() and the venue handoff. */
+  private phasesDoneNow(): string[] {
+    return CONTENT.phases.filter((p) => {
+      const ph = this.steps.map((s, i) => ({ s, i })).filter((x) => x.s.phase === p);
+      return ph.length > 0 && ph.every((x) => this.status[x.i] === 'done');
+    });
+  }
+
   private finish(completed: boolean): void {
     if (this.state === 'finished') return;
     this.state = 'finished';
     this.safetiesOn();
     this.nav?.stopRoute(); // teardown: no orphaned beacon or chevrons survive
-    const phasesDone = CONTENT.phases.filter((p) => {
-      const ph = this.steps.map((s, i) => ({ s, i })).filter((x) => x.s.phase === p);
-      return ph.length > 0 && ph.every((x) => this.status[x.i] === 'done');
-    });
+    const phasesDone = this.phasesDoneNow();
     this.summaryOut = {
       seconds: Math.round(this.totalTime),
       hints: this.hintsUsed,

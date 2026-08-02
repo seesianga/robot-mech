@@ -53,10 +53,21 @@ and instructor (MIRA-7). Per the brief's own instruction it is adapted to
   flag is set the menu shows A–H quick-jump chips (completed phases highlighted).
 - **Save flags**: `tutorialDone` (= basic_training_complete) + `btPhases[]` in the profile
   store (guests: sessionStorage).
-- **The space**: the Saltglass Cove basin dressed as a calibration pad — flat graded apron,
-  three amber-banded gate pylons (soft-collide), one large static aim board, a four-board
-  target row, the boost barrier, a practice-drone pen, coolant bowser, light mast, crates.
-  Calm dusk light, no music — a low pad-ambience bed only.
+- **The space**: a calibration pad — flat graded apron, three amber-banded gate pylons
+  (soft-collide), one large static aim board, a four-board target row, the boost barrier,
+  a practice-drone pen, coolant bowser, light mast, crates. Calm light, no music — a low
+  pad-ambience bed only.
+- **The venues (2026-08-03)**: the pad TRAVELS — each phase trains on its own biome, with
+  the apron graded into that biome's heightfield (`buildTerrain` `opts.btPad`) so every pad
+  coordinate, nav route and the bttest mirror of them hold on every venue. Data:
+  `phase_maps` + `phase_spawns` in `basic_training.json`. A = Saltglass Cove (dusk, the
+  classic pad) · B = Tide Flats (dawn) · C = Polar Night (sensors when eyes fail) ·
+  D = Impound Yard (live fire) · E = Halite Flats (the 0.8× heat-dissipation biome) ·
+  F = Karst Highlands (jet country) · H = Storm Coast (checkride under weather). A phase
+  boundary whose next phase maps to a different venue emits a `handoff` event: main banks
+  the confirmed phases, seeds the phase hint, and relaunches stage 0 on the new map (the
+  same jump machinery the A–H chips use). Phase jumps from the menu land directly on the
+  phase's venue at its own spawn.
 - **Sim config**: player invulnerable, infinite ammo (refilled per tick), heat model active
   with reactor damage moot (invulnerable), coolant re-armed if wasted, physics normal.
   **Nothing in Basic Training can damage the pilot — the checkride included.** H1 is live fire

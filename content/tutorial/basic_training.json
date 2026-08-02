@@ -1,5 +1,5 @@
 {
- "comment": "BASIC TRAINING step table \u2014 data, not code. The TutorialDirector (src/sim/basictraining.ts) is generic: it arms listeners on the input-action bus, evaluates success predicates against sim metrics in the fixed step, and emits tutorial events. Predicate DSL: {all|any:[...]}, {action_held|action_pressed:id}, {metric,op,value}, {flag:name}, {checklist_done:true}. Metrics/flags are computed by the director's metric engine; per-step counters reset on step entry.",
+ "comment": "BASIC TRAINING step table — data, not code. The TutorialDirector (src/sim/basictraining.ts) is generic: it arms listeners on the input-action bus, evaluates success predicates against sim metrics in the fixed step, and emits tutorial events. Predicate DSL: {all|any:[...]}, {action_held|action_pressed:id}, {metric,op,value}, {flag:name}, {checklist_done:true}. Metrics/flags are computed by the director's metric engine; per-step counters reset on step entry.",
  "budget": {
   "total_minutes_max": 9,
   "step_median_seconds_max": 25
@@ -18,6 +18,60 @@
   "G",
   "H"
  ],
+ "phase_maps_comment": "Each phase trains on its own venue: the calibration pad is graded into that biome (terrain.ts opts.btPad), so every pad coordinate holds everywhere. A=dusk cove pad, B=dawn tideflats, C=sensors in polar night, D=live fire in the impound yard, E=heat drill on the salt (0.8x dissipation biome), F=jets in karst pillar country, G=(gated) arcology, H=checkride under the storm.",
+ "phase_maps": {
+  "A": "range",
+  "B": "tideflats",
+  "C": "polar",
+  "D": "yard",
+  "E": "salt",
+  "F": "karst",
+  "G": "arcology",
+  "H": "storm"
+ },
+ "phase_spawns_comment": "Per-phase pad spawn [x,z,yaw]: each venue drop starts beside that phase's furniture (C within lock range of the contacts, F facing the barrier runway) instead of the full walk from the south gate.",
+ "phase_spawns": {
+  "A": [
+   0,
+   420,
+   3.14159
+  ],
+  "B": [
+   0,
+   140,
+   3.14159
+  ],
+  "C": [
+   0,
+   -60,
+   3.14159
+  ],
+  "D": [
+   0,
+   -10,
+   3.14159
+  ],
+  "E": [
+   60,
+   160,
+   3.14159
+  ],
+  "F": [
+   40,
+   20,
+   1.5708
+  ],
+  "G": [
+   0,
+   60,
+   3.14159
+  ],
+  "H": [
+   0,
+   40,
+   3.14159
+  ]
+ },
  "steps": [
   {
    "id": "bt_a0",
