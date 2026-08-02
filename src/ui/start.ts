@@ -403,7 +403,7 @@ export class StartScreen {
       const btDone = phasesDone.length;
       this.el.innerHTML = `${this.header()}
         <div class="mainmenu">
-          <button class="go" id="mm-camp"><span class="ico">⚔️</span>TO BATTLE — CAMPAIGN</button>
+          <button class="go" id="mm-camp"><span class="ico">⚔️</span>TO BATTLE — ${PRODUCT_NAME.toUpperCase()} CAMPAIGN</button>
           <button id="mm-tut"><span class="ico">🎯</span>TUTORIAL — BASIC TRAINING ${progress.tutorialDone ? '' : '<span class="rec">· RECOMMENDED</span>'}</button>
           ${phrow}
           <button id="mm-hangar"><span class="ico">🔧</span>HANGAR — FRAMES &amp; BAYS${bayNudge}</button>

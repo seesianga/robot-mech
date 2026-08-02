@@ -93,7 +93,7 @@ requireText('.github/workflows/ci.yml', /runs-on:\s*\[self-hosted,\s*veyra-asset
 requireText('server/accountapi.mjs', /service:\s*'robot-mech-accounts'/, 'Robot Mech health service name');
 requireLiteral(
   'src/ui/start.ts',
-  'CAMPAIGN — ${PRODUCT_NAME.toUpperCase()} (24 MISSIONS)',
+  'TO BATTLE — ${PRODUCT_NAME.toUpperCase()} CAMPAIGN',
   'Robot Mech campaign menu label',
 );
 forbidText(
