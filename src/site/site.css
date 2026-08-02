@@ -70,9 +70,9 @@
 
   /* Signal. Mint is the Compact; amber is caution; ember is the Directorate.
      Nothing else gets a colour. */
-  --mint: #6ee7a8;
-  --mint-hi: #9df5c6;
-  --mint-dim: rgba(110, 231, 168, 0.14);
+  --accent: #5c88fb;
+  --accent-hi: #8fb3f8;
+  --accent-dim: rgba(92, 136, 251, 0.14);
   --amber: #ffb347;
   --ember: #ff6b4a;
 
@@ -135,11 +135,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 ul, ol { list-style: none; }   /* the litany is an <ol> for semantics, not for numerals */
 
 :focus-visible {
-  outline: 2px solid var(--mint);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
-::selection { background: var(--mint); color: #04140c; }
+::selection { background: var(--accent); color: #070e22; }
 
 /* --- primitives ----------------------------------------------------------- */
 
@@ -158,7 +158,7 @@ section { padding-block: var(--section-y); position: relative; }
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--mint);
+  color: var(--accent);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -167,7 +167,7 @@ section { padding-block: var(--section-y); position: relative; }
   content: '';
   width: 22px;
   height: 1px;
-  background: var(--mint);
+  background: var(--accent);
   opacity: 0.6;
 }
 
@@ -242,22 +242,22 @@ h2 {
   border: 2px solid currentColor;
   pointer-events: none;
 }
-.btn--primary:focus-visible::after { border-color: #04150d; }
+.btn--primary:focus-visible::after { border-color: #081026; }
 
 .btn--primary {
-  --btn-bg: var(--mint);
-  --btn-fg: #04150d;
-  --btn-bd: var(--mint);
-  box-shadow: 0 0 0 0 rgba(110, 231, 168, 0.5);
+  --btn-bg: var(--accent);
+  --btn-fg: #081026;
+  --btn-bd: var(--accent);
+  box-shadow: 0 0 0 0 rgba(92, 136, 251, 0.5);
 }
 .btn--primary:hover {
-  --btn-bg: var(--mint-hi);
-  --btn-bd: var(--mint-hi);
-  box-shadow: 0 14px 40px -12px rgba(110, 231, 168, 0.55);
+  --btn-bg: var(--accent-hi);
+  --btn-bd: var(--accent-hi);
+  box-shadow: 0 14px 40px -12px rgba(92, 136, 251, 0.55);
 }
 
 .btn--ghost { --btn-bd: var(--line-hi); }
-.btn--ghost:hover { --btn-bd: var(--mint); --btn-fg: var(--mint); background: var(--mint-dim); }
+.btn--ghost:hover { --btn-bd: var(--accent); --btn-fg: var(--accent); background: var(--accent-dim); }
 
 .btn--sm { padding: 11px 20px; font-size: 12px; }
 
@@ -294,7 +294,7 @@ h2 {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-.brand__name em { font-style: normal; color: var(--mint); }
+.brand__name em { font-style: normal; color: var(--accent); }
 .brand__sub {
   font-family: var(--mono);
   font-size: 9px;
@@ -320,10 +320,10 @@ h2 {
   position: absolute;
   left: 0; right: 100%; bottom: 2px;
   height: 1px;
-  background: var(--mint);
+  background: var(--accent);
   transition: right var(--t-state) var(--ease);
 }
-.nav a:hover { color: var(--mint); }
+.nav a:hover { color: var(--accent); }
 .nav a:hover::after { right: 0; }
 
 .hdr__actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
@@ -343,7 +343,7 @@ h2 {
   border: 1px solid var(--line);
   transition: color var(--t-state) var(--ease), border-color var(--t-state) var(--ease);
 }
-.sound:hover { color: var(--mint); border-color: var(--line-hi); }
+.sound:hover { color: var(--accent); border-color: var(--line-hi); }
 .sound__bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
 .sound__bars i {
   width: 2px;
@@ -351,7 +351,7 @@ h2 {
   height: 3px;
   transition: height var(--t-state) var(--ease);
 }
-.sound.is-on { color: var(--mint); border-color: rgba(110, 231, 168, 0.4); }
+.sound.is-on { color: var(--accent); border-color: rgba(92, 136, 251, 0.4); }
 .sound.is-on .sound__bars i { animation: eq 1.1s ease-in-out infinite; }
 .sound.is-on .sound__bars i:nth-child(2) { animation-delay: 0.18s; }
 .sound.is-on .sound__bars i:nth-child(3) { animation-delay: 0.36s; }
@@ -435,21 +435,21 @@ h2 {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--mint);
-  border: 1px solid rgba(110, 231, 168, 0.34);
-  background: rgba(110, 231, 168, 0.07);
+  color: var(--accent);
+  border: 1px solid rgba(92, 136, 251, 0.34);
+  background: rgba(92, 136, 251, 0.07);
   padding: 8px 14px;
   margin-bottom: 26px;
 }
 .tag i {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--mint);
-  box-shadow: 0 0 0 0 rgba(110, 231, 168, 0.7);
+  background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(92, 136, 251, 0.7);
   animation: pip 2.4s ease-out infinite;
 }
 @keyframes pip {
-  0% { box-shadow: 0 0 0 0 rgba(110, 231, 168, 0.65); }
-  70%, 100% { box-shadow: 0 0 0 9px rgba(110, 231, 168, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(92, 136, 251, 0.65); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(92, 136, 251, 0); }
 }
 
 .hero h1 {
@@ -458,7 +458,7 @@ h2 {
   text-transform: uppercase;
   letter-spacing: -0.028em;
 }
-.hero h1 em { font-style: normal; color: var(--mint); }
+.hero h1 em { font-style: normal; color: var(--accent); }
 
 .hero__sub {
   margin: 24px 0 34px;
@@ -495,6 +495,10 @@ h2 {
   object-fit: contain;
   opacity: 0;
   transition: opacity var(--t-element) var(--ease);
+  /* The still sits ABOVE the canvas in paint order. Invisible or not, without
+     this it swallows every pointer event — which is how "drag to rotate"
+     shipped dead: the drag grabbed a transparent <img>, not the turntable. */
+  pointer-events: none;
 }
 .stage.is-fallback .stage__fallback { opacity: 1; }
 .stage.is-fallback canvas { display: none; }
@@ -548,7 +552,7 @@ h2 {
   text-transform: uppercase;
   color: var(--faint);
 }
-.scrollcue span { display: block; width: 1px; height: 36px; background: linear-gradient(var(--mint), transparent); }
+.scrollcue span { display: block; width: 1px; height: 36px; background: linear-gradient(var(--accent), transparent); }
 
 /* --- stat strip ----------------------------------------------------------- */
 
@@ -576,7 +580,7 @@ h2 {
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
-.strip__n em { font-style: normal; color: var(--mint); }
+.strip__n em { font-style: normal; color: var(--accent); }
 .strip__l {
   display: block;
   margin-top: 10px;
@@ -629,7 +633,7 @@ h2 {
   content: '';
   width: 8px; height: 8px;
   margin-top: 9px;
-  background: var(--mint);
+  background: var(--accent);
   transform: rotate(45deg);
 }
 
@@ -650,7 +654,7 @@ h2 {
 .card__n {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--mint);
+  color: var(--accent);
   letter-spacing: 0.2em;
   display: block;
   margin-bottom: 14px;
@@ -681,7 +685,7 @@ h2 {
   transition: all var(--t-state) var(--ease);
 }
 .filter:hover { border-color: var(--line-hi); color: var(--ink-2); }
-.filter.is-on { border-color: var(--mint); color: var(--mint); background: var(--mint-dim); }
+.filter.is-on { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
 .showroom {
   display: grid;
@@ -725,8 +729,8 @@ h2 {
 }
 .chassis__item:hover { background: var(--panel); border-left-color: var(--line-hi); }
 .chassis__item.is-on {
-  background: linear-gradient(90deg, var(--mint-dim), transparent);
-  border-left-color: var(--mint);
+  background: linear-gradient(90deg, var(--accent-dim), transparent);
+  border-left-color: var(--accent);
 }
 .chassis__item > span:first-child { min-width: 0; }
 
@@ -738,7 +742,7 @@ h2 {
   text-transform: uppercase;
   line-height: 1.2;
 }
-.chassis__item.is-on .chassis__name { color: var(--mint); }
+.chassis__item.is-on .chassis__name { color: var(--accent); }
 .chassis__meta {
   display: block;
   font-family: var(--mono);
@@ -764,7 +768,7 @@ h2 {
 .showroom__view {
   position: relative;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 62%, rgba(110, 231, 168, 0.05), transparent 70%),
+    radial-gradient(ellipse 70% 55% at 50% 62%, rgba(92, 136, 251, 0.05), transparent 70%),
     linear-gradient(180deg, var(--steel), var(--void));
   border: 1px solid var(--line);
   min-height: 480px;
@@ -779,8 +783,8 @@ h2 {
   height: 42%;
   pointer-events: none;
   background:
-    repeating-linear-gradient(90deg, rgba(110,231,168,0.05) 0 1px, transparent 1px 64px),
-    repeating-linear-gradient(0deg, rgba(110,231,168,0.05) 0 1px, transparent 1px 40px);
+    repeating-linear-gradient(90deg, rgba(92,136,251,0.05) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(92,136,251,0.05) 0 1px, transparent 1px 40px);
   mask-image: linear-gradient(transparent, #000 85%);
   -webkit-mask-image: linear-gradient(transparent, #000 85%);
 }
@@ -837,7 +841,7 @@ h2 {
 .spec__bar i {
   position: absolute;
   inset: 0 auto 0 0;
-  background: linear-gradient(90deg, var(--mint), var(--amber));
+  background: linear-gradient(90deg, var(--accent), var(--amber));
   width: var(--w, 0%);
   transition: width var(--t-element) var(--ease);
 }
@@ -910,11 +914,11 @@ h2 {
   transition: all var(--t-state) var(--ease);
 }
 .op:hover { border-color: var(--line-hi); background: var(--raise); transform: translateY(-2px); }
-.op i { width: 6px; height: 6px; background: var(--mint); transform: rotate(45deg); }
+.op i { width: 6px; height: 6px; background: var(--accent); transform: rotate(45deg); }
 .op b {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--mint);
+  color: var(--accent);
   letter-spacing: 0.1em;
   font-weight: 700;
 }
@@ -1004,8 +1008,8 @@ h2 {
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.18em;
-  color: var(--mint);
-  border: 1px solid rgba(110, 231, 168, 0.4);
+  color: var(--accent);
+  border: 1px solid rgba(92, 136, 251, 0.4);
   background: rgba(5, 7, 10, 0.7);
   padding: 4px 8px;
 }
@@ -1045,7 +1049,7 @@ h2 {
   color: var(--dim);
   font-size: 20px;
 }
-.lightbox__x:hover { color: var(--mint); border-color: var(--mint); }
+.lightbox__x:hover { color: var(--accent); border-color: var(--accent); }
 
 /* --- faq ------------------------------------------------------------------ */
 
@@ -1061,14 +1065,14 @@ h2 {
   transition: color var(--t-state) var(--ease);
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary:hover { color: var(--mint); }
+.faq summary:hover { color: var(--accent); }
 .faq summary::after {
   content: '';
   position: absolute;
   right: 6px; top: 50%;
   width: 11px; height: 11px;
-  border-right: 1.5px solid var(--mint);
-  border-bottom: 1.5px solid var(--mint);
+  border-right: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
   transform: translateY(-70%) rotate(45deg);
   transition: transform var(--t-state) var(--ease);
 }
@@ -1121,7 +1125,7 @@ footer { border-top: 1px solid var(--line); background: var(--deep); padding-blo
 }
 .foot ul { display: grid; gap: 9px; }
 .foot a { color: var(--ink-2); font-size: 14.5px; transition: color var(--t-state) var(--ease); }
-.foot a:hover { color: var(--mint); }
+.foot a:hover { color: var(--accent); }
 .foot p { color: var(--dim); font-size: 14px; margin-top: 14px; max-width: 38ch; }
 
 .legal {
@@ -1175,13 +1179,13 @@ footer { border-top: 1px solid var(--line); background: var(--deep); padding-blo
   text-transform: uppercase;
   margin-bottom: 26px;
 }
-.boot__brand em { font-style: normal; color: var(--mint); }
+.boot__brand em { font-style: normal; color: var(--accent); }
 .boot__track { height: 1px; background: var(--line); position: relative; overflow: hidden; }
 .boot__track i {
   position: absolute;
   inset: 0 auto 0 0;
   width: var(--p, 4%);
-  background: var(--mint);
+  background: var(--accent);
   transition: width var(--t-element) var(--ease);
 }
 .boot__line {
@@ -1246,7 +1250,7 @@ footer { border-top: 1px solid var(--line); background: var(--deep); padding-blo
     place-items: center;
     width: 42px; height: 42px;
     border: 1px solid var(--line);
-    color: var(--mint);
+    color: var(--accent);
   }
   .burger span, .burger span::before, .burger span::after {
     content: '';
@@ -1293,7 +1297,7 @@ footer { border-top: 1px solid var(--line); background: var(--deep); padding-blo
     border-left: 0;
     border-bottom: 2px solid var(--line);
   }
-  .chassis__item.is-on { border-bottom-color: var(--mint); background: var(--mint-dim); }
+  .chassis__item.is-on { border-bottom-color: var(--accent); background: var(--accent-dim); }
 
   .foot { grid-template-columns: 1fr 1fr; }
 }
@@ -1334,8 +1338,8 @@ footer { border-top: 1px solid var(--line); background: var(--deep); padding-blo
   left: -9999px;
   top: 0;
   z-index: 400;
-  background: var(--mint);
-  color: #04150d;
+  background: var(--accent);
+  color: #081026;
   padding: 12px 20px;
   font-family: var(--mono);
   font-size: 12px;
@@ -1371,13 +1375,13 @@ footer { border-top: 1px solid var(--line); background: var(--deep); padding-blo
   width: 12px; height: 1px;
   background: currentColor;
 }
-.litany li.is-lit { color: var(--mint); }
+.litany li.is-lit { color: var(--accent); }
 
 .spec__loadline { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.7; }
 
 /* Basic Training sits above M01 and is marked as the entry point, not a mission. */
-.op--bt { border-color: rgba(110, 231, 168, 0.35); background: var(--mint-dim); }
-.op--bt b { color: var(--mint); }
+.op--bt { border-color: rgba(92, 136, 251, 0.35); background: var(--accent-dim); }
+.op--bt b { color: var(--accent); }
 /* The two M21 endings are the same slot in the campaign, not two missions. */
 .op--fork { border-left: 2px solid var(--amber); }
 .op--fork b { color: var(--amber); }

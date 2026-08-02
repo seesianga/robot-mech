@@ -145,8 +145,12 @@ export class MechStage {
       this.composer = new EffectComposer(this.renderer);
       this.composer.addPass(new RenderPass(this.scene, this.camera));
       // Restrained: this is a product shot, not a fireworks display. The bloom is
-      // here to make hot metal and emissive strips read, nothing more.
-      this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(1, 1), 0.34, 0.85, 0.92));
+      // here to make hot metal and emissive strips read, nothing more. At
+      // 0.34/0.85/0.92 the top kicker's speculars on white ceramic blew past
+      // threshold and smeared fist-sized white halos into the empty background
+      // beside the shoulders — threshold and radius now keep bloom on genuinely
+      // emissive pixels only.
+      this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(1, 1), 0.22, 0.55, 0.97));
       this.composer.addPass(new OutputPass());
     }
 
@@ -190,11 +194,12 @@ export class MechStage {
     this.scene.add(fill);
 
     // Rim from behind is what cuts the silhouette out of a dark background.
-    const rim = new THREE.DirectionalLight(0x86f0c4, 2.4);
+    // Blue to match the site accent (was the retired mint green).
+    const rim = new THREE.DirectionalLight(0x8fb3f8, 2.2);
     rim.position.set(-2.4, 3.4, -6.2);
     this.scene.add(rim);
 
-    const top = new THREE.SpotLight(0xffffff, 24, 22, Math.PI / 5, 0.7, 1.6);
+    const top = new THREE.SpotLight(0xffffff, 14, 22, Math.PI / 5, 0.7, 1.6);
     top.position.set(0, 9.5, 1.2);
     this.scene.add(top);
     this.scene.add(top.target);
